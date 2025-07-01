@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "686083564926",
+    "firebase_url": "https://hanacemi-a175c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "hanacemi-a175c",
+    "storage_bucket": "hanacemi-a175c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686083564926:android:1ac95af8c30c19ec573f2f",
+        "android_client_info": {
+          "package_name": "com.hey_show.sozoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk0_IpZ7O3jHRfJTeZgGM2waGpimoVEmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
