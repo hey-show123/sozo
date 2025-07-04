@@ -347,6 +347,54 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
                 style: const TextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
+              
+              // 単語ごとの評価を表示
+              if (result.wordScores != null && result.wordScores!.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                const Divider(),
+                const Text(
+                  '単語ごとの評価:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 12),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[50],
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.grey[300]!),
+                  ),
+                  child: Builder(
+                    builder: (context) {
+                      // 重複する単語を除去
+                      final uniqueWords = <String, WordScore>{};
+                      for (final word in result.wordScores!) {
+                        if (!uniqueWords.containsKey(word.word.toLowerCase())) {
+                          uniqueWords[word.word.toLowerCase()] = word;
+                        }
+                      }
+                      final filteredWords = uniqueWords.values.toList();
+                      
+                      return Wrap(
+                        spacing: 4,
+                        runSpacing: 8,
+                        children: filteredWords.map((word) {
+                          return RichText(
+                            text: TextSpan(
+                              text: word.word,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: _getWordScoreColor(word.accuracyScore),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ],
           ),
         ),
@@ -398,6 +446,20 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
         ),
       ],
     );
+  }
+
+  Color _getWordScoreColor(double score) {
+    if (score >= 90) {
+      return const Color(0xFF4CAF50); // 濃い緑
+    } else if (score >= 80) {
+      return const Color(0xFF8BC34A); // 明るい緑
+    } else if (score >= 70) {
+      return const Color(0xFFFFEB3B); // 黄色
+    } else if (score >= 60) {
+      return const Color(0xFFFF9800); // オレンジ
+    } else {
+      return const Color(0xFFE91E63); // ピンク/赤
+    }
   }
 
   void _showWebNotSupportedDialog() {

@@ -481,42 +481,44 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
                   '単語ごとの評価:',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 8),
-                ...result.wordScores!.map((word) {
-                  final color = word.accuracyScore >= 80
-                      ? Colors.green
-                      : word.accuracyScore >= 60
-                          ? Colors.orange
-                          : Colors.red;
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 2),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(word.word),
-                        Row(
-                          children: [
-                            Text(
-                              '${word.accuracyScore.toInt()}%',
+                const SizedBox(height: 12),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[50],
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.grey[300]!),
+                  ),
+                  child: Builder(
+                    builder: (context) {
+                      // 重複する単語を除去
+                      final uniqueWords = <String, WordScore>{};
+                      for (final word in result.wordScores!) {
+                        if (!uniqueWords.containsKey(word.word.toLowerCase())) {
+                          uniqueWords[word.word.toLowerCase()] = word;
+                        }
+                      }
+                      final filteredWords = uniqueWords.values.toList();
+                      
+                      return Wrap(
+                        spacing: 4,
+                        runSpacing: 8,
+                        children: filteredWords.map((word) {
+                          return RichText(
+                            text: TextSpan(
+                              text: word.word,
                               style: TextStyle(
-                                color: color,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: _getWordScoreColor(word.accuracyScore),
                               ),
                             ),
-                            if (word.errorType != 'None')
-                              Text(
-                                ' (${word.errorType})',
-                                style: TextStyle(
-                                  color: Colors.red[300],
-                                  fontSize: 12,
-                                ),
-                              ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
+                ),
               ],
             ],
           ),
@@ -725,22 +727,48 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(label, style: const TextStyle(fontSize: 12)),
-            Text('${score.toInt()}%', style: const TextStyle(fontSize: 12)),
-          ],
+        Text(
+          label,
+          style: const TextStyle(fontSize: 12, color: Colors.grey),
         ),
         const SizedBox(height: 4),
-        LinearProgressIndicator(
-          value: score / 100,
-          backgroundColor: Colors.grey[300],
-          valueColor: AlwaysStoppedAnimation(color),
-          minHeight: 8,
+        Row(
+          children: [
+            Expanded(
+              child: LinearProgressIndicator(
+                value: score / 100,
+                backgroundColor: Colors.grey[300],
+                valueColor: AlwaysStoppedAnimation<Color>(color),
+                minHeight: 8,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              '${score.toStringAsFixed(0)}%',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
+            ),
+          ],
         ),
       ],
     );
+  }
+  
+  Color _getWordScoreColor(double score) {
+    if (score >= 90) {
+      return const Color(0xFF4CAF50); // 濃い緑
+    } else if (score >= 80) {
+      return const Color(0xFF8BC34A); // 明るい緑
+    } else if (score >= 70) {
+      return const Color(0xFFFFEB3B); // 黄色
+    } else if (score >= 60) {
+      return const Color(0xFFFF9800); // オレンジ
+    } else {
+      return const Color(0xFFE91E63); // ピンク/赤
+    }
   }
   
   void _showCompletionDialog() {

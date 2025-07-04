@@ -407,28 +407,71 @@ class _PronunciationTestScreenState extends ConsumerState<PronunciationTestScree
             if (result.wordDetails.isNotEmpty) ...[
               const SizedBox(height: 16),
               const Divider(),
-              const SizedBox(height: 8),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: result.wordDetails.map((word) {
-                  final wordColor = word.score >= 80
-                      ? Colors.green
-                      : word.score >= 60
-                          ? Colors.orange
-                          : Colors.red;
-                  return Chip(
-                    label: Text(word.word),
-                    backgroundColor: wordColor.withOpacity(0.2),
-                    side: BorderSide(color: wordColor),
-                  );
-                }).toList(),
+              const SizedBox(height: 16),
+              const Text(
+                '単語ごとの評価:',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
+              const SizedBox(height: 12),
+              _buildWordScoreDisplay(result.wordDetails),
             ],
           ],
         ),
       ),
     );
+  }
+  
+  Widget _buildWordScoreDisplay(List<WordDetail> wordDetails) {
+    // 重複する単語を除去
+    final uniqueWords = <String, WordDetail>{};
+    for (final word in wordDetails) {
+      if (!uniqueWords.containsKey(word.word.toLowerCase())) {
+        uniqueWords[word.word.toLowerCase()] = word;
+      }
+    }
+    final filteredWords = uniqueWords.values.toList();
+    
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[50],
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey[300]!),
+      ),
+      child: Wrap(
+        spacing: 4,
+        runSpacing: 8,
+        children: filteredWords.map((word) {
+          return RichText(
+            text: TextSpan(
+              text: word.word,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: _getWordColor(word.score),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+  
+  Color _getWordColor(double score) {
+    if (score >= 90) {
+      return const Color(0xFF4CAF50); // 濃い緑
+    } else if (score >= 80) {
+      return const Color(0xFF8BC34A); // 明るい緑
+    } else if (score >= 70) {
+      return const Color(0xFFFFEB3B); // 黄色
+    } else if (score >= 60) {
+      return const Color(0xFFFF9800); // オレンジ
+    } else {
+      return const Color(0xFFE91E63); // ピンク/赤
+    }
   }
   
   Widget _buildScoreItem(String label, double score) {

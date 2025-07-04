@@ -5,11 +5,9 @@
 *.swp
 .DS_Store
 .atom/
-.build/
 .buildlog/
 .history
 .svn/
-.swiftpm/
 migrate_working_dir/
 
 # IntelliJ related
@@ -44,11 +42,12 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Generated audio files
-audio-files/
-*.mp3
-*.wav
-
 # Environment variables
 .env
 .env.*
+
+# Large build files
+.dart_tool/flutter_build/
+build/ios/
+build/ios 2/
+build/ios 3/
