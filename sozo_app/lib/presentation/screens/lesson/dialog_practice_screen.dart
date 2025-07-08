@@ -11,14 +11,12 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter/services.dart';
 import 'package:sozo_app/presentation/providers/curriculum_provider.dart';
 import 'package:sozo_app/services/progress_service.dart';
-import 'package:sozo_app/services/character_service.dart';
 import 'package:sozo_app/presentation/widgets/xp_animation.dart';
 import 'package:sozo_app/presentation/widgets/achievement_notification.dart';
 import 'package:sozo_app/presentation/widgets/level_up_notification.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sozo_app/presentation/widgets/animated_avatar.dart';
 import 'package:sozo_app/core/utils/platform_utils.dart';
 import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
@@ -61,6 +59,12 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
   Timer? _recordingTimer;
   bool _isPlayingAudio = false;
   
+  // 自動化用の追加変数
+  bool _isAutoMode = true;  // 自動モードのフラグ
+  Timer? _autoRecordingTimer;  // 自動録音開始タイマー
+  static const Duration _recordingDuration = Duration(seconds: 5);  // 自動録音時間
+  static const double _passingScore = 80.0;  // 合格スコア
+  
   Map<String, dynamic> get _currentDialog {
     if (widget.lesson.dialogues.isEmpty) {
       return {};
@@ -98,6 +102,7 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
   @override
   void dispose() {
     _recordingTimer?.cancel();
+    _autoRecordingTimer?.cancel();
     _audioRecorder.dispose();
     super.dispose();
   }
@@ -107,7 +112,7 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
     if (_isPlayingAudio) return;
     
     // 少し遅延を入れてUI描画を待つ
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 300));
     
     if (mounted) {
       await _playDialog();
@@ -133,10 +138,10 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
       String voice;
       if (_isUserTurn) {
         // ユーザーターン（Staff）は常にSarahの声で発音指導
-        voice = CharacterService.getVoiceModel('sarah');
+        voice = 'fable';
       } else {
-        // AIターン（Customer）は選択されたキャラクターの声
-        voice = CharacterService.getVoiceModel(widget.lesson.characterId);
+        // AIターン（Customer）はデフォルトの声
+        voice = 'fable';
       }
       
       final audioUrl = await audioStorage.getOrCreateKeyPhraseAudio(
@@ -144,7 +149,8 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
         lessonId: widget.lesson.id,
         voice: voice,
       );
-      await audioPlayer.playAudioFromUrl(audioUrl);
+      // 音声を再生して完了を待つ
+      await audioPlayer.playAudioFromUrlAndWait(audioUrl);
     } catch (e) {
       print('Error playing dialog: $e');
       if (mounted) {
@@ -171,6 +177,38 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
         setState(() {
           _isPlayingAudio = false;
         });
+        
+        // 自動モードの場合
+        if (_isAutoMode) {
+          if (_isUserTurn && PlatformUtils.isRecordingSupported) {
+            // ユーザーターンの場合、0.5秒待ってから自動的に録音を開始
+            _autoRecordingTimer = Timer(const Duration(milliseconds: 500), () {
+              if (mounted) {
+                _startRecording();
+                // 5秒後に自動的に録音を停止
+                Timer(_recordingDuration, () {
+                  if (mounted && _recordingState == RecordingState.recording) {
+                    _stopRecordingAndAssess();
+                  }
+                });
+              }
+            });
+          } else if (!_isUserTurn) {
+            // AIターンの場合、0.5秒待ってから自動的に次へ進む
+            _autoRecordingTimer = Timer(const Duration(milliseconds: 500), () {
+              if (mounted) {
+                _proceedToNextDialog();
+              }
+            });
+          } else if (!PlatformUtils.isRecordingSupported) {
+            // Web版の場合も0.5秒待って自動的に次へ進む
+            _autoRecordingTimer = Timer(const Duration(milliseconds: 500), () {
+              if (mounted) {
+                _proceedToNextDialog();
+              }
+            });
+          }
+        }
       }
     }
   }
@@ -370,7 +408,148 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
     }
   }
 
+  // 次のダイアログへ進む
+  void _proceedToNextDialog() {
+    if (_currentDialogIndex < widget.lesson.dialogues.length - 1) {
+      setState(() {
+        _currentDialogIndex++;
+        _currentAssessmentResult = null;
+      });
+      // 次のダイアログを自動再生
+      if (_isAutoMode) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _autoPlayDialog();
+        });
+      }
+    } else {
+      if (widget.onComplete != null) {
+        // チュートリアルモードの場合は直接完了処理を実行
+        widget.onComplete!();
+      } else {
+        // 通常のレッスンモードの場合は完了ダイアログを表示
+        _showCompletionDialog();
+      }
+    }
+  }
+
   void _showFeedbackDialog(PronunciationAssessmentResult result) {
+    if (!_isAutoMode) {
+      // 手動モードの場合は従来のダイアログを表示
+      _showManualFeedbackDialog(result);
+      return;
+    }
+    
+    // 自動モードの場合
+    if (result.pronunciationScore >= _passingScore) {
+      // 合格スコアに達した場合
+      _showAutoFeedback(
+        '素晴らしい！',
+        'スコア: ${result.pronunciationScore.toInt()}%',
+        Colors.green,
+      );
+      
+      // 2秒後に自動的に次へ進む
+      Timer(const Duration(seconds: 2), () {
+        if (mounted) {
+          _proceedToNextDialog();
+        }
+      });
+    } else {
+      // スコアが低い場合は再試行
+      _showAutoFeedback(
+        'もう一度言ってみましょう',
+        'スコア: ${result.pronunciationScore.toInt()}%',
+        Colors.orange,
+      );
+      
+      // 「もう一度言ってみましょう」の音声を再生
+      _playRetryMessage().then((_) {
+        // 音声再生後、0.5秒待ってから自動的に録音を再開
+        Timer(const Duration(milliseconds: 500), () {
+          if (mounted && _isUserTurn) {
+            _startRecording();
+            // 5秒後に自動的に録音を停止
+            Timer(const Duration(seconds: 5), () {
+              if (mounted && _recordingState == RecordingState.recording) {
+                _stopRecordingAndAssess();
+              }
+            });
+          }
+        });
+      });
+    }
+  }
+  
+  // 「もう一度言ってみましょう」の音声を再生
+  Future<void> _playRetryMessage() async {
+    try {
+      final audioPlayerService = ref.read(audioPlayerServiceProvider);
+      final audioStorage = ref.read(audioStorageServiceProvider);
+      
+      // 「もう一度言ってみましょう」を再生
+      final audioUrl = await audioStorage.getOrCreateKeyPhraseAudio(
+        phrase: "Let's try again",
+        lessonId: widget.lesson.id,
+        voice: 'fable',
+      );
+      
+      // 音声を再生して完了を待つ
+      await audioPlayerService.playAudioFromUrlAndWait(audioUrl);
+    } catch (e) {
+      print('Error playing retry message: $e');
+    }
+  }
+  
+  // 自動フィードバック表示
+  void _showAutoFeedback(String title, String message, Color color) {
+    // スナックバーでフィードバックを表示
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Row(
+            children: [
+              Icon(
+                title.contains('素晴らしい') ? Icons.check_circle : Icons.info,
+                color: Colors.white,
+                size: 24,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      message,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: color,
+        duration: const Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+  
+  // 手動モード用の従来のダイアログ
+  void _showManualFeedbackDialog(PronunciationAssessmentResult result) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -397,54 +576,6 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
                 style: const TextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
-              
-              // 単語ごとの評価を表示
-              if (result.wordScores != null && result.wordScores!.isNotEmpty) ...[
-                const SizedBox(height: 16),
-                const Divider(),
-                const Text(
-                  '単語ごとの評価:',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 12),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[50],
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.grey[300]!),
-                  ),
-                  child: Builder(
-                    builder: (context) {
-                      // 重複する単語を除去
-                      final uniqueWords = <String, WordScore>{};
-                      for (final word in result.wordScores!) {
-                        if (!uniqueWords.containsKey(word.word.toLowerCase())) {
-                          uniqueWords[word.word.toLowerCase()] = word;
-                        }
-                      }
-                      final filteredWords = uniqueWords.values.toList();
-                      
-                      return Wrap(
-                        spacing: 4,
-                        runSpacing: 8,
-                        children: filteredWords.map((word) {
-                          return RichText(
-                            text: TextSpan(
-                              text: word.word,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: _getWordScoreColor(word.accuracyScore),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      );
-                    },
-                  ),
-                ),
-              ],
             ],
           ),
         ),
@@ -456,20 +587,7 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
-              if (_currentDialogIndex < widget.lesson.dialogues.length - 1) {
-                setState(() {
-                  _currentDialogIndex++;
-                  _currentAssessmentResult = null;
-                });
-              } else {
-                if (widget.onComplete != null) {
-                  // チュートリアルモードの場合は直接完了処理を実行
-                  widget.onComplete!();
-                } else {
-                  // 通常のレッスンモードの場合は完了ダイアログを表示
-                  _showCompletionDialog();
-                }
-              }
+              _proceedToNextDialog();
             },
             child: Text(
               _currentDialogIndex < widget.lesson.dialogues.length - 1
@@ -583,25 +701,6 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
         ],
       ),
     );
-  }
-
-  void _proceedToNextDialog() {
-    if (_currentDialogIndex < widget.lesson.dialogues.length - 1) {
-      setState(() {
-        _currentDialogIndex++;
-        _currentAssessmentResult = null;
-      });
-      // 次のダイアログに移動時も自動再生
-      _autoPlayDialog();
-    } else {
-      if (widget.onComplete != null) {
-        // チュートリアルモードの場合は直接完了処理を実行
-        widget.onComplete!();
-      } else {
-        // 通常のレッスンモードの場合は完了ダイアログを表示
-        _showCompletionDialog();
-      }
-    }
   }
 
   void _showCompletionDialog() {
@@ -908,6 +1007,57 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
           ),
         ),
         centerTitle: true,
+        actions: [
+          // 自動/手動モード切替ボタン
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: _isAutoMode ? Colors.green.shade50 : Colors.orange.shade50,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: _isAutoMode ? Colors.green.shade300 : Colors.orange.shade300,
+                  ),
+                ),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () {
+                    setState(() {
+                      _isAutoMode = !_isAutoMode;
+                      _autoRecordingTimer?.cancel();
+                      if (_isAutoMode) {
+                        // 自動モードに切り替えたら自動再生開始
+                        _autoPlayDialog();
+                      }
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    child: Row(
+                      children: [
+                        Icon(
+                          _isAutoMode ? Icons.play_circle : Icons.touch_app,
+                          size: 16,
+                          color: _isAutoMode ? Colors.green.shade700 : Colors.orange.shade700,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          _isAutoMode ? '自動' : '手動',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: _isAutoMode ? Colors.green.shade700 : Colors.orange.shade700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Stack(
         children: [
@@ -966,43 +1116,7 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
                   ),
                 ),
                 
-                const SizedBox(height: 30),
-                
-                // アバターと名前
-                Column(
-                  children: [
-                    // アバター画像
-                    AnimatedAvatar(
-                      isPlaying: _isPlayingAudio,
-                      size: 180,
-                      fallbackAvatarPath: _isUserTurn 
-                          ? CharacterService.getAvatarImagePath('sarah')
-                          : CharacterService.getAvatarImagePath(widget.lesson.characterId),
-                    ),
-                    const SizedBox(height: 10),
-                    
-                    // キャラクター名
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: _isUserTurn ? Colors.green.shade500 : Colors.blue.shade500,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        _isUserTurn 
-                            ? 'Sarah - 発音コーチ'
-                            : CharacterService.getDisplayName(widget.lesson.characterId),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                
-                const SizedBox(height: 15),
+                const SizedBox(height: 40),
                 
                 // ダイアログ吹き出し
                 Flexible(
@@ -1069,63 +1183,110 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
                 
                 // 録音ボタン（ユーザーターンのみ）
                 if (_isUserTurn) ...[
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // 背景の円
-                      Container(
-                        width: 90,
-                        height: 90,
+                  // 手動モードの録音ボタン
+                  if (!_isAutoMode) ...[
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // 背景の円
+                        Container(
+                          width: 90,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white.withOpacity(0.9),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.green.withOpacity(0.2),
+                                blurRadius: 20,
+                                spreadRadius: 5,
+                              ),
+                            ],
+                          ),
+                        ),
+                        
+                        // 録音ボタン本体
+                        GestureDetector(
+                          onTapDown: (_) => _startRecording(),
+                          onTapUp: (_) => _stopRecordingAndAssess(),
+                          onTapCancel: () async {
+                            await _audioRecorder.stop();
+                            _recordingTimer?.cancel();
+                            _recordingTimer = null;
+                            setState(() {
+                              _recordingState = RecordingState.idle;
+                              _recordingStartTime = null;
+                            });
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            width: _recordingState == RecordingState.recording ? 80 : 70,
+                            height: _recordingState == RecordingState.recording ? 80 : 70,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: _getRecordingButtonColor(),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: _getRecordingButtonColor().withOpacity(0.4),
+                                  blurRadius: 15,
+                                  spreadRadius: 2,
+                                ),
+                              ],
+                            ),
+                            child: Icon(
+                              _recordingState == RecordingState.recording ? Icons.stop : Icons.mic,
+                              size: 35,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ] else ...[
+                    // 自動モードの録音状態表示
+                    GestureDetector(
+                      onTap: _recordingState == RecordingState.recording 
+                        ? () async {
+                            // 手動で録音を停止
+                            _autoRecordingTimer?.cancel();
+                            await _stopRecordingAndAssess();
+                          }
+                        : null,
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
                           color: Colors.white.withOpacity(0.9),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.green.withOpacity(0.2),
-                              blurRadius: 20,
-                              spreadRadius: 5,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: _getRecordingButtonColor().withOpacity(0.5),
+                            width: 2,
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Icon(
+                              _recordingState == RecordingState.recording ? Icons.stop :
+                              _recordingState == RecordingState.analyzing ? Icons.analytics :
+                              Icons.auto_mode,
+                              size: 40,
+                              color: _getRecordingButtonColor(),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              _recordingState == RecordingState.recording ? '録音停止' :
+                              _recordingState == RecordingState.analyzing ? '分析中' :
+                              '自動モード',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      
-                      // 録音ボタン本体
-                      GestureDetector(
-                        onTapDown: (_) => _startRecording(),
-                        onTapUp: (_) => _stopRecordingAndAssess(),
-                        onTapCancel: () async {
-                          await _audioRecorder.stop();
-                          _recordingTimer?.cancel();
-                          _recordingTimer = null;
-                          setState(() {
-                            _recordingState = RecordingState.idle;
-                            _recordingStartTime = null;
-                          });
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          width: _recordingState == RecordingState.recording ? 80 : 70,
-                          height: _recordingState == RecordingState.recording ? 80 : 70,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _getRecordingButtonColor(),
-                            boxShadow: [
-                              BoxShadow(
-                                color: _getRecordingButtonColor().withOpacity(0.4),
-                                blurRadius: 15,
-                                spreadRadius: 2,
-                              ),
-                            ],
-                          ),
-                          child: Icon(
-                            _recordingState == RecordingState.recording ? Icons.stop : Icons.mic,
-                            size: 35,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                   
                   const SizedBox(height: 8),
                   
@@ -1155,7 +1316,7 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
                         const SizedBox(width: 6),
                         Expanded(
                           child: Text(
-                            '${CharacterService.getDisplayName(widget.lesson.characterId)}が話しています',
+                            '相手が話しています',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.blue.shade700,
@@ -1198,134 +1359,162 @@ class _DialogPracticeScreenState extends ConsumerState<DialogPracticeScreen> {
                 
                 const SizedBox(height: 15),
                 
-                // ナビゲーションボタン
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // 前へボタン
-                      Container(
-                        decoration: BoxDecoration(
-                          color: _currentDialogIndex > 0
-                              ? Colors.white
-                              : Colors.grey.shade200,
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: _currentDialogIndex > 0
-                              ? [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 2),
-                                  ),
-                                ]
-                              : null,
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
+                // ナビゲーションボタン（手動モードのみ）または自動モード進行状況
+                if (!_isAutoMode) ...[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // 前へボタン
+                        Container(
+                          decoration: BoxDecoration(
+                            color: _currentDialogIndex > 0
+                                ? Colors.white
+                                : Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(25),
-                            onTap: _currentDialogIndex > 0
-                                ? () {
-                                    setState(() {
-                                      _currentDialogIndex--;
-                                      _currentAssessmentResult = null;
-                                    });
-                                    _autoPlayDialog();
-                                  }
+                            boxShadow: _currentDialogIndex > 0
+                                ? [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 2),
+                                    ),
+                                  ]
                                 : null,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.chevron_left,
-                                    color: _currentDialogIndex > 0 
-                                        ? Colors.blue.shade600 
-                                        : Colors.grey.shade400,
-                                    size: 20,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    '前へ',
-                                    style: TextStyle(
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(25),
+                              onTap: _currentDialogIndex > 0
+                                  ? () {
+                                      setState(() {
+                                        _currentDialogIndex--;
+                                        _currentAssessmentResult = null;
+                                      });
+                                      _autoPlayDialog();
+                                    }
+                                  : null,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.chevron_left,
                                       color: _currentDialogIndex > 0 
                                           ? Colors.blue.shade600 
                                           : Colors.grey.shade400,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
+                                      size: 20,
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      '前へ',
+                                      style: TextStyle(
+                                        color: _currentDialogIndex > 0 
+                                            ? Colors.blue.shade600 
+                                            : Colors.grey.shade400,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      // 次へ/完了ボタン
-                      Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: !_isUserTurn || _currentAssessmentResult != null || 
-                                   _recordingState == RecordingState.idle
-                                ? [Colors.blue.shade400, Colors.blue.shade600]
-                                : [Colors.grey.shade300, Colors.grey.shade400],
-                          ),
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              color: (!_isUserTurn || _currentAssessmentResult != null || 
+                        // 次へ/完了ボタン
+                        Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: !_isUserTurn || _currentAssessmentResult != null || 
                                      _recordingState == RecordingState.idle
-                                  ? Colors.blue
-                                  : Colors.grey).withOpacity(0.3),
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
+                                  ? [Colors.blue.shade400, Colors.blue.shade600]
+                                  : [Colors.grey.shade300, Colors.grey.shade400],
                             ),
-                          ],
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
                             borderRadius: BorderRadius.circular(25),
-                            onTap: !_isUserTurn || _currentAssessmentResult != null || 
-                                   _recordingState == RecordingState.idle
-                                ? () => _proceedToNextDialog()
-                                : null,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    _currentDialogIndex < widget.lesson.dialogues.length - 1
-                                        ? '次へ'
-                                        : '完了',
-                                    style: TextStyle(
+                            boxShadow: [
+                              BoxShadow(
+                                color: (!_isUserTurn || _currentAssessmentResult != null || 
+                                       _recordingState == RecordingState.idle
+                                    ? Colors.blue
+                                    : Colors.grey).withOpacity(0.3),
+                                blurRadius: 8,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(25),
+                              onTap: !_isUserTurn || _currentAssessmentResult != null || 
+                                     _recordingState == RecordingState.idle
+                                  ? () => _proceedToNextDialog()
+                                  : null,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      _currentDialogIndex < widget.lesson.dialogues.length - 1
+                                          ? '次へ'
+                                          : '完了',
+                                      style: TextStyle(
+                                        color: !_isUserTurn || _currentAssessmentResult != null || 
+                                               _recordingState == RecordingState.idle
+                                            ? Colors.white
+                                            : Colors.grey.shade600,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Icon(
+                                      Icons.chevron_right,
                                       color: !_isUserTurn || _currentAssessmentResult != null || 
                                              _recordingState == RecordingState.idle
                                           ? Colors.white
                                           : Colors.grey.shade600,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
+                                      size: 20,
                                     ),
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Icon(
-                                    Icons.chevron_right,
-                                    color: !_isUserTurn || _currentAssessmentResult != null || 
-                                           _recordingState == RecordingState.idle
-                                        ? Colors.white
-                                        : Colors.grey.shade600,
-                                    size: 20,
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+                ] else ...[
+                  // 自動モードの場合は進行状況のみ表示
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.green.shade50,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.green.shade200),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.auto_awesome, color: Colors.green.shade600, size: 20),
+                        const SizedBox(width: 8),
+                        Text(
+                          '自動進行中...',
+                          style: TextStyle(
+                            color: Colors.green.shade700,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
                 
                 const SizedBox(height: 15),
               ],

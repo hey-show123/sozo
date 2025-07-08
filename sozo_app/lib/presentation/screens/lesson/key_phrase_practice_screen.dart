@@ -8,13 +8,11 @@ import 'package:go_router/go_router.dart';
 import 'package:sozo_app/presentation/widgets/xp_animation.dart';
 import 'package:sozo_app/presentation/widgets/achievement_notification.dart';
 import 'package:sozo_app/presentation/widgets/level_up_notification.dart';
-import 'package:sozo_app/presentation/widgets/animated_avatar.dart';
 import 'package:sozo_app/data/models/lesson_model.dart';
 import 'package:sozo_app/services/audio_player_service.dart';
 import 'package:sozo_app/services/audio_storage_service.dart';
 import 'package:sozo_app/services/progress_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:sozo_app/services/character_service.dart';
 import 'package:sozo_app/presentation/providers/user_profile_provider.dart';
 import 'package:sozo_app/services/azure_speech_service.dart';
 import 'package:sozo_app/core/utils/platform_utils.dart';
@@ -53,6 +51,14 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
   Timer? _recordingTimer;  // 録音時間更新用タイマー
   bool _isPlayingAudio = false;
   
+  // 自動化用の追加変数
+  int _attemptCount = 0;  // 現在のフレーズの試行回数
+  static const int _maxAttempts = 3;  // 最大試行回数
+  static const double _passingScore = 80.0;  // 合格スコア
+  Timer? _autoRecordingTimer;  // 自動録音開始タイマー
+  static const Duration _recordingDuration = Duration(seconds: 5);  // 自動録音時間
+  bool _isAutoMode = true;  // 自動モードのフラグ
+  
   KeyPhrase get _currentPhrase => widget.lesson.keyPhrases[_currentPhraseIndex];
   
   @override
@@ -77,6 +83,7 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
   void dispose() {
     _audioRecorder.dispose();
     _recordingTimer?.cancel();
+    _autoRecordingTimer?.cancel();
     super.dispose();
   }
   
@@ -104,30 +111,16 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
       final audioPlayerService = ref.read(audioPlayerServiceProvider);
       final audioStorage = ref.read(audioStorageServiceProvider);
       
-      // キャラクターの音声でフレーズを再生
-      final voice = CharacterService.getVoiceModel(widget.lesson.characterId);
+      // デフォルトの音声でフレーズを再生
+      final voice = 'fable';
       final audioUrl = await audioStorage.getOrCreateKeyPhraseAudio(
         phrase: _currentPhrase.phrase,
         lessonId: widget.lesson.id,
         voice: voice,
       );
       
-      // 音声を再生開始（非同期で開始）
-      final playbackFuture = audioPlayerService.playAudioFromUrl(audioUrl);
-      
-      // フレーズの長さから推定再生時間を計算（単語数 * 600ms + 余裕時間）
-      final words = _currentPhrase.phrase.split(' ').length;
-      final estimatedDuration = Duration(milliseconds: (words * 600) + 1000);
-      
-      // 推定時間待機（最低2秒、最大8秒）
-      final waitDuration = Duration(
-        milliseconds: estimatedDuration.inMilliseconds.clamp(2000, 8000),
-      );
-      
-      await Future.wait([
-        playbackFuture,
-        Future.delayed(waitDuration),
-      ]);
+      // 音声を再生して完了を待つ
+      await audioPlayerService.playAudioFromUrlAndWait(audioUrl);
       
     } catch (e) {
       print('Error playing phrase: $e');
@@ -155,6 +148,26 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
         setState(() {
           _isPlayingAudio = false;
         });
+        
+        // 自動モードの場合、音声再生後に自動的に録音を開始
+        if (_isAutoMode && !PlatformUtils.isRecordingSupported) {
+          // Web版の場合は0.5秒待って自動的に次へ進む
+          await Future.delayed(const Duration(milliseconds: 500));
+          _autoMoveToNext();
+        } else if (_isAutoMode) {
+          // 0.5秒待ってから自動的に録音を開始
+          _autoRecordingTimer = Timer(const Duration(milliseconds: 500), () {
+            if (mounted) {
+              _startRecording();
+              // 5秒後に自動的に録音を停止
+              Timer(_recordingDuration, () {
+                if (mounted && _recordingState == RecordingState.recording) {
+                  _stopRecordingAndAssess();
+                }
+              });
+            }
+          });
+        }
       }
     }
   }
@@ -558,13 +571,199 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
     if (_currentPhraseIndex < widget.lesson.keyPhrases.length - 1) {
       setState(() {
         _currentPhraseIndex++;
+        _attemptCount = 0;  // 次のフレーズに移る時に試行回数をリセット
       });
+      // 次のフレーズの音声を自動再生
+      if (_isAutoMode) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _autoPlayPhrase();
+        });
+      }
     } else {
-      _showCompletionDialog();
+      // 最後のフレーズの場合
+      if (_isAutoMode) {
+        // 自動モードの場合、一瞬案内を表示してからリスニング練習へ
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [
+                const Icon(Icons.check_circle, color: Colors.white),
+                const SizedBox(width: 12),
+                const Text('キーフレーズ練習完了！次はリスニング練習です'),
+              ],
+            ),
+            backgroundColor: Colors.green,
+            duration: const Duration(seconds: 2),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        );
+        
+        // 2秒後にリスニング練習へ遷移
+        Timer(const Duration(seconds: 2), () {
+          if (mounted) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ListeningPracticeScreen(lesson: widget.lesson),
+              ),
+            );
+          }
+        });
+      } else {
+        // 手動モードの場合は完了ダイアログを表示
+        _showCompletionDialog();
+      }
     }
   }
   
+  // 自動的に次へ進むメソッド
+  void _autoMoveToNext() {
+    _proceedToNextPhrase();
+  }
+  
   void _showFeedbackDialog(PronunciationAssessmentResult result) {
+    if (!_isAutoMode) {
+      // 手動モードの場合は従来のダイアログを表示
+      _showManualFeedbackDialog(result);
+      return;
+    }
+    
+    // 自動モードの場合
+    _attemptCount++;
+    
+    if (result.pronunciationScore >= _passingScore) {
+      // 合格スコアに達した場合
+      _showAutoFeedback(
+        '素晴らしい！',
+        'スコア: ${result.pronunciationScore.toInt()}%',
+        Colors.green,
+      );
+      
+      // 2秒後に自動的に次へ進む
+      Timer(const Duration(seconds: 2), () {
+        if (mounted) {
+          _proceedToNextPhrase();
+        }
+      });
+    } else if (_attemptCount < _maxAttempts) {
+      // まだ試行回数が残っている場合
+      _showAutoFeedback(
+        'もう一度！',
+        'スコア: ${result.pronunciationScore.toInt()}% (あと${_maxAttempts - _attemptCount}回)',
+        Colors.orange,
+      );
+      
+      // 3秒後に自動的に再録音
+      Timer(const Duration(seconds: 3), () {
+        if (mounted) {
+          _autoPlayPhrase();
+        }
+      });
+    } else {
+      // 最大試行回数に達した場合
+      _showRetryOrNextDialog(result);
+    }
+  }
+  
+  // 自動フィードバック表示
+  void _showAutoFeedback(String title, String message, Color color) {
+    // スナックバーでフィードバックを表示
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Row(
+            children: [
+              Icon(
+                title.contains('素晴らしい') ? Icons.check_circle : Icons.refresh,
+                color: Colors.white,
+                size: 24,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      message,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: color,
+        duration: const Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+  
+  // 3回失敗後の選択ダイアログ
+  void _showRetryOrNextDialog(PronunciationAssessmentResult result) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text('練習完了'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              '3回練習しました。最高スコア: ${result.pronunciationScore.toInt()}%',
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'このフレーズをもう一度練習しますか？\nそれとも次のフレーズに進みますか？',
+              style: TextStyle(fontSize: 14),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              setState(() {
+                _attemptCount = 0;
+              });
+              _autoPlayPhrase();
+            },
+            child: const Text('もう一度練習'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _proceedToNextPhrase();
+            },
+            child: const Text('次へ進む'),
+          ),
+        ],
+      ),
+    );
+  }
+  
+  // 手動モード用の従来のダイアログ
+  void _showManualFeedbackDialog(PronunciationAssessmentResult result) {
+    // 従来のダイアログ表示コード（既存のコードを移動）
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -591,54 +790,6 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
                 style: const TextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
-              
-              // 単語ごとの評価を表示
-              if (result.wordScores != null && result.wordScores!.isNotEmpty) ...[
-                const SizedBox(height: 16),
-                const Divider(),
-                const Text(
-                  '単語ごとの評価:',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 12),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[50],
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.grey[300]!),
-                  ),
-                  child: Builder(
-                    builder: (context) {
-                      // 重複する単語を除去
-                      final uniqueWords = <String, WordScore>{};
-                      for (final word in result.wordScores!) {
-                        if (!uniqueWords.containsKey(word.word.toLowerCase())) {
-                          uniqueWords[word.word.toLowerCase()] = word;
-                        }
-                      }
-                      final filteredWords = uniqueWords.values.toList();
-                      
-                      return Wrap(
-                        spacing: 4,
-                        runSpacing: 8,
-                        children: filteredWords.map((word) {
-                          return RichText(
-                            text: TextSpan(
-                              text: word.word,
-                                style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: _getWordScoreColor(word.accuracyScore),
-                                ),
-                    ),
-                  );
-                }).toList(),
-                      );
-                    },
-                  ),
-                ),
-              ],
             ],
           ),
         ),
@@ -650,13 +801,7 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
-              if (_currentPhraseIndex < widget.lesson.keyPhrases.length - 1) {
-                setState(() {
-                  _currentPhraseIndex++;
-                });
-              } else {
-                _showCompletionDialog();
-              }
+              _proceedToNextPhrase();
             },
             child: Text(
               _currentPhraseIndex < widget.lesson.keyPhrases.length - 1
@@ -838,24 +983,47 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
 
   // 録音状態のテキストを取得
   String _getRecordingStatusText() {
-    switch (_recordingState) {
-      case RecordingState.recording:
-        if (_recordingStartTime != null) {
-          final duration = DateTime.now().difference(_recordingStartTime!);
-          final seconds = duration.inSeconds;
-          final milliseconds = (duration.inMilliseconds % 1000) ~/ 100;
-          return '話してください... ${seconds}.${milliseconds}秒';
-        }
-        return '話してください...';
-      case RecordingState.processing:
-        return '音声を処理中...';
-      case RecordingState.success:
-        return '評価完了！';
-      case RecordingState.error:
-        return 'エラーが発生しました';
-      case RecordingState.idle:
-      default:
-        return '長押しで録音';
+    if (_isAutoMode) {
+      switch (_recordingState) {
+        case RecordingState.recording:
+          if (_recordingStartTime != null) {
+            final duration = DateTime.now().difference(_recordingStartTime!);
+            final seconds = duration.inSeconds;
+            final milliseconds = (duration.inMilliseconds % 1000) ~/ 100;
+            return '話してください... ${seconds}.${milliseconds}秒';
+          }
+          return '話してください...';
+        case RecordingState.processing:
+          return '音声を処理中...';
+        case RecordingState.success:
+          return '評価完了！';
+        case RecordingState.error:
+          return 'エラーが発生しました';
+        case RecordingState.idle:
+        default:
+          return _isPlayingAudio ? 'お手本を再生中...' : '準備中...';
+      }
+    } else {
+      // 手動モード
+      switch (_recordingState) {
+        case RecordingState.recording:
+          if (_recordingStartTime != null) {
+            final duration = DateTime.now().difference(_recordingStartTime!);
+            final seconds = duration.inSeconds;
+            final milliseconds = (duration.inMilliseconds % 1000) ~/ 100;
+            return '話してください... ${seconds}.${milliseconds}秒';
+          }
+          return '話してください...';
+        case RecordingState.processing:
+          return '音声を処理中...';
+        case RecordingState.success:
+          return '評価完了！';
+        case RecordingState.error:
+          return 'エラーが発生しました';
+        case RecordingState.idle:
+        default:
+          return '長押しで録音';
+      }
     }
   }
 
@@ -1075,39 +1243,7 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
                   ),
                 ),
                 
-                const SizedBox(height: 20),
-                
-                // アバターと名前
-                Column(
-                  children: [
-                    // アバター画像
-                    AnimatedAvatar(
-                      isPlaying: _isPlayingAudio,
-                      size: 180,
-                      fallbackAvatarPath: CharacterService.getAvatarImagePath(widget.lesson.characterId),
-                    ),
-                    const SizedBox(height: 10),
-                    
-                    // キャラクター名
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: Colors.blue.shade500,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        CharacterService.getDisplayName(widget.lesson.characterId),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                
-                const SizedBox(height: 15),
+                const SizedBox(height: 40),
                 
                 // フレーズ吹き出し
                 Flexible(
@@ -1205,64 +1341,121 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
                 
                 const SizedBox(height: 20),
                 
-                // 録音ボタン
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    // 背景の円（美容室のインテリアのような雰囲気）
-                    Container(
-                      width: 90,
-                      height: 90,
+                // 録音ボタン（手動モードのみ）または自動モードステータス
+                if (!_isAutoMode) ...[
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // 背景の円（美容室のインテリアのような雰囲気）
+                      Container(
+                        width: 90,
+                        height: 90,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white.withOpacity(0.9),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.blue.withOpacity(0.2),
+                              blurRadius: 20,
+                              spreadRadius: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                      
+                      // 録音ボタン本体
+                      GestureDetector(
+                        onTapDown: (_) => _startRecording(),
+                        onTapUp: (_) => _stopRecordingAndAssess(),
+                        onTapCancel: () async {
+                          await _audioRecorder.stop();
+                          _recordingTimer?.cancel();
+                          _recordingTimer = null;
+                          setState(() {
+                            _recordingState = RecordingState.idle;
+                            _recordingStartTime = null;
+                          });
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          width: _recordingState == RecordingState.recording ? 80 : 70,
+                          height: _recordingState == RecordingState.recording ? 80 : 70,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _getRecordingButtonColor(),
+                            boxShadow: [
+                              BoxShadow(
+                                color: _getRecordingButtonColor().withOpacity(0.4),
+                                blurRadius: 15,
+                                spreadRadius: 2,
+                              ),
+                            ],
+                          ),
+                          child: Icon(
+                            _recordingState == RecordingState.recording ? Icons.stop : Icons.mic,
+                            size: 35,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ] else ...[
+                  // 自動モードの状態表示
+                  GestureDetector(
+                    onTap: _recordingState == RecordingState.recording 
+                      ? () async {
+                          // 手動で録音を停止
+                          await _audioRecorder.stop();
+                          _recordingTimer?.cancel();
+                          _recordingTimer = null;
+                          _autoRecordingTimer?.cancel();
+                          setState(() {
+                            _recordingState = RecordingState.idle;
+                            _recordingStartTime = null;
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('録音を中止しました'),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        }
+                      : null,
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        shape: BoxShape.circle,
                         color: Colors.white.withOpacity(0.9),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blue.withOpacity(0.2),
-                            blurRadius: 20,
-                            spreadRadius: 5,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: _getRecordingButtonColor().withOpacity(0.5),
+                          width: 2,
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          Icon(
+                            _recordingState == RecordingState.recording ? Icons.stop :
+                            _recordingState == RecordingState.processing ? Icons.analytics :
+                            _isPlayingAudio ? Icons.volume_up :
+                            Icons.auto_mode,
+                            size: 40,
+                            color: _getRecordingButtonColor(),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            _recordingState == RecordingState.recording ? '録音停止' : '自動モード',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey.shade600,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    
-                    // 録音ボタン本体
-                    GestureDetector(
-                      onTapDown: (_) => _startRecording(),
-                      onTapUp: (_) => _stopRecordingAndAssess(),
-                      onTapCancel: () async {
-                        await _audioRecorder.stop();
-                        _recordingTimer?.cancel();
-                        _recordingTimer = null;
-                        setState(() {
-                          _recordingState = RecordingState.idle;
-                          _recordingStartTime = null;
-                        });
-                      },
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        width: _recordingState == RecordingState.recording ? 80 : 70,
-                        height: _recordingState == RecordingState.recording ? 80 : 70,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _getRecordingButtonColor(),
-                          boxShadow: [
-                            BoxShadow(
-                              color: _getRecordingButtonColor().withOpacity(0.4),
-                              blurRadius: 15,
-                              spreadRadius: 2,
-                            ),
-                          ],
-                        ),
-                        child: Icon(
-                          _recordingState == RecordingState.recording ? Icons.stop : Icons.mic,
-                          size: 35,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
                 
                 const SizedBox(height: 8),
                 
@@ -1278,33 +1471,81 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
                 
                 const SizedBox(height: 15),
                 
-                // 操作ボタン（再生・表示オプション）
+                // 操作ボタン（再生・表示オプション・モード切替）
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // 音声再生ボタン
+                    // 自動/手動モード切替ボタン
                     Container(
                       decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 10,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
+                        color: _isAutoMode ? Colors.green.shade50 : Colors.orange.shade50,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(
+                          color: _isAutoMode ? Colors.green.shade300 : Colors.orange.shade300,
+                          width: 1.5,
+                        ),
                       ),
-                      child: IconButton(
-                        onPressed: _isPlayingAudio ? null : _playPhrase,
-                        icon: Icon(
-                          Icons.volume_up,
-                          color: _isPlayingAudio ? Colors.grey : Colors.blue.shade600,
-                          size: 28,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(25),
+                        onTap: () {
+                          setState(() {
+                            _isAutoMode = !_isAutoMode;
+                            if (_isAutoMode) {
+                              // 自動モードに切り替えたら自動再生開始
+                              _autoPlayPhrase();
+                            }
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          child: Row(
+                            children: [
+                              Icon(
+                                _isAutoMode ? Icons.play_circle : Icons.touch_app,
+                                size: 20,
+                                color: _isAutoMode ? Colors.green.shade700 : Colors.orange.shade700,
+                              ),
+                              const SizedBox(width: 6),
+                              Text(
+                                _isAutoMode ? '自動' : '手動',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: _isAutoMode ? Colors.green.shade700 : Colors.orange.shade700,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                    const SizedBox(width: 40),
+                    const SizedBox(width: 20),
+                    
+                    // 音声再生ボタン（手動モードのみ）
+                    if (!_isAutoMode) ...[
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 10,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: IconButton(
+                          onPressed: _isPlayingAudio ? null : _playPhrase,
+                          icon: Icon(
+                            Icons.volume_up,
+                            color: _isPlayingAudio ? Colors.grey : Colors.blue.shade600,
+                            size: 28,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                    ],
                     
                     // 表示オプション
                     Container(
@@ -1352,121 +1593,147 @@ class _KeyPhrasePracticeScreenState extends ConsumerState<KeyPhrasePracticeScree
                 
                 const SizedBox(height: 20),
                 
-                // ナビゲーションボタン
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // 前へボタン
-                      Container(
-                        decoration: BoxDecoration(
-                          color: _currentPhraseIndex > 0
-                              ? Colors.white
-                              : Colors.grey.shade200,
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: _currentPhraseIndex > 0
-                              ? [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 2),
-                                  ),
-                                ]
-                              : null,
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
+                // ナビゲーションボタン（手動モードのみ）
+                if (!_isAutoMode) ...[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // 前へボタン
+                        Container(
+                          decoration: BoxDecoration(
+                            color: _currentPhraseIndex > 0
+                                ? Colors.white
+                                : Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(25),
-                            onTap: _currentPhraseIndex > 0
-                                ? () {
-                                    setState(() => _currentPhraseIndex--);
-                                    _autoPlayPhrase();
-                                  }
+                            boxShadow: _currentPhraseIndex > 0
+                                ? [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 2),
+                                    ),
+                                  ]
                                 : null,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.chevron_left,
-                                    color: _currentPhraseIndex > 0 
-                                        ? Colors.blue.shade600 
-                                        : Colors.grey.shade400,
-                                    size: 20,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    '前へ',
-                                    style: TextStyle(
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(25),
+                              onTap: _currentPhraseIndex > 0
+                                  ? () {
+                                      setState(() {
+                                        _currentPhraseIndex--;
+                                        _attemptCount = 0;
+                                      });
+                                      _autoPlayPhrase();
+                                    }
+                                  : null,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.chevron_left,
                                       color: _currentPhraseIndex > 0 
                                           ? Colors.blue.shade600 
                                           : Colors.grey.shade400,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
+                                      size: 20,
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      '前へ',
+                                      style: TextStyle(
+                                        color: _currentPhraseIndex > 0 
+                                            ? Colors.blue.shade600 
+                                            : Colors.grey.shade400,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      // 次へ/完了ボタン
-                      Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Colors.blue.shade400, Colors.blue.shade600],
-                          ),
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.blue.withOpacity(0.3),
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
+                        // 次へ/完了ボタン
+                        Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Colors.blue.shade400, Colors.blue.shade600],
                             ),
-                          ],
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
                             borderRadius: BorderRadius.circular(25),
-                            onTap: _currentPhraseIndex < widget.lesson.keyPhrases.length - 1
-                                ? () {
-                                    setState(() => _currentPhraseIndex++);
-                                    _autoPlayPhrase();
-                                  }
-                                : _showCompletionDialog,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    _currentPhraseIndex < widget.lesson.keyPhrases.length - 1
-                                        ? '次へ'
-                                        : '完了',
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.blue.withOpacity(0.3),
+                                blurRadius: 8,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(25),
+                              onTap: () => _proceedToNextPhrase(),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      _currentPhraseIndex < widget.lesson.keyPhrases.length - 1
+                                          ? '次へ'
+                                          : '完了',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 4),
-                                  const Icon(
-                                    Icons.chevron_right,
-                                    color: Colors.white,
-                                    size: 20,
-                                  ),
-                                ],
+                                    const SizedBox(width: 4),
+                                    const Icon(
+                                      Icons.chevron_right,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+                ] else ...[
+                  // 自動モードの場合は進行状況のみ表示
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade50,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.blue.shade200),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.auto_awesome, color: Colors.blue.shade600, size: 20),
+                        const SizedBox(width: 8),
+                        Text(
+                          '自動進行中...',
+                          style: TextStyle(
+                            color: Colors.blue.shade700,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
                 
                 const SizedBox(height: 10),
               ],

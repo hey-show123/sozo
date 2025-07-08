@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import '../../providers/curriculum_provider.dart';
 import '../../../services/audio_player_service.dart';
 import '../../../services/audio_storage_service.dart';
-import '../../../services/character_service.dart';
 import '../../widgets/audio_preload_screen.dart';
 import '../chat/ai_buddy_screen.dart';
 import '../test/pronunciation_test_screen.dart';
@@ -114,7 +113,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
 
     try {
       final audioStorage = ref.read(audioStorageServiceProvider);
-      final characterVoice = CharacterService.getVoiceModel(currentLesson!.characterId);
+      final characterVoice = 'fable';
       
       // キーフレーズのテキストを収集
       final keyPhrases = currentLesson!.keyPhrases.map((kp) => kp.phrase).toList();

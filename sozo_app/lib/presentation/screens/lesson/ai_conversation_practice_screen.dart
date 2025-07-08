@@ -131,6 +131,7 @@ class _AIConversationPracticeScreenState
           // 5分経過したらセッション終了
           if (_elapsedSeconds >= _sessionTimeLimit) {
             _timer?.cancel();
+            // 自動的にセッション終了処理を実行
             _endSession();
           }
         });
@@ -141,6 +142,11 @@ class _AIConversationPracticeScreenState
   // AI会話の初期化
   Future<void> _initializeConversation() async {
     try {
+      // タイマーが動いていることを確認
+      if (_timer == null || !_timer!.isActive) {
+        _startSessionTimer();
+      }
+      
       // 初期プロンプトを送信してAIとの会話を開始
       // AIはお客様として入店してくる
       final response = await _aiService.generateResponseWithFeedback(
@@ -355,127 +361,188 @@ class _AIConversationPracticeScreenState
 
   @override
   Widget build(BuildContext context) {
+    final remainingTime = _getRemainingSeconds();
+    final isTimeWarning = remainingTime <= 60 && remainingTime > 0;
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('AI会話練習'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        titleTextStyle: const TextStyle(
+          color: Colors.black87,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+        ),
+        iconTheme: const IconThemeData(color: Colors.black87),
         actions: [
-          // 翻訳表示トグル
+          // モデル表示
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            margin: const EdgeInsets.only(right: 8),
+            decoration: BoxDecoration(
+              color: Colors.blue.shade50,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.smart_toy, color: Colors.blue, size: 18),
+                const SizedBox(width: 4),
+                Text(
+                  _selectedModel.displayName,
+                  style: const TextStyle(
+                    color: Colors.blue,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // 翻訳トグル
           IconButton(
-            icon: Icon(_showTranslation ? Icons.translate : Icons.translate_outlined),
+            icon: Icon(
+              _showTranslation ? Icons.translate : Icons.translate_outlined,
+              color: _showTranslation ? Colors.blue : Colors.grey,
+            ),
             onPressed: () {
               setState(() {
                 _showTranslation = !_showTranslation;
               });
             },
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: Text(
-                'セッション $_currentSessionNumber/$_totalSessions',
-                style: const TextStyle(fontSize: 16),
-              ),
-            ),
-          ),
         ],
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            // タイマー表示
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: _getRemainingSeconds() <= 60 
-                  ? Colors.red[100] 
-                  : _getRemainingSeconds() <= 120 
-                      ? Colors.orange[100]
-                      : Colors.grey[100],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.timer, 
-                    size: 20,
-                    color: _getRemainingSeconds() <= 60 ? Colors.red : null,
+      body: Stack(
+        children: [
+          SafeArea(
+            child: Column(
+              children: [
+                // セッション情報バー
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: isTimeWarning ? Colors.orange.shade50 : Colors.grey.shade100,
+                    border: Border(
+                      bottom: BorderSide(
+                        color: isTimeWarning ? Colors.orange.shade200 : Colors.grey.shade300,
+                      ),
+                    ),
                   ),
-                  const SizedBox(width: 8),
-                  Column(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '残り時間',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: _getRemainingSeconds() <= 60 ? Colors.red : Colors.grey[600],
+                        'セッション $_currentSessionNumber/$_totalSessions',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Text(
-                        _formatTime(_getRemainingSeconds()),
-                        style: TextStyle(
-                          fontSize: 20, 
-                          fontWeight: FontWeight.bold,
-                          color: _getRemainingSeconds() <= 60 ? Colors.red : null,
-                        ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.timer,
+                            size: 20,
+                            color: isTimeWarning ? Colors.orange : Colors.grey.shade600,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            '残り時間 ${_formatTime(remainingTime)}',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: isTimeWarning ? Colors.orange : Colors.grey.shade700,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                
+                // 会話表示エリア
+                Expanded(
+                  child: _messages.isEmpty
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : ListView.builder(
+                          controller: _scrollController,
+                          padding: const EdgeInsets.all(16),
+                          itemCount: _messages.length,
+                          itemBuilder: (context, index) {
+                            final message = _messages[index];
+                            return _buildMessageBubble(message, index);
+                          },
+                        ),
+                ),
+                
+                // 入力エリア
+                _buildInputArea(),
+              ],
             ),
-            
-            // モデルセレクター
-            _buildModelSelector(),
-            
-            // キーフレーズリマインダー
+          ),
+          // ローディングオーバーレイ
+          if (_isProcessing && !_isRecording)
             Container(
-              padding: const EdgeInsets.all(16),
-              color: Colors.blue[50],
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    '今日のキーフレーズ:',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+              color: Colors.black.withOpacity(0.5),
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  const SizedBox(height: 8),
-                  ...widget.lesson.keyPhrases.map((phrase) => Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
-                    child: Text('• ${phrase.phrase}'),
-                  )),
-                ],
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const CircularProgressIndicator(),
+                      const SizedBox(height: 16),
+                      Text(
+                        _elapsedSeconds >= _sessionTimeLimit 
+                            ? 'セッションを評価中...' 
+                            : '処理中...',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
-            
-            // 会話表示エリア
-            Expanded(
-              child: _messages.isEmpty
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : ListView.builder(
-                      controller: _scrollController,
-                      padding: const EdgeInsets.all(16),
-                      itemCount: _messages.length,
-                      itemBuilder: (context, index) {
-                        final message = _messages[index];
-                        return _buildMessageBubble(message, index);
-                      },
-                    ),
-            ),
-            
-            // 入力エリア
-            _buildInputArea(),
-          ],
-        ),
+        ],
       ),
       // 次のセッションへのボタン
-      floatingActionButton: _currentSessionNumber < _totalSessions
-          ? FloatingActionButton.extended(
-              onPressed: _isProcessing ? null : () => _endSession(), // 手動でセッション終了
-              icon: const Icon(Icons.check),
-              label: const Text('セッション終了'),
-              backgroundColor: _isProcessing ? Colors.grey : Colors.green,
-            )
-          : null,
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 60),
+        child: FloatingActionButton.extended(
+          onPressed: _isProcessing || _elapsedSeconds < 10 
+              ? null 
+              : () => _endSession(),
+          icon: _isProcessing 
+              ? const SizedBox(
+                  width: 20, 
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2,
+                  ),
+                )
+              : const Icon(Icons.check),
+          label: Text(
+            _isProcessing 
+                ? '評価中...' 
+                : 'セッション終了',
+            style: const TextStyle(fontSize: 16),
+          ),
+          backgroundColor: _isProcessing 
+              ? Colors.grey 
+              : _elapsedSeconds < 10
+                  ? Colors.grey.shade400
+                  : Colors.green,
+          extendedPadding: const EdgeInsets.symmetric(horizontal: 24),
+        ),
+      ),
     );
   }
 
@@ -1164,30 +1231,83 @@ class _AIConversationPracticeScreenState
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
-                ..._sessionEvaluations.map((eval) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('セッション ${eval.sessionNumber}'),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            size: 16,
-                            color: _getScoreColor(eval.score),
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            '${eval.score.round()}点',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: _getScoreColor(eval.score),
+                ..._sessionEvaluations.map((eval) => Card(
+                  margin: const EdgeInsets.symmetric(vertical: 4),
+                  child: InkWell(
+                    onTap: () {
+                      // フィードバックの詳細を表示
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('セッション ${eval.sessionNumber} の詳細'),
+                          content: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    _buildScoreItem('総合', eval.score),
+                                    _buildScoreItem('文法', eval.grammarScore),
+                                    _buildScoreItem('流暢さ', eval.fluencyScore),
+                                  ],
+                                ),
+                                const SizedBox(height: 16),
+                                _buildStatRow('練習時間', _formatTime(eval.timeSpent)),
+                                _buildStatRow('フレーズ使用', '${eval.phraseUsageCount}回'),
+                                const SizedBox(height: 16),
+                                const Text(
+                                  'フィードバック：',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(eval.feedback),
+                              ],
                             ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('閉じる'),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    borderRadius: BorderRadius.circular(8),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('セッション ${eval.sessionNumber}'),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.star,
+                                size: 16,
+                                color: _getScoreColor(eval.score),
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                '${eval.score.round()}点',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: _getScoreColor(eval.score),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              const Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                                color: Colors.grey,
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
                 )),
                 const SizedBox(height: 24),
@@ -1505,6 +1625,9 @@ class _AIConversationPracticeScreenState
   // セッション終了処理
   Future<void> _endSession() async {
     try {
+      // タイマーを停止
+      _timer?.cancel();
+      
       setState(() {
         _isProcessing = true;
       });
@@ -1517,6 +1640,15 @@ class _AIConversationPracticeScreenState
                 'content': msg.text,
               })
           .toList();
+      
+      // 会話履歴が空の場合は早期リターン
+      if (conversationHistory.isEmpty) {
+        setState(() {
+          _isProcessing = false;
+        });
+        _showError('会話履歴がありません。会話を始めてからセッションを終了してください。');
+        return;
+      }
       
       // セッション評価を生成
       final evaluation = await _aiService.evaluateSession(
@@ -1540,16 +1672,33 @@ class _AIConversationPracticeScreenState
         relevanceScore: evaluation.relevanceScore,
       ));
       
-      // フィードバックダイアログを表示
-      _showSessionFeedback(evaluation);
-      
-    } catch (e) {
-      print('Error ending session: $e');
-      _showError('セッション終了処理に失敗しました');
-    } finally {
       setState(() {
         _isProcessing = false;
       });
+      
+      // フィードバックダイアログを表示
+      if (mounted) {
+        _showSessionFeedback(evaluation);
+      }
+      
+    } catch (e) {
+      print('Error ending session: $e');
+      setState(() {
+        _isProcessing = false;
+      });
+      _showError('セッション終了処理に失敗しました: $e');
+      
+      // エラーが発生してもダイアログを表示（デフォルトのフィードバック）
+      if (mounted) {
+        final defaultFeedback = SessionFeedback(
+          overallScore: 70,
+          grammarScore: 70,
+          fluencyScore: 70,
+          relevanceScore: 70,
+          feedback: 'セッション${_currentSessionNumber}お疲れ様でした！\n\n練習時間: ${_formatTime(_elapsedSeconds)}\n応答回数: ${_evaluationResults['responseCount'] ?? 0}回\n\n引き続き練習を頑張りましょう！',
+        );
+        _showSessionFeedback(defaultFeedback);
+      }
     }
   }
   
@@ -1606,21 +1755,37 @@ class _AIConversationPracticeScreenState
               
               // AIからのフィードバック
               Container(
+                constraints: const BoxConstraints(maxHeight: 200),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.blue[50],
                   borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.blue[200]!),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'フィードバック:',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(feedback.feedback),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.feedback, color: Colors.blue[700], size: 20),
+                          const SizedBox(width: 8),
+                          Text(
+                            'AIからのフィードバック',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue[700],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        feedback.feedback,
+                        style: const TextStyle(height: 1.5),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 24),
@@ -1637,6 +1802,9 @@ class _AIConversationPracticeScreenState
                       },
                       icon: const Icon(Icons.arrow_forward),
                       label: const Text('次のセッションへ'),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      ),
                     )
                   else
                     ElevatedButton.icon(
@@ -1648,14 +1816,19 @@ class _AIConversationPracticeScreenState
                       label: const Text('練習完了'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                       ),
                     ),
-                  OutlinedButton(
+                  OutlinedButton.icon(
                     onPressed: () {
                       Navigator.pop(context);
                       context.go('/lesson/${widget.lesson.id}');
                     },
-                    child: const Text('終了'),
+                    icon: const Icon(Icons.close),
+                    label: const Text('終了'),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    ),
                   ),
                 ],
               ),

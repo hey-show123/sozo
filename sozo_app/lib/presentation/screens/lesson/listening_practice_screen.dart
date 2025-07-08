@@ -4,10 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:async';
 import '../../../services/audio_player_service.dart';
 import '../../../services/audio_storage_service.dart';
-import '../../../services/character_service.dart';
 import '../../../data/models/lesson_model.dart';
 import '../../providers/user_profile_provider.dart';
-import '../../widgets/animated_avatar.dart';
 import 'dialog_practice_screen.dart';
 
 class ListeningPracticeScreen extends ConsumerStatefulWidget {
@@ -28,6 +26,10 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
   bool _isLoading = true;
   bool _isPlayingAudio = false;
   bool _showTranscript = false;
+  
+  // 自動化用の追加変数
+  bool _isAutoMode = true;  // 自動モードのフラグ
+  Timer? _autoPlayTimer;  // 自動再生タイマー
 
   @override
   void initState() {
@@ -72,6 +74,15 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
     print('Loaded ${_dialogues.length} dialogues');
     if (_dialogues.isNotEmpty) {
       print('First dialogue: ${_dialogues[0]}');
+      
+      // 自動モードの場合、最初のダイアログを自動再生
+      if (_isAutoMode) {
+              _autoPlayTimer = Timer(const Duration(milliseconds: 300), () {
+        if (mounted) {
+          _playDialogue();
+        }
+      });
+      }
     }
   }
 
@@ -97,10 +108,10 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
       String voice;
       if (speaker == 'Staff') {
         // スタッフは常にSarahの声で発音指導
-        voice = CharacterService.getVoiceModel('sarah');
+        voice = 'fable';
       } else {
-        // お客様は選択されたキャラクターの声
-        voice = CharacterService.getVoiceModel(widget.lesson.characterId);
+        // お客様はデフォルトの声
+        voice = 'fable';
       }
       
       final audioUrl = await audioStorage.getOrCreateKeyPhraseAudio(
@@ -108,7 +119,8 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
         lessonId: widget.lesson.id,
         voice: voice,
       );
-      await audioPlayer.playAudioFromUrl(audioUrl);
+      // 音声を再生して完了を待つ
+      await audioPlayer.playAudioFromUrlAndWait(audioUrl);
 
     } catch (e) {
       print('Error playing dialog: $e');
@@ -136,6 +148,16 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
         setState(() {
           _isPlayingAudio = false;
         });
+        
+        // 自動モードの場合、音声再生後に自動的に次へ進む
+        if (_isAutoMode) {
+          // AI同士の会話のように、0.5秒待って次へ
+          _autoPlayTimer = Timer(const Duration(milliseconds: 500), () {
+            if (mounted) {
+              _nextDialogue();
+            }
+          });
+        }
       }
     }
   }
@@ -154,6 +176,15 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
         _showTranscript = false;
       });
       HapticFeedback.lightImpact();
+      
+      // 自動モードの場合、次のダイアログを自動再生
+      if (_isAutoMode) {
+        _autoPlayTimer = Timer(const Duration(milliseconds: 300), () {
+          if (mounted) {
+            _playDialogue();
+          }
+        });
+      }
     } else {
       _finishListening();
     }
@@ -182,6 +213,7 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
 
   @override
   void dispose() {
+    _autoPlayTimer?.cancel();
     super.dispose();
   }
 
@@ -244,6 +276,61 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
+        actions: [
+          // 自動/手動モード切替ボタン
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: _isAutoMode ? Colors.green.shade50 : Colors.orange.shade50,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: _isAutoMode ? Colors.green.shade300 : Colors.orange.shade300,
+                  ),
+                ),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () {
+                    setState(() {
+                      _isAutoMode = !_isAutoMode;
+                      _autoPlayTimer?.cancel();
+                      if (_isAutoMode && !_isPlayingAudio) {
+                        // 自動モードに切り替えたら現在のダイアログを再生
+                        _autoPlayTimer = Timer(const Duration(milliseconds: 300), () {
+                          if (mounted) {
+                            _playDialogue();
+                          }
+                        });
+                      }
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    child: Row(
+                      children: [
+                        Icon(
+                          _isAutoMode ? Icons.play_circle : Icons.touch_app,
+                          size: 16,
+                          color: _isAutoMode ? Colors.green.shade700 : Colors.orange.shade700,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          _isAutoMode ? '自動' : '手動',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: _isAutoMode ? Colors.green.shade700 : Colors.orange.shade700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -265,11 +352,6 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
                 ),
                 const SizedBox(height: 20),
                 
-                // アバター
-                AnimatedAvatar(
-                  isPlaying: _isPlayingAudio,
-                  size: 150,
-                ),
                 const SizedBox(height: 20),
                 
                 // スピーカー表示
@@ -296,43 +378,65 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
                 ),
                 const SizedBox(height: 30),
                 
-                // 再生ボタン
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: _isPlayingAudio
-                        ? [Colors.orange[400]!, Colors.red[400]!]
-                        : [Colors.blue[400]!, Colors.purple[400]!],
-                    ),
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        blurRadius: 8,
-                        offset: const Offset(0, 4),
+                // 再生ボタン（手動モードのみ）または自動モードステータス
+                if (!_isAutoMode) ...[
+                  Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: _isPlayingAudio
+                          ? [Colors.orange[400]!, Colors.red[400]!]
+                          : [Colors.blue[400]!, Colors.purple[400]!],
                       ),
-                    ],
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(40),
-                      onTap: _isPlayingAudio ? null : _playDialogue,
-                      child: Icon(
-                        _isPlayingAudio ? Icons.graphic_eq : Icons.play_arrow,
-                        color: Colors.white,
-                        size: 36,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          blurRadius: 8,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(40),
+                        onTap: _isPlayingAudio ? null : _playDialogue,
+                        child: Icon(
+                          _isPlayingAudio ? Icons.graphic_eq : Icons.play_arrow,
+                          color: Colors.white,
+                          size: 36,
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ] else ...[
+                  // 自動モードの状態表示
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.9),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: _isPlayingAudio ? Colors.orange.shade300 : Colors.green.shade300,
+                        width: 2,
+                      ),
+                    ),
+                    child: Icon(
+                      _isPlayingAudio ? Icons.volume_up : Icons.auto_mode,
+                      size: 40,
+                      color: _isPlayingAudio ? Colors.orange : Colors.green,
+                    ),
+                  ),
+                ],
                 const SizedBox(height: 20),
                 
                 // 指示テキスト
                 Text(
-                  _isPlayingAudio ? '再生中...' : '🎧 音声を聞いてください',
+                  _isAutoMode 
+                    ? (_isPlayingAudio ? '再生中...' : '自動再生待機中...')
+                    : (_isPlayingAudio ? '再生中...' : '🎧 音声を聞いてください'),
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.9),
                     fontSize: 16,
@@ -421,49 +525,76 @@ class _ListeningPracticeScreenState extends ConsumerState<ListeningPracticeScree
                 
                 const Spacer(),
                 
-                // ナビゲーションボタン
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: ElevatedButton.icon(
-                        onPressed: _currentDialogueIndex > 0 ? _previousDialogue : null,
-                        icon: const Icon(Icons.arrow_back),
-                        label: const Text('前へ'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white.withOpacity(0.9),
-                          foregroundColor: Colors.black87,
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
+                // ナビゲーションボタン（手動モードのみ）
+                if (!_isAutoMode) ...[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: ElevatedButton.icon(
+                          onPressed: _currentDialogueIndex > 0 ? _previousDialogue : null,
+                          icon: const Icon(Icons.arrow_back),
+                          label: const Text('前へ'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white.withOpacity(0.9),
+                            foregroundColor: Colors.black87,
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 16),
-                    Flexible(
-                      child: ElevatedButton.icon(
-                        onPressed: _nextDialogue,
-                        icon: Icon(
-                          _currentDialogueIndex < _dialogues.length - 1
-                            ? Icons.arrow_forward
-                            : Icons.check,
-                        ),
-                        label: Text(
-                          _currentDialogueIndex < _dialogues.length - 1 ? '次へ' : '完了',
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).primaryColor,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
+                      const SizedBox(width: 16),
+                      Flexible(
+                        child: ElevatedButton.icon(
+                          onPressed: _nextDialogue,
+                          icon: Icon(
+                            _currentDialogueIndex < _dialogues.length - 1
+                              ? Icons.arrow_forward
+                              : Icons.check,
+                          ),
+                          label: Text(
+                            _currentDialogueIndex < _dialogues.length - 1 ? '次へ' : '完了',
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(context).primaryColor,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
                           ),
                         ),
                       ),
+                    ],
+                  ),
+                ] else ...[
+                  // 自動モードの場合は進行状況のみ表示
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.green.shade50,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.green.shade200),
                     ),
-                  ],
-                ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.auto_awesome, color: Colors.green.shade600, size: 20),
+                        const SizedBox(width: 8),
+                        Text(
+                          '自動進行中...',
+                          style: TextStyle(
+                            color: Colors.green.shade700,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ],
             ),
           ),

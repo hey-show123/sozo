@@ -52,6 +52,38 @@ class AudioPlayerService {
       throw Exception('Failed to play audio: $e');
     }
   }
+  
+  // 音声URLを再生して完了を待つ
+  Future<void> playAudioFromUrlAndWait(String url) async {
+    try {
+      print('Playing audio from URL and waiting: $url');
+      
+      // ローカルキャッシュから取得
+      final cachedFile = await _audioStorage.getCachedAudio(url);
+      
+      if (cachedFile != null && await cachedFile.exists()) {
+        // キャッシュから再生
+        print('Playing from cache: ${cachedFile.path}');
+        await _audioPlayer.setFilePath(cachedFile.path);
+      } else {
+        // URLから直接再生
+        print('Playing from URL (not cached)');
+        await _audioPlayer.setUrl(url);
+      }
+      
+      await _audioPlayer.play();
+      
+      // 再生完了を待つ
+      await _audioPlayer.playerStateStream.firstWhere(
+        (state) => state.processingState == ProcessingState.completed,
+      );
+      
+      print('Audio playback completed');
+    } catch (e) {
+      print('Error playing audio: $e');
+      throw Exception('Failed to play audio: $e');
+    }
+  }
 
   // キーフレーズの音声を再生（自動生成・キャッシュ）
   Future<void> playKeyPhrase({

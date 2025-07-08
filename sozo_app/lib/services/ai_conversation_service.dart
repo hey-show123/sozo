@@ -413,27 +413,36 @@ Provide detailed feedback in JSON format:
     String model = 'gpt-4.1-mini',
   }) async {
     final prompt = '''
-Evaluate this English conversation practice session at a beauty salon.
+美容室での英会話練習セッションを評価してください。
 
-Session #$sessionNumber
-Time spent: ${timeSpent ~/ 60} minutes ${timeSpent % 60} seconds
-User responses: $userResponses
-Target phrases used: $targetPhrasesUsed out of ${targetPhrases.length}
+セッション番号: $sessionNumber
+練習時間: ${timeSpent ~/ 60}分${timeSpent % 60}秒
+ユーザーの応答回数: $userResponses回
+使用されたターゲットフレーズ: $targetPhrasesUsed個（全${targetPhrases.length}個中）
 
-Target phrases:
+ターゲットフレーズ:
 ${targetPhrases.map((p) => '- "$p"').join('\n')}
 
-Conversation history:
+会話履歴:
 ${conversationHistory.map((msg) => '${msg['role']}: ${msg['content']}').join('\n')}
 
-Provide evaluation in JSON format:
+以下のJSON形式で詳細な評価を提供してください：
 {
-  "overallScore": 0-100,
-  "grammarScore": 0-100,
-  "fluencyScore": 0-100,
-  "relevanceScore": 0-100,
-  "feedback": "Detailed feedback in Japanese about the session performance, what went well, what to improve"
+  "overallScore": 0-100（総合スコア）,
+  "grammarScore": 0-100（文法スコア）,
+  "fluencyScore": 0-100（流暢さスコア）,
+  "relevanceScore": 0-100（関連性スコア）,
+  "feedback": "日本語での詳細なフィードバック。必ず以下の要素を含めてください：
+    1. 良かった点（具体的な例を挙げて）
+    2. 改善が必要な点（具体的な例と改善方法）
+    3. ターゲットフレーズの使用状況の評価
+    4. 会話の自然さについてのコメント
+    5. 次回の練習へのアドバイス
+    
+    フィードバックは建設的で励みになるようなトーンで、最低200文字以上で書いてください。"
 }
+
+重要：feedbackは必ず日本語で書いてください。
 ''';
 
     try {
@@ -442,11 +451,17 @@ Provide evaluation in JSON format:
         data: {
           'model': model,
           'messages': [
-            {'role': 'system', 'content': 'You are an English teacher evaluating a practice session.'},
+            {
+              'role': 'system', 
+              'content': '''あなたは優秀な英語教師です。生徒の英会話練習を評価し、
+詳細で建設的なフィードバックを日本語で提供します。
+生徒のモチベーションを高めながら、具体的な改善点を示してください。'''
+            },
             {'role': 'user', 'content': prompt},
           ],
           'temperature': 0.7,
-          'max_tokens': 500,
+          'max_tokens': 800,
+          'response_format': {'type': 'json_object'},
         },
       );
 
@@ -457,22 +472,41 @@ Provide evaluation in JSON format:
         try {
           final jsonResponse = json.decode(content);
           
+          // スコアの検証と調整
+          double overallScore = (jsonResponse['overallScore'] ?? 70).toDouble();
+          double grammarScore = (jsonResponse['grammarScore'] ?? 70).toDouble();
+          double fluencyScore = (jsonResponse['fluencyScore'] ?? 70).toDouble();
+          double relevanceScore = (jsonResponse['relevanceScore'] ?? 70).toDouble();
+          
+          // フィードバックの検証
+          String feedback = jsonResponse['feedback'] ?? '';
+          
+          // フィードバックが短すぎる場合は追加のフィードバックを生成
+          if (feedback.length < 100) {
+            feedback = _generateDetailedFeedback(
+              sessionNumber: sessionNumber,
+              targetPhrasesUsed: targetPhrasesUsed,
+              totalPhrases: targetPhrases.length,
+              timeSpent: timeSpent,
+              overallScore: overallScore,
+            );
+          }
+          
           return SessionFeedback(
-            overallScore: (jsonResponse['overallScore'] ?? 70).toDouble(),
-            grammarScore: (jsonResponse['grammarScore'] ?? 70).toDouble(),
-            fluencyScore: (jsonResponse['fluencyScore'] ?? 70).toDouble(),
-            relevanceScore: (jsonResponse['relevanceScore'] ?? 70).toDouble(),
-            feedback: jsonResponse['feedback'] ?? 'よく頑張りました！次回も練習を続けましょう。',
+            overallScore: overallScore,
+            grammarScore: grammarScore,
+            fluencyScore: fluencyScore,
+            relevanceScore: relevanceScore,
+            feedback: feedback,
           );
         } catch (e) {
           print('Error parsing session evaluation: $e');
-          // フォールバック
-          return SessionFeedback(
-            overallScore: 75,
-            grammarScore: 75,
-            fluencyScore: 70,
-            relevanceScore: 80,
-            feedback: 'セッション$sessionNumberお疲れ様でした。ターゲットフレーズを$targetPhrasesUsed回使用できました。引き続き練習を頑張りましょう！',
+          // フォールバック - より詳細なフィードバック
+          return _generateFallbackFeedback(
+            sessionNumber: sessionNumber,
+            targetPhrasesUsed: targetPhrasesUsed,
+            totalPhrases: targetPhrases.length,
+            timeSpent: timeSpent,
           );
         }
       } else {
@@ -480,15 +514,104 @@ Provide evaluation in JSON format:
       }
     } catch (e) {
       print('Error evaluating session: $e');
-      // エラー時のフォールバック
-      return SessionFeedback(
-        overallScore: 70,
-        grammarScore: 70,
-        fluencyScore: 70,
-        relevanceScore: 70,
-        feedback: 'セッションお疲れ様でした。次回も頑張りましょう！',
+      // エラー時の詳細なフォールバック
+      return _generateFallbackFeedback(
+        sessionNumber: sessionNumber,
+        targetPhrasesUsed: targetPhrasesUsed,
+        totalPhrases: targetPhrases.length,
+        timeSpent: timeSpent,
       );
     }
+  }
+  
+  /// 詳細なフィードバックを生成するヘルパーメソッド
+  String _generateDetailedFeedback({
+    required int sessionNumber,
+    required int targetPhrasesUsed,
+    required int totalPhrases,
+    required int timeSpent,
+    required double overallScore,
+  }) {
+    final minutes = timeSpent ~/ 60;
+    final seconds = timeSpent % 60;
+    final phraseUsageRate = (targetPhrasesUsed / totalPhrases * 100).round();
+    
+    String feedback = 'セッション${sessionNumber}お疲れ様でした！\n\n';
+    
+    // 良かった点
+    feedback += '【良かった点】\n';
+    if (overallScore >= 80) {
+      feedback += '• 素晴らしいパフォーマンスでした！自然な会話ができています。\n';
+    } else if (overallScore >= 60) {
+      feedback += '• 基本的な会話の流れは良くできています。\n';
+    }
+    
+    if (targetPhrasesUsed > 0) {
+      feedback += '• ターゲットフレーズを${targetPhrasesUsed}回使用できました（使用率：${phraseUsageRate}%）。\n';
+    }
+    
+    if (minutes >= 3) {
+      feedback += '• ${minutes}分${seconds}秒間、しっかりと練習に取り組みました。\n';
+    }
+    
+    feedback += '\n【改善点とアドバイス】\n';
+    
+    // ターゲットフレーズの使用について
+    if (phraseUsageRate < 50) {
+      feedback += '• ターゲットフレーズをもっと積極的に使ってみましょう。お客様の質問に対して、学習したフレーズを自然に組み込む練習をしてください。\n';
+    } else if (phraseUsageRate < 80) {
+      feedback += '• ターゲットフレーズの使用は良好ですが、まだ使っていないフレーズにも挑戦してみてください。\n';
+    }
+    
+    // スコアに基づく具体的なアドバイス
+    if (overallScore < 60) {
+      feedback += '• 会話の流れをより自然にするため、相手の発言をよく聞いて適切に応答する練習をしましょう。\n';
+      feedback += '• 基本的な接客フレーズを復習して、自信を持って使えるようにしましょう。\n';
+    } else if (overallScore < 80) {
+      feedback += '• より流暢な会話を目指して、考えずに自然に返答できるよう練習を続けましょう。\n';
+    }
+    
+    // 次回への励まし
+    feedback += '\n【次回の練習へ向けて】\n';
+    feedback += '• 今回学んだことを活かして、次のセッションではさらに自然な会話を目指しましょう。\n';
+    feedback += '• 特に「Would you like...?」のパターンは接客でよく使うので、マスターすると大きな武器になります。\n';
+    
+    if (sessionNumber < 3) {
+      feedback += '• まだ練習の序盤です。焦らず着実にスキルアップしていきましょう！';
+    } else {
+      feedback += '• 練習も後半に入りました。これまでの成長を実感しながら、さらなる向上を目指しましょう！';
+    }
+    
+    return feedback;
+  }
+  
+  /// フォールバック用の詳細なフィードバックを生成
+  SessionFeedback _generateFallbackFeedback({
+    required int sessionNumber,
+    required int targetPhrasesUsed,
+    required int totalPhrases,
+    required int timeSpent,
+  }) {
+    // 基本的なスコア計算
+    final phraseScore = targetPhrasesUsed > 0 ? (targetPhrasesUsed / totalPhrases * 100).clamp(0, 100).toDouble() : 40.0;
+    final timeScore = timeSpent >= 180 ? 80.0 : (timeSpent / 180 * 80).clamp(0, 80).toDouble();
+    final overallScore = ((phraseScore + timeScore) / 2).clamp(0, 100).toDouble();
+    
+    final feedback = _generateDetailedFeedback(
+      sessionNumber: sessionNumber,
+      targetPhrasesUsed: targetPhrasesUsed,
+      totalPhrases: totalPhrases,
+      timeSpent: timeSpent,
+      overallScore: overallScore,
+    );
+    
+    return SessionFeedback(
+      overallScore: overallScore,
+      grammarScore: overallScore * 0.9, // 推定値
+      fluencyScore: overallScore * 0.85, // 推定値
+      relevanceScore: overallScore * 0.95, // 推定値
+      feedback: feedback,
+    );
   }
 }
 

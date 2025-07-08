@@ -8,12 +8,10 @@ import 'package:go_router/go_router.dart';
 import 'package:sozo_app/presentation/widgets/xp_animation.dart';
 import 'package:sozo_app/presentation/widgets/achievement_notification.dart';
 import 'package:sozo_app/presentation/widgets/level_up_notification.dart';
-import 'package:sozo_app/presentation/widgets/animated_avatar.dart';
 import 'package:sozo_app/data/models/lesson_model.dart';
 import 'package:sozo_app/services/audio_player_service.dart';
 import 'package:sozo_app/services/audio_storage_service.dart';
 import 'package:sozo_app/services/progress_service.dart';
-import 'package:sozo_app/services/character_service.dart';
 import 'package:sozo_app/presentation/providers/user_profile_provider.dart';
 import 'package:sozo_app/services/azure_speech_service.dart';
 import 'package:sozo_app/services/openai_service.dart';
@@ -1105,29 +1103,78 @@ class _ApplicationPracticeScreenState extends ConsumerState<ApplicationPracticeS
                 ),
               ),
               
-              // キャラクターアバター
+              // ヒントとアドバイス
               Expanded(
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AnimatedAvatar(
-                        isPlaying: _recordingState == RecordingState.recording,
-                        size: 150,
-                        fallbackAvatarPath: CharacterService.getAvatarImagePath(widget.lesson.characterId),
-                      ),
                       if (_currentPractice!.tips.isNotEmpty) ...[
-                        const SizedBox(height: 16),
-                        ...(_currentPractice!.tips.map((tip) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: Text(
-                            '💡 $tip',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey.shade600,
+                        Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade50,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Colors.blue.shade200,
+                              width: 1,
                             ),
                           ),
-                        ))),
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.tips_and_updates,
+                                color: Colors.blue.shade600,
+                                size: 32,
+                              ),
+                              const SizedBox(height: 12),
+                              ...(_currentPractice!.tips.map((tip) => Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 4),
+                                child: Text(
+                                  '💡 $tip',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.blue.shade700,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ))),
+                            ],
+                          ),
+                        ),
+                      ] else ...[
+                        // ヒントがない場合は録音の案内を表示
+                        Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.green.shade50,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Colors.green.shade200,
+                              width: 1,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.record_voice_over,
+                                color: Colors.green.shade600,
+                                size: 32,
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                '上記のフレーズを使って、自然な英文を作って話してみましょう',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.green.shade700,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ],
                   ),
