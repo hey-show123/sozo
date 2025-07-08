@@ -311,13 +311,15 @@ Always respond in JSON format:
 {
   "response": "Your response as a customer",
   "feedback": {
-    "grammar_errors": ["error1", "error2"],
-    "suggestions": ["suggestion1", "suggestion2"],
+    "grammar_errors": ["日本語での文法エラー説明1", "日本語での文法エラー説明2"],
+    "suggestions": ["日本語での改善提案1", "日本語での改善提案2"],
     "is_off_topic": false,
     "severity": "none" // none, minor, major
   },
   "translation": "お客様としてのあなたの返答の日本語訳"
 }
+
+重要：feedback内のgrammar_errorsとsuggestionsは必ず日本語で記述してください。
 
 Start by entering the salon and greeting the staff naturally.
 ''';
