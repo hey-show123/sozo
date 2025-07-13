@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { ArrowLeft, Plus, Trash2, GripVertical } from 'lucide-react'
@@ -16,12 +16,11 @@ import {
 } from '@/types/database'
 
 interface PageProps {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
 export default function EditLessonPage({ params }: PageProps) {
+  const { id } = use(params)
   const router = useRouter()
   const supabase = createClient()
   const [loading, setLoading] = useState(false)
@@ -96,7 +95,7 @@ export default function EditLessonPage({ params }: PageProps) {
         const { data: lesson, error: fetchError } = await supabase
           .from('lessons')
           .select('*')
-          .eq('id', params.id)
+          .eq('id', id)
           .single()
 
         if (fetchError) {
@@ -161,7 +160,7 @@ export default function EditLessonPage({ params }: PageProps) {
     }
 
     loadLesson()
-  }, [params.id, router, supabase])
+  }, [id, router, supabase])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -225,7 +224,7 @@ export default function EditLessonPage({ params }: PageProps) {
           is_active: formData.is_active,
           updated_at: new Date().toISOString()
         })
-        .eq('id', params.id)
+        .eq('id', id)
 
       if (updateError) {
         throw updateError

@@ -2,13 +2,29 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:dart_openai/dart_openai.dart';
 
 class AIConversationService {
   static const String _apiUrl = 'https://api.openai.com/v1/chat/completions';
   final String _apiKey = dotenv.env['OPENAI_API_KEY'] ?? '';
   late final Dio _dio;
+  late final OpenAI _openAI;
+  final _supabase = Supabase.instance.client;
+  
+  // プロンプトキャッシュ
+  static final Map<String, String> _promptCache = {};
+  static DateTime? _lastPromptFetch;
   
   AIConversationService() {
+    // OpenAI APIキーを設定
+    if (_apiKey.isNotEmpty) {
+      OpenAI.apiKey = _apiKey;
+      _openAI = OpenAI.instance;
+    } else {
+      throw Exception('OpenAI API key is not set in environment variables');
+    }
+    
     _dio = Dio(BaseOptions(
       baseUrl: 'https://api.openai.com/v1',
       headers: {
@@ -199,9 +215,10 @@ Start with a greeting and a situation that would naturally lead to using one of 
     required List<String> targetPhrases,
     required int sessionNumber,
     required String userLevel,
-    String model = 'gpt-4.1-mini',
+    String model = 'gpt-4o-mini',
+    String? customPrompt,
   }) async {
-    final systemPrompt = generateSystemPromptWithFeedback(
+    final systemPrompt = customPrompt ?? generateSystemPromptWithFeedback(
       targetPhrases: targetPhrases,
       sessionNumber: sessionNumber,
       userLevel: userLevel,
@@ -319,7 +336,7 @@ Always respond in JSON format:
   "translation": "お客様としてのあなたの返答の日本語訳"
 }
 
-重要：feedback内のgrammar_errorsとsuggestionsは必ず日本語で記述してください。
+重要：feedback内のgrammar_errorsとsuggestionsは必ず日本語で記述してください。英語は使わないでください。
 
 Start by entering the salon and greeting the staff naturally.
 ''';
@@ -412,39 +429,50 @@ Provide detailed feedback in JSON format:
     required int timeSpent,
     required int userResponses,
     required int targetPhrasesUsed,
-    String model = 'gpt-4.1-mini',
+    String model = 'gpt-4o-mini',
   }) async {
-    final prompt = '''
-美容室での英会話練習セッションを評価してください。
+          final prompt = '''
+美容室での英会話練習セッションを評価してください。必ず日本語でフィードバックを提供してください。
 
 セッション番号: $sessionNumber
 練習時間: ${timeSpent ~/ 60}分${timeSpent % 60}秒
-ユーザーの応答回数: $userResponses回
+ユーザー（スタッフ）の応答回数: $userResponses回
 使用されたターゲットフレーズ: $targetPhrasesUsed個（全${targetPhrases.length}個中）
 
 ターゲットフレーズ:
 ${targetPhrases.map((p) => '- "$p"').join('\n')}
 
 会話履歴:
-${conversationHistory.map((msg) => '${msg['role']}: ${msg['content']}').join('\n')}
+${conversationHistory.map((msg) => '${msg['role'] == 'user' ? 'スタッフ' : 'お客様'}: ${msg['content']}').join('\n')}
+
+重要な評価ルール：
+1. 評価対象は「スタッフ」（userロール）の発言のみです
+2. 「お客様」（assistantロール）の発言は評価対象ではありません
+3. お客様の発言は文脈を理解するための参考情報としてのみ使用してください
+4. フィードバックは必ず日本語で書いてください
 
 以下のJSON形式で詳細な評価を提供してください：
 {
-  "overallScore": 0-100（総合スコア）,
-  "grammarScore": 0-100（文法スコア）,
-  "fluencyScore": 0-100（流暢さスコア）,
-  "relevanceScore": 0-100（関連性スコア）,
-  "feedback": "日本語での詳細なフィードバック。必ず以下の要素を含めてください：
-    1. 良かった点（具体的な例を挙げて）
-    2. 改善が必要な点（具体的な例と改善方法）
-    3. ターゲットフレーズの使用状況の評価
-    4. 会話の自然さについてのコメント
+  "overallScore": 0-100,
+  "grammarScore": 0-100,
+  "fluencyScore": 0-100,
+  "relevanceScore": 0-100,
+  "feedback": "スタッフの英会話練習についての詳細な日本語フィードバック。必ず以下の要素を含めてください：
+    1. スタッフの良かった点（具体的な発言例を挙げて）
+    2. スタッフの改善が必要な点（具体的な発言例と改善方法）
+    3. スタッフによるターゲットフレーズの使用状況の評価
+    4. スタッフの会話の自然さについてのコメント
     5. 次回の練習へのアドバイス
     
-    フィードバックは建設的で励みになるようなトーンで、最低200文字以上で書いてください。"
+    注意：お客様（AI）の発言については評価せず、スタッフの発言のみに焦点を当ててください。
+    フィードバックは建設的で励みになるようなトーンで、最低200文字以上で書いてください。
+    必ず日本語で記述してください。英語は使わないでください。"
 }
 
-重要：feedbackは必ず日本語で書いてください。
+絶対要件：
+- feedbackフィールドは必ず日本語で記述してください
+- 英語でのフィードバックは一切許可されません
+- スタッフの発言のみを評価し、お客様（AI）の発言は評価しないでください
 ''';
 
     try {
@@ -455,9 +483,11 @@ ${conversationHistory.map((msg) => '${msg['role']}: ${msg['content']}').join('\n
           'messages': [
             {
               'role': 'system', 
-              'content': '''あなたは優秀な英語教師です。生徒の英会話練習を評価し、
-詳細で建設的なフィードバックを日本語で提供します。
-生徒のモチベーションを高めながら、具体的な改善点を示してください。'''
+              'content': '''あなたは優秀な英語教師です。生徒（美容室スタッフ）の英会話練習を評価し、
+詳細で建設的なフィードバックを必ず日本語で提供します。
+評価はスタッフの発言のみに基づいて行い、AI（お客様）の発言は評価対象外です。
+生徒のモチベーションを高めながら、具体的な改善点を示してください。
+フィードバックは必ず日本語で記述し、英語は一切使わないでください。'''
             },
             {'role': 'user', 'content': prompt},
           ],
@@ -474,14 +504,18 @@ ${conversationHistory.map((msg) => '${msg['role']}: ${msg['content']}').join('\n
         try {
           final jsonResponse = json.decode(content);
           
-          // スコアの検証と調整
-          double overallScore = (jsonResponse['overallScore'] ?? 70).toDouble();
-          double grammarScore = (jsonResponse['grammarScore'] ?? 70).toDouble();
-          double fluencyScore = (jsonResponse['fluencyScore'] ?? 70).toDouble();
-          double relevanceScore = (jsonResponse['relevanceScore'] ?? 70).toDouble();
+          // スコアの検証と調整（NaNチェックを追加）
+          double overallScore = _parseScore(jsonResponse['overallScore']);
+          double grammarScore = _parseScore(jsonResponse['grammarScore']);
+          double fluencyScore = _parseScore(jsonResponse['fluencyScore']);
+          double relevanceScore = _parseScore(jsonResponse['relevanceScore']);
           
           // フィードバックの検証
           String feedback = jsonResponse['feedback'] ?? '';
+          
+          // 改行や特殊文字を正規化
+          feedback = feedback.replaceAll(r'\n', '\n');
+          feedback = feedback.replaceAll(r'\"', '"');
           
           // フィードバックが短すぎる場合は追加のフィードバックを生成
           if (feedback.length < 100) {
@@ -523,6 +557,26 @@ ${conversationHistory.map((msg) => '${msg['role']}: ${msg['content']}').join('\n
         totalPhrases: targetPhrases.length,
         timeSpent: timeSpent,
       );
+    }
+  }
+  
+  // スコアをパースするヘルパーメソッド
+  double _parseScore(dynamic value) {
+    if (value == null) return 70.0;
+    
+    try {
+      double score = value is int ? value.toDouble() : (value as num).toDouble();
+      
+      // NaNやInfinityをチェック
+      if (score.isNaN || score.isInfinite) {
+        return 70.0;
+      }
+      
+      // 0-100の範囲にクランプ
+      return score.clamp(0.0, 100.0);
+    } catch (e) {
+      print('Error parsing score: $e');
+      return 70.0;
     }
   }
   
@@ -614,6 +668,137 @@ ${conversationHistory.map((msg) => '${msg['role']}: ${msg['content']}').join('\n
       relevanceScore: overallScore * 0.95, // 推定値
       feedback: feedback,
     );
+  }
+
+  // Supabaseからプロンプトを取得
+  Future<String> _getPrompt(String promptType, String promptKey, {Map<String, String>? variables}) async {
+    final cacheKey = '$promptType:$promptKey';
+    
+    // キャッシュが有効（5分以内）ならそれを使用
+    if (_promptCache.containsKey(cacheKey) && 
+        _lastPromptFetch != null &&
+        DateTime.now().difference(_lastPromptFetch!).inMinutes < 5) {
+      return _replaceVariables(_promptCache[cacheKey]!, variables ?? {});
+    }
+    
+    try {
+      final response = await _supabase
+          .from('ai_prompts')
+          .select('prompt_content')
+          .eq('prompt_type', promptType)
+          .eq('prompt_key', promptKey)
+          .eq('is_active', true)
+          .single();
+      
+      if (response != null && response['prompt_content'] != null) {
+        _promptCache[cacheKey] = response['prompt_content'];
+        _lastPromptFetch = DateTime.now();
+        return _replaceVariables(response['prompt_content'], variables ?? {});
+      }
+    } catch (e) {
+      print('Error fetching prompt from Supabase: $e');
+    }
+    
+    // フォールバック: デフォルトプロンプトを返す
+    return _getDefaultPrompt(promptType, promptKey, variables ?? {});
+  }
+  
+  // 変数を置換
+  String _replaceVariables(String template, Map<String, String> variables) {
+    String result = template;
+    variables.forEach((key, value) {
+      result = result.replaceAll('\${$key}', value);
+    });
+    return result;
+  }
+  
+  // デフォルトプロンプト（Supabaseから取得できない場合のフォールバック）
+  String _getDefaultPrompt(String promptType, String promptKey, Map<String, String> variables) {
+    if (promptType == 'lesson_conversation' && promptKey == 'customer_system_prompt') {
+      return '''あなたは美容室のお客様として振る舞います。
+
+ターゲットフレーズ（スタッフが練習すべきフレーズ）:
+${variables['targetPhrases'] ?? ''}
+
+セッション番号: ${variables['sessionNumber'] ?? '1'} / 5
+ユーザー（スタッフ）レベル: ${variables['userLevel'] ?? 'beginner'}
+
+Guidelines:
+1. Act as a real customer with specific needs and preferences
+2. Create situations where the staff would naturally use the target phrases
+3. Show interest in treatments, ask about prices, express concerns about your hair/skin
+4. React naturally to the staff's suggestions (sometimes accept, sometimes ask for more information)
+5. Keep your responses short and natural (1-2 sentences)
+6. Gradually increase complexity as sessions progress
+7. If the staff struggles, give hints through your questions
+8. Always respond in JSON format
+
+Customer personality for this session:
+- Session 1: First-time customer, curious but cautious
+- Session 2: Regular customer with specific preferences
+- Session 3: Customer with hair damage concerns
+- Session 4: Customer interested in trying new services
+- Session 5: Demanding customer with specific requests
+
+Always respond in JSON format:
+{
+  "response": "Your response as a customer",
+  "feedback": {
+    "grammar_errors": ["日本語での文法エラー説明1", "日本語での文法エラー説明2"],
+    "suggestions": ["日本語での改善提案1", "日本語での改善提案2"],
+    "is_off_topic": false,
+    "severity": "none" // none, minor, major
+  },
+  "translation": "お客様としてのあなたの返答の日本語訳"
+}
+
+重要：feedback内のgrammar_errorsとsuggestionsは必ず日本語で記述してください。
+
+Start by entering the salon and greeting the staff naturally.
+''';
+    } else if (promptType == 'session_evaluation' && promptKey == 'evaluation_system_prompt') {
+      return '''美容室での英会話練習セッションを評価してください。
+
+セッション番号: ${variables['sessionNumber'] ?? '1'} / 5
+練習時間: ${variables['practiceTime'] ?? '0分0秒'}
+ユーザー（スタッフ）の応答回数: ${variables['userResponses'] ?? '0'}回
+使用されたターゲットフレーズ: ${variables['targetPhrasesUsed'] ?? '0'}個（全${variables['totalPhrases'] ?? '0'}個中）
+
+ターゲットフレーズ:
+${variables['targetPhrasesList'] ?? ''}
+
+会話履歴:
+${variables['conversationHistory'] ?? ''}
+
+重要な評価ルール：
+1. 評価対象は「スタッフ」（userロール）の発言のみです
+2. 「お客様」（assistantロール）の発言は評価対象ではありません
+3. お客様の発言は文脈を理解するための参考情報としてのみ使用してください
+
+以下のJSON形式で詳細な評価を提供してください：
+{
+  "overallScore": 0-100（スタッフの総合スコア）,
+  "grammarScore": 0-100（スタッフの文法スコア）,
+  "fluencyScore": 0-100（スタッフの流暢さスコア）,
+  "relevanceScore": 0-100（スタッフの応答の関連性スコア）,
+  "feedback": "日本語での詳細なフィードバック。必ず以下の要素を含めてください：
+    1. スタッフの良かった点（具体的な発言例を挙げて）
+    2. スタッフの改善が必要な点（具体的な発言例と改善方法）
+    3. スタッフによるターゲットフレーズの使用状況の評価
+    4. スタッフの会話の自然さについてのコメント
+    5. 次回の練習へのアドバイス
+    
+    注意：お客様（AI）の発言については評価せず、スタッフの発言のみに焦点を当ててください。
+    フィードバックは建設的で励みになるようなトーンで、最低200文字以上で書いてください。"
+}
+
+重要：
+- feedbackは必ず日本語で書いてください
+- スタッフの発言のみを評価し、お客様（AI）の発言は評価しないでください
+''';
+    }
+    
+    return '';
   }
 }
 

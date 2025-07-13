@@ -249,7 +249,7 @@ class AchievementService {
           .from('learning_sessions')
           .select()
           .eq('user_id', userId)
-          .eq('date', todayStr)
+          .eq('session_date', todayStr)
           .maybeSingle();
 
       // 発音セッションの統計を取得
@@ -361,8 +361,8 @@ class AchievementService {
 
           case 'daily_lessons':
             final requiredCount = criteria['count'] as int;
-            final todayLessons = todayLearningResponse?['lessons_completed'] ?? 0;
-            shouldUnlock = todayLessons >= requiredCount;
+            final todayLessons = todayLearningResponse?['lessons_completed'] ?? [];
+            shouldUnlock = (todayLessons as List).length >= requiredCount;
             break;
 
           case 'daily_study_time':

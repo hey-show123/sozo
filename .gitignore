@@ -104,3 +104,20 @@ sozo_app/build 2/
 *.so
 libflutter.so
 native-debug-symbols.zip 
+# macOS Flutter specific
+sozo_app/macos/Pods/
+sozo_app/macos/Flutter/ephemeral/
+sozo_app/macos/Podfile.lock
+
+# Flutter plugins
+sozo_app/.flutter-plugins-dependencies*
+
+# iOS specific  
+sozo_app/ios/Pods/
+sozo_app/ios/Podfile.lock
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+

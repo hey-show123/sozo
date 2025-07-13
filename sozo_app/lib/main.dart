@@ -16,6 +16,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'services/notification_service.dart';
+import 'package:app_links/app_links.dart';
 
 // バックグラウンドメッセージハンドラー
 @pragma('vm:entry-point')
@@ -23,6 +24,12 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print('Handling a background message: ${message.messageId}');
 }
+
+// グローバルなAppLinksインスタンス
+late AppLinks _appLinks;
+
+// ディープリンク処理をルーターに通知するためのNotifier
+final deepLinkNotifier = ValueNotifier<Uri?>(null);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -75,6 +82,22 @@ void main() async {
   } else {
     print('Main: No existing session found');
   }
+  
+  // ディープリンクの初期化
+  _appLinks = AppLinks();
+  
+  // 初期リンクの確認（アプリが終了状態から起動された場合）
+  final initialLink = await _appLinks.getInitialLink();
+  if (initialLink != null) {
+    print('Main: Initial deep link: $initialLink');
+    deepLinkNotifier.value = initialLink;
+  }
+  
+  // ディープリンクのリスナーを設定（アプリが起動中の場合）
+  _appLinks.uriLinkStream.listen((uri) {
+    print('Main: Deep link received: $uri');
+    deepLinkNotifier.value = uri;
+  });
   
   // 開発時のみ: 音声キャッシュをクリア（新しいTTSモデルを使用するため）
   if (!kReleaseMode) {

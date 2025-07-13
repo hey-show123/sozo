@@ -1,8 +1,57 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* シックでモダンなカラーパレット */
+  --color-primary: #2C3E50; /* チャコールグレー */
+  --color-secondary: #7F8C8D; /* ミディアムグレー */
+  --color-accent: #E8B87F; /* 温かみのあるゴールド */
+  --color-background: #FAFBFC; /* オフホワイト */
+  --color-surface: #FFFFFF;
+  --color-card: #F8F9FA; /* ライトグレー */
+  --color-error: #E74C3C;
+  --color-success: #27AE60;
+  --color-warning: #F39C12;
+  --color-text-primary: #2C3E50;
+  --color-text-secondary: #7F8C8D;
+  --color-text-tertiary: #BDC3C7;
+  --color-border: #ECF0F1;
+  
+  --background: #FAFBFC;
+  --foreground: #2C3E50;
+  
+  /* シャドウ設定 */
+  --shadow-sm: 0 1px 3px 0 rgba(44, 62, 80, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(44, 62, 80, 0.05), 0 2px 4px -1px rgba(44, 62, 80, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(44, 62, 80, 0.08), 0 4px 6px -2px rgba(44, 62, 80, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(44, 62, 80, 0.10), 0 10px 10px -5px rgba(44, 62, 80, 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* ダークモードカラー */
+    --color-primary: #ECF0F1; /* ライトグレー */
+    --color-secondary: #BDC3C7; /* ソフトグレー */
+    --color-accent: #E8B87F; /* 温かみのあるゴールド */
+    --color-background: #1A1D1E; /* ダークチャコール */
+    --color-surface: #222628; /* ミディアムダーク */
+    --color-card: #2C3134; /* カードグレー */
+    --color-error: #E74C3C;
+    --color-success: #27AE60;
+    --color-warning: #F39C12;
+    --color-text-primary: #ECF0F1;
+    --color-text-secondary: #BDC3C7;
+    --color-text-tertiary: #7F8C8D;
+    --color-border: #3A3F42;
+    
+    --background: #1A1D1E;
+    --foreground: #ECF0F1;
+    
+    /* ダークモードシャドウ */
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  }
 }
 
 @theme inline {
@@ -12,15 +61,114 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 洗練されたスクロールバー */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* フォーカス状態のスタイル */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 選択時のスタイル */
+::selection {
+  background: var(--color-primary);
+  color: var(--color-background);
+  opacity: 0.2;
+}
+
+/* アニメーション設定 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ユーティリティクラス */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* カードホバー効果 */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ボタントランジション */
+.btn-transition {
+  transition: all 0.2s ease;
+}
+
+.btn-transition:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-transition:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }

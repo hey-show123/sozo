@@ -45,9 +45,18 @@ dependencies:
   # Routing
   go_router: ^13.2.0
   
+  # Deep Links
+  app_links: ^6.3.2
+  
   # HTTP Client
   dio: ^5.3.3
   http: ^1.1.0
+  
+  # OpenAI
+  dart_openai: ^5.1.0
+  
+  # Google Sign-In
+  google_sign_in: ^6.2.1
   
   # Storage
   shared_preferences: ^2.2.2
@@ -146,6 +155,7 @@ flutter:
     - assets/sounds/
     - assets/icons/
     - assets/fonts/
+    - assets/images/ranks/
     
   # fonts:
   #   - family: NotoSansJP

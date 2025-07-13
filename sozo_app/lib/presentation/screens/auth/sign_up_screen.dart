@@ -48,7 +48,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           if (previous?.isLoading == true) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('登録完了しました！メールを確認してください。'),
+                content: Text('登録完了しました！メールを確認して認証リンクをクリックしてください。\n認証後、自動的にアプリに戻ります。'),
+                duration: Duration(seconds: 5),
               ),
             );
             context.go('/sign-in');

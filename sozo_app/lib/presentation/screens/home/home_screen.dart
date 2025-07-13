@@ -14,6 +14,8 @@ import '../../widgets/level_progress_avatar.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../services/achievement_service.dart';
 import '../../widgets/achievement_notification.dart';
+import '../../widgets/ranking_mini_card.dart';
+import '../../widgets/daily_challenge_card.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -184,6 +186,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     _buildSectionTitle('次のレッスン', Icons.play_circle_outline),
                     const SizedBox(height: 12),
                     _buildRecommendedLessonCard(context),
+                    
+                    const SizedBox(height: 24),
+                    
+                    // デイリーチャレンジ
+                    _buildSectionTitle('デイリーチャレンジ', Icons.flag),
+                    const SizedBox(height: 12),
+                    const DailyChallengeCard(),
+                    
+                    const SizedBox(height: 24),
+                    
+                    // 週間ランキング
+                    _buildSectionTitle('週間ランキング', Icons.leaderboard),
+                    const SizedBox(height: 12),
+                    const RankingMiniCard(),
                   ],
                 ),
               ),

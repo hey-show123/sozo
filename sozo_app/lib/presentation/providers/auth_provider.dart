@@ -35,6 +35,7 @@ class AuthNotifier extends StateNotifier<AsyncValue<void>> {
         email: email,
         password: password,
         data: username != null ? {'username': username} : null,
+        emailRedirectTo: 'sozo://auth/callback', // メール確認後のリダイレクトURL
       );
 
       if (response.user == null) {

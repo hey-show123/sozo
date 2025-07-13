@@ -20,15 +20,47 @@ import 'package:sozo_app/presentation/screens/tutorial/tutorial_screen.dart';
 import 'package:sozo_app/presentation/screens/organization/organization_dashboard_screen.dart';
 import 'package:sozo_app/presentation/screens/organization/user_detail_screen.dart';
 import 'package:sozo_app/presentation/screens/settings/notification_settings_screen.dart';
+import 'package:sozo_app/presentation/screens/leaderboard/weekly_leaderboard_screen.dart';
 import 'package:sozo_app/presentation/widgets/bottom_navigation.dart';
 import 'package:sozo_app/data/models/lesson_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:sozo_app/presentation/screens/profile/profile_screen.dart';
 import 'package:sozo_app/presentation/screens/profile/profile_edit_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sozo_app/main.dart' show deepLinkNotifier;
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/splash',
+    refreshListenable: deepLinkNotifier, // ディープリンクの変更を監視
+    redirect: (context, state) async {
+      // ディープリンク処理
+      if (deepLinkNotifier.value != null) {
+        final uri = deepLinkNotifier.value!;
+        deepLinkNotifier.value = null; // 処理後はクリア
+        
+        // Supabaseの認証コールバックの場合
+        if (uri.scheme == 'sozo' && uri.host == 'auth' && uri.path == '/callback') {
+          print('Router: Auth callback received');
+          
+          // 認証状態を確認
+          final session = Supabase.instance.client.auth.currentSession;
+          if (session != null) {
+            // チュートリアル完了状態を確認
+            final prefs = await SharedPreferences.getInstance();
+            final tutorialCompleted = prefs.getBool('tutorial_completed') ?? false;
+            
+            if (!tutorialCompleted) {
+              return '/tutorial';
+            } else {
+              return '/home';
+            }
+          }
+        }
+      }
+      
+      return null; // 通常のルーティングを続行
+    },
     routes: [
       GoRoute(
         path: '/splash',
@@ -83,7 +115,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/chat',
             builder: (context, state) {
-              return AiBuddyScreen();
+              return const AiBuddyScreen();
             },
           ),
           GoRoute(
@@ -153,13 +185,6 @@ final routerProvider = Provider<GoRouter>((ref) {
             },
           ),
           GoRoute(
-            path: 'ai-conversation',
-            builder: (context, state) {
-              final lessonId = state.pathParameters['lessonId']!;
-              return AiBuddyScreen(lessonId: lessonId);
-            },
-          ),
-          GoRoute(
             path: 'complete',
             builder: (context, state) {
               final lessonId = state.pathParameters['lessonId']!;
@@ -192,6 +217,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const ProfileEditScreen(),
           ),
         ],
+      ),
+      GoRoute(
+        path: '/leaderboard',
+        name: 'leaderboard',
+        builder: (context, state) => const WeeklyLeaderboardScreen(),
       ),
     ],
   );

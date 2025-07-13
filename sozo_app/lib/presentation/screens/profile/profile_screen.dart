@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sozo_app/presentation/providers/auth_provider.dart';
 import 'package:sozo_app/presentation/providers/user_stats_provider.dart';
-import 'package:sozo_app/presentation/providers/organization_provider.dart';
+import 'package:sozo_app/presentation/providers/organization_provider.dart' as org;
 import 'package:sozo_app/services/achievement_service.dart';
 import 'package:go_router/go_router.dart';
 import '../../providers/profile_provider.dart';
@@ -16,7 +16,7 @@ class ProfileScreen extends ConsumerWidget {
     final user = ref.watch(currentUserProvider);
     final profileAsync = ref.watch(profileNotifierProvider);
     final achievementsAsync = ref.watch(allAchievementsProvider);
-    final hasOrganizationAccessAsync = ref.watch(hasOrganizationAccessProvider);
+    final hasOrganizationAccessAsync = ref.watch(org.hasOrganizationAccessProvider);
 
     return Scaffold(
       appBar: AppBar(

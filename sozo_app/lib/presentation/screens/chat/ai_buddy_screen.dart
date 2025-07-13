@@ -1,940 +1,474 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:record/record.dart';
-import '../../../services/openai_service.dart';
-import '../../../services/azure_speech_service.dart';
-import '../../../services/progress_service.dart';
-import '../../../data/models/lesson_model.dart';
-import '../../widgets/xp_animation.dart';
-import '../../widgets/achievement_notification.dart';
-import '../../widgets/level_up_notification.dart';
-import 'dart:typed_data';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
 import 'package:go_router/go_router.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:sozo_app/services/audio_player_service.dart';
+import 'package:sozo_app/services/audio_storage_service.dart';
+import 'package:sozo_app/services/whisper_service.dart';
+import 'package:sozo_app/services/ai_conversation_service.dart';
+import 'package:sozo_app/services/openai_service.dart';
+import 'package:sozo_app/services/progress_service.dart';
+import 'package:sozo_app/presentation/providers/auth_provider.dart';
+import 'package:record/record.dart';
+import 'dart:async';
+import 'dart:io';
 
-// AIパートナー選択状態
-final selectedAIPartnerProvider = StateProvider<AIPersonality>((ref) {
-  return AIPersonality(
-    id: 'maya',
-    displayName: 'Maya',
-    description: 'フレンドリーで励まし上手なアメリカ人女性',
-    personalityTraits: {
-      'friendliness': 9,
-      'patience': 8,
-      'humor': 7,
-      'formality': 5,
-      'encouragement': 10,
-    },
-    conversationStyle: {
-      'question_frequency': 7,
-      'topic_diversity': 8,
-      'correction_approach': 'gentle',
-      'complexity_adaptation': true,
-    },
-    voiceId: 'nova',
-  );
-});
+// AI思考中インジケーターウィジェット（改善版）
+class TypingIndicator extends StatefulWidget {
+  const TypingIndicator({Key? key}) : super(key: key);
 
-// 会話履歴を管理
-final chatMessagesProvider = StateNotifierProvider<ChatMessagesNotifier, List<ChatMessage>>((ref) {
-  return ChatMessagesNotifier();
-});
+  @override
+  _TypingIndicatorState createState() => _TypingIndicatorState();
+}
 
-class ChatMessagesNotifier extends StateNotifier<List<ChatMessage>> {
-  ChatMessagesNotifier() : super([]);
+class _TypingIndicatorState extends State<TypingIndicator> with TickerProviderStateMixin {
+  late List<AnimationController> _controllers;
+  late List<Animation<double>> _animations;
 
-  void addMessage(ChatMessage message) {
-    state = [...state, message];
+  @override
+  void initState() {
+    super.initState();
+    _controllers = List.generate(3, (index) => AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    ));
+    
+    _animations = _controllers.map((controller) => Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: controller,
+      curve: Curves.easeInOut,
+    ))).toList();
+    
+    // 各ドットのアニメーションを少しずつ遅らせて開始
+    for (int i = 0; i < _controllers.length; i++) {
+      Future.delayed(Duration(milliseconds: i * 200), () {
+        if (mounted) {
+          _controllers[i].repeat(reverse: true);
+        }
+      });
+    }
   }
 
-  void clearMessages() {
-    state = [];
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.blue.shade50,
+            Colors.blue.shade100.withOpacity(0.8),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blue.shade100.withOpacity(0.3),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.smart_toy,
+            color: Colors.blue.shade600,
+            size: 20,
+          ),
+          const SizedBox(width: 10),
+          Text(
+            'AIが考えています',
+            style: TextStyle(
+              color: Colors.blue.shade700,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(width: 10),
+          Row(
+            children: List.generate(3, (index) => AnimatedBuilder(
+              animation: _animations[index],
+              builder: (context, child) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 2),
+                  child: Transform.scale(
+                    scale: 0.5 + (_animations[index].value * 0.5),
+                    child: Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color: Colors.blue.shade600,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.blue.shade400.withOpacity(_animations[index].value),
+                            blurRadius: 4,
+                            spreadRadius: 1,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            )),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// アニメーションテキストウィジェット（タイプライター効果）
+class AnimatedTextWidget extends StatefulWidget {
+  final String text;
+  final TextStyle? style;
+  final Duration animationDuration;
+
+  const AnimatedTextWidget({
+    Key? key,
+    required this.text,
+    this.style,
+    this.animationDuration = const Duration(milliseconds: 30),
+  }) : super(key: key);
+
+  @override
+  _AnimatedTextWidgetState createState() => _AnimatedTextWidgetState();
+}
+
+class _AnimatedTextWidgetState extends State<AnimatedTextWidget> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  String _displayedText = '';
+  int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.animationDuration * widget.text.length,
+    );
+    
+    _controller.addListener(() {
+      final newIndex = (_controller.value * widget.text.length).floor();
+      if (newIndex != _currentIndex && newIndex <= widget.text.length) {
+        setState(() {
+          _currentIndex = newIndex;
+          _displayedText = widget.text.substring(0, _currentIndex);
+        });
+      }
+    });
+    
+    _controller.forward();
+  }
+
+  @override
+  void didUpdateWidget(AnimatedTextWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.text != widget.text) {
+      _currentIndex = 0;
+      _displayedText = '';
+      _controller.reset();
+      _controller.duration = widget.animationDuration * widget.text.length;
+      _controller.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      _displayedText,
+      style: widget.style,
+    );
   }
 }
 
 class AiBuddyScreen extends ConsumerStatefulWidget {
-  final LessonModel? lesson;
-  final String? lessonId;
-  
   const AiBuddyScreen({
     super.key,
-    this.lesson,
-    this.lessonId,
   });
 
   @override
   ConsumerState<AiBuddyScreen> createState() => _AiBuddyScreenState();
 }
 
-class _AiBuddyScreenState extends ConsumerState<AiBuddyScreen> {
-  final ScrollController _scrollController = ScrollController();
-  late OpenAIService _openAIService;
-  late AzureSpeechService _speechService;
-  late AudioPlayer _audioPlayer;
-  late AudioRecorder _audioRecorder;
-  
-  bool _isTyping = false;
+class _AiBuddyScreenState extends ConsumerState<AiBuddyScreen>
+    with TickerProviderStateMixin {
+  // 録音関連
+  late final AudioRecorder _audioRecorder;
   bool _isRecording = false;
   bool _isProcessing = false;
-  bool _showKeyPhrases = false;
-  bool _isLoading = false;
-  bool _isSimulator = false;
+  bool _isAIThinking = false;
+  bool _isSessionEnded = false;
+  String? _recordingPath;
   
-  DateTime? _sessionStartTime;
-  int _messageCount = 0;
-  int _userSpeakingTime = 0; // 秒数
-  final List<double> _pronunciationScores = [];
+  // 音声関連サービス  
+  late AudioPlayerService _audioPlayer;
+  late AudioStorageService _audioStorage;
+  late WhisperService _whisperService;
+  late OpenAIService _openAIService;
+  late AIConversationService _aiService;
+  late ProgressService _progressService;
   
-  LessonModel? _currentLesson;
-
+  // 会話管理
+  final List<ConversationMessage> _messages = [];
+  final TextEditingController _textController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  
+  // 各メッセージの翻訳表示状態
+  final Map<int, bool> _messageTranslationStates = {};
+  
+  // セッション管理
+  Timer? _timer;
+  int _elapsedSeconds = 0;
+  final int _sessionTimeLimit = 3 * 60; // 3分
+  final Map<String, dynamic> _evaluationResults = {
+    'responseCount': 0,
+    'targetPhrasesUsed': 0,
+  };
+  
   @override
   void initState() {
     super.initState();
     _openAIService = OpenAIService();
-    _speechService = AzureSpeechService();
-    _audioPlayer = AudioPlayer();
     _audioRecorder = AudioRecorder();
-    _sessionStartTime = DateTime.now();
+    _whisperService = WhisperService();
+    _aiService = AIConversationService();
+    _progressService = ProgressService();
     
-    _currentLesson = widget.lesson;
+    _startSessionTimer();
     
-    // シミュレーター検出
-    _checkIfSimulator();
-    
-    // lessonIdが渡された場合はレッスンデータを読み込む
-    if (widget.lessonId != null && widget.lesson == null) {
-      _loadLessonData();
-    } else {
-      _initializeSession();
+    // WidgetsBindingを使って初期化を遅延実行
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final supabase = ref.read(supabaseProvider);
+      
+      _audioStorage = AudioStorageService(
+        supabase: supabase,
+        openAIService: _openAIService,
+      );
+      _audioPlayer = AudioPlayerService(audioStorage: _audioStorage);
+      
+      // 会話を初期化
+      _initializeConversation();
+    });
+  }
+
+  // AI会話の初期化
+  Future<void> _initializeConversation() async {
+    try {
+      // AIお客様として最初のメッセージを生成
+      final response = await _aiService.generateResponseWithFeedback(
+        userInput: '[System: A customer is entering your salon. They seem to be a new customer looking for a haircut service. Please greet them naturally as a customer would.]',
+        conversationHistory: [],
+        targetPhrases: [], // 一般会話なのでターゲットフレーズは不要
+        sessionNumber: 1,
+        userLevel: 'intermediate',
+        model: 'gpt-4o-mini',
+      );
+
+      if (mounted) {
+        setState(() {
+          // AIのお客様の最初の発言を追加
+          _messages.add(ConversationMessage(
+            text: response.aiResponse,
+            isUser: false,
+            timestamp: DateTime.now(),
+            translation: response.translation,
+            feedback: null,
+            severity: 'none',
+            isTemporary: false,
+            isAnimating: true,
+          ));
+        });
+        
+        // AI音声を生成して再生
+        _generateAndPlayAIVoice(response.aiResponse);
+        
+        _scrollToBottom();
+      }
+    } catch (e) {
+      print('Error initializing conversation: $e');
+      if (mounted) {
+        // フォールバックメッセージ
+        setState(() {
+          _messages.add(ConversationMessage(
+            text: 'Hello! I\'ve heard good things about this salon. Do you have time for a walk-in?',
+            isUser: false,
+            timestamp: DateTime.now(),
+            translation: 'こんにちは！このサロンの評判を聞いてきました。予約なしでも大丈夫ですか？',
+            feedback: null,
+            severity: 'none',
+            isTemporary: false,
+            isAnimating: true,
+          ));
+        });
+        _scrollToBottom();
+      }
     }
+  }
+
+  // メッセージを送信
+  Future<void> _sendMessage() async {
+    final text = _textController.text.trim();
+    if (text.isEmpty) return;
+    
+    _textController.clear();
+    await _sendMessageWithText(text);
   }
   
-  Future<void> _checkIfSimulator() async {
-    if (Platform.isIOS) {
-      // iOSシミュレーターの検出 - 環境変数を使用
-      try {
-        // シミュレーターでは特定の環境変数が設定されている
-        final environment = Platform.environment;
-        _isSimulator = environment.containsKey('SIMULATOR_DEVICE_NAME') ||
-                      environment['SIMULATOR_RUNTIME'] != null;
-        
-        if (_isSimulator && mounted) {
-          // シミュレーターで実行中の警告を表示
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text(
-                  'シミュレーターでは音声録音が制限されています。\n実機でのテストをお勧めします。',
-                ),
-                backgroundColor: Colors.orange,
-                duration: Duration(seconds: 5),
-              ),
-            );
-          });
-        }
-      } catch (e) {
-        print('Simulator detection error: $e');
-        _isSimulator = false;
-      }
-    }
-  }
-
-  Future<void> _loadLessonData() async {
+  // テキストでメッセージを送信
+  Future<void> _sendMessageWithText(String userMessage) async {
+    if (userMessage.trim().isEmpty) return;
+    
     setState(() {
-      _isLoading = true;
+      _isAIThinking = true;
+      // ユーザー（スタッフ）のメッセージを追加
+      _messages.add(ConversationMessage(
+        text: userMessage,
+        isUser: true,
+        timestamp: DateTime.now(),
+        isTemporary: true,
+      ));
     });
-    
-    try {
-      final supabase = Supabase.instance.client;
-      final response = await supabase
-          .from('lessons')
-          .select()
-          .eq('id', widget.lessonId!)
-          .single();
-      
-      final lessonData = response as Map<String, dynamic>;
-      _currentLesson = LessonModel.fromJson(lessonData);
-      
-      _initializeSession();
-    } catch (e) {
-      print('Error loading lesson data: $e');
-      // エラーの場合はフリートークモードで開始
-      _initializeSession();
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
-
-  void _initializeSession() {
-    // レッスンがある場合は開始を記録
-    if (_currentLesson != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(progressServiceProvider).startLesson(_currentLesson!.id);
-      });
-    }
-    
-    // 初期メッセージを追加（メッセージリストが空の場合のみ）
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final messages = ref.read(chatMessagesProvider);
-      if (messages.isEmpty) {
-        _addInitialMessage();
-      }
-    });
-  }
-
-  void _addInitialMessage() {
-    // 美容院のお客様として来店
-    String initialMessage = "Hello! I'd like to get a haircut today. Do you have time for a walk-in?";
-    
-    // ランダムで異なる来店パターンを選択
-    final random = DateTime.now().millisecondsSinceEpoch % 5;
-    switch (random) {
-      case 0:
-        initialMessage = "Hi! I have an appointment at 3 o'clock under the name Johnson.";
-        break;
-      case 1:
-        initialMessage = "Good afternoon! I'm looking for a new hair color. Can you help me?";
-        break;
-      case 2:
-        initialMessage = "Hello! This is my first time here. I'd like to get a trim and maybe some styling advice.";
-        break;
-      case 3:
-        initialMessage = "Hi there! I need to fix my hair color. It didn't turn out well at another salon...";
-        break;
-      case 4:
-        initialMessage = "Hello! I'd like to get a haircut today. Do you have time for a walk-in?";
-        break;
-    }
-    
-    ref.read(chatMessagesProvider.notifier).addMessage(
-      ChatMessage(
-        text: initialMessage,
-        isUser: false,
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_isLoading) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('AI Buddy'),
-        ),
-        body: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
-    final messages = ref.watch(chatMessagesProvider);
-
-    return WillPopScope(
-      onWillPop: () async {
-        // 戻る前にセッションを終了
-        if (_currentLesson != null && _messageCount > 0) {
-          await _endConversationSession();
-          return false; // ダイアログで制御
-        }
-        return true;
-      },
-      child: Scaffold(
-        backgroundColor: Colors.grey[50],
-        appBar: AppBar(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('接客中'),
-              Text(
-                'お客様対応',
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ],
-          ),
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black87,
-          elevation: 1,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () async {
-              if (_currentLesson != null && _messageCount > 0) {
-                await _endConversationSession();
-              } else {
-                if (context.canPop()) {
-                  context.pop();
-                } else {
-                  // ルートスタックが空の場合はホームへ
-                  context.go('/');
-                }
-              }
-            },
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.refresh),
-              onPressed: _startNewConversation,
-              tooltip: '会話をリセット',
-            ),
-          ],
-        ),
-        body: Column(
-          children: [
-            // 店舗情報バー
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              color: Colors.pink.shade50,
-              child: Row(
-                children: [
-                  Icon(Icons.storefront, size: 18, color: Colors.pink.shade700),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Beauty Salon SOZO - 接客中',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.pink.shade700,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            
-            // メッセージリスト
-            Expanded(
-              child: ListView.builder(
-                controller: _scrollController,
-                padding: const EdgeInsets.all(16),
-                itemCount: messages.length + (_isTyping ? 1 : 0),
-                itemBuilder: (context, index) {
-                  if (index == messages.length && _isTyping) {
-                    return _buildTypingIndicator();
-                  }
-                  return _buildMessageBubble(messages[index]);
-                },
-              ),
-            ),
-            
-            _buildInputArea(),
-          ],
-        ),
-      ),
-    );
-  }
-
-
-
-  Widget _buildMessageBubble(ChatMessage message) {
-    final isUser = message.isUser;
-    
-    return Align(
-      alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
-      child: Container(
-        margin: EdgeInsets.only(
-          bottom: 12,
-          left: isUser ? 64 : 0,
-          right: isUser ? 0 : 64,
-        ),
-        child: Column(
-          crossAxisAlignment: isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: BoxDecoration(
-                color: isUser ? Theme.of(context).primaryColor : Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(16),
-                  topRight: const Radius.circular(16),
-                  bottomLeft: Radius.circular(isUser ? 16 : 4),
-                  bottomRight: Radius.circular(isUser ? 4 : 16),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Text(
-                message.text,
-                style: TextStyle(
-                  color: isUser ? Colors.white : Colors.black87,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            if (!isUser)
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.volume_up, size: 20),
-                      color: Colors.grey[600],
-                      onPressed: () => _playMessageAudio(message.text),
-                    ),
-                    if (message.corrections != null && message.corrections!.isNotEmpty)
-                      TextButton.icon(
-                        icon: const Icon(Icons.edit, size: 16),
-                        label: const Text('訂正'),
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.orange,
-                        ),
-                        onPressed: () => _showCorrections(message.corrections!),
-                      ),
-                  ],
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTypingIndicator() {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Container(
-        margin: const EdgeInsets.only(right: 64),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 4,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _buildDot(0),
-            const SizedBox(width: 4),
-            _buildDot(1),
-            const SizedBox(width: 4),
-            _buildDot(2),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDot(int index) {
-    return TweenAnimationBuilder<double>(
-      tween: Tween(begin: 0, end: 1),
-      duration: Duration(milliseconds: 600 + (index * 200)),
-      curve: Curves.easeInOut,
-      builder: (context, value, child) {
-        return Container(
-          width: 8,
-          height: 8,
-          decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.3 + (value * 0.5)),
-            shape: BoxShape.circle,
-          ),
-        );
-      },
-      onEnd: () {
-        if (mounted && _isTyping) {
-          setState(() {});
-        }
-      },
-    );
-  }
-
-  Widget _buildInputArea() {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // 録音中のインジケーター
-          if (_isRecording)
-            Container(
-              margin: const EdgeInsets.only(bottom: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 12,
-                    height: 12,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.red.withOpacity(0.4),
-                          blurRadius: 8,
-                          spreadRadius: 2,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  const Text(
-                    '録音中...',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          
-          // 大きなマイクボタン
-          GestureDetector(
-            onTap: _isProcessing ? null : _toggleRecording,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              width: _isRecording ? 100 : 80,
-              height: _isRecording ? 100 : 80,
-              decoration: BoxDecoration(
-                color: _isRecording 
-                    ? Colors.red 
-                    : (_isProcessing ? Colors.grey : Theme.of(context).primaryColor),
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: (_isRecording ? Colors.red : Theme.of(context).primaryColor)
-                        .withOpacity(0.3),
-                    blurRadius: _isRecording ? 20 : 12,
-                    spreadRadius: _isRecording ? 4 : 2,
-                  ),
-                ],
-              ),
-              child: Icon(
-                _isRecording ? Icons.stop : Icons.mic,
-                color: Colors.white,
-                size: _isRecording ? 48 : 40,
-              ),
-            ),
-          ),
-          
-          const SizedBox(height: 16),
-          
-          // 状態テキスト
-          Text(
-            _isProcessing
-                ? '処理中...'
-                : (_isRecording ? 'タップして停止' : 'タップして話す'),
-            style: TextStyle(
-              color: Colors.grey[600],
-              fontSize: 16,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<void> _sendMessage(String text) async {
-    if (_isProcessing) return;
-    
-    // メッセージカウントを増やす
-    _messageCount++;
-    
-    // ユーザーメッセージを追加
-    ref.read(chatMessagesProvider.notifier).addMessage(
-      ChatMessage(text: text, isUser: true),
-    );
     
     _scrollToBottom();
-    
-    setState(() {
-      _isTyping = true;
-      _isProcessing = true;
-    });
-    
+    _evaluationResults['responseCount'] = (_evaluationResults['responseCount'] ?? 0) + 1;
+
     try {
-      // AIの応答を生成
-      final messages = ref.read(chatMessagesProvider);
+      // 会話履歴を準備
+      final conversationHistory = _messages
+          .where((msg) => !msg.text.startsWith('[System:') && !msg.isTemporary)
+          .map((msg) => {
+                'role': msg.isUser ? 'user' : 'assistant',
+                'content': msg.text,
+              })
+          .toList();
       
-      // システムプロンプトを構築
-      String systemPrompt = '''You are playing the role of a customer at a hair salon/beauty salon. 
+      // カスタムプロンプトで一般的な美容院会話を促す
+      final customPrompt = '''
+You are a customer at a beauty salon. Continue the natural conversation based on typical salon scenarios.
 
-Your character:
-- You are a foreign customer who speaks English
-- You are visiting a hair salon in Japan
-- You have various needs like haircut, coloring, styling, or treatments
-- You should act like a real customer with preferences, questions, and sometimes concerns
-- Be polite but natural, as a real customer would be
+Current context: The user (salon staff) just said: "$userMessage"
 
-Your responses should:
-1. Stay in character as a salon customer
-2. Ask questions about services, prices, and time required
-3. Express your preferences and concerns naturally
-4. React appropriately to the staff's suggestions
-5. Sometimes be unsure about what you want and ask for advice
-6. Use common salon-related vocabulary
+Guidelines:
+1. Respond as a realistic customer with genuine needs and concerns
+2. You might ask about services, prices, availability, or recommendations
+3. Express typical customer concerns (damage, style changes, maintenance, etc.)
+4. React naturally to staff suggestions - sometimes interested, sometimes hesitant
+5. Keep responses short and conversational (1-3 sentences)
+6. Create opportunities for the staff to practice professional English
+7. Be polite but natural, not overly formal
 
-Common topics to discuss:
-- Your desired hairstyle or color
-- Previous experiences (good or bad)
-- Hair concerns (damage, thinning, etc.)
-- Time and budget constraints
-- Maintenance and styling tips
-- Product recommendations
+Always respond in JSON format:
+{
+  "response": "Your response as a customer",
+  "feedback": {
+    "grammar_errors": ["日本語での文法エラー説明"],
+    "suggestions": ["日本語での改善提案"],
+    "is_off_topic": false,
+    "severity": "none"
+  },
+  "translation": "お客様としてのあなたの返答の日本語訳"
+}
 
-Remember: You are the CUSTOMER, not the staff. The user is practicing being the salon staff member.''';
+Important: All feedback must be in Japanese.
+''';
       
-      final response = await _openAIService.generateChatResponse(
-        messages: messages.map((m) => {
-          'role': m.isUser ? 'user' : 'assistant',
-          'content': m.text,
-        }).toList(),
-        systemPrompt: systemPrompt,
+      // AIの応答を取得（お客様として）
+      final response = await _aiService.generateResponseWithFeedback(
+        userInput: userMessage,
+        conversationHistory: conversationHistory,
+        targetPhrases: [],
+        sessionNumber: 1,
+        userLevel: 'intermediate',
+        model: 'gpt-4o-mini',
+        customPrompt: customPrompt,
       );
+
+      // 一時的なメッセージを正式なメッセージに更新
+      final tempIndex = _messages.indexWhere((msg) => msg.isTemporary);
+      if (tempIndex != -1) {
+        setState(() {
+          _messages[tempIndex] = ConversationMessage(
+            text: userMessage,
+            isUser: true,
+            timestamp: DateTime.now(),
+            feedback: response.feedback,
+            severity: response.feedback.severity,
+            isTemporary: false,
+          );
+          
+          // AIの応答を追加（お客様として）
+          _messages.add(ConversationMessage(
+            text: response.aiResponse,
+            isUser: false,
+            timestamp: DateTime.now(),
+            translation: response.translation,
+            feedback: null,
+            severity: 'none',
+            isTemporary: false,
+            isAnimating: true,
+          ));
+          
+          _isAIThinking = false;
+        });
+      }
       
-      setState(() {
-        _isTyping = false;
-      });
-      
-      // AI応答を追加
-      ref.read(chatMessagesProvider.notifier).addMessage(
-        ChatMessage(
-          text: response,
-          isUser: false,
-          corrections: _extractCorrections(text, response),
-        ),
-      );
+      // AI音声を生成して再生
+      _generateAndPlayAIVoice(response.aiResponse);
       
       _scrollToBottom();
       
-      // 自動的に音声を再生
-      await _playMessageAudio(response);
-      
     } catch (e) {
-      setState(() {
-        _isTyping = false;
-      });
+      print('Error sending message: $e');
+      _showError('メッセージの送信に失敗しました');
       
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('エラーが発生しました: $e'),
-          backgroundColor: Colors.red,
-        ),
-      );
-    } finally {
+      // エラー時は一時的なメッセージを削除
       setState(() {
-        _isProcessing = false;
+        _messages.removeWhere((msg) => msg.isTemporary);
+        _isAIThinking = false;
       });
     }
   }
 
-  List<String>? _extractCorrections(String userMessage, String aiResponse) {
-    // 簡単な文法チェック（実際にはもっと高度な処理が必要）
-    List<String> corrections = [];
-    
-    // TODO: より高度な文法チェックロジックを実装
-    
-    return corrections.isEmpty ? null : corrections;
-  }
-
-  Future<void> _playMessageAudio(String text) async {
+  // AI音声を生成して再生
+  Future<void> _generateAndPlayAIVoice(String text) async {
     try {
       final audioData = await _openAIService.generateSpeech(
         text: text,
-        voice: 'nova',
+        voice: 'alloy',
         speed: 1.0,
-        model: 'tts-1', // TTS-1モデルを明示的に指定
       );
       
-      // 音声データを一時ファイルに保存
-      final tempDir = await getTemporaryDirectory();
-      final timestamp = DateTime.now().millisecondsSinceEpoch;
-      final audioFile = File('${tempDir.path}/tts_$timestamp.mp3');
-      await audioFile.writeAsBytes(audioData);
-      
-      // 音声を再生
-      await _audioPlayer.setFilePath(audioFile.path);
-      await _audioPlayer.play();
-      
-      // 再生終了後にファイルを削除
-      _audioPlayer.playerStateStream.listen((state) {
-        if (state.processingState == ProcessingState.completed) {
-          audioFile.deleteSync();
-        }
-      });
+      if (mounted) {
+        await _audioPlayer.playAudioData(audioData.toList());
+      }
     } catch (e) {
-      print('Failed to play audio: $e');
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('音声再生エラー: $e'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+      print('Error generating AI voice: $e');
     }
-  }
-
-  Future<void> _toggleRecording() async {
-    if (_isRecording) {
-      // 録音停止
-      setState(() {
-        _isRecording = false;
-        _isProcessing = true;
-      });
-      
-      try {
-        // 録音を停止
-        print('Stopping recording...');
-        final path = await _audioRecorder.stop();
-        print('Recording stopped. Path: $path');
-        
-        if (path == null) {
-          print('Recording path is null');
-          setState(() {
-            _isProcessing = false;
-          });
-          return;
-        }
-        
-        // ファイルの存在とサイズを確認
-        final audioFile = File(path);
-        if (await audioFile.exists()) {
-          final fileSize = await audioFile.length();
-          print('Audio file exists. Size: $fileSize bytes');
-          
-          if (fileSize < 1000) {
-            // ファイルが小さすぎる場合
-            print('Audio file too small, likely no audio recorded');
-            setState(() {
-              _isProcessing = false;
-            });
-            if (mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('録音が短すぎます。もう少し長く話してください。'),
-                  backgroundColor: Colors.orange,
-                ),
-              );
-            }
-            return;
-          }
-        } else {
-          print('Audio file does not exist');
-          setState(() {
-            _isProcessing = false;
-          });
-          return;
-        }
-        
-        // 音声認識
-        print('Starting speech recognition...');
-        final recognizedText = await _speechService.recognizeSpeech(
-          audioFile: audioFile,
-        );
-        print('Recognition result: $recognizedText');
-        
-        if (recognizedText != null && recognizedText.isNotEmpty) {
-          // 自動的にメッセージを送信
-          await _sendMessage(recognizedText);
-        } else {
-          setState(() {
-            _isProcessing = false;
-          });
-          
-          // シミュレーターの場合は特別なメッセージ
-          if (_isSimulator) {
-            await _sendMessage("Hello, I'd like to practice English conversation.");
-          } else if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('音声を認識できませんでした。もう一度お試しください。'),
-                backgroundColor: Colors.orange,
-              ),
-            );
-          }
-        }
-        
-        // 一時ファイルを削除
-        try {
-          await audioFile.delete();
-          print('Temporary audio file deleted');
-        } catch (e) {
-          print('Failed to delete audio file: $e');
-        }
-        
-      } catch (e, stackTrace) {
-        print('Error in _toggleRecording: $e');
-        print('Stack trace: $stackTrace');
-        
-        setState(() {
-          _isProcessing = false;
-        });
-        
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('音声認識エラー: ${e.toString()}'),
-              backgroundColor: Colors.red,
-              duration: const Duration(seconds: 4),
-            ),
-          );
-        }
-      }
-    } else {
-      // 録音開始
-      await _startRecording();
-    }
-  }
-
-  Future<void> _startRecording() async {
-    try {
-      // 録音権限をチェック
-      final hasPermission = await _audioRecorder.hasPermission();
-      print('Recording permission: $hasPermission');
-      
-      if (!hasPermission) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('マイクの使用許可が必要です。設定から許可してください。'),
-              backgroundColor: Colors.orange,
-              duration: Duration(seconds: 3),
-            ),
-          );
-        }
-        return;
-      }
-      
-      // 録音の可否をチェック
-      final canRecord = await _audioRecorder.isRecording();
-      print('Is already recording: $canRecord');
-      
-      if (canRecord) {
-        print('Already recording, stopping first...');
-        await _audioRecorder.stop();
-      }
-      
-      final tempDir = await getTemporaryDirectory();
-      final timestamp = DateTime.now().millisecondsSinceEpoch;
-      final path = '${tempDir.path}/recording_$timestamp.m4a';
-      print('Recording path: $path');
-      
-      // iOS向けの設定
-      final config = RecordConfig(
-        encoder: AudioEncoder.aacLc, // iOSでより安定したエンコーダー
-        bitRate: 128000,
-        sampleRate: 44100,
-        numChannels: 1,
-      );
-      
-      await _audioRecorder.start(config, path: path);
-      
-      if (mounted) {
-        setState(() {
-          _isRecording = true;
-        });
-        print('Recording started successfully');
-      }
-    } catch (e, stackTrace) {
-      print('録音開始エラー: $e');
-      print('Stack trace: $stackTrace');
-      
-      if (mounted) {
-        String errorMessage = '録音の開始に失敗しました';
-        
-        if (e.toString().contains('permission')) {
-          errorMessage = 'マイクの使用許可が必要です';
-        } else if (e.toString().contains('simulator')) {
-          errorMessage = 'シミュレーターでは録音機能が制限されています。実機でお試しください';
-        }
-        
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(errorMessage),
-            backgroundColor: Colors.red,
-            duration: const Duration(seconds: 4),
-          ),
-        );
-      }
-    }
-  }
-
-  void _startNewConversation() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('会話をリセット'),
-        content: const Text('現在の会話をクリアして、最初から始めますか？'),
-        actions: [
-          TextButton(
-            onPressed: () => context.pop(),
-            child: const Text('キャンセル'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.pop();
-              ref.read(chatMessagesProvider.notifier).clearMessages();
-              _addInitialMessage();
-            },
-            child: const Text('リセット'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showCorrections(List<String> corrections) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('文法の訂正'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: corrections.map((correction) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Icon(Icons.check_circle, color: Colors.green, size: 20),
-                  const SizedBox(width: 8),
-                  Expanded(child: Text(correction)),
-                ],
-              ),
-            );
-          }).toList(),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => context.pop(),
-            child: const Text('閉じる'),
-          ),
-        ],
-      ),
-    );
   }
 
   void _scrollToBottom() {
-    Future.delayed(const Duration(milliseconds: 100), () {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
@@ -945,240 +479,1039 @@ Remember: You are the CUSTOMER, not the staff. The user is practicing being the 
     });
   }
 
-  Future<void> _endConversationSession() async {
-    // セッション時間を計算
-    final sessionDuration = _sessionStartTime != null
-        ? DateTime.now().difference(_sessionStartTime!).inSeconds
-        : 0;
+  void _showError(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final remainingTime = _getRemainingSeconds();
+    final isTimeWarning = remainingTime <= 60 && remainingTime > 0;
     
-    // 平均発音スコアを計算（録音があった場合）
-    final averageScore = _pronunciationScores.isNotEmpty
-        ? _pronunciationScores.reduce((a, b) => a + b) / _pronunciationScores.length
-        : 85.0; // デフォルトスコア
-    
-    // レッスンがある場合のみ進捗を記録
-    if (_currentLesson != null) {
-      final progressService = ref.read(progressServiceProvider);
-      final (xpEarned, levelUpInfo) = await progressService.completeActivity(
-        lessonId: _currentLesson!.id,
-        activityType: 'ai_conversation',
-        score: averageScore,
-        timeSpent: sessionDuration,
-      );
-      
-      // 実績チェック
-      final newAchievements = await progressService.checkAchievements();
-      
-      if (!mounted) return;
-      
-      // XPアニメーションを表示
-      if (xpEarned > 0) {
-        XPAnimationOverlay.show(context, xpEarned);
-      }
-      
-      // レベルアップ通知を表示
-      if (levelUpInfo.hasLeveledUp) {
-        Future.delayed(const Duration(milliseconds: 2000), () {
-          if (mounted) {
-            LevelUpNotificationOverlay.show(
-              context,
-              oldLevel: levelUpInfo.oldLevel,
-              newLevel: levelUpInfo.newLevel,
-              totalXP: levelUpInfo.totalXP,
-            );
-          }
-        });
-      }
-      
-      // 実績通知を表示
-      if (newAchievements.isNotEmpty) {
-        final delay = levelUpInfo.hasLeveledUp ? 6000 : 1000;
-        Future.delayed(Duration(milliseconds: delay), () {
-          if (mounted) {
-            AchievementNotificationOverlay.showMultiple(context, newAchievements);
-          }
-        });
-      }
-      
-      // セッション完了ダイアログ
-      _showSessionCompletionDialog(
-        messageCount: _messageCount,
-        duration: sessionDuration,
-        averageScore: averageScore,
-        xpEarned: xpEarned,
-      );
-    } else {
-      // フリートークの場合は簡単な完了メッセージ
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('会話練習お疲れさまでした！'),
-          duration: Duration(seconds: 2),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('AI会話練習'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        titleTextStyle: const TextStyle(
+          color: Colors.black87,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
         ),
-      );
+        iconTheme: const IconThemeData(color: Colors.black87),
+        actions: [
+          // タイマー表示
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            margin: const EdgeInsets.only(right: 8),
+            decoration: BoxDecoration(
+              color: isTimeWarning ? Colors.orange.shade50 : Colors.grey.shade100,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.timer, 
+                  size: 18,
+                  color: isTimeWarning ? Colors.orange : Colors.grey.shade600,
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  _formatTime(remainingTime),
+                  style: TextStyle(
+                    color: isTimeWarning ? Colors.orange : Colors.grey.shade700,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // リセットボタン
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              setState(() {
+                _messages.clear();
+                _messageTranslationStates.clear();
+                _evaluationResults['responseCount'] = 0;
+                _evaluationResults['targetPhrasesUsed'] = 0;
+                _isSessionEnded = false;
+              });
+              _startSessionTimer();
+              _initializeConversation();
+            },
+            tooltip: '会話をリセット',
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            // 会話表示エリア
+            Expanded(
+              child: _messages.isEmpty
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : ListView.builder(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.all(16),
+                      itemCount: _messages.length + (_isAIThinking ? 1 : 0),
+                      itemBuilder: (context, index) {
+                        // AI思考中インジケーターを表示
+                        if (_isAIThinking && index == _messages.length) {
+                          return Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                              margin: const EdgeInsets.only(bottom: 12),
+                              child: const TypingIndicator(),
+                            ),
+                          );
+                        }
+                        
+                        final message = _messages[index];
+                        return _buildMessageBubble(message, index);
+                      },
+                    ),
+            ),
+            
+            // 入力エリア
+            _buildInputArea(),
+          ],
+        ),
+      ),
+      // セッション終了ボタン
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 60),
+        child: FloatingActionButton.extended(
+          onPressed: _elapsedSeconds < 10 
+              ? null 
+              : () => _endSession(),
+          icon: const Icon(Icons.check),
+          label: const Text(
+            'セッション終了',
+            style: TextStyle(fontSize: 16),
+          ),
+          backgroundColor: _elapsedSeconds < 10
+              ? Colors.grey.shade400
+              : Colors.green,
+          extendedPadding: const EdgeInsets.symmetric(horizontal: 24),
+        ),
+      ),
+    );
+  }
+
+  // メッセージバブルを構築
+  Widget _buildMessageBubble(ConversationMessage message, int index) {
+    final isUser = message.isUser;
+    final hasFeedback = message.feedback != null && 
+                        (message.feedback!.grammarErrors.isNotEmpty || 
+                         message.feedback!.suggestions.isNotEmpty);
+    final showTranslation = _messageTranslationStates[index] ?? false;
+    
+    return GestureDetector(
+      onLongPress: isUser ? () => _showMessageOptions(index) : null,
+      child: Align(
+        alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 12),
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width * 0.75,
+          ),
+          child: Column(
+            crossAxisAlignment: isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            children: [
+              // メッセージバブル
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: isUser 
+                      ? _getFeedbackColor(message.feedback)
+                      : Colors.grey[200],
+                  borderRadius: BorderRadius.circular(16),
+                  border: hasFeedback 
+                      ? Border.all(
+                          color: message.severity == 'major' 
+                              ? Colors.red 
+                              : message.severity == 'minor'
+                                  ? Colors.orange
+                                  : Colors.green,
+                          width: 2,
+                        )
+                      : null,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: message.isAnimating
+                              ? AnimatedTextWidget(
+                                  text: message.text,
+                                  style: const TextStyle(fontSize: 16),
+                                )
+                              : Text(
+                                  message.text,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                        ),
+                        if (hasFeedback) ...[
+                          const SizedBox(width: 8),
+                          _buildFeedbackIndicator(message.feedback!),
+                        ],
+                      ],
+                    ),
+                    if (!isUser && showTranslation && message.translation != null && message.translation!.isNotEmpty) ...[
+                      const SizedBox(height: 8),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          message.translation!,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[700],
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              
+              // アクションボタン（AIメッセージのみ）
+              if (!isUser) ...[
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // 翻訳ボタン
+                    if (message.translation != null && message.translation!.isNotEmpty)
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _messageTranslationStates[index] = !showTranslation;
+                          });
+                        },
+                        borderRadius: BorderRadius.circular(12),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                showTranslation ? Icons.translate : Icons.translate_outlined,
+                                size: 16,
+                                color: showTranslation ? Colors.blue : Colors.grey,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                showTranslation ? '翻訳を隠す' : '翻訳を表示',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: showTranslation ? Colors.blue : Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ],
+              
+              // フィードバックボタン（ユーザーメッセージのみ）
+              if (isUser && hasFeedback) ...[
+                const SizedBox(height: 4),
+                InkWell(
+                  onTap: () => _showFeedbackDialog(message),
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.grey.shade300),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.feedback, size: 16, color: Colors.blue),
+                        const SizedBox(width: 4),
+                        const Text(
+                          'フィードバックを見る',
+                          style: TextStyle(fontSize: 12, color: Colors.blue),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  
+  Color _getFeedbackColor(FeedbackData? feedback) {
+    if (feedback == null) return Colors.blue[100]!;
+    
+    switch (feedback.severity) {
+      case 'major':
+        return Colors.red[50]!;
+      case 'minor':
+        return Colors.orange[50]!;
+      default:
+        return Colors.blue[100]!;
     }
   }
 
-  void _showSessionCompletionDialog({
-    required int messageCount,
-    required int duration,
-    required double averageScore,
-    required int xpEarned,
-  }) {
-    showDialog(
+  Widget _buildFeedbackIndicator(FeedbackData feedback) {
+    Color color;
+    IconData icon;
+    
+    switch (feedback.severity) {
+      case 'major':
+        color = Colors.red;
+        icon = Icons.error;
+        break;
+      case 'minor':
+        color = Colors.orange;
+        icon = Icons.warning;
+        break;
+      default:
+        color = Colors.green;
+        icon = Icons.check_circle;
+    }
+    
+    return Icon(icon, color: color, size: 16);
+  }
+
+  void _showMessageOptions(int index) {
+    showModalBottomSheet(
       context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        title: const Row(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.chat_bubble, color: Colors.green, size: 32),
-            SizedBox(width: 8),
-            Text('AI会話セッション完了！'),
+            ListTile(
+              leading: const Icon(Icons.delete_outline, color: Colors.red),
+              title: const Text('メッセージを削除'),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  _messages.removeAt(index);
+                  // 翻訳状態もクリア
+                  _messageTranslationStates.remove(index);
+                  // インデックスを調整
+                  final newStates = <int, bool>{};
+                  _messageTranslationStates.forEach((key, value) {
+                    if (key > index) {
+                      newStates[key - 1] = value;
+                    } else if (key < index) {
+                      newStates[key] = value;
+                    }
+                  });
+                  _messageTranslationStates.clear();
+                  _messageTranslationStates.addAll(newStates);
+                });
+              },
+            ),
           ],
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+      ),
+    );
+  }
+  
+  // フィードバックダイアログを表示
+  void _showFeedbackDialog(ConversationMessage message) {
+    if (message.feedback == null) return;
+    
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Row(
           children: [
-            if (xpEarned > 0) ...[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.star,
-                    color: Colors.amber[600],
-                    size: 24,
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.amber[100],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      '+$xpEarned XP',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.amber[800],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-            ],
-            _buildStatRow('メッセージ数', '$messageCount回'),
-            const SizedBox(height: 8),
-            _buildStatRow('会話時間', '${(duration / 60).toStringAsFixed(1)}分'),
-            const SizedBox(height: 8),
-            _buildStatRow('発音スコア', '${averageScore.toStringAsFixed(0)}%'),
-            const SizedBox(height: 16),
-            const Text(
-              '素晴らしい会話練習でした！\n自然な英語でのコミュニケーションが上達しています。',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              '🎉 レッスンの全ステップが完了しました！',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.green,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
+            _buildFeedbackIndicator(message.feedback!),
+            const SizedBox(width: 8),
+            const Text('フィードバック'),
           ],
+        ),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (message.feedback!.grammarErrors.isNotEmpty) ...[
+                const Text(
+                  '文法エラー:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 4),
+                ...message.feedback!.grammarErrors.map((error) => Padding(
+                  padding: const EdgeInsets.only(left: 16, bottom: 4),
+                  child: Text('• $error'),
+                )),
+                const SizedBox(height: 12),
+              ],
+              if (message.feedback!.suggestions.isNotEmpty) ...[
+                const Text(
+                  '改善提案:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 4),
+                ...message.feedback!.suggestions.map((suggestion) => Padding(
+                  padding: const EdgeInsets.only(left: 16, bottom: 4),
+                  child: Text('• $suggestion'),
+                )),
+              ],
+              if (message.feedback!.isOffTopic) ...[
+                const SizedBox(height: 12),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.orange[50],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Text(
+                    '⚠️ トピックから外れています',
+                    style: TextStyle(color: Colors.orange),
+                  ),
+                ),
+              ],
+            ],
+          ),
         ),
         actions: [
           TextButton(
-            onPressed: () {
-              context.pop();
-              // 新しいセッションを開始
-              setState(() {
-                _messageCount = 0;
-                _sessionStartTime = DateTime.now();
-                _pronunciationScores.clear();
-              });
-              ref.read(chatMessagesProvider.notifier).clearMessages();
-              _addInitialMessage();
-            },
-            child: const Text('新しい会話を始める'),
-          ),
-          OutlinedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              if (context.canPop()) {
-                context.pop();
-              } else {
-                context.go('/');
-              }
-            },
-            child: const Text('レッスンに戻る'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.pop();
-              // レッスン一覧に戻る
-              context.go('/lessons');
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
-              foregroundColor: Colors.white,
-            ),
-            child: const Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('他のレッスンへ'),
-                SizedBox(width: 4),
-                Icon(Icons.arrow_forward, size: 16),
-              ],
-            ),
+            onPressed: () => Navigator.pop(context),
+            child: const Text('閉じる'),
           ),
         ],
       ),
     );
   }
+  
+  // 入力エリアを構築
+  Widget _buildInputArea() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 4,
+            offset: const Offset(0, -2),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          if (_isRecording)
+            const Text(
+              '録音中...',
+              style: TextStyle(color: Colors.red),
+            ),
+          const SizedBox(height: 8),
+          
+          // テキスト入力とボタン
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _textController,
+                  enabled: !_isSessionEnded,
+                  decoration: InputDecoration(
+                    hintText: _isSessionEnded ? 'セッション終了' : '英語でメッセージを入力...',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                  ),
+                  onSubmitted: (_isSessionEnded) ? null : (_) => _sendMessage(),
+                ),
+              ),
+              const SizedBox(width: 8),
+              // 録音ボタン
+              IconButton(
+                onPressed: _isProcessing || _isAIThinking || _isSessionEnded
+                    ? null
+                    : (_isRecording ? _stopRecordingAndProcess : _startRecording),
+                icon: Icon(
+                  _isRecording ? Icons.stop : Icons.mic,
+                  color: _isRecording ? Colors.red : Colors.blue,
+                ),
+                iconSize: 32,
+              ),
+              // 送信ボタン
+              IconButton(
+                onPressed: _isProcessing || _isAIThinking || _isSessionEnded ? null : _sendMessage,
+                icon: const Icon(Icons.send),
+                color: Colors.blue,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+  
+  // 録音開始
+  Future<void> _startRecording() async {
+    final hasPermission = await _audioRecorder.hasPermission();
+    if (!hasPermission) {
+      _showError('マイクの権限が必要です');
+      return;
+    }
 
-  Widget _buildStatRow(String label, String value) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    try {
+      // 一時ディレクトリに録音
+      final tempDir = await Directory.systemTemp.createTemp('recording');
+      _recordingPath = '${tempDir.path}/recording_${DateTime.now().millisecondsSinceEpoch}.wav';
+      
+      await _audioRecorder.start(
+        const RecordConfig(encoder: AudioEncoder.wav),
+        path: _recordingPath!,
+      );
+      
+      setState(() {
+        _isRecording = true;
+      });
+    } catch (e) {
+      print('Error starting recording: $e');
+      _showError('録音を開始できませんでした');
+    }
+  }
+
+  // 録音停止と処理
+  Future<void> _stopRecordingAndProcess() async {
+    try {
+      final path = await _audioRecorder.stop();
+      
+      setState(() {
+        _isRecording = false;
+        _isProcessing = true;
+      });
+      
+      if (path == null || path.isEmpty) {
+        _showError('録音に失敗しました');
+        setState(() {
+          _isProcessing = false;
+        });
+        return;
+      }
+      
+      final audioFile = File(path);
+      
+      // ファイルが存在し、サイズが適切か確認
+      if (!await audioFile.exists()) {
+        _showError('録音ファイルが見つかりません');
+        setState(() {
+          _isProcessing = false;
+        });
+        return;
+      }
+      
+      final fileSize = await audioFile.length();
+      print('Recorded file size: $fileSize bytes');
+      
+      if (fileSize < 100) {
+        _showError('録音が短すぎます');
+        setState(() {
+          _isProcessing = false;
+        });
+        return;
+      }
+      
+      // Whisperで音声認識
+      final transcription = await _whisperService.transcribeAudio(
+        audioFile: audioFile,
+        language: 'en',
+        prompt: 'Beauty salon conversation in English',
+      );
+      
+      // 一時ファイルを削除
+      try {
+        await audioFile.delete();
+      } catch (e) {
+        print('Error deleting recording file: $e');
+      }
+      
+      if (transcription == null || transcription.isEmpty) {
+        _showError('音声を認識できませんでした。もう一度お試しください。');
+        setState(() {
+          _isProcessing = false;
+        });
+        return;
+      }
+      
+      print('Transcription: $transcription');
+      
+      // 認識されたテキストを送信
+      await _sendMessageWithText(transcription);
+      
+    } catch (e) {
+      print('Error processing recording: $e');
+      _showError('録音の処理に失敗しました');
+    } finally {
+      setState(() {
+        _isProcessing = false;
+      });
+    }
+  }
+
+  // セッションタイマーを開始
+  void _startSessionTimer() {
+    _timer?.cancel();
+    _elapsedSeconds = 0;
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) {
+        setState(() {
+          _elapsedSeconds++;
+        });
+        
+        // 1分経過したらセッション終了（setStateの外で実行）
+        if (_elapsedSeconds >= _sessionTimeLimit) {
+          _timer?.cancel();
+          // 音声再生を停止
+          _audioPlayer.stop();
+          // 録音を停止
+          if (_isRecording) {
+            _audioRecorder.stop();
+          }
+          // AI処理を停止
+          setState(() {
+            _isAIThinking = false;
+            _isProcessing = false;
+            _isRecording = false;
+            _isSessionEnded = true;
+          });
+          // 強制的にセッション終了処理を実行
+          _endSession();
+        }
+      }
+    });
+  }
+  
+  // 残り時間を計算
+  int _getRemainingSeconds() {
+    return (_sessionTimeLimit - _elapsedSeconds).clamp(0, _sessionTimeLimit);
+  }
+  
+  // 時間をフォーマット
+  String _formatTime(int seconds) {
+    final minutes = seconds ~/ 60;
+    final remainingSeconds = seconds % 60;
+    return '${minutes.toString().padLeft(2, '0')}:${remainingSeconds.toString().padLeft(2, '0')}';
+  }
+  
+  // セッション終了処理
+  Future<void> _endSession() async {
+    print('=== _endSession() called ===');
+    
+    // 既に処理中または終了済みの場合は何もしない
+    if (_isProcessing || _isSessionEnded) {
+      print('Session already ended or processing');
+      return;
+    }
+    
+    try {
+      _timer?.cancel();
+      
+      setState(() {
+        _isProcessing = true;
+        _isSessionEnded = true;
+      });
+      
+      // UIの更新を確実に反映させるために少し待機
+      await Future.delayed(const Duration(milliseconds: 100));
+      
+      print('Preparing conversation history...');
+      // 会話履歴を準備
+      final conversationHistory = _messages
+          .where((msg) => !msg.text.startsWith('[System:') && !msg.isTemporary)
+          .map((msg) => {
+                'role': msg.isUser ? 'user' : 'assistant',
+                'content': msg.text,
+              })
+          .toList();
+      
+      print('Conversation history length: ${conversationHistory.length}');
+      
+      if (conversationHistory.isEmpty) {
+        print('No conversation history, showing default feedback');
+        await _showDefaultFeedback();
+        return;
+      }
+      
+      print('Generating session evaluation...');
+      // 評価処理を別の isolate で実行するのではなく、compute を使用
+      final SessionFeedback evaluation;
+      try {
+        evaluation = await _aiService.evaluateSession(
+          conversationHistory: conversationHistory,
+          targetPhrases: [], // 一般会話なのでターゲットフレーズなし
+          sessionNumber: 1,
+          timeSpent: _elapsedSeconds,
+          userResponses: _evaluationResults['responseCount'] ?? 0,
+          targetPhrasesUsed: 0,
+        );
+        
+        print('Evaluation generated successfully');
+        print('Overall score: ${evaluation.overallScore}');
+      } catch (evaluationError) {
+        print('Error during evaluation: $evaluationError');
+        await _showDefaultFeedback();
+        return;
+      }
+      
+      // 処理完了後にUIを更新
+      if (mounted) {
+        setState(() {
+          _isProcessing = false;
+        });
+        
+        // UIの更新を確実に反映させるために少し待機
+        await Future.delayed(const Duration(milliseconds: 50));
+        
+        print('Showing session feedback dialog');
+        await _showSessionFeedback(evaluation);
+      } else {
+        print('Widget not mounted, cannot show feedback');
+      }
+      
+    } catch (e) {
+      print('Error ending session: $e');
+      print('Stack trace: ${StackTrace.current}');
+      
+      if (mounted) {
+        setState(() {
+          _isProcessing = false;
+        });
+        
+        await _showDefaultFeedback();
+      }
+    }
+  }
+  
+  // デフォルトフィードバックを表示
+  Future<void> _showDefaultFeedback() async {
+    print('Showing default feedback');
+    final defaultFeedback = SessionFeedback(
+      overallScore: 70,
+      grammarScore: 70,
+      fluencyScore: 70,
+      relevanceScore: 70,
+      feedback: 'お疲れ様でした！\n\n練習時間: ${_formatTime(_elapsedSeconds)}\n応答回数: ${_evaluationResults['responseCount'] ?? 0}回\n\n美容院での接客英語の練習を頑張りましたね。引き続き練習を続けて、より自然な会話ができるようになりましょう！',
+    );
+    
+    if (mounted) {
+      // 次のフレームで実行
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        if (mounted) {
+          await _showSessionFeedback(defaultFeedback);
+        }
+      });
+    }
+  }
+  
+  // セッションフィードバックダイアログを表示
+  Future<void> _showSessionFeedback(SessionFeedback feedback) async {
+    print('=== _showSessionFeedback() called ===');
+    print('Feedback text: ${feedback.feedback}');
+    
+    // ダイアログ表示前に少し待機してUIの安定化を図る
+    await Future.delayed(const Duration(milliseconds: 100));
+    
+    if (!mounted) {
+      print('Widget not mounted, cannot show dialog');
+      return;
+    }
+    
+    try {
+      await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext dialogContext) {
+          print('Building feedback dialog');
+          return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'AI会話練習 完了！',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                
+                // スコア表示
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildScoreItem('総合', feedback.overallScore),
+                    _buildScoreItem('文法', feedback.grammarScore),
+                    _buildScoreItem('流暢さ', feedback.fluencyScore),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                
+                // 統計情報
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    children: [
+                      _buildStatRow('練習時間', _formatTime(_elapsedSeconds)),
+                      _buildStatRow('応答回数', '${_evaluationResults['responseCount']}回'),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                
+                // AIからのフィードバック
+                Container(
+                  constraints: const BoxConstraints(maxHeight: 200),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[50],
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.blue[200]!),
+                  ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.feedback, color: Colors.blue[700], size: 20),
+                            const SizedBox(width: 8),
+                            Text(
+                              'AIからのフィードバック',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue[700],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          feedback.feedback,
+                          style: const TextStyle(height: 1.5),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                
+                // アクションボタン
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        Navigator.pop(dialogContext);
+                        if (mounted) {
+                          setState(() {
+                            _messages.clear();
+                            _messageTranslationStates.clear();
+                            _evaluationResults['responseCount'] = 0;
+                            _evaluationResults['targetPhrasesUsed'] = 0;
+                            _isSessionEnded = false;
+                          });
+                          _startSessionTimer();
+                          _initializeConversation();
+                        }
+                      },
+                      icon: const Icon(Icons.refresh),
+                      label: const Text('新しい会話を始める'),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      ),
+                    ),
+                    OutlinedButton.icon(
+                      onPressed: () {
+                        print('Home button pressed');
+                        Navigator.pop(dialogContext); // ダイアログを閉じる
+                        Navigator.pop(context); // 会話画面を閉じる
+                      },
+                      icon: const Icon(Icons.home),
+                      label: const Text('ホームに戻る'),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+    } catch (e) {
+      print('Error showing session feedback dialog: $e');
+      // ダイアログ表示に失敗した場合、コンソールにフィードバックを出力
+      print('Feedback would have been: ${feedback.feedback}');
+      
+      // フォールバック: シンプルなアラートダイアログを表示
+      if (mounted) {
+        try {
+          await showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('セッション完了'),
+              content: Text('練習時間: ${_formatTime(_elapsedSeconds)}\n\nお疲れ様でした！'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    if (mounted) {
+                      setState(() {
+                        _messages.clear();
+                        _messageTranslationStates.clear();
+                        _evaluationResults['responseCount'] = 0;
+                        _evaluationResults['targetPhrasesUsed'] = 0;
+                        _isSessionEnded = false;
+                      });
+                      _startSessionTimer();
+                      _initializeConversation();
+                    }
+                  },
+                  child: const Text('新しい会話'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  child: const Text('戻る'),
+                ),
+              ],
+            ),
+          );
+        } catch (fallbackError) {
+          print('Even fallback dialog failed: $fallbackError');
+        }
+      }
+    }
+  }
+  
+  Widget _buildScoreItem(String label, double score) {
+    return Column(
       children: [
+        Container(
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+              colors: score >= 80
+                  ? [Colors.green.shade300, Colors.green.shade600]
+                  : score >= 60
+                      ? [Colors.orange.shade300, Colors.orange.shade600]
+                      : [Colors.red.shade300, Colors.red.shade600],
+            ),
+          ),
+          child: Center(
+            child: Text(
+              '${score.round()}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 8),
         Text(
           label,
-          style: const TextStyle(color: Colors.grey),
-        ),
-        Text(
-          value,
           style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ],
     );
   }
+  
+  Widget _buildStatRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label, style: const TextStyle(color: Colors.grey)),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
+        ],
+      ),
+    );
+  }
 
   @override
   void dispose() {
+    _timer?.cancel();
+    _textController.dispose();
     _scrollController.dispose();
-    _audioPlayer.dispose();
-    _audioRecorder.dispose();
-    // 画面を離れる時にメッセージをクリア
-    ref.read(chatMessagesProvider.notifier).clearMessages();
     super.dispose();
   }
 }
 
-class ChatMessage {
+// 会話メッセージモデル
+class ConversationMessage {
   final String text;
   final bool isUser;
-  final List<String>? corrections;
-  
-  ChatMessage({
+  final DateTime timestamp;
+  final String? translation;
+  FeedbackData? feedback;
+  String? severity;
+  final bool isTemporary;
+  final bool isAnimating;
+
+  ConversationMessage({
     required this.text,
     required this.isUser,
-    this.corrections,
+    required this.timestamp,
+    this.translation,
+    this.feedback,
+    this.severity,
+    this.isTemporary = false,
+    this.isAnimating = false,
   });
 } 
