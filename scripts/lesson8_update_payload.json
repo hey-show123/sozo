@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 8: ご予約は1月5日の水曜日、15時です。",
+  "description": "予約の日時を正確に確認し、伝える表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "予約日時を確認する",
+      "voice": "nova",
+      "phrase": "Your appointment will be for 3 PM on Wednesday, January 5th.",
+      "emotion": "clear",
+      "meaning": "ご予約は1月5日の水曜日、午後3時です。",
+      "examples": [
+        "Your appointment will be for 3 PM on Wednesday, January 5th, with our senior stylist.",
+        "Perfect! Your appointment will be for 3 PM on Wednesday, January 5th.",
+        "Let me confirm. Your appointment will be for 3 PM on Wednesday, January 5th."
+      ],
+      "phonetic": "/jɔːr əˈpɔɪntmənt wɪl biː fɔːr θriː piː ɛm ɒn ˈwɛnzdeɪ, ˈdʒænjuˌɛri fɪfθ/"
+    },
+    {
+      "usage": "希望日を伝える",
+      "voice": "nova",
+      "phrase": "I would like to make an appointment on January 5th.",
+      "emotion": "polite",
+      "meaning": "1月5日に予約をとりたいです。",
+      "examples": [
+        "I would like to make an appointment on January 5th for a haircut.",
+        "I would like to make an appointment on January 5th in the afternoon.",
+        "I would like to make an appointment on January 5th if you have availability."
+      ],
+      "phonetic": "/aɪ wʊd laɪk tuː meɪk ən əˈpɔɪntmənt ɒn ˈdʒænjuˌɛri fɪfθ/"
+    },
+    {
+      "usage": "時間を伝える",
+      "voice": "nova",
+      "phrase": "3 PM, please.",
+      "emotion": "polite",
+      "meaning": "午後3時でお願いします。",
+      "examples": [
+        "3 PM, please. Is that available?",
+        "3 PM, please, if possible.",
+        "I'd prefer 3 PM, please."
+      ],
+      "phonetic": "/θriː piː ɛm, pliːz/"
+    },
+    {
+      "usage": "予約を完了する",
+      "voice": "nova",
+      "phrase": "Perfect! I have you booked.",
+      "emotion": "friendly",
+      "meaning": "完璧です！ご予約をお取りしました。",
+      "examples": [
+        "Perfect! I have you booked for Wednesday at 3 PM.",
+        "Perfect! I have you booked. We'll send you a confirmation email.",
+        "Perfect! I have you booked with Sarah for a haircut."
+      ],
+      "phonetic": "/ˈpɜːrfɪkt! aɪ hæv juː bʊkt/"
+    },
+    {
+      "usage": "最終確認をする",
+      "voice": "nova",
+      "phrase": "Let me confirm all the details.",
+      "emotion": "professional",
+      "meaning": "全ての詳細を確認させてください。",
+      "examples": [
+        "Let me confirm all the details. Your appointment is on January 5th at 3 PM.",
+        "Before we finish, let me confirm all the details.",
+        "Let me confirm all the details for your appointment."
+      ],
+      "phonetic": "/lɛt miː kənˈfɜːrm ɔːl ðə ˈdiːteɪlz/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "I would like to make an appointment on January 5th.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "1月5日に予約をとりたいです。"
+    },
+    {
+      "text": "Thank you. What time would you like?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "ありがとうございます。何時がよろしいですか？"
+    },
+    {
+      "text": "3 PM, please.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "午後3時でお願いします。"
+    },
+    {
+      "text": "OK. Your appointment will be for 3 PM on Wednesday, January 5th.",
+      "voice": "nova",
+      "emotion": "clear",
+      "speaker": "Staff",
+      "japanese": "かしこまりました。ご予約は1月5日の水曜日、午後3時です。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Appointment",
+      "options": ["予約", "時間", "場所", "料金"],
+      "correct_answer": 0,
+      "explanation": "Appointment は「予約」を意味します。Your appointment will be...（ご予約は...です）のように使います。"
+    },
+    {
+      "question": "Day of the week",
+      "options": ["曜日", "日付", "月", "年"],
+      "correct_answer": 0,
+      "explanation": "Day of the week は「曜日」を意味します。Monday（月曜日）、Tuesday（火曜日）などの7日間のことです。"
+    },
+    {
+      "question": "Time",
+      "options": ["時間", "日付", "曜日", "場所"],
+      "correct_answer": 0,
+      "explanation": "Time は「時間」を意味します。What time would you like?（何時がよろしいですか？）のように使います。"
+    },
+    {
+      "question": "Date",
+      "options": ["日付", "曜日", "時間", "月"],
+      "correct_answer": 0,
+      "explanation": "Date は「日付」を意味します。January 5th（1月5日）のような具体的な日を表します。"
+    },
+    {
+      "question": "Wednesday",
+      "options": ["水曜日", "木曜日", "火曜日", "金曜日"],
+      "correct_answer": 0,
+      "explanation": "Wednesday は「水曜日」を意味します。週の真ん中の曜日です。"
+    },
+    {
+      "question": "January",
+      "options": ["1月", "2月", "12月", "6月"],
+      "correct_answer": 0,
+      "explanation": "January は「1月」を意味します。1年の最初の月です。"
+    },
+    {
+      "question": "PM",
+      "options": ["午後", "午前", "夜", "朝"],
+      "correct_answer": 0,
+      "explanation": "PM は「午後」を意味します。午後12時から11時59分までの時間帯です。"
+    },
+    {
+      "question": "Confirm",
+      "options": ["確認する", "予約する", "キャンセルする", "変更する"],
+      "correct_answer": 0,
+      "explanation": "Confirm は「確認する」を意味します。Let me confirm.（確認させてください）のように使います。"
+    },
+    {
+      "question": "Details",
+      "options": ["詳細", "時間", "場所", "名前"],
+      "correct_answer": 0,
+      "explanation": "Details は「詳細」「細かい情報」を意味します。All the details（全ての詳細）のように使います。"
+    },
+    {
+      "question": "Booked",
+      "options": ["予約された", "キャンセルされた", "確認された", "変更された"],
+      "correct_answer": 0,
+      "explanation": "Booked は「予約された」を意味します。I have you booked.（ご予約をお取りしました）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "下記のダイアログを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: I would like to make an appointment.\nStaff: ( )?\nCustomer: ( ).\nStaff: Thank you, ( ).",
+      "syntax_hint": "When / What time / Your appointment will be for...",
+      "sample_answer": "Customer: I would like to make an appointment.\nStaff: When would you like?\nCustomer: January 10th at 2 PM, please.\nStaff: Thank you. Your appointment will be for 2 PM on Tuesday, January 10th."
+    },
+    {
+      "prompt": "自分の誕生日などの日付を言ってみよう。",
+      "syntax_hint": "My birthday is (month) (date). / I was born on...",
+      "sample_answer": "My birthday is March 15th. I was born on Friday, March 15th, 1990."
+    },
+    {
+      "prompt": "完全な予約確認を練習しましょう。",
+      "syntax_hint": "Let me confirm all the details. Your appointment will be... with... for...",
+      "sample_answer": "Let me confirm all the details. Your appointment will be for 3 PM on Wednesday, January 5th, with Sarah for a haircut and color."
+    }
+  ],
+  "objectives": [
+    "日付と時間を正確に英語で伝えることができる",
+    "曜日、月、序数を使って完全な予約情報を確認できる",
+    "予約の詳細を明確に復唱し、確認できる",
+    "予約完了時の適切な表現を使うことができる"
+  ],
+  "metadata": {
+    "icon": "📆",
+    "xp_reward": 35,
+    "estimated_minutes": 40,
+    "difficulty": "intermediate"
+  }
+}

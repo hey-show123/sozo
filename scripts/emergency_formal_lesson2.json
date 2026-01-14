@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 2: 電波が悪いです。",
+  "description": "電話での通話中に聞き取りにくい状況を丁寧に伝え、対応する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "電波が悪いことを伝える",
+      "voice": "nova",
+      "phrase": "We have bad reception.",
+      "emotion": "professional",
+      "meaning": "電波が悪いです。",
+      "examples": [
+        "I'm sorry, we have bad reception.",
+        "We have bad reception. Could you call back?",
+        "We have bad reception here. Let me move to a different location."
+      ],
+      "phonetic": "/wiː hæv bæd rɪˈsɛpʃən/"
+    },
+    {
+      "usage": "聞こえないことを伝える",
+      "voice": "nova",
+      "phrase": "I can't hear you.",
+      "emotion": "apologetic",
+      "meaning": "聞こえません。",
+      "examples": [
+        "I'm sorry, I can't hear you.",
+        "I can't hear you. The line is breaking up.",
+        "I can't hear you very well."
+      ],
+      "phonetic": "/aɪ kɑːnt hɪr juː/"
+    },
+    {
+      "usage": "よく聞こえないことを伝える",
+      "voice": "nova",
+      "phrase": "I can't hear you well.",
+      "emotion": "polite",
+      "meaning": "よく聞こえません。",
+      "examples": [
+        "I'm sorry, I can't hear you well.",
+        "I can't hear you well. Could you speak louder?",
+        "I can't hear you well. The connection is poor."
+      ],
+      "phonetic": "/aɪ kɑːnt hɪr juː wɛl/"
+    },
+    {
+      "usage": "大きな声で話してもらう",
+      "voice": "nova",
+      "phrase": "Could you speak louder please?",
+      "emotion": "helpful",
+      "meaning": "もう少し大きな声で話してください。",
+      "examples": [
+        "Could you speak louder please? I can barely hear you.",
+        "I'm sorry, could you speak louder please?",
+        "Could you speak louder please? The reception is bad."
+      ],
+      "phonetic": "/kʊd juː spiːk ˈlaʊdər pliːz/"
+    },
+    {
+      "usage": "電話が切れそうなことを伝える",
+      "voice": "nova",
+      "phrase": "I'm losing you.",
+      "emotion": "concerned",
+      "meaning": "電波が切れそうです。",
+      "examples": [
+        "I'm losing you. Can you hear me?",
+        "I'm losing you. Let me call you back.",
+        "I'm losing you. The signal is getting weak."
+      ],
+      "phonetic": "/aɪm ˈluːzɪŋ juː/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "I need to get a retouch.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "リタッチをお願いします。"
+    },
+    {
+      "text": "I can't hear you.",
+      "voice": "nova",
+      "emotion": "apologetic",
+      "speaker": "Staff",
+      "japanese": "聞こえません"
+    },
+    {
+      "text": "I need to get a retouch.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "リタッチをお願いします。"
+    },
+    {
+      "text": "We have bad reception.",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "電波が悪いです。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Hear",
+      "options": ["聞く・聞こえる", "見る", "話す", "書く"],
+      "correct_answer": 0,
+      "explanation": "Hear は「聞く」「聞こえる」を意味します。I can't hear you.（聞こえません）のように使います。"
+    },
+    {
+      "question": "Bad",
+      "options": ["悪い", "良い", "普通", "最高"],
+      "correct_answer": 0,
+      "explanation": "Bad は「悪い」を意味します。Bad reception（電波が悪い）のように使います。"
+    },
+    {
+      "question": "Reception",
+      "options": ["電波", "受付", "音", "声"],
+      "correct_answer": 0,
+      "explanation": "Reception は「電波」「受信状態」を意味します。携帯電話の電波状態を指します。"
+    },
+    {
+      "question": "Louder",
+      "options": ["もっと大きく", "もっと小さく", "もっと速く", "もっと遅く"],
+      "correct_answer": 0,
+      "explanation": "Louder は loud（大きい）の比較級で「もっと大きく」を意味します。Speak louder（もっと大きな声で話す）のように使います。"
+    },
+    {
+      "question": "Lose",
+      "options": ["失う・なくなる", "得る", "見つける", "探す"],
+      "correct_answer": 0,
+      "explanation": "Lose は「失う」「なくなる」を意味します。I'm losing you.（電波が切れそうです）のように使います。"
+    },
+    {
+      "question": "Call back",
+      "options": ["かけ直す", "電話を切る", "電話をかける", "電話に出る"],
+      "correct_answer": 0,
+      "explanation": "Call back は「かけ直す」を意味します。I will call you back.（かけ直します）のように使います。"
+    },
+    {
+      "question": "Hang up",
+      "options": ["（電話を）切る", "（電話を）かける", "（電話に）出る", "（電話を）待つ"],
+      "correct_answer": 0,
+      "explanation": "Hang up は「電話を切る」を意味します。Don't hang up.（電話を切らないでください）のように使います。"
+    },
+    {
+      "question": "Connection",
+      "options": ["接続・通信状態", "電話番号", "電話機", "メッセージ"],
+      "correct_answer": 0,
+      "explanation": "Connection は「接続」「通信状態」を意味します。The connection is poor.（通信状態が悪い）のように使います。"
+    },
+    {
+      "question": "Signal",
+      "options": ["信号・電波", "音", "声", "言葉"],
+      "correct_answer": 0,
+      "explanation": "Signal は「信号」「電波」を意味します。The signal is weak.（電波が弱い）のように使います。"
+    },
+    {
+      "question": "Barely",
+      "options": ["かろうじて・やっと", "はっきりと", "全く", "完全に"],
+      "correct_answer": 0,
+      "explanation": "Barely は「かろうじて」「やっと」を意味します。I can barely hear you.（かろうじて聞こえます）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "電話の対応を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: I would like to get ( ).\nStaff: ( ).\nCustomer: I would like to get ( ).\nStaff: ( )?",
+      "syntax_hint": "Hints: louder, lose, call back, hang up",
+      "sample_answer": "Customer: I would like to get a haircut tomorrow.\nStaff: I'm sorry, I can't hear you well.\nCustomer: I would like to get a haircut tomorrow.\nStaff: We have bad reception. Could you call back in a moment?"
+    },
+    {
+      "prompt": "不慣れなトピックについて話してみよう。例）好きなスポーツ。聞き返す練習をしよう。",
+      "syntax_hint": "I can't hear you / We have bad reception / Could you speak louder? / I'm losing you",
+      "sample_answer": "Customer: My favorite sport is badminton.\nStaff: I'm sorry, I'm losing you. Could you speak louder please?\nCustomer: Badminton is my favorite sport.\nStaff: Thank you. I can hear you better now."
+    },
+    {
+      "prompt": "電波が悪い時の対応バリエーションを練習しましょう。",
+      "syntax_hint": "I can't hear you / Bad reception / Call back / Move to different location",
+      "sample_answer": "I'm sorry, we have bad reception. Let me move to a different location. If the connection doesn't improve, I'll call you back in a moment."
+    }
+  ],
+  "objectives": [
+    "電波が悪いことを丁寧に伝えることができる",
+    "聞こえない状況を適切に説明できる",
+    "かけ直しを提案することができる",
+    "電話でのコミュニケーション問題に対応できる"
+  ],
+  "metadata": {
+    "icon": "📞",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

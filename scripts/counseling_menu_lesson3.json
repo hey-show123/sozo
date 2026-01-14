@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 3: どういうカラーをされたいですか？",
+  "description": "お客様のカラー希望を詳しく聞き取り、具体的な提案をする表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "カラーの種類を尋ねる",
+      "voice": "nova",
+      "phrase": "What kind of color would you like?",
+      "emotion": "curious",
+      "meaning": "どういうカラーをされたいですか？",
+      "examples": [
+        "What kind of color would you like? Lighter, darker, or highlights?",
+        "What kind of color would you like to try today?",
+        "You mentioned color. What kind of color would you like?"
+      ],
+      "phonetic": "/wʌt kaɪnd ʌv ˈkʌlər wʊd juː laɪk/"
+    },
+    {
+      "usage": "リタッチ希望への対応",
+      "voice": "fable",
+      "phrase": "I need to retouch my roots.",
+      "emotion": "clear",
+      "meaning": "根本のリタッチをお願いします。",
+      "examples": [
+        "I need to retouch my roots. They're showing.",
+        "I need to retouch my roots and maybe add some highlights.",
+        "Just a simple retouch. I need to retouch my roots."
+      ],
+      "phonetic": "/aɪ niːd tuː ˌriːˈtʌtʃ maɪ ruːts/"
+    },
+    {
+      "usage": "明るくしたい希望",
+      "voice": "fable",
+      "phrase": "I would like to go lighter.",
+      "emotion": "hopeful",
+      "meaning": "明るくしたいです。",
+      "examples": [
+        "I would like to go lighter. Maybe a few shades.",
+        "I would like to go lighter for summer.",
+        "I would like to go lighter than my current color."
+      ],
+      "phonetic": "/aɪ wʊd laɪk tuː ɡoʊ ˈlaɪtər/"
+    },
+    {
+      "usage": "どのくらい明るくするか尋ねる",
+      "voice": "nova",
+      "phrase": "How much lighter?",
+      "emotion": "professional",
+      "meaning": "どれくらい明るくしますか？",
+      "examples": [
+        "You'd like to go lighter. How much lighter?",
+        "How much lighter would you like? One or two shades?",
+        "How much lighter? I want to make sure we get the perfect color."
+      ],
+      "phonetic": "/haʊ mʌtʃ ˈlaɪtər/"
+    },
+    {
+      "usage": "ハイライトの種類を尋ねる",
+      "voice": "nova",
+      "phrase": "What kind of highlights?",
+      "emotion": "helpful",
+      "meaning": "どういうハイライトですか？",
+      "examples": [
+        "You want highlights. What kind of highlights?",
+        "What kind of highlights? Thin, chunky, or balayage style?",
+        "What kind of highlights would look best with your skin tone?"
+      ],
+      "phonetic": "/wʌt kaɪnd ʌv ˈhaɪlaɪts/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "What would you like to do today?",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "今日のメニューはどうなさいますか？"
+    },
+    {
+      "text": "Hair color please.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "カラーでお願いします。"
+    },
+    {
+      "text": "OK, what kind of color would you like?",
+      "voice": "nova",
+      "emotion": "curious",
+      "speaker": "Staff",
+      "japanese": "了解しました、どういうカラーをされたいですか？"
+    },
+    {
+      "text": "I need to retouch my roots.",
+      "voice": "fable",
+      "emotion": "matter-of-fact",
+      "speaker": "Customer",
+      "japanese": "根本のリタッチでお願いします。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Hair color",
+      "options": ["ヘアカラー", "カット", "パーマ", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Hair color は「ヘアカラー」を意味します。髪を染めるサービスのことです。"
+    },
+    {
+      "question": "Roots",
+      "options": ["根本", "毛先", "前髪", "後ろ髪"],
+      "correct_answer": 0,
+      "explanation": "Roots は「根本」を意味します。カラー後に伸びた新しい髪の部分のことです。"
+    },
+    {
+      "question": "Kind",
+      "options": ["種類", "色", "長さ", "スタイル"],
+      "correct_answer": 0,
+      "explanation": "Kind は「種類」を意味します。What kind of...?（どういう種類の...？）のように使います。"
+    },
+    {
+      "question": "Retouch",
+      "options": ["リタッチ", "全体染め", "ハイライト", "バレイヤージュ"],
+      "correct_answer": 0,
+      "explanation": "Retouch は「リタッチ」を意味します。根本だけを染め直すことです。"
+    },
+    {
+      "question": "Lighter",
+      "options": ["明るく", "暗く", "赤く", "青く"],
+      "correct_answer": 0,
+      "explanation": "Lighter は light（明るい）の比較級で「より明るく」を意味します。"
+    },
+    {
+      "question": "Darker",
+      "options": ["暗く", "明るく", "赤く", "黄色く"],
+      "correct_answer": 0,
+      "explanation": "Darker は dark（暗い）の比較級で「より暗く」を意味します。"
+    },
+    {
+      "question": "Highlights",
+      "options": ["ハイライト", "全体染め", "リタッチ", "グラデーション"],
+      "correct_answer": 0,
+      "explanation": "Highlights は「ハイライト」を意味します。部分的に明るく染める技術です。"
+    },
+    {
+      "question": "Balayage",
+      "options": ["バレイヤージュ", "全体染め", "リタッチ", "ハイライト"],
+      "correct_answer": 0,
+      "explanation": "Balayage は「バレイヤージュ」を意味します。手描きで自然なグラデーションを作るカラー技術です。"
+    },
+    {
+      "question": "Ombre",
+      "options": ["オンブレ", "全体染め", "リタッチ", "ハイライト"],
+      "correct_answer": 0,
+      "explanation": "Ombre は「オンブレ」を意味します。根元から毛先にかけて徐々に明るくなるグラデーションです。"
+    },
+    {
+      "question": "Cool tones",
+      "options": ["寒色カラー", "暖色カラー", "ナチュラルカラー", "ビビッドカラー"],
+      "correct_answer": 0,
+      "explanation": "Cool tones は「寒色カラー」を意味します。青やアッシュ系の色味のことです。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "カラーの種類の希望を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: What kind ( )?\nCustomer: I would like ( ).\nStaff: Sure, what kind ( )?\nCustomer: ( ).",
+      "syntax_hint": "Hints: highlights, ombre, cool tones, warm tones",
+      "sample_answer": "Staff: What kind of color would you like?\nCustomer: I would like highlights.\nStaff: Sure, what kind of highlights?\nCustomer: Balayage style with cool tones."
+    },
+    {
+      "prompt": "さらに詳しい質問を聞いてみよう。例）どういう色のバレイヤージュがいいですか？",
+      "syntax_hint": "What color...? / How much lighter/darker? / What kind of...?",
+      "sample_answer": "Customer: I want balayage.\nStaff: Great! What color balayage would you like? We can do warm tones like caramel or cool tones like ash blonde. Which do you prefer?"
+    },
+    {
+      "prompt": "明るさの度合いを確認する練習をしましょう。",
+      "syntax_hint": "How much lighter/darker? / One or two shades? / Just a little or significantly?",
+      "sample_answer": "Customer: I'd like to go lighter.\nStaff: How much lighter would you like? One shade, two shades, or more? I want to make sure we get the perfect color for you."
+    }
+  ],
+  "objectives": [
+    "カラーの具体的な希望を聞き取ることができる",
+    "明るさや暗さの度合いを確認できる",
+    "様々なカラー技術の種類を説明できる",
+    "詳細な質問でお客様の希望を明確にできる"
+  ],
+  "metadata": {
+    "icon": "🎨",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

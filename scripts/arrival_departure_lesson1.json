@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 1: 上着とバッグをお預かりしてもよろしいですか？",
+  "description": "来店されたお客様の荷物を丁寧にお預かりする表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "荷物を預かることを申し出る",
+      "voice": "nova",
+      "phrase": "May I take your bag and jacket?",
+      "emotion": "polite",
+      "meaning": "バッグと上着をお預かりしてもよろしいですか？",
+      "examples": [
+        "Welcome! May I take your bag and jacket for you?",
+        "May I take your bag and jacket? I'll keep them safe.",
+        "Please come in. May I take your bag and jacket?"
+      ],
+      "phonetic": "/meɪ aɪ teɪk jɔːr bæɡ ænd ˈdʒækɪt/"
+    },
+    {
+      "usage": "必要な物を確認する",
+      "voice": "nova",
+      "phrase": "Do you need your phone?",
+      "emotion": "friendly",
+      "meaning": "携帯電話は必要ですか？",
+      "examples": [
+        "Do you need your phone with you during the service?",
+        "Do you need your phone, or can I keep it with your bag?",
+        "Before I take your bag, do you need your phone?"
+      ],
+      "phonetic": "/duː juː niːd jɔːr foʊn/"
+    },
+    {
+      "usage": "保管場所を伝える",
+      "voice": "nova",
+      "phrase": "We will keep your stuff in a locker.",
+      "emotion": "reassuring",
+      "meaning": "お持ち物をロッカーに保管しておきます。",
+      "examples": [
+        "We will keep your stuff in a locker. It's very secure.",
+        "Don't worry. We will keep your stuff in a locker right here.",
+        "We will keep your stuff in a locker, and I'll give you the key."
+      ],
+      "phonetic": "/wiː wɪl kiːp jɔːr stʌf ɪn ə ˈlɒkər/"
+    },
+    {
+      "usage": "サロンへの歓迎",
+      "voice": "nova",
+      "phrase": "Welcome to our salon.",
+      "emotion": "warm",
+      "meaning": "私たちのサロンへようこそ。",
+      "examples": [
+        "Hello! Welcome to our salon. We're so happy to see you.",
+        "Welcome to our salon! Thank you for choosing us today.",
+        "Good afternoon! Welcome to our salon."
+      ],
+      "phonetic": "/ˈwɛlkəm tuː aʊər səˈlɒn/"
+    },
+    {
+      "usage": "場所を案内する",
+      "voice": "nova",
+      "phrase": "The bathroom is in the back.",
+      "emotion": "helpful",
+      "meaning": "お手洗いは奥にあります。",
+      "examples": [
+        "If you need it, the bathroom is in the back on your left.",
+        "The bathroom is in the back, just past the styling chairs.",
+        "The bathroom is in the back. Please feel free to use it anytime."
+      ],
+      "phonetic": "/ðə ˈbɑːθruːm ɪz ɪn ðə bæk/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "こんにちは。"
+    },
+    {
+      "text": "Hello, welcome to Sunshine Salon.",
+      "voice": "nova",
+      "emotion": "warm",
+      "speaker": "Staff",
+      "japanese": "こんにちは、「サロン名」へようこそ。"
+    },
+    {
+      "text": "Thank you.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "ありがとうございます。"
+    },
+    {
+      "text": "May I take your bag and jacket?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "バッグと上着をお預かりしてもよろしいですか？"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Stuff",
+      "options": ["もの・持ち物", "場所", "時間", "人"],
+      "correct_answer": 0,
+      "explanation": "Stuff は「もの」「持ち物」を意味するカジュアルな表現です。Your stuff（あなたの持ち物）のように使います。"
+    },
+    {
+      "question": "Take",
+      "options": ["預かる・取る", "置く", "見る", "買う"],
+      "correct_answer": 0,
+      "explanation": "Take は「預かる」「取る」を意味します。May I take your bag?（バッグをお預かりしてもよろしいですか？）のように使います。"
+    },
+    {
+      "question": "Bag",
+      "options": ["バッグ・かばん", "財布", "服", "靴"],
+      "correct_answer": 0,
+      "explanation": "Bag は「バッグ」「かばん」を意味します。ハンドバッグ、トートバッグなど様々な種類があります。"
+    },
+    {
+      "question": "Jacket",
+      "options": ["上着・ジャケット", "シャツ", "ズボン", "帽子"],
+      "correct_answer": 0,
+      "explanation": "Jacket は「上着」「ジャケット」を意味します。コートよりも軽い上着のことです。"
+    },
+    {
+      "question": "Locker",
+      "options": ["ロッカー", "キャビネット", "棚", "机"],
+      "correct_answer": 0,
+      "explanation": "Locker は「ロッカー」を意味します。鍵付きの収納庫のことです。"
+    },
+    {
+      "question": "Cabinet",
+      "options": ["キャビネット・戸棚", "椅子", "テーブル", "ドア"],
+      "correct_answer": 0,
+      "explanation": "Cabinet は「キャビネット」「戸棚」を意味します。物を収納する家具です。"
+    },
+    {
+      "question": "Umbrella",
+      "options": ["傘", "帽子", "手袋", "スカーフ"],
+      "correct_answer": 0,
+      "explanation": "Umbrella は「傘」を意味します。May I take your umbrella?（傘をお預かりしましょうか？）のように使います。"
+    },
+    {
+      "question": "Coat",
+      "options": ["コート", "シャツ", "靴", "バッグ"],
+      "correct_answer": 0,
+      "explanation": "Coat は「コート」を意味します。ジャケットより重く、暖かい上着のことです。"
+    },
+    {
+      "question": "Secure",
+      "options": ["安全な", "危険な", "大きい", "小さい"],
+      "correct_answer": 0,
+      "explanation": "Secure は「安全な」「しっかりした」を意味します。It's very secure.（とても安全です）のように使います。"
+    },
+    {
+      "question": "Keep",
+      "options": ["保管する・保つ", "捨てる", "買う", "売る"],
+      "correct_answer": 0,
+      "explanation": "Keep は「保管する」「保つ」を意味します。We will keep your stuff.（お持ち物を保管します）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "お持ち物を預かるのを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: Hello.\nStaff: Hello, welcome to ( ).\nCustomer: ( ).\nStaff: Thank you, may I ( )?",
+      "syntax_hint": "Hints: borrow, take, umbrella, backpack, suitcase, coat",
+      "sample_answer": "Customer: Hello.\nStaff: Hello, welcome to Sunshine Salon.\nCustomer: Thank you.\nStaff: Thank you, may I take your coat and bag?"
+    },
+    {
+      "prompt": "サロンにある物の位置を説明する練習をしましょう。",
+      "syntax_hint": "The (bathroom/locker/waiting area) is (in the back/on your left/upstairs)",
+      "sample_answer": "The bathroom is in the back on your left. The lockers are right here. The waiting area is over there."
+    },
+    {
+      "prompt": "お客様に必要な物を確認する練習をしましょう。",
+      "syntax_hint": "Do you need your (phone/charger/wallet)? / Can I keep your...?",
+      "sample_answer": "Do you need your phone with you? I'll keep your bag in a secure locker."
+    }
+  ],
+  "objectives": [
+    "May Iを使って丁寧に許可を求めることができる",
+    "お客様の持ち物を預かる際の適切な表現を使える",
+    "保管場所を明確に伝えることができる",
+    "サロン内の設備の位置を案内できる"
+  ],
+  "metadata": {
+    "icon": "👜",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

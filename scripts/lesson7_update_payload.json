@@ -1,0 +1,185 @@
+{
+  "title": "Lesson 7: ご来店は初めてですか？",
+  "description": "お客様の来店履歴を尋ね、適切に対応する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "来店履歴を尋ねる",
+      "voice": "nova",
+      "phrase": "Have you ever been here before?",
+      "emotion": "polite",
+      "meaning": "ご来店は初めてですか？",
+      "examples": [
+        "Welcome! Have you ever been here before?",
+        "Have you ever been here before, or is this your first visit?",
+        "Thank you for calling. Have you ever been here before?"
+      ],
+      "phonetic": "/hæv juː ˈɛvər biːn hɪr bɪˈfɔːr/"
+    },
+    {
+      "usage": "初めてであることを伝える",
+      "voice": "nova",
+      "phrase": "Yes, it is my first time.",
+      "emotion": "polite",
+      "meaning": "はい、初めてです。",
+      "examples": [
+        "Yes, it is my first time at this salon.",
+        "Yes, it is my first time. A friend recommended you.",
+        "Yes, it is my first time. I'm excited to try your services."
+      ],
+      "phonetic": "/jɛs, ɪt ɪz maɪ fɜːrst taɪm/"
+    },
+    {
+      "usage": "来店回数を伝える",
+      "voice": "nova",
+      "phrase": "No, it is my second time.",
+      "emotion": "friendly",
+      "meaning": "いいえ、2回目です。",
+      "examples": [
+        "No, it is my second time. I came last month.",
+        "No, it is my second time here. I loved the service last time.",
+        "No, it is my second time. I had a great experience before."
+      ],
+      "phonetic": "/noʊ, ɪt ɪz maɪ ˈsɛkənd taɪm/"
+    },
+    {
+      "usage": "前回の来店時期を尋ねる",
+      "voice": "nova",
+      "phrase": "When were you here before?",
+      "emotion": "polite",
+      "meaning": "前回いらしたのはいつですか？",
+      "examples": [
+        "Oh, welcome back! When were you here before?",
+        "When were you here before? I'll check your records.",
+        "When were you here before? Let me pull up your information."
+      ],
+      "phonetic": "/wɛn wɜːr juː hɪr bɪˈfɔːr/"
+    },
+    {
+      "usage": "初めてのお客様を歓迎する",
+      "voice": "nova",
+      "phrase": "Welcome! Let me show you around.",
+      "emotion": "friendly",
+      "meaning": "ようこそ！ご案内いたします。",
+      "examples": [
+        "Welcome! Let me show you around our salon.",
+        "It's your first time? Welcome! Let me show you around.",
+        "Welcome! Let me show you around and explain our services."
+      ],
+      "phonetic": "/ˈwɛlkəm! lɛt miː ʃoʊ juː əˈraʊnd/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "I would like to make an appointment.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "予約をとりたいです。"
+    },
+    {
+      "text": "Thank you. Have you ever been here before?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "ありがとうございます。ご来店は初めてですか？"
+    },
+    {
+      "text": "Yes, it is my first time.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "はい、初めてです。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Appointment",
+      "options": ["予約", "時間", "場所", "料金"],
+      "correct_answer": 0,
+      "explanation": "Appointment は「予約」を意味します。I would like to make an appointment.（予約をとりたいです）のように使います。"
+    },
+    {
+      "question": "First time",
+      "options": ["初めて", "2回目", "3回目", "毎回"],
+      "correct_answer": 0,
+      "explanation": "First time は「初めて」を意味します。It is my first time.（初めてです）のように使います。"
+    },
+    {
+      "question": "Have you ever",
+      "options": ["～したことありますか？", "～しますか？", "～したいですか？", "～できますか？"],
+      "correct_answer": 0,
+      "explanation": "Have you ever は「～したことありますか？」という経験を尋ねる表現です。現在完了形を使います。"
+    },
+    {
+      "question": "Before",
+      "options": ["以前・前に", "後で", "今", "明日"],
+      "correct_answer": 0,
+      "explanation": "Before は「以前」「前に」を意味します。Have you been here before?（以前ここに来たことがありますか？）のように使います。"
+    },
+    {
+      "question": "Last time",
+      "options": ["前回", "今回", "次回", "毎回"],
+      "correct_answer": 0,
+      "explanation": "Last time は「前回」「この前」を意味します。When was your last time here?（前回の来店はいつでしたか？）のように使います。"
+    },
+    {
+      "question": "Second time",
+      "options": ["2回目", "初めて", "3回目", "最後"],
+      "correct_answer": 0,
+      "explanation": "Second time は「2回目」を意味します。It is my second time.（2回目です）のように使います。"
+    },
+    {
+      "question": "Third time",
+      "options": ["3回目", "初めて", "2回目", "最後"],
+      "correct_answer": 0,
+      "explanation": "Third time は「3回目」を意味します。It is my third time.（3回目です）のように使います。"
+    },
+    {
+      "question": "Welcome back",
+      "options": ["お帰りなさい・また来てくれて", "いらっしゃいませ", "さようなら", "ありがとう"],
+      "correct_answer": 0,
+      "explanation": "Welcome back は「お帰りなさい」「また来てくれて嬉しいです」を意味します。リピーターのお客様への挨拶です。"
+    },
+    {
+      "question": "Records",
+      "options": ["記録・カルテ", "予約", "料金", "時間"],
+      "correct_answer": 0,
+      "explanation": "Records は「記録」「カルテ」を意味します。Let me check your records.（カルテを確認いたします）のように使います。"
+    },
+    {
+      "question": "Pull up",
+      "options": ["（情報を）引き出す・表示する", "押す", "閉じる", "削除する"],
+      "correct_answer": 0,
+      "explanation": "Pull up は「（情報を）引き出す」「表示する」を意味します。Let me pull up your information.（情報を表示いたします）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "来店履歴を聞くことを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: ( ).\nStaff: ( )?\nCustomer: (Yes/no, ).\nStaff: Thank you.",
+      "syntax_hint": "Hints: last time, first time, second time, before",
+      "sample_answer": "Customer: I would like to make an appointment.\nStaff: Have you ever been here before?\nCustomer: Yes, it is my first time.\nStaff: Thank you. Welcome to our salon!"
+    },
+    {
+      "prompt": "リピーターのお客様への対応を練習しましょう。",
+      "syntax_hint": "Welcome back! / When were you here before? / Let me check your records",
+      "sample_answer": "Staff: Welcome back! When were you here before?\nCustomer: I was here last month.\nStaff: Great! Let me pull up your records."
+    },
+    {
+      "prompt": "初めてのお客様への案内を練習しましょう。",
+      "syntax_hint": "It's your first time? / Welcome! / Let me show you around",
+      "sample_answer": "Customer: Yes, it is my first time.\nStaff: Welcome! Let me show you around our salon and explain our services."
+    }
+  ],
+  "objectives": [
+    "現在完了形を使って来店履歴を尋ねることができる（Have you ever...?）",
+    "初めて・2回目・3回目などの回数を伝えることができる",
+    "前回の来店時期を尋ねることができる",
+    "初めてのお客様とリピーターで適切に対応を変えることができる"
+  ],
+  "metadata": {
+    "icon": "🆕",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

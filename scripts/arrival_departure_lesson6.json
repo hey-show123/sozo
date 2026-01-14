@@ -1,0 +1,185 @@
+{
+  "title": "Lesson 6: 領収書は必要ですか？",
+  "description": "領収書の必要性を確認し、支払いオプションを説明する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "領収書の必要性を尋ねる",
+      "voice": "nova",
+      "phrase": "Do you need a receipt?",
+      "emotion": "polite",
+      "meaning": "領収書は必要ですか？",
+      "examples": [
+        "Here's your change. Do you need a receipt?",
+        "Thank you for your payment. Do you need a receipt?",
+        "Do you need a receipt for your records?"
+      ],
+      "phonetic": "/duː juː niːd ə rɪˈsiːt/"
+    },
+    {
+      "usage": "支払い方法を説明する",
+      "voice": "nova",
+      "phrase": "We only accept cash and credit card.",
+      "emotion": "informative",
+      "meaning": "現金とクレジットカードのみ受け付けております。",
+      "examples": [
+        "We only accept cash and credit card. Is that okay?",
+        "I'm sorry, we only accept cash and credit card at this time.",
+        "We only accept cash and credit card. We don't take checks."
+      ],
+      "phonetic": "/wiː ˈoʊnli əkˈsɛpt kæʃ ænd ˈkrɛdɪt kɑːrd/"
+    },
+    {
+      "usage": "利用可能な支払い方法を伝える",
+      "voice": "nova",
+      "phrase": "We accept cash, credit card, and QR code.",
+      "emotion": "friendly",
+      "meaning": "現金、クレジットカード、QRコードがご利用いただけます。",
+      "examples": [
+        "We accept cash, credit card, and QR code. Which would you prefer?",
+        "For payment, we accept cash, credit card, and QR code.",
+        "We accept cash, credit card, and QR code payment."
+      ],
+      "phonetic": "/wiː əkˈsɛpt kæʃ, ˈkrɛdɪt kɑːrd, ænd kjuː ɑːr koʊd/"
+    },
+    {
+      "usage": "別のカードを尋ねる",
+      "voice": "nova",
+      "phrase": "Do you have another card?",
+      "emotion": "helpful",
+      "meaning": "別のカードはお持ちですか？",
+      "examples": [
+        "I'm sorry, this card isn't working. Do you have another card?",
+        "Do you have another card you could try?",
+        "The payment didn't go through. Do you have another card?"
+      ],
+      "phonetic": "/duː juː hæv əˈnʌðər kɑːrd/"
+    },
+    {
+      "usage": "別の支払い方法を尋ねる",
+      "voice": "nova",
+      "phrase": "Do you have another payment option?",
+      "emotion": "apologetic",
+      "meaning": "別のお支払い方法はございますか？",
+      "examples": [
+        "I'm sorry, but do you have another payment option?",
+        "This card isn't working. Do you have another payment option?",
+        "Do you have another payment option, such as cash?"
+      ],
+      "phonetic": "/duː juː hæv əˈnʌðər ˈpeɪmənt ˈɒpʃən/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "For haircut, your total is 8,800 yen.",
+      "voice": "nova",
+      "emotion": "clear",
+      "speaker": "Staff",
+      "japanese": "カットで合計が8,800円になります。"
+    },
+    {
+      "text": "Thank you.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "ありがとうございます。"
+    },
+    {
+      "text": "Thank you. Your change is 200 yen. Do you need a receipt?",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "ありがとうございます。200円のお釣りです。領収書は必要ですか？"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Total",
+      "options": ["合計", "税金", "割引", "釣り"],
+      "correct_answer": 0,
+      "explanation": "Total は「合計」「総額」を意味します。Your total is...（合計は...です）のように使います。"
+    },
+    {
+      "question": "Receipt",
+      "options": ["領収書", "請求書", "釣り", "カード"],
+      "correct_answer": 0,
+      "explanation": "Receipt は「領収書」「レシート」を意味します。支払いの証明書のことです。"
+    },
+    {
+      "question": "Change",
+      "options": ["お釣り", "合計", "税金", "割引"],
+      "correct_answer": 0,
+      "explanation": "Change は「お釣り」を意味します。Your change is...（お釣りは...です）のように使います。"
+    },
+    {
+      "question": "Yen",
+      "options": ["円", "ドル", "ユーロ", "ポンド"],
+      "correct_answer": 0,
+      "explanation": "Yen は「円」を意味します。日本の通貨単位です。"
+    },
+    {
+      "question": "Cash",
+      "options": ["現金", "カード", "QRコード", "小切手"],
+      "correct_answer": 0,
+      "explanation": "Cash は「現金」を意味します。紙幣や硬貨での支払いのことです。"
+    },
+    {
+      "question": "Accept",
+      "options": ["受け付ける・受け入れる", "拒否する", "支払う", "返す"],
+      "correct_answer": 0,
+      "explanation": "Accept は「受け付ける」「受け入れる」を意味します。We accept...（...がご利用いただけます）のように使います。"
+    },
+    {
+      "question": "Payment option",
+      "options": ["支払い方法", "領収書", "釣り", "合計"],
+      "correct_answer": 0,
+      "explanation": "Payment option は「支払い方法」「決済手段」を意味します。様々な支払いの選択肢のことです。"
+    },
+    {
+      "question": "PIN",
+      "options": ["暗証番号", "署名", "領収書", "カード"],
+      "correct_answer": 0,
+      "explanation": "PIN は「暗証番号」を意味します。Personal Identification Numberの略です。"
+    },
+    {
+      "question": "Sign",
+      "options": ["署名する", "支払う", "受け取る", "返す"],
+      "correct_answer": 0,
+      "explanation": "Sign は「署名する」「サインする」を意味します。Please sign here.（こちらにご署名ください）のように使います。"
+    },
+    {
+      "question": "Go through",
+      "options": ["通る・承認される", "拒否される", "遅れる", "早い"],
+      "correct_answer": 0,
+      "explanation": "Go through は「通る」「承認される」を意味します。The payment didn't go through.（支払いが承認されませんでした）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "お支払いの流れを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Thank you, your total for ( ) is ( ).\nCustomer: Thank you.\nStaff: We accept ( ).\nCustomer: I will pay with ( ).\nStaff: ( ).",
+      "syntax_hint": "Hints: payment, bill, pay, use, PIN, sign",
+      "sample_answer": "Staff: Thank you, your total for haircut is 8,800 yen.\nCustomer: Thank you.\nStaff: We accept cash, credit card, and QR code.\nCustomer: I will pay with credit card.\nStaff: Perfect. Please insert your card here."
+    },
+    {
+      "prompt": "利用可能な支払い方法を説明する練習をしましょう。",
+      "syntax_hint": "We accept... / We only accept... / For payment, we accept...",
+      "sample_answer": "We accept cash, credit card, debit card, and QR code payment. Which would you prefer?"
+    },
+    {
+      "prompt": "カードが使えない場合の対応を練習しましょう。",
+      "syntax_hint": "I'm sorry... / Do you have another card? / Do you have another payment option?",
+      "sample_answer": "I'm sorry, this card isn't working. Do you have another card or would you like to pay with cash?"
+    }
+  ],
+  "objectives": [
+    "領収書の必要性を丁寧に確認できる",
+    "利用可能な支払い方法を明確に説明できる",
+    "カードが使えない場合に適切に対応できる",
+    "複数の支払いオプションを提示できる"
+  ],
+  "metadata": {
+    "icon": "🧾",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

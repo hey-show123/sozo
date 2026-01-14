@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 10: 前回のカットはどうでしたか？",
+  "description": "前回の施術の満足度を確認し、改善点を聞き取る表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "前回の満足度を尋ねる",
+      "voice": "nova",
+      "phrase": "How was your last haircut?",
+      "emotion": "interested",
+      "meaning": "前回のカットはどうでしたか？",
+      "examples": [
+        "How was your last haircut? Were you happy with it?",
+        "How was your last haircut here? Did you like it?",
+        "How was your last haircut? Any problems?"
+      ],
+      "phonetic": "/haʊ wɒz jɔːr lɑːst ˈhɛrkʌt/"
+    },
+    {
+      "usage": "満足しているか確認",
+      "voice": "nova",
+      "phrase": "Were you happy with it?",
+      "emotion": "caring",
+      "meaning": "満足されましたか？",
+      "examples": [
+        "Were you happy with it, or would you like something different?",
+        "Were you happy with it overall?",
+        "Were you happy with it? Be honest, please."
+      ],
+      "phonetic": "/wɜːr juː ˈhæpi wɪð ɪt/"
+    },
+    {
+      "usage": "改善したい点を尋ねる",
+      "voice": "nova",
+      "phrase": "What would you like to change?",
+      "emotion": "helpful",
+      "meaning": "何を変えたいですか？",
+      "examples": [
+        "What would you like to change this time?",
+        "What would you like to change about your haircut?",
+        "What would you like to change? The length? The style?"
+      ],
+      "phonetic": "/wɒt wʊd juː laɪk tuː tʃeɪndʒ/"
+    },
+    {
+      "usage": "前回より良くすることを約束",
+      "voice": "nova",
+      "phrase": "I'll make it better this time.",
+      "emotion": "reassuring",
+      "meaning": "今回はもっと良くしますね。",
+      "examples": [
+        "I'll make it better this time. Don't worry.",
+        "I understand. I'll make it better this time.",
+        "I'll make it better this time. Just tell me what you want."
+      ],
+      "phonetic": "/aɪl meɪk ɪt ˈbɛtər ðɪs taɪm/"
+    },
+    {
+      "usage": "長すぎたことを確認",
+      "voice": "nova",
+      "phrase": "Was it too long?",
+      "emotion": "checking",
+      "meaning": "長すぎましたか？",
+      "examples": [
+        "Was it too long for you?",
+        "Was it too long? I can cut it shorter this time.",
+        "Was it too long, or was the length okay?"
+      ],
+      "phonetic": "/wɒz ɪt tuː lɒŋ/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "How was your last haircut?",
+      "voice": "nova",
+      "emotion": "interested",
+      "speaker": "Staff",
+      "japanese": "前回のカットはどうでしたか？"
+    },
+    {
+      "text": "It was good, but a little too long.",
+      "voice": "fable",
+      "emotion": "honest",
+      "speaker": "Customer",
+      "japanese": "良かったですが、少し長すぎました。"
+    },
+    {
+      "text": "I see. I'll make it shorter this time.",
+      "voice": "nova",
+      "emotion": "understanding",
+      "speaker": "Staff",
+      "japanese": "なるほど。今回はもっと短くしますね。"
+    },
+    {
+      "text": "Thank you.",
+      "voice": "fable",
+      "emotion": "grateful",
+      "speaker": "Customer",
+      "japanese": "ありがとうございます。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "How was",
+      "options": ["～はどうでしたか", "～はどこですか", "～はいつですか", "～はなぜですか"],
+      "correct_answer": 0,
+      "explanation": "How was は「～はどうでしたか」を意味します。過去の経験の感想を尋ねる表現です。"
+    },
+    {
+      "question": "Were you happy with",
+      "options": ["～に満足しましたか", "～が欲しいですか", "～が必要ですか", "～を知っていますか"],
+      "correct_answer": 0,
+      "explanation": "Were you happy with は「～に満足しましたか」を意味します。過去の満足度を尋ねる表現です。"
+    },
+    {
+      "question": "Change",
+      "options": ["変える", "保つ", "切る", "伸ばす"],
+      "correct_answer": 0,
+      "explanation": "Change は「変える」を意味します。What would you like to change?（何を変えたいですか？）のように使います。"
+    },
+    {
+      "question": "Better",
+      "options": ["もっと良い", "もっと悪い", "同じ", "違う"],
+      "correct_answer": 0,
+      "explanation": "Better は「もっと良い」を意味する good の比較級です。I'll make it better（もっと良くします）のように使います。"
+    },
+    {
+      "question": "Too long",
+      "options": ["長すぎる", "短すぎる", "ちょうどいい", "普通"],
+      "correct_answer": 0,
+      "explanation": "Too long は「長すぎる」を意味します。Too は「～すぎる」を表します。"
+    },
+    {
+      "question": "Too short",
+      "options": ["短すぎる", "長すぎる", "ちょうどいい", "普通"],
+      "correct_answer": 0,
+      "explanation": "Too short は「短すぎる」を意味します。Was it too short?（短すぎましたか？）のように使います。"
+    },
+    {
+      "question": "Overall",
+      "options": ["全体的に", "部分的に", "時々", "決して"],
+      "correct_answer": 0,
+      "explanation": "Overall は「全体的に」「総合的に」を意味します。全般的な評価をする時に使います。"
+    },
+    {
+      "question": "Problem",
+      "options": ["問題", "解決", "満足", "完璧"],
+      "correct_answer": 0,
+      "explanation": "Problem は「問題」を意味します。Any problems?（何か問題はありましたか？）のように使います。"
+    },
+    {
+      "question": "Honest",
+      "options": ["正直な", "嘘の", "丁寧な", "失礼な"],
+      "correct_answer": 0,
+      "explanation": "Honest は「正直な」を意味します。Be honest（正直に言ってください）のように使います。"
+    },
+    {
+      "question": "This time",
+      "options": ["今回", "前回", "次回", "毎回"],
+      "correct_answer": 0,
+      "explanation": "This time は「今回」を意味します。This time（今回は）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "前回の満足度を確認するを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: How was ( )?\nCustomer: It was ( ).\nStaff: What would ( )?\nCustomer: ( ).",
+      "syntax_hint": "Hints: last haircut, good/not so good, like to change, shorter/longer",
+      "sample_answer": "Staff: How was your last haircut?\nCustomer: It was okay, but not perfect.\nStaff: What would you like to change?\nCustomer: I'd like it shorter this time."
+    },
+    {
+      "prompt": "不満な点を確認して、改善を約束する練習をしましょう。",
+      "syntax_hint": "Was it too (long/short)? / I'll make it (better/shorter/longer) this time",
+      "sample_answer": "Staff: Were you happy with your last haircut?\nCustomer: Not really. It was too long.\nStaff: I see. I'll make it shorter this time. How short would you like it?\nCustomer: About 5 centimeters shorter."
+    },
+    {
+      "prompt": "様々な不満点を確認する練習をしましょう。",
+      "syntax_hint": "Was it too (long/short/heavy/light)? / Any problems? / What didn't you like?",
+      "sample_answer": "Staff: How was your last haircut? Were you happy with it?\nCustomer: It was too heavy.\nStaff: I understand. I'll make it lighter this time. Was the length okay?\nCustomer: Yes, the length was perfect."
+    }
+  ],
+  "objectives": [
+    "前回の施術の満足度を確認できる",
+    "改善点を聞き取ることができる",
+    "問題点に対して適切に対応できる",
+    "より良いサービスを約束する表現を使える"
+  ],
+  "metadata": {
+    "icon": "💬",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

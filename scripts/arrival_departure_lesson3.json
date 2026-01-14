@@ -1,0 +1,185 @@
+{
+  "title": "Lesson 3: 少々お待ちください。",
+  "description": "お客様に待機をお願いし、待ち時間を伝える表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "少々待っていただく",
+      "voice": "nova",
+      "phrase": "One moment, please.",
+      "emotion": "polite",
+      "meaning": "少々お待ちください。",
+      "examples": [
+        "One moment, please. Let me check with your stylist.",
+        "One moment, please. I'll be right back.",
+        "One moment, please. Your stylist is finishing up with another client."
+      ],
+      "phonetic": "/wʌn ˈmoʊmənt, pliːz/"
+    },
+    {
+      "usage": "具体的な待ち時間を伝える（短い）",
+      "voice": "nova",
+      "phrase": "Could you please wait for one minute?",
+      "emotion": "polite",
+      "meaning": "1分ほどお待ちいただけますか？",
+      "examples": [
+        "Could you please wait for one minute? I'll get your stylist.",
+        "Could you please wait for one minute while I prepare your station?",
+        "Could you please wait for one minute? I need to check something."
+      ],
+      "phonetic": "/kʊd juː pliːz weɪt fɔːr wʌn ˈmɪnɪt/"
+    },
+    {
+      "usage": "具体的な待ち時間を伝える（長い）",
+      "voice": "nova",
+      "phrase": "Could you please wait for thirty minutes?",
+      "emotion": "apologetic",
+      "meaning": "30分ほどお待ちいただけますか？",
+      "examples": [
+        "I'm sorry, but could you please wait for thirty minutes? We're running a bit behind.",
+        "Could you please wait for thirty minutes? Your stylist is with another client.",
+        "Could you please wait for thirty minutes? Would you like to come back, or wait here?"
+      ],
+      "phonetic": "/kʊd juː pliːz weɪt fɔːr ˈθɜːrti ˈmɪnɪts/"
+    },
+    {
+      "usage": "飲み物を提供する",
+      "voice": "nova",
+      "phrase": "Would you like something to drink?",
+      "emotion": "friendly",
+      "meaning": "何かお飲み物はいかがですか？",
+      "examples": [
+        "While you wait, would you like something to drink? We have tea, coffee, and water.",
+        "Would you like something to drink? I can bring you some coffee.",
+        "Please make yourself comfortable. Would you like something to drink?"
+      ],
+      "phonetic": "/wʊd juː laɪk ˈsʌmθɪŋ tuː drɪŋk/"
+    },
+    {
+      "usage": "カタログを提供する",
+      "voice": "nova",
+      "phrase": "Would you like to see a hair catalogue?",
+      "emotion": "helpful",
+      "meaning": "ヘアカタログをご覧になりますか？",
+      "examples": [
+        "While you wait, would you like to see a hair catalogue for some inspiration?",
+        "Would you like to see a hair catalogue? We have the latest styles.",
+        "Would you like to see a hair catalogue? You can browse through different hairstyles."
+      ],
+      "phonetic": "/wʊd juː laɪk tuː siː ə hɛr ˈkætəlɒɡ/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "May I take your bag and jacket?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "バッグと上着をお預かりしてもよろしいですか？"
+    },
+    {
+      "text": "Sure.",
+      "voice": "fable",
+      "emotion": "friendly",
+      "speaker": "Customer",
+      "japanese": "はい。"
+    },
+    {
+      "text": "Please take a seat. One moment, please.",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "おかけになってください。少々お待ちください。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Moment",
+      "options": ["瞬間・少しの間", "時間", "日", "週"],
+      "correct_answer": 0,
+      "explanation": "Moment は「瞬間」「少しの間」を意味します。One moment（少々お待ちください）のように使います。"
+    },
+    {
+      "question": "Bag",
+      "options": ["かばん・バッグ", "財布", "服", "靴"],
+      "correct_answer": 0,
+      "explanation": "Bag は「かばん」「バッグ」を意味します。様々な種類のかばんを指します。"
+    },
+    {
+      "question": "Jacket",
+      "options": ["上着・ジャケット", "シャツ", "ズボン", "帽子"],
+      "correct_answer": 0,
+      "explanation": "Jacket は「上着」「ジャケット」を意味します。アウターの一種です。"
+    },
+    {
+      "question": "Wait",
+      "options": ["待つ", "座る", "立つ", "歩く"],
+      "correct_answer": 0,
+      "explanation": "Wait は「待つ」を意味します。Please wait.（お待ちください）のように使います。"
+    },
+    {
+      "question": "Minute",
+      "options": ["分", "時間", "秒", "日"],
+      "correct_answer": 0,
+      "explanation": "Minute は「分」を意味します。60秒が1分です。One minute（1分）のように使います。"
+    },
+    {
+      "question": "Hour",
+      "options": ["時間", "分", "秒", "日"],
+      "correct_answer": 0,
+      "explanation": "Hour は「時間」を意味します。60分が1時間です。One hour（1時間）のように使います。"
+    },
+    {
+      "question": "Drink",
+      "options": ["飲み物", "食べ物", "本", "雑誌"],
+      "correct_answer": 0,
+      "explanation": "Drink は「飲み物」を意味します。Something to drink（何か飲み物）のように使います。"
+    },
+    {
+      "question": "Catalogue",
+      "options": ["カタログ", "本", "雑誌", "新聞"],
+      "correct_answer": 0,
+      "explanation": "Catalogue は「カタログ」を意味します。商品やスタイルの見本帳のことです。"
+    },
+    {
+      "question": "Running behind",
+      "options": ["遅れている", "早い", "時間通り", "終わった"],
+      "correct_answer": 0,
+      "explanation": "Running behind は「遅れている」「予定より遅れている」を意味します。We're running behind.（予定より遅れています）のように使います。"
+    },
+    {
+      "question": "Inspiration",
+      "options": ["インスピレーション・参考", "予約", "料金", "時間"],
+      "correct_answer": 0,
+      "explanation": "Inspiration は「インスピレーション」「参考」「ひらめき」を意味します。For some inspiration（参考のために）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "お客様に待ってもらうのを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: Hello, I have an appointment.\nStaff: One ( ).\nCustomer: For how long?\nStaff: ( ).\nCustomer: OK.\nStaff: Would you like ( )?",
+      "syntax_hint": "Hints: moment, minute, thirty minutes, one hour, drink, catalogue",
+      "sample_answer": "Customer: Hello, I have an appointment.\nStaff: One moment, please.\nCustomer: For how long?\nStaff: Could you please wait for five minutes?\nCustomer: OK.\nStaff: Would you like something to drink while you wait?"
+    },
+    {
+      "prompt": "異なる待ち時間を伝える練習をしましょう。",
+      "syntax_hint": "One moment / One minute / Five minutes / Thirty minutes / One hour",
+      "sample_answer": "I'm sorry, but could you please wait for about fifteen minutes? Your stylist is running a little behind schedule."
+    },
+    {
+      "prompt": "待ち時間中のサービスを提供する練習をしましょう。",
+      "syntax_hint": "Would you like (something to drink / tea or coffee / a hair catalogue / a magazine)?",
+      "sample_answer": "Please have a seat. Would you like some tea or coffee? We also have hair catalogues if you'd like to look at some styles."
+    }
+  ],
+  "objectives": [
+    "One moment, pleaseを使って丁寧に待機をお願いできる",
+    "具体的な待ち時間を正確に伝えることができる",
+    "待ち時間中の飲み物やカタログを提供できる",
+    "apologetic toneで遅延を伝えることができる"
+  ],
+  "metadata": {
+    "icon": "⏱️",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

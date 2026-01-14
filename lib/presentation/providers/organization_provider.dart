@@ -45,7 +45,7 @@ final organizationUsersProvider = FutureProvider<List<ExtendedUserProfile>>((ref
     return response.map<ExtendedUserProfile>((data) => ExtendedUserProfile(
       id: data['user_id'],
       email: data['email'],
-      username: data['username'],
+      displayName: data['display_name'] ?? data['username'], // usernameからdisplay_nameに変更
       totalXp: data['total_xp'],
       currentLevel: data['current_level'],
       streakCount: data['streak_count'],

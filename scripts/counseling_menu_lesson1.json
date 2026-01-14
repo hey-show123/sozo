@@ -1,0 +1,185 @@
+{
+  "title": "Lesson 1: 今日はどうなさいますか？",
+  "description": "カウンセリングの開始時に、お客様の希望メニューを丁寧に尋ねる表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "希望メニューを尋ねる",
+      "voice": "nova",
+      "phrase": "What would you like to do today?",
+      "emotion": "professional",
+      "meaning": "今日はどうなさいますか？",
+      "examples": [
+        "Hello! What would you like to do today?",
+        "Nice to meet you. What would you like to do today?",
+        "What would you like to do today? We have many options available."
+      ],
+      "phonetic": "/wʌt wʊd juː laɪk tuː duː təˈdeɪ/"
+    },
+    {
+      "usage": "具体的なカットの種類を尋ねる",
+      "voice": "nova",
+      "phrase": "What kind of cut would you like?",
+      "emotion": "helpful",
+      "meaning": "どういうカットがよろしいですか？",
+      "examples": [
+        "What kind of cut would you like? Short, medium, or long?",
+        "What kind of cut would you like today?",
+        "I see you'd like a haircut. What kind of cut would you like?"
+      ],
+      "phonetic": "/wʌt kaɪnd ʌv kʌt wʊd juː laɪk/"
+    },
+    {
+      "usage": "具体的なカラーの種類を尋ねる",
+      "voice": "nova",
+      "phrase": "What kind of color would you like?",
+      "emotion": "curious",
+      "meaning": "どういうカラーがよろしいですか？",
+      "examples": [
+        "What kind of color would you like? Lighter or darker?",
+        "What kind of color would you like to try today?",
+        "What kind of color would you like? Do you have any photos?"
+      ],
+      "phonetic": "/wʌt kaɪnd ʌv ˈkʌlər wʊd juː laɪk/"
+    },
+    {
+      "usage": "具体的なパーマの種類を尋ねる",
+      "voice": "nova",
+      "phrase": "What kind of perm would you like?",
+      "emotion": "professional",
+      "meaning": "どういうパーマがよろしいですか？",
+      "examples": [
+        "What kind of perm would you like? Digital or cold perm?",
+        "What kind of perm would you like? Loose waves or tight curls?",
+        "What kind of perm would you like to achieve today?"
+      ],
+      "phonetic": "/wʌt kaɪnd ʌv pɜːrm wʊd juː laɪk/"
+    },
+    {
+      "usage": "聞いた内容を確認する",
+      "voice": "nova",
+      "phrase": "Today we will do a haircut.",
+      "emotion": "reassuring",
+      "meaning": "今日はカットをします。",
+      "examples": [
+        "Perfect! Today we will do a haircut.",
+        "Okay, so today we will do a haircut and color.",
+        "Today we will do a haircut. I'm excited to work with you."
+      ],
+      "phonetic": "/təˈdeɪ wiː wɪl duː ə ˈhɛrkʌt/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello, what would you like to do today?",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "こんにちは、今日はどうなさいますか？"
+    },
+    {
+      "text": "I would like a haircut.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "カットをお願いします。"
+    },
+    {
+      "text": "Sure, thank you.",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "はい、ありがとうございます。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Cut",
+      "options": ["カット", "カラー", "パーマ", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Cut は「カット」を意味します。髪を切るサービスのことです。"
+    },
+    {
+      "question": "Perm",
+      "options": ["パーマ", "カット", "カラー", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Perm は「パーマ」を意味します。髪にカールやウェーブをつける施術です。"
+    },
+    {
+      "question": "Style",
+      "options": ["スタイル", "カット", "カラー", "長さ"],
+      "correct_answer": 0,
+      "explanation": "Style は「スタイル」「髪型」を意味します。Hair style（ヘアスタイル）のように使います。"
+    },
+    {
+      "question": "Straight",
+      "options": ["ストレート", "カール", "ウェーブ", "ボリューム"],
+      "correct_answer": 0,
+      "explanation": "Straight は「ストレート」「まっすぐ」を意味します。Straight perm（ストレートパーマ）のように使います。"
+    },
+    {
+      "question": "Color",
+      "options": ["カラー", "カット", "パーマ", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Color は「カラー」「色」を意味します。Hair color（ヘアカラー）のように使います。"
+    },
+    {
+      "question": "Cold perm",
+      "options": ["コールドパーマ", "デジタルパーマ", "ストレートパーマ", "カット"],
+      "correct_answer": 0,
+      "explanation": "Cold perm は「コールドパーマ」を意味します。熱を使わないパーマのことです。"
+    },
+    {
+      "question": "Digital perm",
+      "options": ["デジタルパーマ", "コールドパーマ", "ストレートパーマ", "カラー"],
+      "correct_answer": 0,
+      "explanation": "Digital perm は「デジタルパーマ」を意味します。熱を使ってカールをつけるパーマです。"
+    },
+    {
+      "question": "Damage",
+      "options": ["ダメージ", "健康", "艶", "ボリューム"],
+      "correct_answer": 0,
+      "explanation": "Damage は「ダメージ」「損傷」を意味します。髪の傷みのことです。"
+    },
+    {
+      "question": "Straight perm",
+      "options": ["ストレートパーマ", "デジタルパーマ", "コールドパーマ", "カラー"],
+      "correct_answer": 0,
+      "explanation": "Straight perm は「ストレートパーマ」を意味します。髪をまっすぐにする施術です。"
+    },
+    {
+      "question": "Consulting",
+      "options": ["カウンセリング", "カット", "シャンプー", "ブロー"],
+      "correct_answer": 0,
+      "explanation": "Consulting は「カウンセリング」「相談」を意味します。お客様の希望を聞き取ることです。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "コンサルテーションを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Hello, what ( )?\nCustomer: ( ).\nStaff: Sure, ( ).",
+      "syntax_hint": "Hints: style, cold perm, digital perm, damage, straight perm",
+      "sample_answer": "Staff: Hello, what would you like to do today?\nCustomer: I would like a haircut and color.\nStaff: Sure, thank you. Today we will do a haircut and color."
+    },
+    {
+      "prompt": "様々なメニューの希望を聞く練習をしましょう。",
+      "syntax_hint": "What kind of cut/color/perm would you like?",
+      "sample_answer": "Staff: What would you like to do today?\nCustomer: I'd like a perm.\nStaff: Great! What kind of perm would you like? We have digital perm and cold perm."
+    },
+    {
+      "prompt": "聞いた内容を確認して復唱する練習をしましょう。",
+      "syntax_hint": "Today we will do... / So you'd like... / Perfect, we'll do...",
+      "sample_answer": "Customer: I'd like a haircut and highlights.\nStaff: Perfect! Today we will do a haircut and highlights. What kind of haircut would you like?"
+    }
+  ],
+  "objectives": [
+    "お客様の希望メニューを丁寧に尋ねることができる",
+    "具体的な施術内容を確認できる",
+    "聞いた内容を復唱して確認できる",
+    "カウンセリングを自然に開始できる"
+  ],
+  "metadata": {
+    "icon": "💇",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

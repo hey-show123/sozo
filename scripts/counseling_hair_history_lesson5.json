@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 5: 前回のカットはいつでしたか？",
+  "description": "前回の施術時期を確認し、適切なタイミングを提案する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "前回のカット時期を尋ねる",
+      "voice": "nova",
+      "phrase": "When was your last haircut?",
+      "emotion": "professional",
+      "meaning": "前回のカットはいつでしたか？",
+      "examples": [
+        "When was your last haircut? Do you remember?",
+        "Let me ask, when was your last haircut?",
+        "When was your last haircut? It looks quite long now."
+      ],
+      "phonetic": "/wɛn wɒz jɔːr lɑːst ˈhɛrkʌt/"
+    },
+    {
+      "usage": "どのくらい前かを尋ねる",
+      "voice": "nova",
+      "phrase": "How long ago was that?",
+      "emotion": "curious",
+      "meaning": "それはどのくらい前でしたか？",
+      "examples": [
+        "How long ago was that? A few months?",
+        "How long ago was that exactly?",
+        "How long ago was that? Can you remember?"
+      ],
+      "phonetic": "/haʊ lɒŋ əˈɡoʊ wɒz ðæt/"
+    },
+    {
+      "usage": "久しぶりであることを伝える",
+      "voice": "nova",
+      "phrase": "It's been a while since your last cut.",
+      "emotion": "understanding",
+      "meaning": "前回のカットから久しぶりですね。",
+      "examples": [
+        "It's been a while since your last cut. Your hair has grown a lot.",
+        "It's been a while since your last cut, hasn't it?",
+        "Wow, it's been a while since your last cut!"
+      ],
+      "phonetic": "/ɪts biːn ə waɪl sɪns jɔːr lɑːst kʌt/"
+    },
+    {
+      "usage": "定期的なカットを勧める",
+      "voice": "nova",
+      "phrase": "You should get a haircut every two months.",
+      "emotion": "advisory",
+      "meaning": "2ヶ月に一回カットをした方がいいですよ。",
+      "examples": [
+        "You should get a haircut every two months to maintain the style.",
+        "For healthy hair, you should get a haircut every two months.",
+        "You should get a haircut every two months. It will look better."
+      ],
+      "phonetic": "/juː ʃʊd ɡɛt ə ˈhɛrkʌt ˈɛvri tuː mʌnθs/"
+    },
+    {
+      "usage": "カットの頻度を尋ねる",
+      "voice": "nova",
+      "phrase": "How often do you get a haircut?",
+      "emotion": "inquiring",
+      "meaning": "どのくらいの頻度でカットをしますか？",
+      "examples": [
+        "How often do you get a haircut normally?",
+        "How often do you get a haircut? Once a month?",
+        "Just curious, how often do you get a haircut?"
+      ],
+      "phonetic": "/haʊ ˈɒfən duː juː ɡɛt ə ˈhɛrkʌt/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "When was your last haircut?",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "前回のカットはいつでしたか？"
+    },
+    {
+      "text": "About three months ago.",
+      "voice": "fable",
+      "emotion": "recalling",
+      "speaker": "Customer",
+      "japanese": "約3ヶ月前です。"
+    },
+    {
+      "text": "I see. It's been a while since your last cut.",
+      "voice": "nova",
+      "emotion": "understanding",
+      "speaker": "Staff",
+      "japanese": "なるほど。前回のカットから久しぶりですね。"
+    },
+    {
+      "text": "Yes, I've been very busy.",
+      "voice": "fable",
+      "emotion": "explaining",
+      "speaker": "Customer",
+      "japanese": "はい、とても忙しかったんです。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Last",
+      "options": ["前回の・最後の", "次の", "最初の", "今の"],
+      "correct_answer": 0,
+      "explanation": "Last は「前回の」「最後の」を意味します。Your last haircut（前回のカット）のように使います。"
+    },
+    {
+      "question": "Haircut",
+      "options": ["ヘアカット", "カラー", "パーマ", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Haircut は「ヘアカット」「散髪」を意味します。髪を切る施術のことです。"
+    },
+    {
+      "question": "How long ago",
+      "options": ["どのくらい前に", "どのくらい後に", "いつ", "どこで"],
+      "correct_answer": 0,
+      "explanation": "How long ago は「どのくらい前に」を意味します。過去からの期間を尋ねる表現です。"
+    },
+    {
+      "question": "A while",
+      "options": ["しばらく", "すぐ", "今", "後で"],
+      "correct_answer": 0,
+      "explanation": "A while は「しばらく」「ある程度の期間」を意味します。It's been a while（久しぶりです）のように使います。"
+    },
+    {
+      "question": "Since",
+      "options": ["～以来", "～まで", "～の前に", "～の後に"],
+      "correct_answer": 0,
+      "explanation": "Since は「～以来」を意味します。ある時点からの継続を表します。"
+    },
+    {
+      "question": "Every",
+      "options": ["毎～", "時々", "決して", "いつも"],
+      "correct_answer": 0,
+      "explanation": "Every は「毎～」を意味します。Every two months（2ヶ月ごとに）のように使います。"
+    },
+    {
+      "question": "Month",
+      "options": ["月", "週", "日", "年"],
+      "correct_answer": 0,
+      "explanation": "Month は「月」を意味します。Two months（2ヶ月）のように使います。"
+    },
+    {
+      "question": "Ago",
+      "options": ["～前", "～後", "今", "次"],
+      "correct_answer": 0,
+      "explanation": "Ago は「～前」を意味します。Three months ago（3ヶ月前）のように使います。"
+    },
+    {
+      "question": "Maintain",
+      "options": ["維持する", "変える", "切る", "伸ばす"],
+      "correct_answer": 0,
+      "explanation": "Maintain は「維持する」「保つ」を意味します。スタイルを保つことを表します。"
+    },
+    {
+      "question": "Normally",
+      "options": ["普段は", "決して", "いつも", "時々"],
+      "correct_answer": 0,
+      "explanation": "Normally は「普段は」「通常は」を意味します。いつもの習慣を表します。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "前回のカットの時期を聞くを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: When ( )?\nCustomer: ( ) ago.\nStaff: I see, it's ( ).\nCustomer: Yes, I've been busy.",
+      "syntax_hint": "Hints: last haircut, three months, been a while",
+      "sample_answer": "Staff: When was your last haircut?\nCustomer: About four months ago.\nStaff: I see, it's been a while since your last cut.\nCustomer: Yes, I've been very busy."
+    },
+    {
+      "prompt": "カットの頻度を確認して、アドバイスをする練習をしましょう。",
+      "syntax_hint": "How often do you... / You should get a haircut every...",
+      "sample_answer": "Staff: How often do you get a haircut normally?\nCustomer: Maybe every four or five months.\nStaff: I see. You should get a haircut every two months to keep it healthy and maintain the style."
+    },
+    {
+      "prompt": "様々な時期の表現を使って確認する練習をしましょう。",
+      "syntax_hint": "one week / two weeks / one month / two months / three months / six months ago",
+      "sample_answer": "Staff: When was your last haircut?\nCustomer: I think it was six months ago.\nStaff: Wow! It's been a while! Your hair has grown a lot. How long ago was your last color?\nCustomer: About three months ago."
+    }
+  ],
+  "objectives": [
+    "前回の施術時期を確認できる",
+    "期間を表す表現を使うことができる",
+    "定期的なメンテナンスを勧められる",
+    "カットの頻度について会話できる"
+  ],
+  "metadata": {
+    "icon": "✂️",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "title": "Lesson 2: おかけになってください。",
+  "description": "お客様を適切な場所へ案内し、着席していただく表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "着席を促す（フォーマル）",
+      "voice": "nova",
+      "phrase": "Please take a seat.",
+      "emotion": "polite",
+      "meaning": "おかけになってください。",
+      "examples": [
+        "Please take a seat. Your stylist will be with you shortly.",
+        "Right this way. Please take a seat here.",
+        "Please take a seat, and I'll bring you some water."
+      ],
+      "phonetic": "/pliːz teɪk ə siːt/"
+    },
+    {
+      "usage": "具体的な場所を指定する",
+      "voice": "nova",
+      "phrase": "Please take a seat here.",
+      "emotion": "friendly",
+      "meaning": "ここにおかけになってください。",
+      "examples": [
+        "Please take a seat here. This is your styling chair.",
+        "Please take a seat here in the waiting area.",
+        "Please take a seat here, and make yourself comfortable."
+      ],
+      "phonetic": "/pliːz teɪk ə siːt hɪr/"
+    },
+    {
+      "usage": "待合室への案内",
+      "voice": "nova",
+      "phrase": "Please take a seat in the waiting area.",
+      "emotion": "polite",
+      "meaning": "待合室におかけになってください。",
+      "examples": [
+        "Please take a seat in the waiting area. We'll call you in a moment.",
+        "Your stylist is with another client. Please take a seat in the waiting area.",
+        "Please take a seat in the waiting area. Would you like some tea or coffee?"
+      ],
+      "phonetic": "/pliːz teɪk ə siːt ɪn ðə ˈweɪtɪŋ ˈɛriə/"
+    },
+    {
+      "usage": "カットチェアへの案内",
+      "voice": "nova",
+      "phrase": "Please take a seat in the cut chair.",
+      "emotion": "friendly",
+      "meaning": "カットチェアにおかけになってください。",
+      "examples": [
+        "We're ready for you! Please take a seat in the cut chair.",
+        "Please take a seat in the cut chair, and I'll put a cape on you.",
+        "Right this way. Please take a seat in the cut chair over here."
+      ],
+      "phonetic": "/pliːz teɪk ə siːt ɪn ðə kʌt tʃɛr/"
+    },
+    {
+      "usage": "リラックスを促す",
+      "voice": "nova",
+      "phrase": "Please make yourself comfortable.",
+      "emotion": "warm",
+      "meaning": "どうぞおくつろぎください。",
+      "examples": [
+        "Please take a seat and make yourself comfortable.",
+        "Please make yourself comfortable. Can I get you anything?",
+        "Please make yourself comfortable while you wait."
+      ],
+      "phonetic": "/pliːz meɪk jɔːrˈsɛlf ˈkʌmftəbəl/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello, welcome to Sunshine Salon.",
+      "voice": "nova",
+      "emotion": "warm",
+      "speaker": "Staff",
+      "japanese": "こんにちは、「サロン名」へようこそ。"
+    },
+    {
+      "text": "Thank you.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "ありがとうございます。"
+    },
+    {
+      "text": "May I take your bag and jacket?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "バッグと上着をお預かりしてもよろしいですか？"
+    },
+    {
+      "text": "Sure.",
+      "voice": "fable",
+      "emotion": "friendly",
+      "speaker": "Customer",
+      "japanese": "はい。"
+    },
+    {
+      "text": "Please take a seat.",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "おかけになってください。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Bag",
+      "options": ["バッグ・かばん", "財布", "服", "靴"],
+      "correct_answer": 0,
+      "explanation": "Bag は「バッグ」「かばん」を意味します。ハンドバッグ、トートバッグなど様々な種類があります。"
+    },
+    {
+      "question": "Jacket",
+      "options": ["ジャケット・上着", "シャツ", "ズボン", "帽子"],
+      "correct_answer": 0,
+      "explanation": "Jacket は「ジャケット」「上着」を意味します。コートよりも軽い上着のことです。"
+    },
+    {
+      "question": "Take a seat",
+      "options": ["座る（丁寧）", "立つ", "歩く", "走る"],
+      "correct_answer": 0,
+      "explanation": "Take a seat は「座る」という丁寧な表現です。Please take a seat.（おかけになってください）のように使います。"
+    },
+    {
+      "question": "Inside",
+      "options": ["中で・中に", "外で", "上に", "下に"],
+      "correct_answer": 0,
+      "explanation": "Inside は「中で」「中に」を意味します。Please take a seat inside.（中でおかけになってください）のように使います。"
+    },
+    {
+      "question": "Outside",
+      "options": ["外で・外に", "中で", "上に", "下に"],
+      "correct_answer": 0,
+      "explanation": "Outside は「外で」「外に」を意味します。反対語は inside（中で）です。"
+    },
+    {
+      "question": "Waiting area",
+      "options": ["待合室", "カットチェア", "受付", "トイレ"],
+      "correct_answer": 0,
+      "explanation": "Waiting area は「待合室」「待機エリア」を意味します。お客様が順番を待つ場所です。"
+    },
+    {
+      "question": "Cut chair",
+      "options": ["カットチェア", "待合室の椅子", "受付の椅子", "ベンチ"],
+      "correct_answer": 0,
+      "explanation": "Cut chair は「カットチェア」を意味します。実際にカットやスタイリングを行う椅子のことです。"
+    },
+    {
+      "question": "Bench",
+      "options": ["ベンチ", "ソファー", "テーブル", "カウンター"],
+      "correct_answer": 0,
+      "explanation": "Bench は「ベンチ」を意味します。背もたれのない長椅子のことです。"
+    },
+    {
+      "question": "Couch",
+      "options": ["ソファー", "ベンチ", "椅子", "テーブル"],
+      "correct_answer": 0,
+      "explanation": "Couch は「ソファー」を意味します。複数人が座れる背もたれ付きの長椅子です。"
+    },
+    {
+      "question": "Comfortable",
+      "options": ["快適な・心地よい", "不快な", "狭い", "広い"],
+      "correct_answer": 0,
+      "explanation": "Comfortable は「快適な」「心地よい」を意味します。Make yourself comfortable.（おくつろぎください）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "お客様に待ってもらうのを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: Hello, I'm here for a haircut.\nStaff: Please ( ).\nCustomer: Where?\nStaff: ( ).",
+      "syntax_hint": "Hints: inside, outside, waiting area, cut chair, bench, couch",
+      "sample_answer": "Customer: Hello, I'm here for a haircut.\nStaff: Please take a seat.\nCustomer: Where?\nStaff: Please take a seat in the waiting area over there."
+    },
+    {
+      "prompt": "異なる場所への案内を練習しましょう。",
+      "syntax_hint": "Please take a seat (here/there/in the waiting area/in the cut chair)",
+      "sample_answer": "Please take a seat here on the couch. Your stylist will be ready in just a moment."
+    },
+    {
+      "prompt": "お客様をリラックスさせる案内を練習しましょう。",
+      "syntax_hint": "Please make yourself comfortable / Can I get you anything? / Would you like...?",
+      "sample_answer": "Please take a seat and make yourself comfortable. Can I get you some tea or coffee while you wait?"
+    }
+  ],
+  "objectives": [
+    "Please take a seatを使って丁寧に着席を促すことができる",
+    "具体的な場所（waiting area, cut chairなど）を指定できる",
+    "here/thereを使って場所を明確に示すことができる",
+    "お客様をリラックスさせる表現を使うことができる"
+  ],
+  "metadata": {
+    "icon": "💺",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

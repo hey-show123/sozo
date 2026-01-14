@@ -235,12 +235,12 @@ class OrganizationDashboardScreen extends ConsumerWidget {
         leading: CircleAvatar(
           backgroundColor: Colors.blue,
           child: Text(
-            _getInitials(user['username'] ?? user['email'] ?? '?'),
+            _getInitials(user['display_name'] ?? user['email'] ?? '?'),
             style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
         title: Text(
-          user['username'] ?? user['email']?.toString().split('@')[0] ?? '不明',
+          user['display_name'] ?? user['email']?.toString().split('@')[0] ?? '不明',
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Column(

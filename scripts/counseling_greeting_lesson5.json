@@ -1,0 +1,199 @@
+{
+  "title": "Lesson 5: 今日の調子はどうですか？",
+  "description": "お客様の様子を尋ね、適切にフォローアップする表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "調子を尋ねる",
+      "voice": "nova",
+      "phrase": "How are you today?",
+      "emotion": "caring",
+      "meaning": "今日の調子はどうですか？",
+      "examples": [
+        "Hi! How are you today?",
+        "Nice to meet you. How are you today?",
+        "Welcome! How are you today? I hope you're doing well."
+      ],
+      "phonetic": "/haʊ ɑːr juː təˈdeɪ/"
+    },
+    {
+      "usage": "基本的な返答（良い）",
+      "voice": "fable",
+      "phrase": "I'm good, and you?",
+      "emotion": "polite",
+      "meaning": "調子はいいです、あなたはどうですか？",
+      "examples": [
+        "I'm good, and you? How's your day going?",
+        "I'm good, thanks. And you?",
+        "I'm doing good, and you?"
+      ],
+      "phonetic": "/aɪm ɡʊd, ænd juː/"
+    },
+    {
+      "usage": "基本的な返答（普通）",
+      "voice": "fable",
+      "phrase": "I'm OK, and you?",
+      "emotion": "neutral",
+      "meaning": "まあまあです、あなたはどうですか？",
+      "examples": [
+        "I'm OK, and you?",
+        "I'm doing OK, thanks. And you?",
+        "I'm OK. How about you?"
+      ],
+      "phonetic": "/aɪm ˌoʊˈkeɪ, ænd juː/"
+    },
+    {
+      "usage": "とても良い時の返答",
+      "voice": "fable",
+      "phrase": "I'm great!",
+      "emotion": "happy",
+      "meaning": "とても良いです！",
+      "examples": [
+        "I'm great! Thank you for asking.",
+        "I'm doing great today!",
+        "I'm great! I'm so excited to be here."
+      ],
+      "phonetic": "/aɪm ɡreɪt/"
+    },
+    {
+      "usage": "とても良い理由を尋ねる",
+      "voice": "nova",
+      "phrase": "That's wonderful! Why is that?",
+      "emotion": "curious",
+      "meaning": "それは素晴らしいですね！どうしてですか？",
+      "examples": [
+        "I'm great! - That's wonderful! Why is that?",
+        "That's wonderful to hear! What made your day great?",
+        "That's wonderful! I'm so glad to hear that. Why is that?"
+      ],
+      "phonetic": "/ðæts ˈwʌndərfʊl! waɪ ɪz ðæt/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "こんにちは。"
+    },
+    {
+      "text": "Hello, I'm John.",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "こんにちは、私はジョンです。"
+    },
+    {
+      "text": "I'm Sara.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "私はサラです。"
+    },
+    {
+      "text": "Hi Sara, nice to meet you. How are you?",
+      "voice": "nova",
+      "emotion": "warm",
+      "speaker": "Staff",
+      "japanese": "サラさん、お会いできてうれしく思います。調子はどうですか？"
+    },
+    {
+      "text": "I'm good, how are you today?",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "良いです、今日の調子はどうですか？"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Today",
+      "options": ["今日", "昨日", "明日", "今週"],
+      "correct_answer": 0,
+      "explanation": "Today は「今日」を意味します。How are you today?（今日の調子はどうですか？）のように使います。"
+    },
+    {
+      "question": "How",
+      "options": ["どう・どのように", "いつ", "どこ", "誰"],
+      "correct_answer": 0,
+      "explanation": "How は「どう」「どのように」を意味します。How are you?（調子はどうですか？）のように使います。"
+    },
+    {
+      "question": "Great",
+      "options": ["素晴らしい", "悪い", "普通", "疲れた"],
+      "correct_answer": 0,
+      "explanation": "Great は「素晴らしい」「とても良い」を意味します。I'm great!（とても良いです！）のように使います。"
+    },
+    {
+      "question": "Awesome",
+      "options": ["素晴らしい", "悪い", "普通", "疲れた"],
+      "correct_answer": 0,
+      "explanation": "Awesome は「素晴らしい」「最高」を意味するカジュアルな表現です。I'm awesome!（最高です！）のように使います。"
+    },
+    {
+      "question": "Terrible",
+      "options": ["とても悪い", "とても良い", "普通", "まあまあ"],
+      "correct_answer": 0,
+      "explanation": "Terrible は「とても悪い」「ひどい」を意味します。I'm terrible.（とても調子が悪いです）のように使います。"
+    },
+    {
+      "question": "Awful",
+      "options": ["とても悪い・ひどい", "とても良い", "普通", "まあまあ"],
+      "correct_answer": 0,
+      "explanation": "Awful は「とても悪い」「ひどい」を意味します。Terrible と似た意味です。"
+    },
+    {
+      "question": "Follow up",
+      "options": ["フォローする・続けて聞く", "止める", "無視する", "終わる"],
+      "correct_answer": 0,
+      "explanation": "Follow up は「フォローする」「続けて聞く」を意味します。お客様の返答に応じて適切に質問を続けることです。"
+    },
+    {
+      "question": "Response",
+      "options": ["返答・応答", "質問", "説明", "要求"],
+      "correct_answer": 0,
+      "explanation": "Response は「返答」「応答」を意味します。お客様の返答に適切に対応することが大切です。"
+    },
+    {
+      "question": "Require",
+      "options": ["必要とする", "避ける", "拒否する", "忘れる"],
+      "correct_answer": 0,
+      "explanation": "Require は「必要とする」を意味します。Responses that require follow up（フォローが必要な返答）のように使います。"
+    },
+    {
+      "question": "Wonderful",
+      "options": ["素晴らしい", "悪い", "普通", "心配な"],
+      "correct_answer": 0,
+      "explanation": "Wonderful は「素晴らしい」を意味します。That's wonderful!（それは素晴らしいですね！）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "自己紹介後の挨拶を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: Hello.\nStaff: I'm ( ).\nCustomer: Nice to meet you.\nStaff: How ( )?",
+      "syntax_hint": "How are you? / How are you today? / How are you doing?",
+      "sample_answer": "Customer: Hello.\nStaff: I'm John, your hairstylist today.\nCustomer: Nice to meet you.\nStaff: How are you today? I hope you're doing well."
+    },
+    {
+      "prompt": "とても良いか、とても悪いお客様にフォローの質問をしてみよう。",
+      "syntax_hint": "That's wonderful/great! Why is that? / I'm sorry to hear that. What happened?",
+      "sample_answer": "Customer: I'm great today!\nStaff: That's wonderful! Why is that? What made your day great?\nCustomer: I just got a promotion at work.\nStaff: Congratulations! That's amazing news."
+    },
+    {
+      "prompt": "様々な調子への返答を練習しましょう。",
+      "syntax_hint": "I'm good/OK/fine / I'm great/awesome / I'm tired/stressed / And you?",
+      "sample_answer": "Staff: How are you today?\nCustomer: I'm good, thanks. And you?\nStaff: I'm doing great! Thank you for asking. Now, let's talk about your hair today."
+    }
+  ],
+  "objectives": [
+    "お客様の様子を丁寧に尋ねることができる",
+    "様々な返答パターンを理解できる",
+    "お客様の返答に応じて適切にフォローアップできる",
+    "会話を通じて良い関係を築くことができる"
+  ],
+  "metadata": {
+    "icon": "😊",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

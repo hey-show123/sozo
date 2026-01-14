@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 6: こちらに来てください。",
+  "description": "お客様を適切な場所へ丁寧に案内する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "こちらへ案内する",
+      "voice": "nova",
+      "phrase": "Please come this way.",
+      "emotion": "polite",
+      "meaning": "こちらに来てください。",
+      "examples": [
+        "Please come this way. I'll show you to your seat.",
+        "Thank you for waiting. Please come this way.",
+        "Please come this way. Your stylist is ready for you."
+      ],
+      "phonetic": "/pliːz kʌm ðɪs weɪ/"
+    },
+    {
+      "usage": "カットチェアへ案内する",
+      "voice": "nova",
+      "phrase": "Please come to the cut chair.",
+      "emotion": "friendly",
+      "meaning": "カットチェアに来てください。",
+      "examples": [
+        "Please come to the cut chair. We're ready to start.",
+        "Please come to the cut chair over here.",
+        "Please come to the cut chair on the left."
+      ],
+      "phonetic": "/pliːz kʌm tuː ðə kʌt tʃɛr/"
+    },
+    {
+      "usage": "シャンプー台へ案内する",
+      "voice": "nova",
+      "phrase": "Please come to the shampoo station.",
+      "emotion": "polite",
+      "meaning": "シャンプー台に来てください。",
+      "examples": [
+        "Please come to the shampoo station. We'll wash your hair now.",
+        "Please come to the shampoo station this way.",
+        "Please come to the shampoo station on the right."
+      ],
+      "phonetic": "/pliːz kʌm tuː ðə ʃæmˈpuː ˈsteɪʃən/"
+    },
+    {
+      "usage": "施術場所を説明する（席で）",
+      "voice": "nova",
+      "phrase": "We will color your hair at your seat.",
+      "emotion": "informative",
+      "meaning": "席でカラーをします。",
+      "examples": [
+        "We will color your hair at your seat first.",
+        "We will color your hair at your seat, then move to the shampoo station.",
+        "Don't worry, we will color your hair at your seat, so you can relax here."
+      ],
+      "phonetic": "/wiː wɪl ˈkʌlər jɔːr hɛr æt jɔːr siːt/"
+    },
+    {
+      "usage": "施術場所を説明する（シャンプー台で）",
+      "voice": "nova",
+      "phrase": "We will add toner at the shampoo station.",
+      "emotion": "professional",
+      "meaning": "シャンプー台でトナーをします。",
+      "examples": [
+        "We will add toner at the shampoo station after washing.",
+        "We will add toner at the shampoo station to adjust the color.",
+        "First we'll wash, then we will add toner at the shampoo station."
+      ],
+      "phonetic": "/wiː wɪl æd ˈtoʊnər æt ðə ʃæmˈpuː ˈsteɪʃən/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello.",
+      "voice": "fable",
+      "emotion": "friendly",
+      "speaker": "Customer",
+      "japanese": "こんにちは。"
+    },
+    {
+      "text": "Hello, do you have an appointment today?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "こんにちは、今日はご予約をされていますか？"
+    },
+    {
+      "text": "Yes.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "はい。"
+    },
+    {
+      "text": "Thank you, please come this way.",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "ありがとうございます。こちらに来てください。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Appointment",
+      "options": ["予約", "会計", "サービス", "メニュー"],
+      "correct_answer": 0,
+      "explanation": "Appointment は「予約」を意味します。Do you have an appointment?（予約はありますか？）のように使います。"
+    },
+    {
+      "question": "Today",
+      "options": ["今日", "明日", "昨日", "今週"],
+      "correct_answer": 0,
+      "explanation": "Today は「今日」を意味します。Do you have an appointment today?（今日は予約がありますか？）のように使います。"
+    },
+    {
+      "question": "This way",
+      "options": ["こちら", "あちら", "そこ", "ここ"],
+      "correct_answer": 0,
+      "explanation": "This way は「こちら」「この方向」を意味します。Please come this way.（こちらに来てください）のように使います。"
+    },
+    {
+      "question": "Cut chair",
+      "options": ["カットチェア", "シャンプー台", "待合室", "受付"],
+      "correct_answer": 0,
+      "explanation": "Cut chair は「カットチェア」を意味します。実際にカットやスタイリングを行う椅子のことです。"
+    },
+    {
+      "question": "Here",
+      "options": ["ここ・こちら", "そこ", "あそこ", "どこ"],
+      "correct_answer": 0,
+      "explanation": "Here は「ここ」「こちら」を意味します。場所を示す時に使います。"
+    },
+    {
+      "question": "There",
+      "options": ["あちら・そこ", "ここ", "どこ", "こちら"],
+      "correct_answer": 0,
+      "explanation": "There は「あちら」「そこ」を意味します。Here よりも離れた場所を指します。"
+    },
+    {
+      "question": "On the left",
+      "options": ["左の", "右の", "真ん中の", "前の"],
+      "correct_answer": 0,
+      "explanation": "On the left は「左の」「左側の」を意味します。方向を示す時に使います。"
+    },
+    {
+      "question": "On the right",
+      "options": ["右の", "左の", "真ん中の", "後ろの"],
+      "correct_answer": 0,
+      "explanation": "On the right は「右の」「右側の」を意味します。方向を示す時に使います。"
+    },
+    {
+      "question": "Shampoo station",
+      "options": ["シャンプー台", "カットチェア", "受付", "待合室"],
+      "correct_answer": 0,
+      "explanation": "Shampoo station は「シャンプー台」を意味します。髪を洗う場所のことです。"
+    },
+    {
+      "question": "Toner",
+      "options": ["トナー", "カラー", "パーマ", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Toner は「トナー」を意味します。カラーリング後に色を調整する薬剤のことです。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "お客様のご案内を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: Where are we going?\nStaff: ( ).",
+      "syntax_hint": "Hints: cut chair, here, there, on the left, on the right",
+      "sample_answer": "Customer: Where are we going?\nStaff: Please come this way. We're going to the cut chair on the left. Your stylist is waiting there."
+    },
+    {
+      "prompt": "カラープロセスを最初から最後まで説明してみよう。例）First, we will color at your seat. Next, …",
+      "syntax_hint": "First... / Next... / Then... / Finally... / at your seat / at the shampoo station",
+      "sample_answer": "First, we will color your hair at your seat. Next, we'll wait about 30 minutes for the color to process. Then, please come to the shampoo station where we'll wash out the color. Finally, we will add toner at the shampoo station to adjust the color tone."
+    },
+    {
+      "prompt": "様々な場所への案内表現を練習しましょう。",
+      "syntax_hint": "Please come to... / This way / Over here / On the left/right",
+      "sample_answer": "Please come this way to the cut chair. It's over here on the right. After your cut, we'll move to the shampoo station on the left for a treatment."
+    }
+  ],
+  "objectives": [
+    "お客様を適切な場所へ丁寧に案内できる",
+    "施術の場所と流れを明確に説明できる",
+    "方向を示す表現を使うことができる",
+    "カラーやトリートメントのプロセスを説明できる"
+  ],
+  "metadata": {
+    "icon": "👉",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

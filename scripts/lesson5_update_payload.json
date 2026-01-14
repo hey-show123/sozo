@@ -1,0 +1,199 @@
+{
+  "title": "Lesson 5: 名前のつづりをお願いできますか？",
+  "description": "お客様の名前を正確に聞き取り、スペルを確認する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "名前を尋ねる",
+      "voice": "nova",
+      "phrase": "May I have your name, please?",
+      "emotion": "polite",
+      "meaning": "お名前をお願いします。",
+      "examples": [
+        "May I have your name, please, for the reservation?",
+        "Thank you for calling. May I have your name, please?",
+        "May I have your name, please? I'll write it down for your appointment."
+      ],
+      "phonetic": "/meɪ aɪ hæv jɔːr neɪm, pliːz/"
+    },
+    {
+      "usage": "スペルを尋ねる",
+      "voice": "nova",
+      "phrase": "Can you please spell your name?",
+      "emotion": "polite",
+      "meaning": "お名前のつづりをお願いできますか？",
+      "examples": [
+        "Can you please spell your name for me?",
+        "Can you please spell your last name?",
+        "Thank you. Can you please spell your name so I get it right?"
+      ],
+      "phonetic": "/kæn juː pliːz spɛl jɔːr neɪm/"
+    },
+    {
+      "usage": "もう一度お願いする",
+      "voice": "nova",
+      "phrase": "Sorry, again please?",
+      "emotion": "polite",
+      "meaning": "すみません、もう一度お願いします。",
+      "examples": [
+        "Sorry, I didn't catch that. Again, please?",
+        "Sorry, the connection is bad. Again, please?",
+        "Sorry, again please? I want to make sure I have it correct."
+      ],
+      "phonetic": "/ˈsɒri, əˈɡɛn pliːz/"
+    },
+    {
+      "usage": "名前を確認する",
+      "voice": "nova",
+      "phrase": "Let me confirm. Your name is...",
+      "emotion": "polite",
+      "meaning": "確認させてください。お名前は...ですね。",
+      "examples": [
+        "Let me confirm. Your name is Smith, S-M-I-T-H?",
+        "Let me confirm. Your name is spelled P-E-T-E-R?",
+        "Let me confirm. Your name is Johnson, correct?"
+      ],
+      "phonetic": "/lɛt miː kənˈfɜːrm. jɔːr neɪm ɪz/"
+    },
+    {
+      "usage": "フォネティックアルファベットを使う",
+      "voice": "nova",
+      "phrase": "A as in Alpha",
+      "emotion": "clear",
+      "meaning": "アルファのA",
+      "examples": [
+        "That's A as in Alpha, N as in November, T as in Tango.",
+        "My name is Sam. S as in Sierra, A as in Alpha, M as in Mike.",
+        "It's spelled B as in Bravo, E as in Echo, N as in November."
+      ],
+      "phonetic": "/eɪ æz ɪn ˈælfə/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "May I have your name, please?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "お名前をお願いします。"
+    },
+    {
+      "text": "My name is Penelope.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "ペネロペです。"
+    },
+    {
+      "text": "Thank you. Can you please spell your name?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "ありがとうございます。お名前のつづりをお願いします。"
+    },
+    {
+      "text": "P-E-N-E-L-O-P-E.",
+      "voice": "fable",
+      "emotion": "clear",
+      "speaker": "Customer",
+      "japanese": "P-E-N-E-L-O-P-E"
+    },
+    {
+      "text": "Sorry, again please?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "すみません、もう一度お願いします。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Name",
+      "options": ["名前", "住所", "電話番号", "メールアドレス"],
+      "correct_answer": 0,
+      "explanation": "Name は「名前」を意味します。May I have your name?（お名前をお願いします）のように使います。"
+    },
+    {
+      "question": "Spell",
+      "options": ["つづり・スペル", "話す", "書く", "読む"],
+      "correct_answer": 0,
+      "explanation": "Spell は「つづり・スペル」を意味します。Can you spell your name?（名前のつづりをお願いできますか？）のように使います。"
+    },
+    {
+      "question": "First name",
+      "options": ["名（下の名前）", "姓（苗字）", "フルネーム", "ニックネーム"],
+      "correct_answer": 0,
+      "explanation": "First name は「名」「下の名前」を意味します。What's your first name?（お名前は何ですか？）のように使います。"
+    },
+    {
+      "question": "Last name",
+      "options": ["姓（苗字）", "名（下の名前）", "ミドルネーム", "ニックネーム"],
+      "correct_answer": 0,
+      "explanation": "Last name は「姓」「苗字」を意味します。Can you spell your last name?（苗字のつづりをお願いします）のように使います。"
+    },
+    {
+      "question": "Phone",
+      "options": ["電話", "住所", "メール", "名前"],
+      "correct_answer": 0,
+      "explanation": "Phone は「電話」を意味します。May I have your phone number?（電話番号をお願いします）のように使います。"
+    },
+    {
+      "question": "Again",
+      "options": ["もう一度", "ゆっくり", "大きく", "静かに"],
+      "correct_answer": 0,
+      "explanation": "Again は「もう一度」「再び」を意味します。Sorry, again please?（すみません、もう一度お願いします）のように使います。"
+    },
+    {
+      "question": "Confirm",
+      "options": ["確認する", "予約する", "キャンセルする", "変更する"],
+      "correct_answer": 0,
+      "explanation": "Confirm は「確認する」を意味します。Let me confirm your name.（お名前を確認させてください）のように使います。"
+    },
+    {
+      "question": "Correct",
+      "options": ["正しい", "間違っている", "多分", "わからない"],
+      "correct_answer": 0,
+      "explanation": "Correct は「正しい」を意味します。Is that correct?（それで正しいですか？）のように使います。"
+    },
+    {
+      "question": "Reservation",
+      "options": ["予約", "料金", "時間", "場所"],
+      "correct_answer": 0,
+      "explanation": "Reservation は「予約」を意味します。Appointment と同じ意味で使われます。"
+    },
+    {
+      "question": "Write down",
+      "options": ["書き留める", "読む", "話す", "聞く"],
+      "correct_answer": 0,
+      "explanation": "Write down は「書き留める」「メモする」を意味します。Let me write down your name.（お名前を書き留めます）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "名前の聞き方を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Hi ( )?\nCustomer: ( ).\nStaff: ( )?\nCustomer: L as in Lion, ( ).",
+      "syntax_hint": "Hints: hello, haircut, name, phone",
+      "sample_answer": "Staff: Hi, may I have your name, please?\nCustomer: My name is Lisa.\nStaff: Can you please spell your name?\nCustomer: L as in Lion, I-S-A."
+    },
+    {
+      "prompt": "お客様の名前を復唱して正しいか確認する練習をしましょう。",
+      "syntax_hint": "Let me confirm. Your name is... / Is that correct?",
+      "sample_answer": "Staff: Let me confirm. Your name is Smith, S-M-I-T-H. Is that correct?\nCustomer: Yes, that's correct."
+    },
+    {
+      "prompt": "フォネティックアルファベットを使って自分の名前を説明してみましょう。",
+      "syntax_hint": "A as in Alpha, B as in Bravo, C as in Charlie...",
+      "sample_answer": "My name is Ben. B as in Bravo, E as in Echo, N as in November."
+    }
+  ],
+  "objectives": [
+    "丁寧に名前を尋ねることができる（May I have your name?）",
+    "スペルを確認できる（Can you spell your name?）",
+    "聞き取れなかった時に丁寧に聞き返すことができる",
+    "フォネティックアルファベットを使って正確に伝えることができる"
+  ],
+  "metadata": {
+    "icon": "✍️",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

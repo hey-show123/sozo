@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 8: 次回のご予約はされますか？",
+  "description": "お会計後に次回の予約を提案し、適切な時期をおすすめする表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "次回予約を提案する",
+      "voice": "nova",
+      "phrase": "Would you like to book your next appointment?",
+      "emotion": "friendly",
+      "meaning": "次回のご予約はされますか？",
+      "examples": [
+        "Would you like to book your next appointment now?",
+        "Thank you for your payment. Would you like to book your next appointment?",
+        "Would you like to book your next appointment before you leave?"
+      ],
+      "phonetic": "/wʊd juː laɪk tuː bʊk jɔːr nɛkst əˈpɔɪntmənt/"
+    },
+    {
+      "usage": "予約時期を尋ねる",
+      "voice": "nova",
+      "phrase": "When would you like?",
+      "emotion": "polite",
+      "meaning": "いつがよろしいですか？",
+      "examples": [
+        "When would you like? We have availability next week.",
+        "When would you like to come in next?",
+        "When would you like your next appointment?"
+      ],
+      "phonetic": "/wɛn wʊd juː laɪk/"
+    },
+    {
+      "usage": "予約時間を尋ねる",
+      "voice": "nova",
+      "phrase": "What time would you like?",
+      "emotion": "helpful",
+      "meaning": "何時頃がよろしいですか？",
+      "examples": [
+        "What time would you like? Morning or afternoon?",
+        "What time would you like on that day?",
+        "What time would you like? We have 10 AM or 2 PM available."
+      ],
+      "phonetic": "/wʌt taɪm wʊd juː laɪk/"
+    },
+    {
+      "usage": "適切な時期を提案する",
+      "voice": "nova",
+      "phrase": "I recommend in three weeks.",
+      "emotion": "professional",
+      "meaning": "3週間後をおすすめします。",
+      "examples": [
+        "For a haircut, I recommend in three weeks.",
+        "I recommend in three weeks when your hair grows out.",
+        "To maintain your style, I recommend in three weeks."
+      ],
+      "phonetic": "/aɪ ˌrɛkəˈmɛnd ɪn θriː wiːks/"
+    },
+    {
+      "usage": "別の選択肢を提案する",
+      "voice": "nova",
+      "phrase": "What about two months from now?",
+      "emotion": "suggesting",
+      "meaning": "2ヶ月後はどうですか？",
+      "examples": [
+        "What about two months from now for your next color?",
+        "What about two months from now? That should work well.",
+        "Your roots will show by then. What about two months from now?"
+      ],
+      "phonetic": "/wʌt əˈbaʊt tuː mʌnθs frʌm naʊ/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Would you like to make your next appointment?",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "次回のご予約はされますか？"
+    },
+    {
+      "text": "Sure.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "はい。"
+    },
+    {
+      "text": "Thank you. When would you like?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "ありがとうございます。いつになさいますか？"
+    },
+    {
+      "text": "In two months please.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "2ヵ月後でお願いします。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Next",
+      "options": ["次の", "前の", "今の", "最後の"],
+      "correct_answer": 0,
+      "explanation": "Next は「次の」を意味します。Your next appointment（次回の予約）のように使います。"
+    },
+    {
+      "question": "Would you like to~",
+      "options": ["~しますか？", "~しました", "~します", "~できます"],
+      "correct_answer": 0,
+      "explanation": "Would you like to~ は「～しますか？」という丁寧な提案の表現です。Would you like to book?（予約されますか？）のように使います。"
+    },
+    {
+      "question": "Appointment",
+      "options": ["予約", "会計", "サービス", "メニュー"],
+      "correct_answer": 0,
+      "explanation": "Appointment は「予約」を意味します。美容院や病院などの予約のことです。"
+    },
+    {
+      "question": "Book",
+      "options": ["（予約を）とる", "読む", "書く", "見る"],
+      "correct_answer": 0,
+      "explanation": "Book は「（予約を）とる」を意味します。Book an appointment（予約をとる）のように使います。"
+    },
+    {
+      "question": "Date",
+      "options": ["日にち", "時間", "週", "月"],
+      "correct_answer": 0,
+      "explanation": "Date は「日にち」「日付」を意味します。What date?（何日ですか？）のように使います。"
+    },
+    {
+      "question": "Recommend",
+      "options": ["おすすめ", "予約", "確認", "支払い"],
+      "correct_answer": 0,
+      "explanation": "Recommend は「おすすめする」「推奨する」を意味します。I recommend...（...をおすすめします）のように使います。"
+    },
+    {
+      "question": "What about~",
+      "options": ["~はどうですか？", "~は何ですか？", "~はいつですか？", "~はどこですか？"],
+      "correct_answer": 0,
+      "explanation": "What about~ は「～はどうですか？」という提案の表現です。What about next week?（来週はどうですか？）のように使います。"
+    },
+    {
+      "question": "Grow",
+      "options": ["伸びる", "切る", "染める", "洗う"],
+      "correct_answer": 0,
+      "explanation": "Grow は「伸びる」「成長する」を意味します。Your hair will grow（髪が伸びるでしょう）のように使います。"
+    },
+    {
+      "question": "Color",
+      "options": ["カラー", "カット", "パーマ", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Color は「カラー」「髪を染めること」を意味します。Hair color（ヘアカラー）のように使います。"
+    },
+    {
+      "question": "Roots",
+      "options": ["根本", "毛先", "前髪", "後ろ髪"],
+      "correct_answer": 0,
+      "explanation": "Roots は「根本」を意味します。カラーリング後に新しく伸びた髪の根元の部分のことです。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "次回予約の流れを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Thank you, your total for ( ) is ( ).\nCustomer: Thank you.\nStaff: Would you like to ( )?\nCustomer: Sure.\nStaff: ( )?",
+      "syntax_hint": "Hints: recommend, what about~, grow, haircut, color, roots",
+      "sample_answer": "Staff: Thank you, your total for haircut and color is 15,000 yen.\nCustomer: Thank you.\nStaff: Would you like to book your next appointment?\nCustomer: Sure.\nStaff: I recommend in two months when your roots start to show. What time would you like?"
+    },
+    {
+      "prompt": "適切な予約時期をおすすめする練習をしましょう。",
+      "syntax_hint": "I recommend... / What about... / in 3 weeks / in 4 weeks / in 2 months / in 6 months",
+      "sample_answer": "For a regular haircut, I recommend in three to four weeks. For color, I recommend in two months when your roots will start to show."
+    },
+    {
+      "prompt": "予約の日時を確認する練習をしましょう。",
+      "syntax_hint": "When would you like? / What time would you like? / What date works for you?",
+      "sample_answer": "When would you like to come in next? We have availability next week or the week after. What time would you prefer, morning or afternoon?"
+    }
+  ],
+  "objectives": [
+    "次回予約を自然に提案できる",
+    "適切な予約時期をおすすめできる（I recommend...）",
+    "予約の日時を丁寧に尋ねることができる",
+    "メニューに応じた予約間隔を説明できる"
+  ],
+  "metadata": {
+    "icon": "📅",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

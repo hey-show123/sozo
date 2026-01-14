@@ -1,0 +1,206 @@
+{
+  "title": "Lesson 2: あなたの髪は元々ウェーブがかかっていますか？",
+  "description": "お客様の自然な髪質を確認し、施術履歴を聞き取る表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "自然な髪質を尋ねる",
+      "voice": "nova",
+      "phrase": "Is your hair naturally wavy?",
+      "emotion": "curious",
+      "meaning": "あなたの髪は元々ウェーブがかかっていますか？",
+      "examples": [
+        "Is your hair naturally wavy, or did you get a perm?",
+        "Is your hair naturally wavy? It looks beautiful.",
+        "Before we start, is your hair naturally wavy or straight?"
+      ],
+      "phonetic": "/ɪz jɔːr hɛr ˈnætʃərəli ˈweɪvi/"
+    },
+    {
+      "usage": "カールパーマの経験を尋ねる",
+      "voice": "nova",
+      "phrase": "Have you ever had a curly perm?",
+      "emotion": "professional",
+      "meaning": "パーマはかけたことがありますか？",
+      "examples": [
+        "Have you ever had a curly perm before?",
+        "Your hair has nice waves. Have you ever had a curly perm?",
+        "Have you ever had a curly perm, or is this natural?"
+      ],
+      "phonetic": "/hæv juː ˈɛvər hæd ə ˈkɜːrli pɜːrm/"
+    },
+    {
+      "usage": "ストレートパーマの経験を尋ねる",
+      "voice": "nova",
+      "phrase": "Have you ever had a straight perm?",
+      "emotion": "inquiring",
+      "meaning": "ストレートパーマはかけたことがありますか？",
+      "examples": [
+        "Have you ever had a straight perm to tame the waves?",
+        "Your hair is very straight. Have you ever had a straight perm?",
+        "Have you ever had a straight perm, or is it naturally this straight?"
+      ],
+      "phonetic": "/hæv juː ˈɛvər hæd ə streɪt pɜːrm/"
+    },
+    {
+      "usage": "自然にカールしていることを伝える",
+      "voice": "fable",
+      "phrase": "Yes, it is naturally curly.",
+      "emotion": "informative",
+      "meaning": "はい、元々カールしています。",
+      "examples": [
+        "Yes, it is naturally curly. I've never had a perm.",
+        "Yes, it is naturally curly, especially when it's humid.",
+        "Yes, it is naturally curly. That's why I want a straight perm."
+      ],
+      "phonetic": "/jɛs, ɪt ɪz ˈnætʃərəli ˈkɜːrli/"
+    },
+    {
+      "usage": "濡れた時の髪質を尋ねる",
+      "voice": "nova",
+      "phrase": "Is your hair straight when it's wet?",
+      "emotion": "detailed",
+      "meaning": "濡れた状態はストレートですか？",
+      "examples": [
+        "Is your hair straight when it's wet and wavy when it dries?",
+        "Let me ask, is your hair straight when it's wet?",
+        "Is your hair straight when it's wet, or does it curl up?"
+      ],
+      "phonetic": "/ɪz jɔːr hɛr streɪt wɛn ɪts wɛt/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Does your hair feel damaged?",
+      "voice": "nova",
+      "emotion": "caring",
+      "speaker": "Staff",
+      "japanese": "髪の毛はダメージしているように感じますか？"
+    },
+    {
+      "text": "A little bit.",
+      "voice": "fable",
+      "emotion": "honest",
+      "speaker": "Customer",
+      "japanese": "少しだけ感じます。"
+    },
+    {
+      "text": "I don't think your hair is damaged.",
+      "voice": "nova",
+      "emotion": "reassuring",
+      "speaker": "Staff",
+      "japanese": "私はダメージしているとは思いません。"
+    },
+    {
+      "text": "Thank you.",
+      "voice": "fable",
+      "emotion": "grateful",
+      "speaker": "Customer",
+      "japanese": "ありがとうございます。"
+    },
+    {
+      "text": "Is your hair naturally wavy?",
+      "voice": "nova",
+      "emotion": "curious",
+      "speaker": "Staff",
+      "japanese": "あなたの髪は元々ウェーブがかかっていますか？"
+    },
+    {
+      "text": "Yes, it is.",
+      "voice": "fable",
+      "emotion": "confirming",
+      "speaker": "Customer",
+      "japanese": "はい、かかっています。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Wavy",
+      "options": ["ウェーブがかかった", "まっすぐ", "カールした", "ダメージした"],
+      "correct_answer": 0,
+      "explanation": "Wavy は「ウェーブがかかった」を意味します。カールとストレートの中間の髪質です。"
+    },
+    {
+      "question": "Naturally",
+      "options": ["元々・自然に", "後で", "時々", "決して"],
+      "correct_answer": 0,
+      "explanation": "Naturally は「元々」「自然に」を意味します。生まれつきの状態を指します。"
+    },
+    {
+      "question": "Curly",
+      "options": ["カールした", "ストレート", "ウェーブ", "ダメージ"],
+      "correct_answer": 0,
+      "explanation": "Curly は「カールした」「巻き毛の」を意味します。強いカールがある髪質です。"
+    },
+    {
+      "question": "Straight",
+      "options": ["ストレート", "カール", "ウェーブ", "広がる"],
+      "correct_answer": 0,
+      "explanation": "Straight は「ストレート」「まっすぐ」を意味します。カールやウェーブがない髪質です。"
+    },
+    {
+      "question": "A little bit",
+      "options": ["ちょっと", "たくさん", "全く", "とても"],
+      "correct_answer": 0,
+      "explanation": "A little bit は「ちょっと」「少し」を意味します。程度が小さいことを表します。"
+    },
+    {
+      "question": "Wet",
+      "options": ["濡れている", "乾いている", "湿っている", "暖かい"],
+      "correct_answer": 0,
+      "explanation": "Wet は「濡れている」を意味します。水で濡れた状態のことです。"
+    },
+    {
+      "question": "Dry",
+      "options": ["乾いている", "濡れている", "湿っている", "冷たい"],
+      "correct_answer": 0,
+      "explanation": "Dry は「乾いている」を意味します。水分がない状態のことです。"
+    },
+    {
+      "question": "Chemicals",
+      "options": ["ケミカル・薬剤", "シャンプー", "トリートメント", "水"],
+      "correct_answer": 0,
+      "explanation": "Chemicals は「ケミカル」「薬剤」を意味します。カラーやパーマで使う薬のことです。"
+    },
+    {
+      "question": "Texture",
+      "options": ["質感", "色", "長さ", "スタイル"],
+      "correct_answer": 0,
+      "explanation": "Texture は「質感」「手触り」を意味します。髪の性質のことです。"
+    },
+    {
+      "question": "Humid",
+      "options": ["湿気のある", "乾燥した", "暖かい", "寒い"],
+      "correct_answer": 0,
+      "explanation": "Humid は「湿気のある」を意味します。湿度が高い状態のことです。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "自然な髪の質感を聞き出すことを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Is your hair ( )?\nCustomer: Yes/no, ( ).\nStaff: OK, have you ever ( )?\nCustomer: Yes/no.",
+      "syntax_hint": "Hints: naturally, wet, dry, chemicals, texture",
+      "sample_answer": "Staff: Is your hair naturally wavy?\nCustomer: Yes, it gets very wavy when it dries.\nStaff: OK, have you ever had a straight perm?\nCustomer: No, never."
+    },
+    {
+      "prompt": "違うシチュエーションの時の髪の質感を聞いてみる。例）濡れた状態はストレートですか？",
+      "syntax_hint": "When it's wet/dry / When it's humid / After shampooing",
+      "sample_answer": "Staff: Is your hair straight when it's wet?\nCustomer: Yes, but it gets wavy when it dries.\nStaff: I see. Does it get more wavy when it's humid?\nCustomer: Yes, very wavy!"
+    },
+    {
+      "prompt": "パーマ履歴を確認する練習をしましょう。",
+      "syntax_hint": "Have you ever had... / Is it naturally... / Did you get a perm?",
+      "sample_answer": "Staff: Your hair has beautiful waves. Is your hair naturally wavy?\nCustomer: Yes, it is.\nStaff: Have you ever had a curly perm to enhance the waves?\nCustomer: No, this is all natural."
+    }
+  ],
+  "objectives": [
+    "お客様の自然な髪質を確認できる",
+    "パーマの施術履歴を聞き取ることができる",
+    "濡れた時と乾いた時の髪質の違いを理解できる",
+    "髪質に関する様々な形容詞を使い分けることができる"
+  ],
+  "metadata": {
+    "icon": "🌊",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

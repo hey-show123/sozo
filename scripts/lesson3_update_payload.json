@@ -1,0 +1,191 @@
+{
+  "title": "Lesson 3: 本日はご予約をされていますか？",
+  "description": "お客様の予約状況を確認し、適切に対応する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "予約の有無を尋ねる",
+      "voice": "nova",
+      "phrase": "Do you have an appointment today?",
+      "emotion": "polite",
+      "meaning": "本日はご予約をされていますか？",
+      "examples": [
+        "Do you have an appointment today, or is this a walk-in?",
+        "Good afternoon. Do you have an appointment today?",
+        "Welcome! Do you have an appointment today?"
+      ],
+      "phonetic": "/duː juː hæv ən əˈpɔɪntmənt təˈdeɪ/"
+    },
+    {
+      "usage": "肯定の返答",
+      "voice": "nova",
+      "phrase": "Yes, I do.",
+      "emotion": "polite",
+      "meaning": "はい、あります。",
+      "examples": [
+        "Yes, I do. It's under the name Johnson.",
+        "Yes, I do. I have a 3 o'clock appointment.",
+        "Yes, I do. I made it last week."
+      ],
+      "phonetic": "/jɛs, aɪ duː/"
+    },
+    {
+      "usage": "否定の返答",
+      "voice": "nova",
+      "phrase": "No, I don't.",
+      "emotion": "polite",
+      "meaning": "いいえ、ありません。",
+      "examples": [
+        "No, I don't. Can I make one now?",
+        "No, I don't. Do you have any availability today?",
+        "No, I don't. Is it possible to get a haircut without an appointment?"
+      ],
+      "phonetic": "/noʊ, aɪ doʊnt/"
+    },
+    {
+      "usage": "予約を取りたいと尋ねる",
+      "voice": "nova",
+      "phrase": "Can I make one?",
+      "emotion": "polite",
+      "meaning": "予約していいですか？",
+      "examples": [
+        "Can I make one for tomorrow?",
+        "Can I make one for next week?",
+        "I don't have an appointment. Can I make one now?"
+      ],
+      "phonetic": "/kæn aɪ meɪk wʌn/"
+    },
+    {
+      "usage": "予約確認への返答",
+      "voice": "nova",
+      "phrase": "Sure, let me check our schedule.",
+      "emotion": "friendly",
+      "meaning": "はい、スケジュールを確認いたします。",
+      "examples": [
+        "Sure, let me check our schedule for today.",
+        "Sure, let me check our schedule. What time works best for you?",
+        "Sure, let me check our schedule and see what we have available."
+      ],
+      "phonetic": "/ʃʊr, lɛt miː tʃɛk aʊər ˈskɛdʒuːl/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello, this is Sunshine Salon. How may I help you?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "こんにちは、「サロン名」です、どうなさいますか？"
+    },
+    {
+      "text": "Hi, I would like a haircut.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "こんにちは、カットをお願いします。"
+    },
+    {
+      "text": "Sure, do you have an appointment today?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "はい、ありがとうございます。本日はご予約をされていますか？"
+    },
+    {
+      "text": "No, I do not.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "していません。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Appointment",
+      "options": ["予約", "料金", "時間", "場所"],
+      "correct_answer": 0,
+      "explanation": "Appointment は「予約」を意味します。Do you have an appointment?（ご予約はありますか？）のように使います。"
+    },
+    {
+      "question": "Today",
+      "options": ["今日", "昨日", "明日", "来週"],
+      "correct_answer": 0,
+      "explanation": "Today は「今日」を意味します。Do you have an appointment today?（本日はご予約がありますか？）のように使います。"
+    },
+    {
+      "question": "Tomorrow",
+      "options": ["明日", "今日", "昨日", "来週"],
+      "correct_answer": 0,
+      "explanation": "Tomorrow は「明日」を意味します。Can I make an appointment for tomorrow?（明日の予約を取れますか？）のように使います。"
+    },
+    {
+      "question": "Haircut",
+      "options": ["カット", "カラー", "パーマ", "シャンプー"],
+      "correct_answer": 0,
+      "explanation": "Haircut は「カット」「ヘアカット」を意味します。I would like a haircut.（カットをお願いします）のように使います。"
+    },
+    {
+      "question": "Do you have",
+      "options": ["～ありますか？", "～できますか？", "～したいですか？", "～すべきですか？"],
+      "correct_answer": 0,
+      "explanation": "Do you have は「～ありますか？」「～持っていますか？」という質問表現です。"
+    },
+    {
+      "question": "Walk-in",
+      "options": ["予約なし来店", "予約", "電話", "キャンセル"],
+      "correct_answer": 0,
+      "explanation": "Walk-in は「予約なし来店」を意味します。Is this a walk-in?（予約なしですか？）のように使います。"
+    },
+    {
+      "question": "Schedule",
+      "options": ["スケジュール・予定表", "料金表", "メニュー", "住所"],
+      "correct_answer": 0,
+      "explanation": "Schedule は「スケジュール・予定表」を意味します。Let me check our schedule.（スケジュールを確認いたします）のように使います。"
+    },
+    {
+      "question": "Availability",
+      "options": ["空き状況", "料金", "場所", "時間"],
+      "correct_answer": 0,
+      "explanation": "Availability は「空き状況」「利用可能性」を意味します。Do you have any availability?（空きはありますか？）のように使います。"
+    },
+    {
+      "question": "Make an appointment",
+      "options": ["予約を取る", "予約をキャンセルする", "予約を確認する", "予約を変更する"],
+      "correct_answer": 0,
+      "explanation": "Make an appointment は「予約を取る」を意味します。Can I make an appointment?（予約を取れますか？）のように使います。"
+    },
+    {
+      "question": "Under the name",
+      "options": ["～という名前で", "～の下に", "～について", "～のために"],
+      "correct_answer": 0,
+      "explanation": "Under the name は「～という名前で」という意味です。It's under the name Smith.（スミスという名前で予約しています）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "お客様の予約状況の確認を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Hi ( )?\nCustomer: ( ).\nStaff: ( ), thank you.",
+      "syntax_hint": "Hints: hello, haircut, hair color, hair perm, appointment, today",
+      "sample_answer": "Staff: Hi, do you have an appointment today?\nCustomer: No, I don't.\nStaff: Sure, let me check our schedule."
+    },
+    {
+      "prompt": "予約がある場合とない場合の両方を練習しましょう。",
+      "syntax_hint": "Yes, I do. / No, I don't. / Can I make one?",
+      "sample_answer": "Staff: Do you have an appointment today?\nCustomer: Yes, I do. It's under the name Johnson."
+    },
+    {
+      "prompt": "異なる時間の予約について尋ねる練習をしましょう。",
+      "syntax_hint": "Do you have an appointment (today / tomorrow / this week)?",
+      "sample_answer": "Do you have an appointment for tomorrow?"
+    }
+  ],
+  "objectives": [
+    "予約の有無を丁寧に確認できる（Do you have an appointment?）",
+    "Yes/Noで適切に返答できる",
+    "予約を取りたいと依頼できる（Can I make one?）"
+  ],
+  "metadata": {
+    "icon": "📅",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

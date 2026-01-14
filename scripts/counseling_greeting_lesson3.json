@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 3: なんとお呼びすればよいですか？",
+  "description": "お客様の呼び方を確認し、名前を正しく発音する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "呼び方を尋ねる",
+      "voice": "nova",
+      "phrase": "What should I call you?",
+      "emotion": "polite",
+      "meaning": "なんとお呼びすればよいですか？",
+      "examples": [
+        "What should I call you? Is there a name you prefer?",
+        "Your name is Alexandra. What should I call you?",
+        "What should I call you? Alex or Alexandra?"
+      ],
+      "phonetic": "/wʌt ʃʊd aɪ kɔːl juː/"
+    },
+    {
+      "usage": "ニックネームを伝える（～と呼んでください）",
+      "voice": "fable",
+      "phrase": "You can call me Alex.",
+      "emotion": "friendly",
+      "meaning": "アレックスと呼んでください。",
+      "examples": [
+        "You can call me Alex. That's what everyone calls me.",
+        "My name is Alexandra, but you can call me Alex.",
+        "You can call me Alex. It's easier."
+      ],
+      "phonetic": "/juː kæn kɔːl miː ˈælɛks/"
+    },
+    {
+      "usage": "普段の呼ばれ方を伝える",
+      "voice": "fable",
+      "phrase": "I go by Beth.",
+      "emotion": "casual",
+      "meaning": "ベスと呼ばれています。",
+      "examples": [
+        "My full name is Elizabeth, but I go by Beth.",
+        "I go by Beth. That's my nickname.",
+        "Everyone calls me Beth. I go by Beth."
+      ],
+      "phonetic": "/aɪ ɡoʊ baɪ bɛθ/"
+    },
+    {
+      "usage": "短縮形で呼ぶ提案",
+      "voice": "nova",
+      "phrase": "Can I call you Kathy?",
+      "emotion": "friendly",
+      "meaning": "キャシーとお呼びしてもよろしいですか？",
+      "examples": [
+        "Your name is Katherine. Can I call you Kathy?",
+        "Can I call you Kathy, or do you prefer Katherine?",
+        "Can I call you Kathy? Is that okay?"
+      ],
+      "phonetic": "/kæn aɪ kɔːl juː ˈkæθi/"
+    },
+    {
+      "usage": "名前を復唱して確認する",
+      "voice": "nova",
+      "phrase": "Nice to meet you, Sarah.",
+      "emotion": "warm",
+      "meaning": "サラさん、お会いできてうれしいです。",
+      "examples": [
+        "Nice to meet you, Sarah. I'm looking forward to working with you today.",
+        "Thank you, Sarah. Nice to meet you.",
+        "Nice to meet you, Sarah. Welcome to our salon."
+      ],
+      "phonetic": "/naɪs tuː miːt juː, ˈsɛrə/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello, I'm James.",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "こんにちは、僕はジェームスです。"
+    },
+    {
+      "text": "Hello.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "こんにちは。"
+    },
+    {
+      "text": "What should I call you?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "なんとお呼びすればいいですか？"
+    },
+    {
+      "text": "You can call me Harry.",
+      "voice": "fable",
+      "emotion": "friendly",
+      "speaker": "Customer",
+      "japanese": "ハリーと呼んでください。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Call",
+      "options": ["呼ぶ", "話す", "聞く", "見る"],
+      "correct_answer": 0,
+      "explanation": "Call は「呼ぶ」を意味します。What should I call you?（なんと呼べばいいですか？）のように使います。"
+    },
+    {
+      "question": "Nickname",
+      "options": ["ニックネーム・あだ名", "本名", "苗字", "ミドルネーム"],
+      "correct_answer": 0,
+      "explanation": "Nickname は「ニックネーム」「あだ名」を意味します。正式な名前の短縮形や愛称のことです。"
+    },
+    {
+      "question": "Prefer",
+      "options": ["好む・～の方が良い", "嫌う", "避ける", "忘れる"],
+      "correct_answer": 0,
+      "explanation": "Prefer は「好む」「～の方が良い」を意味します。Which do you prefer?（どちらがお好きですか？）のように使います。"
+    },
+    {
+      "question": "Full name",
+      "options": ["フルネーム・本名", "ニックネーム", "苗字", "名前"],
+      "correct_answer": 0,
+      "explanation": "Full name は「フルネーム」「本名」を意味します。短縮していない正式な名前のことです。"
+    },
+    {
+      "question": "Everyone",
+      "options": ["みんな", "誰も～ない", "誰か", "誰でも"],
+      "correct_answer": 0,
+      "explanation": "Everyone は「みんな」「誰もが」を意味します。Everyone calls me...（みんな私を～と呼びます）のように使います。"
+    },
+    {
+      "question": "Pronounce",
+      "options": ["発音する", "書く", "読む", "聞く"],
+      "correct_answer": 0,
+      "explanation": "Pronounce は「発音する」を意味します。How do you pronounce your name?（お名前はどう発音しますか？）のように使います。"
+    },
+    {
+      "question": "Shorten",
+      "options": ["短くする", "長くする", "変える", "消す"],
+      "correct_answer": 0,
+      "explanation": "Shorten は「短くする」を意味します。Names that are commonly shortened（よく短縮される名前）のように使います。"
+    },
+    {
+      "question": "Go by",
+      "options": ["～と呼ばれる", "行く", "通る", "去る"],
+      "correct_answer": 0,
+      "explanation": "Go by は「～と呼ばれる」「～で通っている」を意味します。I go by Beth.（ベスと呼ばれています）のように使います。"
+    },
+    {
+      "question": "Confirm",
+      "options": ["確認する", "質問する", "答える", "説明する"],
+      "correct_answer": 0,
+      "explanation": "Confirm は「確認する」を意味します。名前を復唱して正しいか確認することは大切です。"
+    },
+    {
+      "question": "Repeat",
+      "options": ["繰り返す・復唱する", "話す", "聞く", "書く"],
+      "correct_answer": 0,
+      "explanation": "Repeat は「繰り返す」「復唱する」を意味します。相手の名前を復唱して確認しましょう。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "自己紹介を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Hello.\nCustomer: Hello, ( )?\nStaff: ( ).",
+      "syntax_hint": "What should I call you? / You can call me... / I go by...",
+      "sample_answer": "Staff: Hello. I'm James. What should I call you?\nCustomer: Hello. My name is Katherine.\nStaff: Can I call you Kathy? Or do you prefer Katherine?\nCustomer: You can call me Kathy."
+    },
+    {
+      "prompt": "自己紹介をされたら、相手の名前も復唱する。例）Nice to meet you, Heather.",
+      "syntax_hint": "Nice to meet you, [name]. / Glad to meet you, [name]. / [Name], welcome!",
+      "sample_answer": "Customer: I'm Alexandra, but you can call me Alex.\nStaff: Nice to meet you, Alex. I'm your hairstylist today."
+    },
+    {
+      "prompt": "難しい名前の発音を確認する練習をしましょう。",
+      "syntax_hint": "How do you pronounce...? / What should I call you? / Can I call you...?",
+      "sample_answer": "Staff: Your name is Maximilian. What should I call you? Max?\nCustomer: Yes, you can call me Max.\nStaff: Perfect! Nice to meet you, Max."
+    }
+  ],
+  "objectives": [
+    "お客様の呼び方を丁寧に確認できる",
+    "名前を復唱して確認できる",
+    "よく使われる名前の短縮形を理解できる",
+    "相手が好む呼び方で接客できる"
+  ],
+  "metadata": {
+    "icon": "📛",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

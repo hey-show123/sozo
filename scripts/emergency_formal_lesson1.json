@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 1: もう一度言ってください",
+  "description": "相手の言葉が聞き取れなかった時に、丁寧に聞き返す表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "聞き返す（短い形）",
+      "voice": "nova",
+      "phrase": "Sorry?",
+      "emotion": "polite",
+      "meaning": "もう一度言ってください",
+      "examples": [
+        "Sorry? I didn't catch that.",
+        "Sorry? Could you say that again?",
+        "Sorry? I didn't hear you clearly."
+      ],
+      "phonetic": "/ˈsɒri/"
+    },
+    {
+      "usage": "聞き返す（丁寧な形）",
+      "voice": "nova",
+      "phrase": "Excuse me?",
+      "emotion": "polite",
+      "meaning": "もう一度言ってください",
+      "examples": [
+        "Excuse me? Could you repeat that?",
+        "Excuse me? I didn't understand.",
+        "Excuse me? What did you say?"
+      ],
+      "phonetic": "/ɪkˈskjuːz miː/"
+    },
+    {
+      "usage": "より丁寧に聞き返す",
+      "voice": "nova",
+      "phrase": "I'm sorry?",
+      "emotion": "apologetic",
+      "meaning": "すみません、もう一度お願いします",
+      "examples": [
+        "I'm sorry? I didn't hear that.",
+        "I'm sorry? Could you say that one more time?",
+        "I'm sorry? I'm not sure I understood."
+      ],
+      "phonetic": "/aɪm ˈsɒri/"
+    },
+    {
+      "usage": "意味を確認する",
+      "voice": "nova",
+      "phrase": "What do you mean?",
+      "emotion": "curious",
+      "meaning": "どういう意味ですか？",
+      "examples": [
+        "What do you mean by that?",
+        "What do you mean exactly?",
+        "I'm not sure what you mean. Could you explain?"
+      ],
+      "phonetic": "/wʌt duː juː miːn/"
+    },
+    {
+      "usage": "理解できなかったことを伝える",
+      "voice": "nova",
+      "phrase": "Sorry, I didn't understand.",
+      "emotion": "apologetic",
+      "meaning": "すみません、わかりませんでした。",
+      "examples": [
+        "Sorry, I didn't understand. Could you repeat that?",
+        "Sorry, I didn't understand what you said.",
+        "Sorry, I didn't understand. Could you explain again?"
+      ],
+      "phonetic": "/ˈsɒri, aɪ ˈdɪdnt ˌʌndərˈstænd/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "I would like to get a balayage.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "バリアージュをしたいです。"
+    },
+    {
+      "text": "Sorry?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "もう一度言ってください"
+    },
+    {
+      "text": "I would like to get a balayage.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "バリアージュをしたいです。"
+    },
+    {
+      "text": "Excuse me?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "もう一度言ってください"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Sorry",
+      "options": ["すみません", "ありがとう", "さようなら", "こんにちは"],
+      "correct_answer": 0,
+      "explanation": "Sorry は「すみません」を意味します。聞き返す時に使うと丁寧な表現になります。"
+    },
+    {
+      "question": "Excuse me",
+      "options": ["すみません・失礼します", "ありがとう", "どういたしまして", "お願いします"],
+      "correct_answer": 0,
+      "explanation": "Excuse me は「すみません」「失礼します」を意味します。Sorry よりもフォーマルな印象です。"
+    },
+    {
+      "question": "Mean",
+      "options": ["意味する", "話す", "聞く", "見る"],
+      "correct_answer": 0,
+      "explanation": "Mean は「意味する」を意味します。What do you mean?（どういう意味ですか？）のように使います。"
+    },
+    {
+      "question": "Understand",
+      "options": ["理解する", "話す", "聞く", "書く"],
+      "correct_answer": 0,
+      "explanation": "Understand は「理解する」「わかる」を意味します。I didn't understand.（わかりませんでした）のように使います。"
+    },
+    {
+      "question": "Repeat",
+      "options": ["繰り返す", "止める", "始める", "終わる"],
+      "correct_answer": 0,
+      "explanation": "Repeat は「繰り返す」を意味します。Could you repeat that?（もう一度言っていただけますか？）のように使います。"
+    },
+    {
+      "question": "Catch",
+      "options": ["聞き取る・捕まえる", "投げる", "見る", "話す"],
+      "correct_answer": 0,
+      "explanation": "Catch は「捕まえる」という意味ですが、I didn't catch that（聞き取れませんでした）のように使います。"
+    },
+    {
+      "question": "Clearly",
+      "options": ["はっきりと", "ゆっくりと", "速く", "静かに"],
+      "correct_answer": 0,
+      "explanation": "Clearly は「はっきりと」「明確に」を意味します。I didn't hear you clearly.（はっきり聞こえませんでした）のように使います。"
+    },
+    {
+      "question": "Elaborate",
+      "options": ["詳しく説明する", "簡単に言う", "黙る", "同意する"],
+      "correct_answer": 0,
+      "explanation": "Elaborate は「詳しく説明する」「詳細に述べる」を意味します。Could you elaborate?（詳しく説明していただけますか？）のように使います。"
+    },
+    {
+      "question": "Rude",
+      "options": ["失礼な", "丁寧な", "親切な", "優しい"],
+      "correct_answer": 0,
+      "explanation": "Rude は「失礼な」「無礼な」を意味します。What? や Huh? は rude な表現なので避けましょう。"
+    },
+    {
+      "question": "Politely",
+      "options": ["丁寧に", "失礼に", "速く", "ゆっくり"],
+      "correct_answer": 0,
+      "explanation": "Politely は「丁寧に」「礼儀正しく」を意味します。Ask politely（丁寧に尋ねる）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "聞き返す練習を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: I would like to get ( ).\nStaff: ( )?\nCustomer: I would like to get ( ).\nStaff: ( )?",
+      "syntax_hint": "Hints: mean, understand",
+      "sample_answer": "Customer: I would like to get a balayage.\nStaff: Sorry?\nCustomer: I would like to get a balayage.\nStaff: I'm sorry, I didn't understand. What do you mean by balayage?"
+    },
+    {
+      "prompt": "不慣れなトピックについて話してみよう。聞き返す練習をしよう。",
+      "syntax_hint": "Sorry? / Excuse me? / What do you mean? / I didn't understand",
+      "sample_answer": "Customer: I want an ombré with highlights.\nStaff: Excuse me? Could you explain what kind of ombré you'd like?\nCustomer: A dark to light gradient.\nStaff: I see, thank you for clarifying."
+    },
+    {
+      "prompt": "丁寧な聞き返し方のバリエーションを練習しましょう。",
+      "syntax_hint": "Sorry? / I'm sorry? / Excuse me? / Could you repeat that? / I didn't catch that",
+      "sample_answer": "Staff: I'm sorry? I didn't catch that. Could you repeat it one more time, please?"
+    }
+  ],
+  "objectives": [
+    "Sorry? / Excuse me? を使って丁寧に聞き返すことができる",
+    "What? / Huh? などの失礼な表現を避けることができる",
+    "理解できなかった時に適切に説明を求めることができる",
+    "様々な聞き返し方のバリエーションを使い分けることができる"
+  ],
+  "metadata": {
+    "icon": "🙏",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

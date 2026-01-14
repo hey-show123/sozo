@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 4: 伝言を残しますか？",
+  "description": "電話で担当者が不在の時に、丁寧に伝言を受ける表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "伝言を提案する",
+      "voice": "nova",
+      "phrase": "Would you like to leave a message?",
+      "emotion": "polite",
+      "meaning": "伝言を残しますか？",
+      "examples": [
+        "Would you like to leave a message? I'll make sure he gets it.",
+        "He's not available right now. Would you like to leave a message?",
+        "Would you like to leave a message? I can have him call you back."
+      ],
+      "phonetic": "/wʊd juː laɪk tuː liːv ə ˈmɛsɪdʒ/"
+    },
+    {
+      "usage": "対応できないことを伝える",
+      "voice": "nova",
+      "phrase": "He is not available right now.",
+      "emotion": "professional",
+      "meaning": "彼は今対応が難しいです。",
+      "examples": [
+        "I'm sorry, he is not available right now.",
+        "He is not available right now. Can I help you instead?",
+        "He is not available right now, but he'll be back in an hour."
+      ],
+      "phonetic": "/hiː ɪz nɒt əˈveɪləbəl raɪt naʊ/"
+    },
+    {
+      "usage": "接客中であることを伝える",
+      "voice": "nova",
+      "phrase": "He is with a customer right now.",
+      "emotion": "apologetic",
+      "meaning": "彼は今お客様と対応中です。",
+      "examples": [
+        "He is with a customer right now. Would you like to wait?",
+        "I'm sorry, he is with a customer right now.",
+        "He is with a customer right now, but should be finished soon."
+      ],
+      "phonetic": "/hiː ɪz wɪð ə ˈkʌstəmər raɪt naʊ/"
+    },
+    {
+      "usage": "休みであることを伝える",
+      "voice": "nova",
+      "phrase": "He is off today.",
+      "emotion": "informative",
+      "meaning": "彼は今日お休みです。",
+      "examples": [
+        "I'm sorry, he is off today. Would you like to leave a message?",
+        "He is off today, but he'll be back tomorrow.",
+        "He is off today. Can someone else help you?"
+      ],
+      "phonetic": "/hiː ɪz ɒf təˈdeɪ/"
+    },
+    {
+      "usage": "自分が担当者であることを伝える",
+      "voice": "nova",
+      "phrase": "This is John speaking.",
+      "emotion": "professional",
+      "meaning": "私がジョンです。",
+      "examples": [
+        "This is John speaking. How can I help you?",
+        "This is John speaking. May I ask who's calling?",
+        "Hello, this is John speaking."
+      ],
+      "phonetic": "/ðɪs ɪz dʒɒn ˈspiːkɪŋ/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "May I speak to John?",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "ジョンにかわってください。"
+    },
+    {
+      "text": "Sorry, he's off today.",
+      "voice": "nova",
+      "emotion": "apologetic",
+      "speaker": "Staff",
+      "japanese": "すいません、今日お休みです。"
+    },
+    {
+      "text": "I see.",
+      "voice": "fable",
+      "emotion": "understanding",
+      "speaker": "Customer",
+      "japanese": "そうなんですね。"
+    },
+    {
+      "text": "Would you like to leave a message?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "伝言を残しますか？"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Speak",
+      "options": ["話す", "聞く", "見る", "書く"],
+      "correct_answer": 0,
+      "explanation": "Speak は「話す」を意味します。May I speak to...?（...とお話しできますか？）のように使います。"
+    },
+    {
+      "question": "Message",
+      "options": ["メッセージ・伝言", "電話", "手紙", "メール"],
+      "correct_answer": 0,
+      "explanation": "Message は「メッセージ」「伝言」を意味します。Leave a message（伝言を残す）のように使います。"
+    },
+    {
+      "question": "Off",
+      "options": ["休み", "仕事中", "忙しい", "出張中"],
+      "correct_answer": 0,
+      "explanation": "Off は「休み」「不在」を意味します。He is off today.（彼は今日お休みです）のように使います。"
+    },
+    {
+      "question": "Leave",
+      "options": ["残す・去る", "取る", "持つ", "置く"],
+      "correct_answer": 0,
+      "explanation": "Leave は「残す」「去る」を意味します。Leave a message（伝言を残す）のように使います。"
+    },
+    {
+      "question": "Available",
+      "options": ["対応可能", "不在", "忙しい", "休み"],
+      "correct_answer": 0,
+      "explanation": "Available は「利用可能」「対応可能」を意味します。Not available（対応できない）のように使います。"
+    },
+    {
+      "question": "Customer",
+      "options": ["お客様", "スタッフ", "マネージャー", "同僚"],
+      "correct_answer": 0,
+      "explanation": "Customer は「お客様」「顧客」を意味します。With a customer（お客様と一緒に）のように使います。"
+    },
+    {
+      "question": "Meeting",
+      "options": ["ミーティング・会議", "休憩", "電話", "接客"],
+      "correct_answer": 0,
+      "explanation": "Meeting は「ミーティング」「会議」を意味します。In a meeting（会議中）のように使います。"
+    },
+    {
+      "question": "Already",
+      "options": ["すでに", "まだ", "これから", "今"],
+      "correct_answer": 0,
+      "explanation": "Already は「すでに」「もう」を意味します。He already left.（彼はすでに退社しました）のように使います。"
+    },
+    {
+      "question": "Speaking",
+      "options": ["話しています", "聞いています", "見ています", "書いています"],
+      "correct_answer": 0,
+      "explanation": "Speaking は「話している」を意味します。This is John speaking.（私がジョンです）のように使います。"
+    },
+    {
+      "question": "Confirm",
+      "options": ["確認する", "質問する", "答える", "伝える"],
+      "correct_answer": 0,
+      "explanation": "Confirm は「確認する」を意味します。伝言内容を復唱して確認する時に使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "電話の対応を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: ( )?\nStaff: ( ).\nCustomer: I see.\nStaff: Would you ( )?",
+      "syntax_hint": "Hints: available, customer, meeting, off, already, speaking",
+      "sample_answer": "Customer: May I speak to Sarah?\nStaff: I'm sorry, she is with a customer right now.\nCustomer: I see.\nStaff: Would you like to leave a message? I'll make sure she gets it."
+    },
+    {
+      "prompt": "伝言の内容を復唱する練習をしましょう。例）あなたが電話をかけたと伝えておきます。",
+      "syntax_hint": "I will tell... / I'll make sure... / I'll have him call you back",
+      "sample_answer": "Customer: Please tell him that Sarah called about tomorrow's appointment.\nStaff: Of course. I will tell John that Sarah called about tomorrow's appointment. Is there a number where he can reach you?"
+    },
+    {
+      "prompt": "様々な不在理由を伝える練習をしましょう。",
+      "syntax_hint": "He is off / He is not available / He is with a customer / He is in a meeting / He already left",
+      "sample_answer": "I'm sorry, he is in a meeting right now. He should be finished in about 30 minutes. Would you like to leave a message, or can I have him call you back?"
+    }
+  ],
+  "objectives": [
+    "担当者が不在の理由を丁寧に説明できる",
+    "伝言を受けることを提案できる",
+    "伝言内容を正確に復唱して確認できる",
+    "電話でのフォーマルなコミュニケーションができる"
+  ],
+  "metadata": {
+    "icon": "📝",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

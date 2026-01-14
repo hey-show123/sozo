@@ -1,0 +1,178 @@
+{
+  "title": "Lesson 5: どういう意味ですか？",
+  "description": "お客様の言葉の意味が理解できない時に、丁寧に確認する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "意味を尋ねる",
+      "voice": "nova",
+      "phrase": "What do you mean?",
+      "emotion": "curious",
+      "meaning": "どういう意味ですか？",
+      "examples": [
+        "I'm sorry, what do you mean?",
+        "What do you mean by that?",
+        "What do you mean exactly? Could you explain more?"
+      ],
+      "phonetic": "/wʌt duː juː miːn/"
+    },
+    {
+      "usage": "丁寧に聞き返す（短い形）",
+      "voice": "nova",
+      "phrase": "I'm sorry?",
+      "emotion": "polite",
+      "meaning": "もう一度お願いします。",
+      "examples": [
+        "I'm sorry? I didn't hear that.",
+        "I'm sorry? Could you say that again?",
+        "I'm sorry? I'm not sure I understood."
+      ],
+      "phonetic": "/aɪm ˈsɒri/"
+    },
+    {
+      "usage": "丁寧に聞き返す",
+      "voice": "nova",
+      "phrase": "Excuse me?",
+      "emotion": "polite",
+      "meaning": "もう一度お願いします。",
+      "examples": [
+        "Excuse me? Could you repeat that?",
+        "Excuse me? I didn't catch what you said.",
+        "Excuse me? What did you say?"
+      ],
+      "phonetic": "/ɪkˈskjuːz miː/"
+    },
+    {
+      "usage": "理解できなかったことを伝える",
+      "voice": "nova",
+      "phrase": "I did not understand.",
+      "emotion": "apologetic",
+      "meaning": "理解できませんでした。",
+      "examples": [
+        "I'm sorry, I did not understand.",
+        "I did not understand. Could you explain that again?",
+        "I did not understand what you meant. Could you clarify?"
+      ],
+      "phonetic": "/aɪ dɪd nɒt ˌʌndərˈstænd/"
+    },
+    {
+      "usage": "もう一度聞く（別の表現）",
+      "voice": "nova",
+      "phrase": "Pardon?",
+      "emotion": "polite",
+      "meaning": "もう一度お願いします。",
+      "examples": [
+        "Pardon? I didn't hear you.",
+        "Pardon? Could you say that one more time?",
+        "I beg your pardon? What was that?"
+      ],
+      "phonetic": "/ˈpɑːrdən/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "I would like to get a gloss.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "グロスをしたいです。"
+    },
+    {
+      "text": "I'm sorry, what do you mean?",
+      "voice": "nova",
+      "emotion": "curious",
+      "speaker": "Staff",
+      "japanese": "すいません、どういう意味ですか？"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Sorry",
+      "options": ["すみません", "ありがとう", "さようなら", "こんにちは"],
+      "correct_answer": 0,
+      "explanation": "Sorry は「すみません」を意味します。聞き返す時や謝罪する時に使います。"
+    },
+    {
+      "question": "Excuse me",
+      "options": ["もう一度お願いします・すみません", "ありがとう", "どういたしまして", "お願いします"],
+      "correct_answer": 0,
+      "explanation": "Excuse me は「もう一度お願いします」「すみません」を意味します。丁寧に聞き返す時に使います。"
+    },
+    {
+      "question": "Mean",
+      "options": ["意味する", "話す", "聞く", "見る"],
+      "correct_answer": 0,
+      "explanation": "Mean は「意味する」を意味します。What do you mean?（どういう意味ですか？）のように使います。"
+    },
+    {
+      "question": "Pardon",
+      "options": ["もう一度お願いします", "ありがとう", "さようなら", "こんにちは"],
+      "correct_answer": 0,
+      "explanation": "Pardon は「もう一度お願いします」を意味します。Excuse me と同じように丁寧に聞き返す時に使います。"
+    },
+    {
+      "question": "Can't hear",
+      "options": ["聞こえない", "見えない", "話せない", "書けない"],
+      "correct_answer": 0,
+      "explanation": "Can't hear は「聞こえない」を意味します。I can't hear you.（聞こえません）のように使います。"
+    },
+    {
+      "question": "Again",
+      "options": ["もう一度", "初めて", "最後に", "いつも"],
+      "correct_answer": 0,
+      "explanation": "Again は「もう一度」「再び」を意味します。Say that again（もう一度言ってください）のように使います。"
+    },
+    {
+      "question": "Understand",
+      "options": ["理解する", "話す", "聞く", "書く"],
+      "correct_answer": 0,
+      "explanation": "Understand は「理解する」「わかる」を意味します。I did not understand.（理解できませんでした）のように使います。"
+    },
+    {
+      "question": "Clarify",
+      "options": ["明確にする・説明する", "質問する", "答える", "聞く"],
+      "correct_answer": 0,
+      "explanation": "Clarify は「明確にする」「はっきりさせる」を意味します。Could you clarify?（明確にしていただけますか？）のように使います。"
+    },
+    {
+      "question": "Catch",
+      "options": ["聞き取る・捕まえる", "投げる", "見る", "話す"],
+      "correct_answer": 0,
+      "explanation": "Catch は「捕まえる」ですが、I didn't catch that（聞き取れませんでした）のようにも使います。"
+    },
+    {
+      "question": "Repeat",
+      "options": ["繰り返す", "止める", "始める", "終わる"],
+      "correct_answer": 0,
+      "explanation": "Repeat は「繰り返す」を意味します。Could you repeat that?（もう一度言っていただけますか？）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "聞き返すことを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: ( ).\nStaff: I'm sorry, ( )?\nCustomer: ( ).\nStaff: Thank you.",
+      "syntax_hint": "Hints: pardon?, sorry?, excuse me?, can't hear, again",
+      "sample_answer": "Customer: I would like to get a gloss treatment.\nStaff: I'm sorry, what do you mean by gloss?\nCustomer: It's a hair treatment that adds shine.\nStaff: Thank you for explaining. I understand now."
+    },
+    {
+      "prompt": "不慣れなトピックについて話してみよう。聞き返す練習をしよう。例）故郷について",
+      "syntax_hint": "What do you mean? / I'm sorry? / Excuse me? / I did not understand",
+      "sample_answer": "Customer: I'm from a small town with beautiful rice terraces.\nStaff: I'm sorry, what do you mean by rice terraces?\nCustomer: They're stepped fields built on mountain slopes for growing rice.\nStaff: I see! That sounds beautiful. Thank you for explaining."
+    },
+    {
+      "prompt": "理解を深めるための質問バリエーションを練習しましょう。",
+      "syntax_hint": "What do you mean? / Could you explain? / I didn't understand / Could you clarify?",
+      "sample_answer": "I'm sorry, I did not understand what you meant. Could you explain that in a different way? What do you mean by that term?"
+    }
+  ],
+  "objectives": [
+    "意味がわからない時に丁寧に確認できる",
+    "様々な聞き返し方を使い分けることができる",
+    "理解できなかったことを適切に伝えることができる",
+    "お客様に説明を求めることができる"
+  ],
+  "metadata": {
+    "icon": "❓",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "title": "Lesson 2: 私はジョンのアシスタントです。",
+  "description": "自分の役職や他のスタッフとの関係を説明する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "誰かのアシスタントであることを伝える",
+      "voice": "nova",
+      "phrase": "I'm John's assistant.",
+      "emotion": "professional",
+      "meaning": "私はジョンのアシスタントです。",
+      "examples": [
+        "Hi, I'm John's assistant. I'll be helping you today.",
+        "Nice to meet you. I'm John's assistant, Sarah.",
+        "I'm John's assistant. He'll be with you in just a moment."
+      ],
+      "phonetic": "/aɪm dʒɒnz əˈsɪstənt/"
+    },
+    {
+      "usage": "自分がアシスタントであることを伝える",
+      "voice": "nova",
+      "phrase": "I'm an assistant.",
+      "emotion": "polite",
+      "meaning": "私はアシスタントです。",
+      "examples": [
+        "Hello, I'm an assistant here at the salon.",
+        "I'm an assistant. I'll be washing your hair today.",
+        "Nice to meet you. I'm an assistant for the stylists."
+      ],
+      "phonetic": "/aɪm ən əˈsɪstənt/"
+    },
+    {
+      "usage": "自分がスタイリストであることを伝える",
+      "voice": "nova",
+      "phrase": "I'm a hair stylist.",
+      "emotion": "professional",
+      "meaning": "私はスタイリストです。",
+      "examples": [
+        "Hello, I'm a hair stylist here. My name is Sarah.",
+        "I'm a hair stylist with 10 years of experience.",
+        "Nice to meet you. I'm a hair stylist specializing in color."
+      ],
+      "phonetic": "/aɪm ə hɛr ˈstaɪlɪst/"
+    },
+    {
+      "usage": "他のスタッフについて説明する（女性）",
+      "voice": "nova",
+      "phrase": "She is the owner.",
+      "emotion": "informative",
+      "meaning": "彼女はオーナーです。",
+      "examples": [
+        "She is the owner of this salon.",
+        "That's Sarah. She is the owner and has been here for 15 years.",
+        "She is the owner. She'll be happy to help you if you have any questions."
+      ],
+      "phonetic": "/ʃiː ɪz ði ˈoʊnər/"
+    },
+    {
+      "usage": "スタッフの人数を伝える",
+      "voice": "nova",
+      "phrase": "There are three hair stylists.",
+      "emotion": "friendly",
+      "meaning": "スタイリストは3人います。",
+      "examples": [
+        "There are three hair stylists working today.",
+        "We have a great team. There are three hair stylists and two assistants.",
+        "There are three hair stylists here, and I'm one of them."
+      ],
+      "phonetic": "/ðɛr ɑːr θriː hɛr ˈstaɪlɪsts/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello.",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "こんにちは。"
+    },
+    {
+      "text": "Hello, I'm Sara.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "こんにちは、サラです。"
+    },
+    {
+      "text": "Hi, I'm John's assistant.",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "こんにちは、私はジョンのアシスタントです。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Assistant",
+      "options": ["アシスタント", "スタイリスト", "オーナー", "マネージャー"],
+      "correct_answer": 0,
+      "explanation": "Assistant は「アシスタント」「助手」を意味します。スタイリストをサポートする役割です。"
+    },
+    {
+      "question": "Hair stylist",
+      "options": ["スタイリスト", "アシスタント", "受付", "オーナー"],
+      "correct_answer": 0,
+      "explanation": "Hair stylist は「ヘアスタイリスト」「美容師」を意味します。髪をカット・スタイリングする専門家です。"
+    },
+    {
+      "question": "Receptionist",
+      "options": ["受付", "スタイリスト", "アシスタント", "オーナー"],
+      "correct_answer": 0,
+      "explanation": "Receptionist は「受付」を意味します。お客様を迎え、予約管理などを行う役割です。"
+    },
+    {
+      "question": "Owner",
+      "options": ["オーナー", "アシスタント", "スタイリスト", "受付"],
+      "correct_answer": 0,
+      "explanation": "Owner は「オーナー」「所有者」を意味します。サロンの経営者のことです。"
+    },
+    {
+      "question": "She",
+      "options": ["彼女", "彼", "彼ら", "私"],
+      "correct_answer": 0,
+      "explanation": "She は「彼女」を意味します。女性のスタッフについて話す時に使います。"
+    },
+    {
+      "question": "He",
+      "options": ["彼", "彼女", "彼ら", "私"],
+      "correct_answer": 0,
+      "explanation": "He は「彼」を意味します。男性のスタッフについて話す時に使います。"
+    },
+    {
+      "question": "There are",
+      "options": ["~がいます・あります", "~でした", "~でしょう", "~かもしれない"],
+      "correct_answer": 0,
+      "explanation": "There are は「~がいます」「~があります」を意味します。複数のものや人について話す時に使います。"
+    },
+    {
+      "question": "Team",
+      "options": ["チーム", "グループ", "家族", "友達"],
+      "correct_answer": 0,
+      "explanation": "Team は「チーム」を意味します。一緒に働くスタッフのグループのことです。"
+    },
+    {
+      "question": "Coworker",
+      "options": ["同僚", "上司", "部下", "お客様"],
+      "correct_answer": 0,
+      "explanation": "Coworker は「同僚」を意味します。一緒に働く人のことです。"
+    },
+    {
+      "question": "Specialize",
+      "options": ["専門とする", "勉強する", "練習する", "教える"],
+      "correct_answer": 0,
+      "explanation": "Specialize は「専門とする」を意味します。I specialize in color.（カラーを専門としています）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "自分の立場の自己紹介を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Hello.\nCustomer: Hello, ( ).\nStaff: ( ).",
+      "syntax_hint": "Hints: assistant, owner, hair stylist, receptionist",
+      "sample_answer": "Staff: Hello.\nCustomer: Hello, I'm Sarah.\nStaff: Nice to meet you, Sarah. I'm John's assistant. I'll be washing your hair today."
+    },
+    {
+      "prompt": "スタッフの説明をしてみよう。例）オーナーは一人います。",
+      "syntax_hint": "There is one... / There are two/three... / She is... / He is...",
+      "sample_answer": "There is one owner. She is the owner and main stylist. There are three hair stylists and two assistants. He is the other assistant."
+    },
+    {
+      "prompt": "チームメンバーの紹介を練習しましょう。",
+      "syntax_hint": "This is... She/He is... / We have... / There are...",
+      "sample_answer": "Let me introduce our team. There are three hair stylists here. She is the owner, Sarah. He is John, another stylist. And I'm an assistant."
+    }
+  ],
+  "objectives": [
+    "自分の役職を明確に説明できる",
+    "他のスタッフとの関係を説明できる",
+    "サロンのスタッフ構成を紹介できる",
+    "She/He を使って他の人について話すことができる"
+  ],
+  "metadata": {
+    "icon": "👥",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "title": "Lesson 6: ご指名のスタイリストはいますか？",
+  "description": "スタイリストの希望を尋ね、料金や空き状況を説明する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "スタイリストの希望を尋ねる",
+      "voice": "nova",
+      "phrase": "Is there a hairstylist you would like to see?",
+      "emotion": "polite",
+      "meaning": "ご指名のスタイリストはいますか？",
+      "examples": [
+        "Is there a hairstylist you would like to see, or would you like me to recommend someone?",
+        "Is there a hairstylist you would like to see? We have three stylists available today.",
+        "Thank you for booking. Is there a hairstylist you would like to see?"
+      ],
+      "phonetic": "/ɪz ðɛr ə ˈhɛrˌstaɪlɪst juː wʊd laɪk tuː siː/"
+    },
+    {
+      "usage": "スタイリストの希望を伝える",
+      "voice": "nova",
+      "phrase": "I'd like to see the owner.",
+      "emotion": "polite",
+      "meaning": "オーナーでお願いします。",
+      "examples": [
+        "I'd like to see the owner, please.",
+        "I'd like to see the owner if they're available.",
+        "I'd like to see the owner. What times do they have open?"
+      ],
+      "phonetic": "/aɪd laɪk tuː siː ðiː ˈoʊnər/"
+    },
+    {
+      "usage": "スタッフの人数を説明する",
+      "voice": "nova",
+      "phrase": "We have three stylists.",
+      "emotion": "friendly",
+      "meaning": "スタイリストは3人います。",
+      "examples": [
+        "We have three stylists working today.",
+        "We have three stylists, and they're all very experienced.",
+        "We have three stylists available. Would you like me to tell you about them?"
+      ],
+      "phonetic": "/wiː hæv θriː ˈstaɪlɪsts/"
+    },
+    {
+      "usage": "料金を説明する",
+      "voice": "nova",
+      "phrase": "A stylist haircut is 6,000 yen.",
+      "emotion": "clear",
+      "meaning": "スタイリストのカットは6,000円です。",
+      "examples": [
+        "A stylist haircut is 6,000 yen, and an owner haircut is 8,000 yen.",
+        "A stylist haircut is 6,000 yen. Would you like to book with a stylist?",
+        "A stylist haircut is 6,000 yen. That includes a wash and blow dry."
+      ],
+      "phonetic": "/ə ˈstaɪlɪst ˈhɛrkʌt ɪz sɪks ˈθaʊzənd jɛn/"
+    },
+    {
+      "usage": "空き状況を伝える",
+      "voice": "nova",
+      "phrase": "Let me check who's available.",
+      "emotion": "friendly",
+      "meaning": "どなたが空いているか確認いたします。",
+      "examples": [
+        "Let me check who's available at that time.",
+        "Let me check who's available for tomorrow.",
+        "Sure, let me check who's available for you today."
+      ],
+      "phonetic": "/lɛt miː tʃɛk huːz əˈveɪləbəl/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "I would like to make an appointment.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "予約をとりたいです。"
+    },
+    {
+      "text": "Thank you. Is there a hairstylist you would like to see?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "ありがとうございます。ご指名のスタイリストはいますか？"
+    },
+    {
+      "text": "I'd like to see the owner.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "オーナーでお願いします。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Hairstylist",
+      "options": ["スタイリスト", "お客様", "受付", "マネージャー"],
+      "correct_answer": 0,
+      "explanation": "Hairstylist は「スタイリスト」「美容師」を意味します。髪をカット・スタイリングする専門家のことです。"
+    },
+    {
+      "question": "Owner",
+      "options": ["オーナー", "スタッフ", "お客様", "アシスタント"],
+      "correct_answer": 0,
+      "explanation": "Owner は「オーナー」「経営者」を意味します。サロンを所有・経営している人のことです。"
+    },
+    {
+      "question": "Appointment",
+      "options": ["予約", "料金", "時間", "場所"],
+      "correct_answer": 0,
+      "explanation": "Appointment は「予約」を意味します。I'd like to make an appointment.（予約をとりたいです）のように使います。"
+    },
+    {
+      "question": "Price",
+      "options": ["値段・料金", "時間", "場所", "名前"],
+      "correct_answer": 0,
+      "explanation": "Price は「値段」「料金」を意味します。What's the price?（料金はいくらですか？）のように使います。"
+    },
+    {
+      "question": "Difference",
+      "options": ["違い", "同じ", "合計", "割引"],
+      "correct_answer": 0,
+      "explanation": "Difference は「違い」「差」を意味します。What's the price difference?（料金の違いは何ですか？）のように使います。"
+    },
+    {
+      "question": "Available",
+      "options": ["空きがある・利用可能", "忙しい", "不在", "閉店"],
+      "correct_answer": 0,
+      "explanation": "Available は「空きがある」「利用可能」を意味します。Who's available?（どなたが空いていますか？）のように使います。"
+    },
+    {
+      "question": "Recommend",
+      "options": ["おすすめする", "予約する", "キャンセルする", "確認する"],
+      "correct_answer": 0,
+      "explanation": "Recommend は「おすすめする」「推薦する」を意味します。Can you recommend a stylist?（スタイリストをおすすめしてもらえますか？）のように使います。"
+    },
+    {
+      "question": "Experienced",
+      "options": ["経験豊富な", "新人の", "忙しい", "人気の"],
+      "correct_answer": 0,
+      "explanation": "Experienced は「経験豊富な」「熟練した」を意味します。She's very experienced.（彼女はとても経験豊富です）のように使います。"
+    },
+    {
+      "question": "Include",
+      "options": ["含む", "除く", "追加する", "削除する"],
+      "correct_answer": 0,
+      "explanation": "Include は「含む」を意味します。That includes a wash and blow dry.（それにはシャンプーとブローが含まれます）のように使います。"
+    },
+    {
+      "question": "Book with",
+      "options": ["～で予約する", "～をキャンセルする", "～を確認する", "～を変更する"],
+      "correct_answer": 0,
+      "explanation": "Book with は「～で予約する」を意味します。Would you like to book with this stylist?（このスタイリストで予約されますか？）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "下記のダイアログを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: I would like a haircut.\nStaff: When ( )?\nCustomer: ( ).\nStaff: OK, is there ( )?",
+      "syntax_hint": "Hints: haircut, hairstylist, price, difference, available",
+      "sample_answer": "Customer: I would like a haircut.\nStaff: When would you like?\nCustomer: Tomorrow, please.\nStaff: OK, is there a hairstylist you would like to see?"
+    },
+    {
+      "prompt": "スタッフの人数と料金の違いを説明する練習をしましょう。",
+      "syntax_hint": "We have... / A stylist haircut is... / An owner haircut is...",
+      "sample_answer": "We have three stylists. A stylist haircut is 6,000 yen. An owner haircut is 8,000 yen."
+    },
+    {
+      "prompt": "スタイリストの空き状況を確認し、おすすめする練習をしましょう。",
+      "syntax_hint": "Let me check who's available / I recommend... / They're very experienced",
+      "sample_answer": "Let me check who's available. I recommend Sarah. She's very experienced with haircuts."
+    }
+  ],
+  "objectives": [
+    "スタイリストの希望を丁寧に尋ねることができる",
+    "スタッフの人数や料金の違いを明確に説明できる",
+    "空き状況を確認し、適切に対応できる",
+    "I'd likeを使って希望を伝えることができる"
+  ],
+  "metadata": {
+    "icon": "💇",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

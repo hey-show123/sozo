@@ -1,0 +1,184 @@
+{
+  "title": "Lesson 2: どうなさいますか？",
+  "description": "お客様の来店目的を丁寧に尋ねる表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "お客様の用件を尋ねる（フォーマル）",
+      "voice": "nova",
+      "phrase": "How may I help you?",
+      "emotion": "polite",
+      "meaning": "どうなさいますか？",
+      "examples": [
+        "Good morning, how may I help you today?",
+        "Welcome to our salon. How may I help you?",
+        "How may I help you with your hair today?"
+      ],
+      "phonetic": "/haʊ meɪ aɪ hɛlp juː/"
+    },
+    {
+      "usage": "お客様の用件を尋ねる（カジュアル）",
+      "voice": "nova",
+      "phrase": "How can I help you?",
+      "emotion": "friendly",
+      "meaning": "どうしますか？",
+      "examples": [
+        "Hi there! How can I help you today?",
+        "How can I help you this afternoon?",
+        "How can I help you with your appointment?"
+      ],
+      "phonetic": "/haʊ kæn aɪ hɛlp juː/"
+    },
+    {
+      "usage": "希望を伝える",
+      "voice": "nova",
+      "phrase": "I would like a haircut.",
+      "emotion": "polite",
+      "meaning": "カットをお願いします。",
+      "examples": [
+        "I would like a haircut and a blow dry, please.",
+        "I would like a haircut today.",
+        "I would like a haircut and some highlights."
+      ],
+      "phonetic": "/aɪ wʊd laɪk ə ˈhɛrkʌt/"
+    },
+    {
+      "usage": "肯定の返答（フォーマル）",
+      "voice": "nova",
+      "phrase": "Sure, thank you!",
+      "emotion": "friendly",
+      "meaning": "はい、ありがとうございます。",
+      "examples": [
+        "Sure, thank you for choosing our salon!",
+        "Sure, thank you! Please have a seat.",
+        "Sure, thank you! Let me check our schedule."
+      ],
+      "phonetic": "/ʃʊr, θæŋk juː/"
+    },
+    {
+      "usage": "肯定の返答（カジュアル）",
+      "voice": "nova",
+      "phrase": "OK, great!",
+      "emotion": "friendly",
+      "meaning": "オッケー、いいですね！",
+      "examples": [
+        "OK, great! What time works for you?",
+        "OK, great! Do you have an appointment?",
+        "OK, great! I'll get you set up right away."
+      ],
+      "phonetic": "/oʊˈkeɪ, ɡreɪt/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello, this is Sunshine Salon. How may I help you?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "こんにちは、「サロン名」です、どうなさいますか？"
+    },
+    {
+      "text": "Hi, I would like a haircut.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "こんにちは、カットをお願いします。"
+    },
+    {
+      "text": "Sure, thank you!",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "はい、ありがとうございます。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Haircut",
+      "options": ["ヘアカット", "カラー", "パーマ", "シャンプー"],
+      "correct_answer": 0,
+      "explanation": "Haircut は「ヘアカット」を意味します。髪を切ることを指します。"
+    },
+    {
+      "question": "Help",
+      "options": ["助ける・手伝う", "切る", "洗う", "染める"],
+      "correct_answer": 0,
+      "explanation": "Help は「助ける・手伝う」を意味します。How may I help you?（どうなさいますか？）のように使います。"
+    },
+    {
+      "question": "Sure",
+      "options": ["はい", "いいえ", "多分", "わかりません"],
+      "correct_answer": 0,
+      "explanation": "Sure は「はい」「もちろん」を意味します。相手の依頼に対して肯定的に返答する際に使います。"
+    },
+    {
+      "question": "Would like",
+      "options": ["～したい", "～できる", "～すべき", "～かもしれない"],
+      "correct_answer": 0,
+      "explanation": "Would like は「～したい」という丁寧な希望の表現です。I would like a haircut.（カットをお願いします）のように使います。"
+    },
+    {
+      "question": "Appointment",
+      "options": ["予約", "料金", "時間", "場所"],
+      "correct_answer": 0,
+      "explanation": "Appointment は「予約」を意味します。Do you have an appointment?（ご予約はありますか？）のように使います。"
+    },
+    {
+      "question": "Hair color",
+      "options": ["カラー", "カット", "パーマ", "シャンプー"],
+      "correct_answer": 0,
+      "explanation": "Hair color は「カラー」「ヘアカラー」を意味します。髪を染めることを指します。"
+    },
+    {
+      "question": "Hair perm",
+      "options": ["パーマ", "カット", "カラー", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Hair perm は「パーマ」を意味します。髪にウェーブやカールをつけることを指します。"
+    },
+    {
+      "question": "Today",
+      "options": ["今日", "昨日", "明日", "来週"],
+      "correct_answer": 0,
+      "explanation": "Today は「今日」を意味します。How may I help you today?（本日はどうなさいますか？）のように使います。"
+    },
+    {
+      "question": "Welcome",
+      "options": ["いらっしゃいませ", "さようなら", "ありがとう", "すみません"],
+      "correct_answer": 0,
+      "explanation": "Welcome は「いらっしゃいませ」「ようこそ」を意味します。お客様を迎える際の挨拶です。"
+    },
+    {
+      "question": "Schedule",
+      "options": ["スケジュール・予定表", "料金表", "メニュー", "住所"],
+      "correct_answer": 0,
+      "explanation": "Schedule は「スケジュール・予定表」を意味します。Let me check our schedule.（スケジュールを確認いたします）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "来店されたお客様の挨拶を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Hi ( )?\nCustomer: ( ).\nStaff: ( ), thank you.",
+      "syntax_hint": "Hints: hello, haircut, hair color, hair perm, appointment, today",
+      "sample_answer": "Staff: Hi, how may I help you?\nCustomer: I would like a haircut.\nStaff: Sure, thank you."
+    },
+    {
+      "prompt": "カジュアルとフォーマル、どっちもやってみよう。",
+      "syntax_hint": "Formal: How may I help you?\nCasual: How can I help you? / What's up?",
+      "sample_answer": "Formal: How may I help you today?\nCasual: How can I help you?"
+    },
+    {
+      "prompt": "異なるサービスの依頼を練習してみましょう。",
+      "syntax_hint": "I would like a (haircut / hair color / hair perm)",
+      "sample_answer": "I would like a haircut and a hair color, please."
+    }
+  ],
+  "objectives": [
+    "お客様の来店目的を丁寧に尋ねることができる（How may I help you?）",
+    "would likeを使って丁寧に希望を伝えることができる",
+    "フォーマルとカジュアルな表現の使い分けができる"
+  ],
+  "metadata": {
+    "icon": "🙋",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

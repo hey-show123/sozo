@@ -1,0 +1,185 @@
+{
+  "title": "Lesson 7: こちらにご署名をお願いします。",
+  "description": "クレジットカード決済時の署名や暗証番号入力の案内を行う表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "署名を依頼する",
+      "voice": "nova",
+      "phrase": "Please sign here.",
+      "emotion": "polite",
+      "meaning": "こちらにご署名をお願いします。",
+      "examples": [
+        "Thank you. Please sign here.",
+        "Please sign here on this receipt.",
+        "Please sign here to confirm your payment."
+      ],
+      "phonetic": "/pliːz saɪn hɪr/"
+    },
+    {
+      "usage": "確認を依頼する",
+      "voice": "nova",
+      "phrase": "Please confirm here.",
+      "emotion": "professional",
+      "meaning": "こちらで確認をお願いします。",
+      "examples": [
+        "Please confirm here that the amount is correct.",
+        "Please confirm here before we process the payment.",
+        "Please confirm here on the screen."
+      ],
+      "phonetic": "/pliːz kənˈfɜːrm hɪr/"
+    },
+    {
+      "usage": "暗証番号の入力を依頼する",
+      "voice": "nova",
+      "phrase": "Please enter your PIN number.",
+      "emotion": "clear",
+      "meaning": "暗証番号の入力をお願いします。",
+      "examples": [
+        "Please enter your PIN number on this keypad.",
+        "Please enter your PIN number to complete the transaction.",
+        "For security, please enter your PIN number."
+      ],
+      "phonetic": "/pliːz ˈɛntər jɔːr pɪn ˈnʌmbər/"
+    },
+    {
+      "usage": "カードの挿入を依頼する",
+      "voice": "nova",
+      "phrase": "Please insert your card here.",
+      "emotion": "helpful",
+      "meaning": "こちらにカードを挿入してください。",
+      "examples": [
+        "Please insert your card here with the chip facing up.",
+        "Please insert your card here into the reader.",
+        "Thank you. Please insert your card here."
+      ],
+      "phonetic": "/pliːz ɪnˈsɜːrt jɔːr kɑːrd hɪr/"
+    },
+    {
+      "usage": "支払い方法を尋ねる",
+      "voice": "nova",
+      "phrase": "How would you like to pay?",
+      "emotion": "polite",
+      "meaning": "お支払い方法はどうなさいますか？",
+      "examples": [
+        "Your total is 8,800 yen. How would you like to pay?",
+        "How would you like to pay? We accept cash, credit card, and QR code.",
+        "How would you like to pay today?"
+      ],
+      "phonetic": "/haʊ wʊd juː laɪk tuː peɪ/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "How would you like to pay?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "お支払い方法はどうなさいますか？"
+    },
+    {
+      "text": "I will use a credit card.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "カードで払います。"
+    },
+    {
+      "text": "Thank you. Please sign here.",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "ありがとうございます。こちらにご署名お願いします。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Total",
+      "options": ["合計", "税金", "割引", "釣り"],
+      "correct_answer": 0,
+      "explanation": "Total は「合計」「総額」を意味します。Your total is...（合計は...です）のように使います。"
+    },
+    {
+      "question": "Receipt",
+      "options": ["領収書", "請求書", "釣り", "カード"],
+      "correct_answer": 0,
+      "explanation": "Receipt は「領収書」「レシート」を意味します。支払いの証明書のことです。"
+    },
+    {
+      "question": "Change",
+      "options": ["お釣り", "合計", "税金", "割引"],
+      "correct_answer": 0,
+      "explanation": "Change は「お釣り」を意味します。Your change is...（お釣りは...です）のように使います。"
+    },
+    {
+      "question": "Yen",
+      "options": ["円", "ドル", "ユーロ", "ポンド"],
+      "correct_answer": 0,
+      "explanation": "Yen は「円」を意味します。日本の通貨単位です。"
+    },
+    {
+      "question": "Cash",
+      "options": ["現金", "カード", "QRコード", "小切手"],
+      "correct_answer": 0,
+      "explanation": "Cash は「現金」を意味します。紙幣や硬貨での支払いのことです。"
+    },
+    {
+      "question": "Payment",
+      "options": ["支払い・決済", "領収書", "釣り", "割引"],
+      "correct_answer": 0,
+      "explanation": "Payment は「支払い」「決済」を意味します。支払いの方法や行為を指します。"
+    },
+    {
+      "question": "Bill",
+      "options": ["お会計・請求書", "領収書", "釣り", "割引"],
+      "correct_answer": 0,
+      "explanation": "Bill は「お会計」「請求書」を意味します。料金の明細のことです。"
+    },
+    {
+      "question": "PIN",
+      "options": ["暗証番号", "署名", "領収書", "カード"],
+      "correct_answer": 0,
+      "explanation": "PIN は「暗証番号」を意味します。Personal Identification Numberの略です。"
+    },
+    {
+      "question": "Sign",
+      "options": ["署名する", "支払う", "受け取る", "返す"],
+      "correct_answer": 0,
+      "explanation": "Sign は「署名する」「サインする」を意味します。Please sign here.（こちらにご署名ください）のように使います。"
+    },
+    {
+      "question": "Confirmation",
+      "options": ["確認", "署名", "支払い", "領収書"],
+      "correct_answer": 0,
+      "explanation": "Confirmation は「確認」を意味します。内容が正しいかどうかをチェックすることです。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "お支払いの流れを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Thank you, your total for ( ) is ( ).\nCustomer: Thank you.\nStaff: We accept ( ).\nCustomer: I will pay with ( ).\nStaff: ( ).",
+      "syntax_hint": "Hints: payment, bill, pay, PIN, sign, confirmation",
+      "sample_answer": "Staff: Thank you, your total for haircut is 8,800 yen.\nCustomer: Thank you.\nStaff: We accept cash, credit card, and QR code.\nCustomer: I will pay with credit card.\nStaff: Thank you. Please insert your card here and enter your PIN number."
+    },
+    {
+      "prompt": "カード決済の手順を案内する練習をしましょう。",
+      "syntax_hint": "Please insert... / Please enter your PIN... / Please sign here... / Please confirm...",
+      "sample_answer": "Please insert your card here. Now please enter your PIN number on the keypad. Thank you. Please sign here on the receipt."
+    },
+    {
+      "prompt": "異なる決済方法の案内を練習しましょう。",
+      "syntax_hint": "How would you like to pay? / We accept... / Please... / Thank you",
+      "sample_answer": "How would you like to pay? We accept cash, credit card, debit card, and QR code payment. Which would you prefer?"
+    }
+  ],
+  "objectives": [
+    "署名を丁寧に依頼できる（Please sign here.）",
+    "暗証番号の入力を明確に案内できる",
+    "支払い内容の確認を依頼できる",
+    "カード決済の一連の流れを案内できる"
+  ],
+  "metadata": {
+    "icon": "✍️",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "title": "Lesson 1: Good morning / Good afternoon - おはようございます・こんにちは",
+  "description": "サロンでの基本的な挨拶と自己紹介の表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "朝の挨拶",
+      "voice": "nova",
+      "phrase": "Good morning",
+      "emotion": "friendly",
+      "meaning": "おはようございます",
+      "examples": [
+        "Good morning, thank you for coming in today.",
+        "Good morning, Ms. Johnson. It's wonderful to see you again.",
+        "Good morning! Did you have any trouble finding our salon?"
+      ],
+      "phonetic": "/ɡʊd ˈmɔːrnɪŋ/"
+    },
+    {
+      "usage": "昼の挨拶",
+      "voice": "nova",
+      "phrase": "Good afternoon",
+      "emotion": "friendly",
+      "meaning": "こんにちは",
+      "examples": [
+        "Good afternoon, thank you for making an appointment with us.",
+        "Good afternoon, Mr. Chen. Your stylist is waiting for you.",
+        "Good afternoon! Have you been to our salon before?"
+      ],
+      "phonetic": "/ɡʊd ˌæftərˈnuːn/"
+    },
+    {
+      "usage": "お客様に挨拶をする",
+      "voice": "nova",
+      "phrase": "Hello",
+      "emotion": "friendly",
+      "meaning": "どうも",
+      "examples": [
+        "Hello, please come in and have a seat.",
+        "Hello there! Are you here for your 2 o'clock appointment?",
+        "Hello, welcome back! How has your hair been since your last visit?"
+      ],
+      "phonetic": "/həˈloʊ/"
+    },
+    {
+      "usage": "自己紹介の仕方（フォーマル）",
+      "voice": "nova",
+      "phrase": "My name is Sarah.",
+      "emotion": "polite",
+      "meaning": "サラと申します。",
+      "examples": [
+        "My name is Sarah, and I'll be taking care of you today.",
+        "My name is Sarah. I've been working as a stylist for five years.",
+        "My name is Sarah. May I ask your name, please?"
+      ],
+      "phonetic": "/maɪ neɪm ɪz ˈsɛrə/"
+    },
+    {
+      "usage": "自己紹介の仕方（カジュアル）",
+      "voice": "nova",
+      "phrase": "I'm Sarah.",
+      "emotion": "friendly",
+      "meaning": "サラです。",
+      "examples": [
+        "Hi, I'm Sarah, and I'll be your stylist today.",
+        "I'm Sarah. Have you thought about what style you'd like?",
+        "I'm Sarah. Let me show you to your seat."
+      ],
+      "phonetic": "/aɪm ˈsɛrə/"
+    },
+    {
+      "usage": "夜の挨拶",
+      "voice": "nova",
+      "phrase": "Good evening",
+      "emotion": "friendly",
+      "meaning": "こんばんは",
+      "examples": [
+        "Good evening, thank you for coming in after work.",
+        "Good evening! We're so glad you could make it.",
+        "Good evening, Mr. Smith. Your stylist will be right with you."
+      ],
+      "phonetic": "/ɡʊd ˈiːvnɪŋ/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Good morning, this is Sunshine Salon.",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "おはようございます、「サロン名」です。"
+    },
+    {
+      "text": "Hi, I would like a haircut.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "こんにちは、カットをお願いします。"
+    },
+    {
+      "text": "Sure, thank you!",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "はい、ありがとうございます。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Morning",
+      "options": ["朝", "昼", "夜", "夕方"],
+      "correct_answer": 0,
+      "explanation": "Morning は「朝」を意味します。"
+    },
+    {
+      "question": "Haircut",
+      "options": ["カット", "カラー", "パーマ", "シャンプー"],
+      "correct_answer": 0,
+      "explanation": "Haircut は「カット」を意味します。"
+    },
+    {
+      "question": "Sure",
+      "options": ["はい", "いいえ", "多分", "わかりません"],
+      "correct_answer": 0,
+      "explanation": "Sure は「はい」を意味します。相手の依頼や質問に対して肯定的に返答する際に使います。"
+    },
+    {
+      "question": "Hello",
+      "options": ["こんにちは", "さようなら", "ありがとう", "すみません"],
+      "correct_answer": 0,
+      "explanation": "Hello は「こんにちは」を意味します。時間帯に関係なく使える基本的な挨拶です。"
+    },
+    {
+      "question": "Name",
+      "options": ["名前", "年齢", "住所", "電話番号"],
+      "correct_answer": 0,
+      "explanation": "Name は「名前」を意味します。自己紹介の際に使う重要な単語です。"
+    },
+    {
+      "question": "Nice",
+      "options": ["良い", "悪い", "普通", "変な"],
+      "correct_answer": 0,
+      "explanation": "Nice は「良い」「素敵な」を意味します。Nice to meet you（はじめまして）のように使います。"
+    },
+    {
+      "question": "Great",
+      "options": ["素晴らしい", "悪い", "小さい", "静か"],
+      "correct_answer": 0,
+      "explanation": "Great は「素晴らしい」「とても良い」を意味します。It's great to see you（お会いできて嬉しいです）のように使います。"
+    },
+    {
+      "question": "Evening",
+      "options": ["夜", "朝", "昼", "夕方"],
+      "correct_answer": 0,
+      "explanation": "Evening は「夜」「夕方」を意味します。Good evening（こんばんは）という挨拶で使います。"
+    },
+    {
+      "question": "Today",
+      "options": ["今日", "昨日", "明日", "来週"],
+      "correct_answer": 0,
+      "explanation": "Today は「今日」を意味します。Thank you for coming in today（本日はご来店ありがとうございます）のように使います。"
+    },
+    {
+      "question": "Hey",
+      "options": ["やあ", "さようなら", "ありがとう", "すみません"],
+      "correct_answer": 0,
+      "explanation": "Hey は「やあ」というカジュアルな挨拶です。友人や親しい人に対して使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "お客様に挨拶を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: Hello.\nStaff: Good ( ).\nCustomer: I'm ( ).\nStaff: I'm ( ).",
+      "syntax_hint": "Hints: name, nice, great, evening, today",
+      "sample_answer": "Customer: Hello.\nStaff: Good morning.\nCustomer: I'm John.\nStaff: I'm Sarah."
+    },
+    {
+      "prompt": "カジュアルとフォーマル、どっちもやってみよう。",
+      "syntax_hint": "Casual: Hello / Hey\nFormal: Good morning / My name is / I'm",
+      "sample_answer": "Formal: Good morning. My name is Sarah.\nCasual: Hello! I'm Sarah."
+    },
+    {
+      "prompt": "時間帯に合わせた挨拶を練習してみましょう。",
+      "syntax_hint": "Good morning / Good afternoon / Good evening + 自己紹介",
+      "sample_answer": "Good afternoon. My name is Sarah. I'll be your stylist today."
+    }
+  ],
+  "objectives": [
+    "適切な時間帯の挨拶ができる（Good morning/afternoon/evening）",
+    "サロン名を含めた電話応対ができる",
+    "フォーマルとカジュアルな自己紹介の使い分けができる"
+  ],
+  "metadata": {
+    "icon": "👋",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

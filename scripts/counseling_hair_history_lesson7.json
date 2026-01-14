@@ -1,0 +1,206 @@
+{
+  "title": "Lesson 7: 前回はカラーをされましたか？",
+  "description": "前回の施術内容を確認し、次の施術プランを立てる表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "前回の施術を尋ねる",
+      "voice": "nova",
+      "phrase": "Did you get color last time?",
+      "emotion": "professional",
+      "meaning": "前回はカラーをされましたか？",
+      "examples": [
+        "Did you get color last time you were here?",
+        "Did you get color last time, or just a cut?",
+        "Did you get color last time? I want to check."
+      ],
+      "phonetic": "/dɪd juː ɡɛt ˈkʌlər lɑːst taɪm/"
+    },
+    {
+      "usage": "全体カラーか部分カラーか確認",
+      "voice": "nova",
+      "phrase": "Did you color all of your hair?",
+      "emotion": "clarifying",
+      "meaning": "全体カラーをされましたか？",
+      "examples": [
+        "Did you color all of your hair, or just the roots?",
+        "Did you color all of your hair last time?",
+        "Did you color all of your hair, or get highlights?"
+      ],
+      "phonetic": "/dɪd juː ˈkʌlər ɔːl ʌv jɔːr hɛr/"
+    },
+    {
+      "usage": "色の種類を尋ねる",
+      "voice": "nova",
+      "phrase": "What color did you get?",
+      "emotion": "curious",
+      "meaning": "何色にされましたか？",
+      "examples": [
+        "What color did you get? Was it brown?",
+        "What color did you get last time?",
+        "What color did you get? Do you remember?"
+      ],
+      "phonetic": "/wɒt ˈkʌlər dɪd juː ɡɛt/"
+    },
+    {
+      "usage": "カラーの満足度を確認",
+      "voice": "nova",
+      "phrase": "How did you like the color?",
+      "emotion": "interested",
+      "meaning": "そのカラーはどうでしたか？",
+      "examples": [
+        "How did you like the color? Was it good?",
+        "How did you like the color you got last time?",
+        "How did you like the color? Did it turn out well?"
+      ],
+      "phonetic": "/haʊ dɪd juː laɪk ðə ˈkʌlər/"
+    },
+    {
+      "usage": "同じカラーを提案",
+      "voice": "nova",
+      "phrase": "Would you like the same color?",
+      "emotion": "suggestive",
+      "meaning": "同じカラーにされますか？",
+      "examples": [
+        "Would you like the same color as last time?",
+        "Would you like the same color, or something different?",
+        "Would you like the same color? It looked great on you."
+      ],
+      "phonetic": "/wʊd juː laɪk ðə seɪm ˈkʌlər/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Did you get color last time?",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "前回はカラーをされましたか？"
+    },
+    {
+      "text": "Yes, I did.",
+      "voice": "fable",
+      "emotion": "confirming",
+      "speaker": "Customer",
+      "japanese": "はい、しました。"
+    },
+    {
+      "text": "What color did you get?",
+      "voice": "nova",
+      "emotion": "curious",
+      "speaker": "Staff",
+      "japanese": "何色にされましたか？"
+    },
+    {
+      "text": "Dark brown.",
+      "voice": "fable",
+      "emotion": "answering",
+      "speaker": "Customer",
+      "japanese": "ダークブラウンです。"
+    },
+    {
+      "text": "How did you like the color?",
+      "voice": "nova",
+      "emotion": "interested",
+      "speaker": "Staff",
+      "japanese": "そのカラーはどうでしたか？"
+    },
+    {
+      "text": "It was perfect!",
+      "voice": "fable",
+      "emotion": "satisfied",
+      "speaker": "Customer",
+      "japanese": "完璧でした！"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Color",
+      "options": ["カラー・色", "カット", "パーマ", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Color は「カラー」「色」を意味します。髪を染めることや色そのものを指します。"
+    },
+    {
+      "question": "Last time",
+      "options": ["前回", "次回", "今回", "毎回"],
+      "correct_answer": 0,
+      "explanation": "Last time は「前回」を意味します。以前来た時のことを指します。"
+    },
+    {
+      "question": "Roots",
+      "options": ["根元", "毛先", "中間", "全体"],
+      "correct_answer": 0,
+      "explanation": "Roots は「根元」を意味します。髪の生え際の部分です。"
+    },
+    {
+      "question": "How did you like",
+      "options": ["～はどうでしたか", "～が好きですか", "～が欲しいですか", "～を知っていますか"],
+      "correct_answer": 0,
+      "explanation": "How did you like は「～はどうでしたか」を意味します。過去の経験の感想を尋ねる表現です。"
+    },
+    {
+      "question": "Turn out",
+      "options": ["仕上がる", "始める", "やめる", "変える"],
+      "correct_answer": 0,
+      "explanation": "Turn out は「仕上がる」「結果的に～になる」を意味します。Did it turn out well?（うまく仕上がりましたか？）のように使います。"
+    },
+    {
+      "question": "Same",
+      "options": ["同じ", "違う", "新しい", "古い"],
+      "correct_answer": 0,
+      "explanation": "Same は「同じ」を意味します。The same color（同じ色）のように使います。"
+    },
+    {
+      "question": "Different",
+      "options": ["違う", "同じ", "似ている", "近い"],
+      "correct_answer": 0,
+      "explanation": "Different は「違う」「異なる」を意味します。Something different（何か違うもの）のように使います。"
+    },
+    {
+      "question": "Dark",
+      "options": ["暗い・ダーク", "明るい", "中間", "薄い"],
+      "correct_answer": 0,
+      "explanation": "Dark は「暗い」「ダーク」を意味します。Dark brown（ダークブラウン）のように使います。"
+    },
+    {
+      "question": "Perfect",
+      "options": ["完璧", "悪い", "普通", "変"],
+      "correct_answer": 0,
+      "explanation": "Perfect は「完璧」「最高」を意味します。満足度を表す形容詞です。"
+    },
+    {
+      "question": "Brown",
+      "options": ["ブラウン・茶色", "黒", "金髪", "赤"],
+      "correct_answer": 0,
+      "explanation": "Brown は「ブラウン」「茶色」を意味します。Dark brown（ダークブラウン）、Light brown（ライトブラウン）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "前回の施術内容を確認するを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Did you ( ) last time?\nCustomer: Yes/no.\nStaff: What ( )?\nCustomer: ( ).",
+      "syntax_hint": "Hints: get color, color did you get, dark brown, light brown",
+      "sample_answer": "Staff: Did you get color last time?\nCustomer: Yes, I did.\nStaff: What color did you get?\nCustomer: Light brown."
+    },
+    {
+      "prompt": "カラーの満足度を確認して、次の提案をする練習をしましょう。",
+      "syntax_hint": "How did you like... / Would you like the same... / Something different",
+      "sample_answer": "Staff: How did you like the color last time?\nCustomer: It was perfect!\nStaff: Great! Would you like the same color today?\nCustomer: Yes, please."
+    },
+    {
+      "prompt": "全体カラーか部分カラーかを確認する練習をしましょう。",
+      "syntax_hint": "Did you color all of your hair? / Just the roots / Highlights / Full color",
+      "sample_answer": "Staff: Did you color all of your hair last time?\nCustomer: No, just the roots.\nStaff: I see. Would you like to do the same today? Just the roots?\nCustomer: Yes, and maybe some highlights too."
+    }
+  ],
+  "objectives": [
+    "前回の施術内容を確認できる",
+    "カラーの種類と範囲を聞き取れる",
+    "満足度を確認して次の提案ができる",
+    "様々な色の名前を使うことができる"
+  ],
+  "metadata": {
+    "icon": "🎨",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

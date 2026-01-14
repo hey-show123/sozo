@@ -1,0 +1,185 @@
+{
+  "title": "Lesson 1: 今日担当させていただくスタイリストです。",
+  "description": "カウンセリング時の自己紹介と、自分の役割を丁寧に伝える表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "自分が担当スタイリストであることを伝える",
+      "voice": "nova",
+      "phrase": "I'm your hairstylist today.",
+      "emotion": "professional",
+      "meaning": "今日担当させていただくスタイリストです。",
+      "examples": [
+        "Hello, I'm your hairstylist today. My name is Sarah.",
+        "Nice to meet you. I'm your hairstylist today.",
+        "I'm your hairstylist today. I'm looking forward to working with you."
+      ],
+      "phonetic": "/aɪm jɔːr ˈhɛrstaɪlɪst təˈdeɪ/"
+    },
+    {
+      "usage": "はじめましての挨拶",
+      "voice": "nova",
+      "phrase": "Nice to meet you.",
+      "emotion": "friendly",
+      "meaning": "はじめまして。お会いできてうれしいです。",
+      "examples": [
+        "Nice to meet you. I'm so happy you're here today.",
+        "Hello, nice to meet you. Welcome to our salon.",
+        "Nice to meet you. Thank you for choosing us."
+      ],
+      "phonetic": "/naɪs tuː miːt juː/"
+    },
+    {
+      "usage": "体調を尋ねる",
+      "voice": "nova",
+      "phrase": "How are you today?",
+      "emotion": "caring",
+      "meaning": "今日の調子はどうですか？",
+      "examples": [
+        "How are you today? I hope you're doing well.",
+        "Hello! How are you today?",
+        "Nice to meet you. How are you today?"
+      ],
+      "phonetic": "/haʊ ɑːr juː təˈdeɪ/"
+    },
+    {
+      "usage": "アシスタントであることを伝える",
+      "voice": "nova",
+      "phrase": "I'm the assistant.",
+      "emotion": "polite",
+      "meaning": "私はアシスタントです。",
+      "examples": [
+        "Hi, I'm the assistant. I'll be helping you today.",
+        "I'm the assistant. I'll be washing your hair.",
+        "Nice to meet you. I'm the assistant for your stylist."
+      ],
+      "phonetic": "/aɪm ði əˈsɪstənt/"
+    },
+    {
+      "usage": "オーナーであることを伝える",
+      "voice": "nova",
+      "phrase": "I'm the owner.",
+      "emotion": "proud",
+      "meaning": "私はオーナーです。",
+      "examples": [
+        "Welcome! I'm the owner of this salon.",
+        "Nice to meet you. I'm the owner, and I'll be your stylist today.",
+        "I'm the owner. Thank you for visiting our salon."
+      ],
+      "phonetic": "/aɪm ði ˈoʊnər/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello, nice to meet you.",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "こんにちは、はじめまして。"
+    },
+    {
+      "text": "Nice to meet you, too.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "はじめまして。"
+    },
+    {
+      "text": "I'm your hairstylist today. My name is John.",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "今日担当させていただくスタイリストです。ジョンと申します。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Hairstylist",
+      "options": ["スタイリスト", "アシスタント", "オーナー", "受付"],
+      "correct_answer": 0,
+      "explanation": "Hairstylist は「スタイリスト」「美容師」を意味します。髪をカット・スタイリングする専門家のことです。"
+    },
+    {
+      "question": "Meet",
+      "options": ["出会う・会う", "話す", "聞く", "見る"],
+      "correct_answer": 0,
+      "explanation": "Meet は「出会う」「会う」を意味します。Nice to meet you.（はじめまして）のように使います。"
+    },
+    {
+      "question": "Reception",
+      "options": ["レセプション・受付", "カットチェア", "シャンプー台", "待合室"],
+      "correct_answer": 0,
+      "explanation": "Reception は「レセプション」「受付」を意味します。お客様を最初にお迎えする場所です。"
+    },
+    {
+      "question": "Owner",
+      "options": ["オーナー", "アシスタント", "スタイリスト", "受付"],
+      "correct_answer": 0,
+      "explanation": "Owner は「オーナー」「所有者」を意味します。サロンの経営者のことです。"
+    },
+    {
+      "question": "Manager",
+      "options": ["店長・マネージャー", "アシスタント", "オーナー", "受付"],
+      "correct_answer": 0,
+      "explanation": "Manager は「店長」「マネージャー」を意味します。店舗を管理する責任者のことです。"
+    },
+    {
+      "question": "Position",
+      "options": ["立場・役職", "場所", "時間", "給料"],
+      "correct_answer": 0,
+      "explanation": "Position は「立場」「役職」を意味します。仕事での役割や地位のことです。"
+    },
+    {
+      "question": "Assistant",
+      "options": ["アシスタント", "スタイリスト", "オーナー", "マネージャー"],
+      "correct_answer": 0,
+      "explanation": "Assistant は「アシスタント」「助手」を意味します。スタイリストをサポートする役割です。"
+    },
+    {
+      "question": "Impression",
+      "options": ["印象", "表現", "紹介", "経験"],
+      "correct_answer": 0,
+      "explanation": "Impression は「印象」を意味します。Leave a good impression（良い印象を残す）のように使います。"
+    },
+    {
+      "question": "Introduce",
+      "options": ["紹介する", "話す", "聞く", "見る"],
+      "correct_answer": 0,
+      "explanation": "Introduce は「紹介する」を意味します。Introduce yourself（自己紹介する）のように使います。"
+    },
+    {
+      "question": "Repeat",
+      "options": ["繰り返す・復唱する", "話す", "聞く", "書く"],
+      "correct_answer": 0,
+      "explanation": "Repeat は「繰り返す」「復唱する」を意味します。相手の名前を確認するために復唱することは大切です。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "自己紹介を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Hello, ( ).\nCustomer: ( ).\nStaff: I'm ( ).",
+      "syntax_hint": "Hints: reception, owner, manager, position",
+      "sample_answer": "Staff: Hello, nice to meet you.\nCustomer: Nice to meet you, too.\nStaff: I'm your hairstylist today. My name is Sarah. How are you today?"
+    },
+    {
+      "prompt": "自己紹介をされたら、相手の名前も復唱する。例）Nice to meet you, Heather.",
+      "syntax_hint": "Nice to meet you, [name]. / Glad to meet you, [name].",
+      "sample_answer": "Customer: I'm Heather.\nStaff: Nice to meet you, Heather. I'm your hairstylist today."
+    },
+    {
+      "prompt": "様々な役職での自己紹介を練習しましょう。",
+      "syntax_hint": "I'm your hairstylist / I'm the assistant / I'm the owner / I'm the manager",
+      "sample_answer": "Hello, nice to meet you. I'm the owner and your hairstylist today. My name is John. How are you today?"
+    }
+  ],
+  "objectives": [
+    "自分の役職を明確に伝えることができる",
+    "はじめての挨拶を丁寧に行うことができる",
+    "相手の名前を復唱して確認できる",
+    "良い第一印象を与えることができる"
+  ],
+  "metadata": {
+    "icon": "👋",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

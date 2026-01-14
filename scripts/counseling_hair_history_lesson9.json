@@ -1,0 +1,206 @@
+{
+  "title": "Lesson 9: 日本の美容室に行ったことがありますか？",
+  "description": "他のサロンでの経験を聞き取り、違いを説明する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "日本のサロン経験を尋ねる",
+      "voice": "nova",
+      "phrase": "Have you been to a Japanese salon before?",
+      "emotion": "curious",
+      "meaning": "日本の美容室に行ったことがありますか？",
+      "examples": [
+        "Have you been to a Japanese salon before, or is this your first time?",
+        "Have you been to a Japanese salon before? They're quite different.",
+        "Have you been to a Japanese salon before in your country?"
+      ],
+      "phonetic": "/hæv juː biːn tuː ə ˌdʒæpəˈniːz səˈlɒn bɪˈfɔːr/"
+    },
+    {
+      "usage": "他のサロンとの違いを尋ねる",
+      "voice": "nova",
+      "phrase": "How was it different?",
+      "emotion": "interested",
+      "meaning": "どう違いましたか？",
+      "examples": [
+        "How was it different from salons in your country?",
+        "How was it different? Better or worse?",
+        "How was it different compared to here?"
+      ],
+      "phonetic": "/haʊ wɒz ɪt ˈdɪfrənt/"
+    },
+    {
+      "usage": "他のサロンでの経験を尋ねる",
+      "voice": "nova",
+      "phrase": "Where do you usually go?",
+      "emotion": "friendly",
+      "meaning": "普段はどこに行きますか？",
+      "examples": [
+        "Where do you usually go for haircuts?",
+        "Where do you usually go? Do you have a regular salon?",
+        "Where do you usually go when you need a haircut?"
+      ],
+      "phonetic": "/wɛr duː juː ˈjuːʒuəli ɡoʊ/"
+    },
+    {
+      "usage": "初めての来店を確認",
+      "voice": "nova",
+      "phrase": "Is this your first time here?",
+      "emotion": "welcoming",
+      "meaning": "こちらは初めてですか？",
+      "examples": [
+        "Is this your first time here at our salon?",
+        "Is this your first time here? Welcome!",
+        "Is this your first time here, or have you been before?"
+      ],
+      "phonetic": "/ɪz ðɪs jɔːr fɜːrst taɪm hɪr/"
+    },
+    {
+      "usage": "違いを説明する",
+      "voice": "nova",
+      "phrase": "Japanese salons are very detailed.",
+      "emotion": "informative",
+      "meaning": "日本の美容室はとても細かいです。",
+      "examples": [
+        "Japanese salons are very detailed. We take our time.",
+        "Japanese salons are very detailed and careful.",
+        "Japanese salons are very detailed. You'll see the difference."
+      ],
+      "phonetic": "/ˌdʒæpəˈniːz səˈlɒnz ɑːr ˈvɛri ˈdiːteɪld/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Is this your first time here?",
+      "voice": "nova",
+      "emotion": "welcoming",
+      "speaker": "Staff",
+      "japanese": "こちらは初めてですか？"
+    },
+    {
+      "text": "Yes, it is.",
+      "voice": "fable",
+      "emotion": "confirming",
+      "speaker": "Customer",
+      "japanese": "はい、初めてです。"
+    },
+    {
+      "text": "Have you been to a Japanese salon before?",
+      "voice": "nova",
+      "emotion": "curious",
+      "speaker": "Staff",
+      "japanese": "日本の美容室に行ったことがありますか？"
+    },
+    {
+      "text": "No, this is my first time.",
+      "voice": "fable",
+      "emotion": "new",
+      "speaker": "Customer",
+      "japanese": "いいえ、初めてです。"
+    },
+    {
+      "text": "Japanese salons are very detailed. We take our time.",
+      "voice": "nova",
+      "emotion": "informative",
+      "speaker": "Staff",
+      "japanese": "日本の美容室はとても細かいです。時間をかけて丁寧に施術します。"
+    },
+    {
+      "text": "That sounds great!",
+      "voice": "fable",
+      "emotion": "excited",
+      "speaker": "Customer",
+      "japanese": "それは素晴らしいですね！"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Have you been to",
+      "options": ["～に行ったことがある", "～に行く予定", "～に行きたい", "～に行かない"],
+      "correct_answer": 0,
+      "explanation": "Have you been to は「～に行ったことがありますか」を意味します。経験を尋ねる表現です。"
+    },
+    {
+      "question": "Japanese salon",
+      "options": ["日本の美容室", "日本のレストラン", "日本の店", "日本の会社"],
+      "correct_answer": 0,
+      "explanation": "Japanese salon は「日本の美容室」を意味します。日本式のヘアサロンのことです。"
+    },
+    {
+      "question": "Different",
+      "options": ["違う", "同じ", "似ている", "良い"],
+      "correct_answer": 0,
+      "explanation": "Different は「違う」「異なる」を意味します。比較する時に使います。"
+    },
+    {
+      "question": "Usually",
+      "options": ["普段は", "時々", "決して", "いつも"],
+      "correct_answer": 0,
+      "explanation": "Usually は「普段は」「いつもは」を意味します。習慣を表す副詞です。"
+    },
+    {
+      "question": "First time",
+      "options": ["初めて", "2回目", "最後", "毎回"],
+      "correct_answer": 0,
+      "explanation": "First time は「初めて」を意味します。Is this your first time?（初めてですか？）のように使います。"
+    },
+    {
+      "question": "Detailed",
+      "options": ["細かい・詳細な", "雑な", "速い", "遅い"],
+      "correct_answer": 0,
+      "explanation": "Detailed は「細かい」「詳細な」を意味します。丁寧で細部にこだわることを表します。"
+    },
+    {
+      "question": "Take time",
+      "options": ["時間をかける", "急ぐ", "終わる", "始める"],
+      "correct_answer": 0,
+      "explanation": "Take time は「時間をかける」を意味します。We take our time（時間をかけて丁寧にします）のように使います。"
+    },
+    {
+      "question": "Regular",
+      "options": ["いつもの・常連の", "新しい", "初めての", "最後の"],
+      "correct_answer": 0,
+      "explanation": "Regular は「いつもの」「常連の」を意味します。Regular salon（いつものサロン）のように使います。"
+    },
+    {
+      "question": "Compared to",
+      "options": ["～と比べて", "～と同じ", "～について", "～のため"],
+      "correct_answer": 0,
+      "explanation": "Compared to は「～と比べて」を意味します。比較する時に使う表現です。"
+    },
+    {
+      "question": "Careful",
+      "options": ["注意深い", "雑な", "速い", "遅い"],
+      "correct_answer": 0,
+      "explanation": "Careful は「注意深い」「丁寧な」を意味します。慎重に作業することを表します。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "サロン経験を確認するを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Is this ( )?\nCustomer: Yes/no.\nStaff: Have you ( )?\nCustomer: Yes/no.",
+      "syntax_hint": "Hints: first time here, been to a Japanese salon, usually go",
+      "sample_answer": "Staff: Is this your first time here?\nCustomer: Yes, it is.\nStaff: Have you been to a Japanese salon before?\nCustomer: No, this is my first time at a Japanese salon."
+    },
+    {
+      "prompt": "他のサロンとの違いを確認する練習をしましょう。",
+      "syntax_hint": "Where do you usually go? / How was it different? / Better or worse?",
+      "sample_answer": "Staff: Where do you usually go for haircuts?\nCustomer: I go to a salon near my house.\nStaff: I see. Have you been to a Japanese salon before?\nCustomer: Yes, once in Tokyo.\nStaff: How was it different?\nCustomer: It was much more detailed and careful."
+    },
+    {
+      "prompt": "日本のサロンの特徴を説明する練習をしましょう。",
+      "syntax_hint": "Japanese salons are... / We take our time / Very detailed / Careful",
+      "sample_answer": "Customer: This is my first time at a Japanese salon.\nStaff: Welcome! Japanese salons are very detailed. We take our time to make sure everything is perfect.\nCustomer: That sounds great!\nStaff: Yes, we are very careful with every step."
+    }
+  ],
+  "objectives": [
+    "サロンでの経験を確認できる",
+    "他のサロンとの違いを聞き取れる",
+    "日本のサロンの特徴を説明できる",
+    "初めての客を歓迎する表現を使える"
+  ],
+  "metadata": {
+    "icon": "🏪",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

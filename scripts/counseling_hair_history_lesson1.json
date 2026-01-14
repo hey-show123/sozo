@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 1: 髪の毛はダメージしているように感じますか？",
+  "description": "お客様の髪の状態に対する感覚を聞き取り、適切な提案をする表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "髪のダメージ感を尋ねる",
+      "voice": "nova",
+      "phrase": "Does your hair feel damaged?",
+      "emotion": "caring",
+      "meaning": "髪の毛はダメージしているように感じますか？",
+      "examples": [
+        "Does your hair feel damaged? We can do a treatment to help.",
+        "Before we start, does your hair feel damaged?",
+        "Does your hair feel damaged? I want to make sure we take good care of it."
+      ],
+      "phonetic": "/dʌz jɔːr hɛr fiːl ˈdæmɪdʒd/"
+    },
+    {
+      "usage": "スタイリストの意見を伝える（ダメージしている）",
+      "voice": "nova",
+      "phrase": "I think your hair feels damaged.",
+      "emotion": "honest",
+      "meaning": "私はあなたの髪がダメージしていると思います。",
+      "examples": [
+        "I think your hair feels damaged. Let's do a treatment today.",
+        "Honestly, I think your hair feels damaged. We should be careful with chemicals.",
+        "I think your hair feels damaged, especially at the ends."
+      ],
+      "phonetic": "/aɪ θɪŋk jɔːr hɛr fiːlz ˈdæmɪdʒd/"
+    },
+    {
+      "usage": "スタイリストの意見を伝える（ダメージしていない）",
+      "voice": "nova",
+      "phrase": "I don't think your hair feels damaged.",
+      "emotion": "reassuring",
+      "meaning": "私はあなたの髪がダメージしているとは思いません。",
+      "examples": [
+        "I don't think your hair feels damaged. It's quite healthy.",
+        "Actually, I don't think your hair feels damaged at all.",
+        "I don't think your hair feels damaged. You're taking good care of it."
+      ],
+      "phonetic": "/aɪ doʊnt θɪŋk jɔːr hɛr fiːlz ˈdæmɪdʒd/"
+    },
+    {
+      "usage": "健康的であることを伝える",
+      "voice": "nova",
+      "phrase": "I think your hair feels healthy.",
+      "emotion": "positive",
+      "meaning": "私はあなたの髪が健康的だと思います。",
+      "examples": [
+        "I think your hair feels healthy. You must use good products.",
+        "I think your hair feels healthy and shiny.",
+        "Good news! I think your hair feels healthy."
+      ],
+      "phonetic": "/aɪ θɪŋk jɔːr hɛr fiːlz ˈhɛlθi/"
+    },
+    {
+      "usage": "ブリーチの必要性を伝える",
+      "voice": "nova",
+      "phrase": "We need to bleach your hair to get this color.",
+      "emotion": "informative",
+      "meaning": "このカラーをするにはブリーチが必要です。",
+      "examples": [
+        "We need to bleach your hair to get this color. Is that okay?",
+        "To achieve this light color, we need to bleach your hair.",
+        "We need to bleach your hair to get this color. It may cause some damage."
+      ],
+      "phonetic": "/wiː niːd tuː bliːtʃ jɔːr hɛr tuː ɡɛt ðɪs ˈkʌlər/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "We need to bleach your hair to get this color.",
+      "voice": "nova",
+      "emotion": "informative",
+      "speaker": "Staff",
+      "japanese": "このカラーをするにはブリーチが必要です。"
+    },
+    {
+      "text": "That's ok!",
+      "voice": "fable",
+      "emotion": "agreeable",
+      "speaker": "Customer",
+      "japanese": "大丈夫です。"
+    },
+    {
+      "text": "Does your hair feel damaged?",
+      "voice": "nova",
+      "emotion": "caring",
+      "speaker": "Staff",
+      "japanese": "髪の毛はダメージしているように感じますか？"
+    },
+    {
+      "text": "Yes, a little bit.",
+      "voice": "fable",
+      "emotion": "honest",
+      "speaker": "Customer",
+      "japanese": "はい、少し。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Bleach",
+      "options": ["ブリーチ", "カラー", "トリートメント", "パーマ"],
+      "correct_answer": 0,
+      "explanation": "Bleach は「ブリーチ」を意味します。髪を脱色する施術のことです。"
+    },
+    {
+      "question": "Damaged",
+      "options": ["ダメージした", "健康的な", "艶のある", "柔らかい"],
+      "correct_answer": 0,
+      "explanation": "Damaged は「ダメージした」「傷んだ」を意味します。髪の状態が悪いことを表します。"
+    },
+    {
+      "question": "Need to",
+      "options": ["～しないといけない", "～したい", "～できる", "～するかもしれない"],
+      "correct_answer": 0,
+      "explanation": "Need to は「～しないといけない」「～する必要がある」を意味します。We need to...（私たちは～する必要があります）のように使います。"
+    },
+    {
+      "question": "Healthy",
+      "options": ["健康的", "ダメージした", "乾燥した", "広がる"],
+      "correct_answer": 0,
+      "explanation": "Healthy は「健康的」を意味します。髪の状態が良いことを表します。"
+    },
+    {
+      "question": "Shiny",
+      "options": ["艶々", "乾燥した", "ダメージした", "広がる"],
+      "correct_answer": 0,
+      "explanation": "Shiny は「艶々」「光沢のある」を意味します。健康的な髪の特徴です。"
+    },
+    {
+      "question": "Bushy",
+      "options": ["もじゃもじゃ", "艶々", "まっすぐ", "柔らかい"],
+      "correct_answer": 0,
+      "explanation": "Bushy は「もじゃもじゃ」「ボリュームのある」を意味します。髪が広がっている状態です。"
+    },
+    {
+      "question": "Coarse",
+      "options": ["がさがさ・粗い", "柔らかい", "艶のある", "まっすぐ"],
+      "correct_answer": 0,
+      "explanation": "Coarse は「がさがさ」「粗い」を意味します。髪の質感が荒いことを表します。"
+    },
+    {
+      "question": "Tangled",
+      "options": ["からまった", "まっすぐ", "艶のある", "柔らかい"],
+      "correct_answer": 0,
+      "explanation": "Tangled は「からまった」を意味します。髪が絡んでいる状態のことです。"
+    },
+    {
+      "question": "Texture",
+      "options": ["質感", "色", "長さ", "スタイル"],
+      "correct_answer": 0,
+      "explanation": "Texture は「質感」「手触り」を意味します。Hair texture（髪の質感）のように使います。"
+    },
+    {
+      "question": "Feels",
+      "options": ["感じる", "見える", "聞こえる", "においがする"],
+      "correct_answer": 0,
+      "explanation": "Feels は feel の三人称単数形で「感じる」を意味します。Your hair feels...（あなたの髪は...と感じます）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "髪質をどう感じるか聞くを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: What color would you like?\nCustomer: ( ).\nStaff: OK, does ( )?\nCustomer: Yes/no.",
+      "syntax_hint": "Hints: texture, feels~, I think~, I don't think",
+      "sample_answer": "Staff: What color would you like?\nCustomer: I want a very light blonde.\nStaff: OK, we need to bleach your hair. Does your hair feel damaged?\nCustomer: A little bit.\nStaff: I think your hair feels healthy enough for bleach. Let's do a treatment after."
+    },
+    {
+      "prompt": "お客さんの髪の質感について意見を言ってみよう。例）私はダメージしているとは思いません。",
+      "syntax_hint": "I think your hair feels... / I don't think your hair feels...",
+      "sample_answer": "Customer: I'm worried my hair is damaged.\nStaff: Let me check. Actually, I don't think your hair feels damaged. It feels quite healthy and shiny. You're taking good care of it!"
+    },
+    {
+      "prompt": "様々な髪の質感を表現する練習をしましょう。",
+      "syntax_hint": "healthy / shiny / bushy / damaged / coarse / tangled",
+      "sample_answer": "I think your hair feels healthy overall, but the ends feel a bit damaged. Your hair feels shiny on top but a little tangled at the bottom. I recommend a treatment."
+    }
+  ],
+  "objectives": [
+    "お客様の髪の状態に対する感覚を聞き取ることができる",
+    "スタイリストとしての客観的な意見を伝えることができる",
+    "様々な髪の質感を表す形容詞を使うことができる",
+    "ブリーチなどの施術の必要性を説明できる"
+  ],
+  "metadata": {
+    "icon": "💆",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "title": "Lesson 4: 普段髪は絡まりますか？",
+  "description": "日常的な髪の悩みを聞き取り、適切な対処法を提案する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "髪が絡まるかを尋ねる",
+      "voice": "nova",
+      "phrase": "Does your hair get tangled?",
+      "emotion": "inquiring",
+      "meaning": "普段髪は絡まりますか？",
+      "examples": [
+        "Does your hair get tangled easily?",
+        "Does your hair get tangled when you wake up?",
+        "Does your hair get tangled after washing?"
+      ],
+      "phonetic": "/dʌz jɔːr hɛr ɡɛt ˈtæŋɡəld/"
+    },
+    {
+      "usage": "広がりやすいかを尋ねる",
+      "voice": "nova",
+      "phrase": "Does your hair get frizzy?",
+      "emotion": "understanding",
+      "meaning": "髪は広がりやすいですか？",
+      "examples": [
+        "Does your hair get frizzy in humid weather?",
+        "Does your hair get frizzy when it dries?",
+        "Does your hair get frizzy easily?"
+      ],
+      "phonetic": "/dʌz jɔːr hɛr ɡɛt ˈfrɪzi/"
+    },
+    {
+      "usage": "乾燥しているかを尋ねる",
+      "voice": "nova",
+      "phrase": "Does your hair feel dry?",
+      "emotion": "caring",
+      "meaning": "髪は乾燥していますか？",
+      "examples": [
+        "Does your hair feel dry at the ends?",
+        "Does your hair feel dry after washing?",
+        "Does your hair feel dry in winter?"
+      ],
+      "phonetic": "/dʌz jɔːr hɛr fiːl draɪ/"
+    },
+    {
+      "usage": "ブラッシングの頻度を尋ねる",
+      "voice": "nova",
+      "phrase": "How often do you brush your hair?",
+      "emotion": "professional",
+      "meaning": "どのくらいの頻度でブラシをしますか？",
+      "examples": [
+        "How often do you brush your hair each day?",
+        "How often do you brush your hair in the morning?",
+        "How often do you brush your hair? Once a day?"
+      ],
+      "phonetic": "/haʊ ˈɒfən duː juː brʌʃ jɔːr hɛr/"
+    },
+    {
+      "usage": "アドバイスを提供する",
+      "voice": "nova",
+      "phrase": "You should use conditioner.",
+      "emotion": "helpful",
+      "meaning": "コンディショナーを使った方がいいですよ。",
+      "examples": [
+        "You should use conditioner every time you wash.",
+        "You should use conditioner to prevent tangles.",
+        "You should use conditioner. It will help with the dryness."
+      ],
+      "phonetic": "/juː ʃʊd juːz kənˈdɪʃənər/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Does your hair get tangled?",
+      "voice": "nova",
+      "emotion": "inquiring",
+      "speaker": "Staff",
+      "japanese": "普段髪は絡まりますか？"
+    },
+    {
+      "text": "Yes, when I wake up in the morning.",
+      "voice": "fable",
+      "emotion": "confirming",
+      "speaker": "Customer",
+      "japanese": "はい、朝起きた時に絡まります。"
+    },
+    {
+      "text": "I see. Does your hair feel dry?",
+      "voice": "nova",
+      "emotion": "understanding",
+      "speaker": "Staff",
+      "japanese": "なるほど。髪は乾燥していますか？"
+    },
+    {
+      "text": "A little bit.",
+      "voice": "fable",
+      "emotion": "thoughtful",
+      "speaker": "Customer",
+      "japanese": "少しだけ。"
+    },
+    {
+      "text": "You should use conditioner every day.",
+      "voice": "nova",
+      "emotion": "helpful",
+      "speaker": "Staff",
+      "japanese": "毎日コンディショナーを使った方がいいですよ。"
+    },
+    {
+      "text": "OK, thank you.",
+      "voice": "fable",
+      "emotion": "grateful",
+      "speaker": "Customer",
+      "japanese": "わかりました、ありがとうございます。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Tangled",
+      "options": ["絡まった", "まっすぐ", "艶のある", "柔らかい"],
+      "correct_answer": 0,
+      "explanation": "Tangled は「絡まった」を意味します。髪が絡んでいる状態のことです。"
+    },
+    {
+      "question": "Frizzy",
+      "options": ["広がる", "まっすぐ", "艶のある", "濡れた"],
+      "correct_answer": 0,
+      "explanation": "Frizzy は「広がる」「ちりちりした」を意味します。湿気で髪が広がる状態です。"
+    },
+    {
+      "question": "Dry",
+      "options": ["乾燥した", "濡れた", "湿った", "艶のある"],
+      "correct_answer": 0,
+      "explanation": "Dry は「乾燥した」を意味します。水分や油分が足りない状態のことです。"
+    },
+    {
+      "question": "Brush",
+      "options": ["ブラシをかける", "洗う", "乾かす", "切る"],
+      "correct_answer": 0,
+      "explanation": "Brush は「ブラシをかける」を意味します。櫛で髪を整えることです。"
+    },
+    {
+      "question": "Conditioner",
+      "options": ["コンディショナー", "シャンプー", "トリートメント", "カラー"],
+      "correct_answer": 0,
+      "explanation": "Conditioner は「コンディショナー」「リンス」を意味します。髪を整える製品です。"
+    },
+    {
+      "question": "How often",
+      "options": ["どのくらいの頻度で", "いつ", "どこで", "なぜ"],
+      "correct_answer": 0,
+      "explanation": "How often は「どのくらいの頻度で」を意味します。頻度を尋ねる表現です。"
+    },
+    {
+      "question": "Should",
+      "options": ["～した方がいい", "～しなければならない", "～できる", "～したい"],
+      "correct_answer": 0,
+      "explanation": "Should は「～した方がいい」を意味します。アドバイスをする時に使います。"
+    },
+    {
+      "question": "Easily",
+      "options": ["簡単に", "難しく", "時々", "決して"],
+      "correct_answer": 0,
+      "explanation": "Easily は「簡単に」「すぐに」を意味します。容易に起こることを表します。"
+    },
+    {
+      "question": "Prevent",
+      "options": ["防ぐ", "作る", "増やす", "減らす"],
+      "correct_answer": 0,
+      "explanation": "Prevent は「防ぐ」「予防する」を意味します。問題が起こらないようにすることです。"
+    },
+    {
+      "question": "Humid",
+      "options": ["湿気のある", "乾燥した", "暖かい", "寒い"],
+      "correct_answer": 0,
+      "explanation": "Humid は「湿気のある」を意味します。湿度が高い状態のことです。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "髪の悩みを聞くを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Does your hair ( )?\nCustomer: Yes, ( ).\nStaff: I see. You should ( ).\nCustomer: OK, thank you.",
+      "syntax_hint": "Hints: get tangled, get frizzy, feel dry, use conditioner, brush",
+      "sample_answer": "Staff: Does your hair get frizzy?\nCustomer: Yes, especially when it's humid.\nStaff: I see. You should use an anti-frizz serum.\nCustomer: OK, thank you."
+    },
+    {
+      "prompt": "ヘアケアの頻度を確認する練習をしましょう。",
+      "syntax_hint": "How often do you... / Every day / Once a week / Twice a day",
+      "sample_answer": "Staff: How often do you brush your hair?\nCustomer: Twice a day, morning and night.\nStaff: That's good. How often do you use conditioner?\nCustomer: Every time I wash my hair."
+    },
+    {
+      "prompt": "髪の悩みに対してアドバイスをする練習をしましょう。",
+      "syntax_hint": "You should... / It will help with... / This is good for...",
+      "sample_answer": "Customer: My hair gets very tangled.\nStaff: You should use conditioner every day. It will help with the tangles.\nCustomer: Does your hair feel dry?\nStaff: Yes.\nStaff: You should also use a hair mask once a week. This is good for dry hair."
+    }
+  ],
+  "objectives": [
+    "日常的な髪の悩みを聞き取ることができる",
+    "髪のトラブルを表す表現を使うことができる",
+    "ヘアケアの頻度を確認できる",
+    "適切なアドバイスを提供できる"
+  ],
+  "metadata": {
+    "icon": "🪮",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

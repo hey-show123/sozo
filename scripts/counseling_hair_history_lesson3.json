@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 3: ご自分の髪の質感についてどう思いますか？",
+  "description": "お客様が自分の髪質をどう認識しているかを確認し、適切なアドバイスをする表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "髪の質感についての意見を尋ねる",
+      "voice": "nova",
+      "phrase": "How do you feel about your hair texture?",
+      "emotion": "curious",
+      "meaning": "ご自分の髪の質感についてどう思いますか？",
+      "examples": [
+        "How do you feel about your hair texture? Are you happy with it?",
+        "Before we start, how do you feel about your hair texture?",
+        "How do you feel about your hair texture overall?"
+      ],
+      "phonetic": "/haʊ duː juː fiːl əˈbaʊt jɔːr hɛr ˈtɛkstʃər/"
+    },
+    {
+      "usage": "髪質への満足度を尋ねる",
+      "voice": "nova",
+      "phrase": "Are you happy with your hair?",
+      "emotion": "friendly",
+      "meaning": "髪の毛には満足していますか？",
+      "examples": [
+        "Are you happy with your hair, or would you like to change something?",
+        "Overall, are you happy with your hair?",
+        "Are you happy with your hair texture and condition?"
+      ],
+      "phonetic": "/ɑːr juː ˈhæpi wɪð jɔːr hɛr/"
+    },
+    {
+      "usage": "やわらかい髪であることを伝える",
+      "voice": "nova",
+      "phrase": "You have soft hair.",
+      "emotion": "complimentary",
+      "meaning": "やわらかい髪ですね。",
+      "examples": [
+        "You have soft hair. It's beautiful.",
+        "You have soft hair. That's great for styling.",
+        "You have soft hair. We can create many different looks."
+      ],
+      "phonetic": "/juː hæv sɒft hɛr/"
+    },
+    {
+      "usage": "硬い髪であることを伝える",
+      "voice": "nova",
+      "phrase": "You have coarse hair.",
+      "emotion": "informative",
+      "meaning": "髪質が硬いですね。",
+      "examples": [
+        "You have coarse hair, so the perm will hold well.",
+        "You have coarse hair. We need to use stronger chemicals.",
+        "You have coarse hair, which is actually very strong and healthy."
+      ],
+      "phonetic": "/juː hæv kɔːrs hɛr/"
+    },
+    {
+      "usage": "髪の太さを伝える",
+      "voice": "nova",
+      "phrase": "Your hair is thick.",
+      "emotion": "observant",
+      "meaning": "髪の毛が太いですね。",
+      "examples": [
+        "Your hair is thick and strong.",
+        "Your hair is thick, so it will take longer to process.",
+        "Your hair is thick. That's why the color doesn't show as much."
+      ],
+      "phonetic": "/jɔːr hɛr ɪz θɪk/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "How do you feel about your hair texture?",
+      "voice": "nova",
+      "emotion": "curious",
+      "speaker": "Staff",
+      "japanese": "ご自分の髪の質感についてどう思いますか？"
+    },
+    {
+      "text": "I think it's a little coarse.",
+      "voice": "fable",
+      "emotion": "thoughtful",
+      "speaker": "Customer",
+      "japanese": "少し硬いと思います。"
+    },
+    {
+      "text": "I see. Are you happy with your hair?",
+      "voice": "nova",
+      "emotion": "understanding",
+      "speaker": "Staff",
+      "japanese": "なるほど。髪の毛には満足していますか？"
+    },
+    {
+      "text": "Not really.",
+      "voice": "fable",
+      "emotion": "honest",
+      "speaker": "Customer",
+      "japanese": "あまり満足していません。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Texture",
+      "options": ["質感", "色", "長さ", "スタイル"],
+      "correct_answer": 0,
+      "explanation": "Texture は「質感」「手触り」を意味します。髪の性質や特徴を表します。"
+    },
+    {
+      "question": "How do you feel about",
+      "options": ["～についてどう思いますか", "～は好きですか", "～が欲しいですか", "～を知っていますか"],
+      "correct_answer": 0,
+      "explanation": "How do you feel about は「～についてどう思いますか」を意味します。意見や感想を尋ねる表現です。"
+    },
+    {
+      "question": "Soft",
+      "options": ["やわらかい", "硬い", "太い", "細い"],
+      "correct_answer": 0,
+      "explanation": "Soft は「やわらかい」を意味します。髪の柔らかさを表す形容詞です。"
+    },
+    {
+      "question": "Coarse",
+      "options": ["硬い・粗い", "やわらかい", "艶のある", "まっすぐ"],
+      "correct_answer": 0,
+      "explanation": "Coarse は「硬い」「粗い」を意味します。髪質が硬くて太いことを表します。"
+    },
+    {
+      "question": "Thick",
+      "options": ["太い・厚い", "細い", "薄い", "短い"],
+      "correct_answer": 0,
+      "explanation": "Thick は「太い」「厚い」を意味します。髪の毛の太さやボリュームを表します。"
+    },
+    {
+      "question": "Thin",
+      "options": ["細い・薄い", "太い", "厚い", "長い"],
+      "correct_answer": 0,
+      "explanation": "Thin は「細い」「薄い」を意味します。髪の毛が細いことやボリュームが少ないことを表します。"
+    },
+    {
+      "question": "Happy with",
+      "options": ["～に満足している", "～が欲しい", "～が必要", "～が嫌い"],
+      "correct_answer": 0,
+      "explanation": "Happy with は「～に満足している」を意味します。Are you happy with...?（～に満足していますか？）のように使います。"
+    },
+    {
+      "question": "Not really",
+      "options": ["あまり～ない", "とても～", "全く～ない", "いつも～"],
+      "correct_answer": 0,
+      "explanation": "Not really は「あまり～ない」「そうでもない」を意味する口語表現です。"
+    },
+    {
+      "question": "Overall",
+      "options": ["全体的に", "部分的に", "時々", "決して"],
+      "correct_answer": 0,
+      "explanation": "Overall は「全体的に」「総合的に」を意味します。全般的な評価をする時に使います。"
+    },
+    {
+      "question": "Strong",
+      "options": ["強い", "弱い", "柔らかい", "硬い"],
+      "correct_answer": 0,
+      "explanation": "Strong は「強い」を意味します。髪が丈夫で健康的なことを表します。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "髪の質感についてどう思うか聞くを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: How ( )?\nCustomer: I think ( ).\nStaff: I see, are you ( )?\nCustomer: Yes/no.",
+      "syntax_hint": "Hints: feel about, soft, coarse, thick, thin, happy with",
+      "sample_answer": "Staff: How do you feel about your hair texture?\nCustomer: I think it's too soft and thin.\nStaff: I see, are you happy with your hair?\nCustomer: Not really. I want more volume."
+    },
+    {
+      "prompt": "お客さんの髪質を褒めたり、特徴を伝える練習をしましょう。",
+      "syntax_hint": "You have (soft/coarse/thick/thin) hair / Your hair is...",
+      "sample_answer": "Staff: You have beautiful thick hair! It's very healthy and strong.\nCustomer: Thank you!\nStaff: Your hair is coarse, so the perm will hold very well."
+    },
+    {
+      "prompt": "髪質の満足度を確認して、改善提案をする練習をしましょう。",
+      "syntax_hint": "Are you happy with... / I can help you... / We can make it...",
+      "sample_answer": "Staff: Are you happy with your hair texture?\nCustomer: Not really. It's too coarse.\nStaff: I understand. We can make it softer with a treatment. Would you like to try?"
+    }
+  ],
+  "objectives": [
+    "お客様の髪質に対する認識を確認できる",
+    "髪の質感を表す形容詞を適切に使える",
+    "お客様の満足度を聞き取ることができる",
+    "髪質の特徴を客観的に伝えることができる"
+  ],
+  "metadata": {
+    "icon": "✨",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

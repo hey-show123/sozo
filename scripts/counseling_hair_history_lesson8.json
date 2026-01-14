@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 8: 前回はどういうパーマをかけましたか？",
+  "description": "パーマの種類や施術履歴を確認し、適切な提案をする表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "パーマの種類を尋ねる",
+      "voice": "nova",
+      "phrase": "What kind of perm did you get?",
+      "emotion": "professional",
+      "meaning": "前回はどういうパーマをかけましたか？",
+      "examples": [
+        "What kind of perm did you get last time?",
+        "What kind of perm did you get? Was it a loose wave?",
+        "What kind of perm did you get? Curly or wavy?"
+      ],
+      "phonetic": "/wɒt kaɪnd ʌv pɜːrm dɪd juː ɡɛt/"
+    },
+    {
+      "usage": "緩いカールであることを伝える",
+      "voice": "nova",
+      "phrase": "You got a loose curl perm.",
+      "emotion": "observant",
+      "meaning": "緩いカールパーマをかけましたね。",
+      "examples": [
+        "I can see you got a loose curl perm.",
+        "You got a loose curl perm. It looks natural.",
+        "You got a loose curl perm last time, right?"
+      ],
+      "phonetic": "/juː ɡɒt ə luːs kɜːrl pɜːrm/"
+    },
+    {
+      "usage": "きついカールであることを伝える",
+      "voice": "nova",
+      "phrase": "You got a tight curl perm.",
+      "emotion": "noticing",
+      "meaning": "きついカールパーマをかけましたね。",
+      "examples": [
+        "You got a tight curl perm. Very curly!",
+        "You got a tight curl perm last time.",
+        "I see you got a tight curl perm before."
+      ],
+      "phonetic": "/juː ɡɒt ə taɪt kɜːrl pɜːrm/"
+    },
+    {
+      "usage": "パーマの持続期間を尋ねる",
+      "voice": "nova",
+      "phrase": "How long did the perm last?",
+      "emotion": "inquiring",
+      "meaning": "パーマはどのくらい持ちましたか？",
+      "examples": [
+        "How long did the perm last? A few months?",
+        "How long did the perm last before it fell out?",
+        "How long did the perm last for you?"
+      ],
+      "phonetic": "/haʊ lɒŋ dɪd ðə pɜːrm lɑːst/"
+    },
+    {
+      "usage": "同じパーマを提案",
+      "voice": "nova",
+      "phrase": "Would you like the same perm?",
+      "emotion": "suggestive",
+      "meaning": "同じパーマにされますか？",
+      "examples": [
+        "Would you like the same perm as last time?",
+        "Would you like the same perm, or something different?",
+        "Would you like the same perm? It looked great."
+      ],
+      "phonetic": "/wʊd juː laɪk ðə seɪm pɜːrm/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "What kind of perm did you get?",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "前回はどういうパーマをかけましたか？"
+    },
+    {
+      "text": "A loose curl perm.",
+      "voice": "fable",
+      "emotion": "answering",
+      "speaker": "Customer",
+      "japanese": "緩いカールパーマです。"
+    },
+    {
+      "text": "How long did the perm last?",
+      "voice": "nova",
+      "emotion": "inquiring",
+      "speaker": "Staff",
+      "japanese": "パーマはどのくらい持ちましたか？"
+    },
+    {
+      "text": "About two months.",
+      "voice": "fable",
+      "emotion": "recalling",
+      "speaker": "Customer",
+      "japanese": "約2ヶ月です。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "What kind of",
+      "options": ["どういう種類の", "いつの", "どこの", "誰の"],
+      "correct_answer": 0,
+      "explanation": "What kind of は「どういう種類の」を意味します。種類を尋ねる表現です。"
+    },
+    {
+      "question": "Perm",
+      "options": ["パーマ", "カラー", "カット", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Perm は「パーマ」を意味します。髪にカールやウェーブをつける施術です。"
+    },
+    {
+      "question": "Loose",
+      "options": ["緩い", "きつい", "硬い", "柔らかい"],
+      "correct_answer": 0,
+      "explanation": "Loose は「緩い」「ゆるい」を意味します。Loose curl（緩いカール）のように使います。"
+    },
+    {
+      "question": "Tight",
+      "options": ["きつい", "緩い", "長い", "短い"],
+      "correct_answer": 0,
+      "explanation": "Tight は「きつい」「強い」を意味します。Tight curl（きついカール）のように使います。"
+    },
+    {
+      "question": "Curl",
+      "options": ["カール", "ストレート", "ウェーブ", "ボリューム"],
+      "correct_answer": 0,
+      "explanation": "Curl は「カール」「巻き毛」を意味します。パーマのスタイルを表します。"
+    },
+    {
+      "question": "Last",
+      "options": ["持続する", "終わる", "始まる", "変わる"],
+      "correct_answer": 0,
+      "explanation": "Last は動詞で「持続する」「続く」を意味します。How long did it last?（どのくらい持ちましたか？）のように使います。"
+    },
+    {
+      "question": "Fall out",
+      "options": ["取れる・落ちる", "入る", "残る", "増える"],
+      "correct_answer": 0,
+      "explanation": "Fall out は「取れる」「落ちる」を意味します。パーマが取れることを表します。"
+    },
+    {
+      "question": "Wave",
+      "options": ["ウェーブ", "カール", "ストレート", "ボリューム"],
+      "correct_answer": 0,
+      "explanation": "Wave は「ウェーブ」を意味します。緩やかな波状のカールのことです。"
+    },
+    {
+      "question": "Natural",
+      "options": ["ナチュラル・自然", "人工的", "強い", "弱い"],
+      "correct_answer": 0,
+      "explanation": "Natural は「ナチュラル」「自然な」を意味します。It looks natural（自然に見えます）のように使います。"
+    },
+    {
+      "question": "Before",
+      "options": ["前に", "後に", "今", "次"],
+      "correct_answer": 0,
+      "explanation": "Before は「前に」「以前」を意味します。過去のことを指します。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "パーマの種類を確認するを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: What kind of ( )?\nCustomer: A ( ) perm.\nStaff: How long ( )?\nCustomer: About ( ).",
+      "syntax_hint": "Hints: perm did you get, loose curl, tight curl, did it last, two months",
+      "sample_answer": "Staff: What kind of perm did you get?\nCustomer: A tight curl perm.\nStaff: How long did it last?\nCustomer: About three months."
+    },
+    {
+      "prompt": "パーマの状態を観察して確認する練習をしましょう。",
+      "syntax_hint": "You got a (loose/tight) (curl/wave) perm / It looks... / Right?",
+      "sample_answer": "Staff: I can see you got a loose wave perm. It looks very natural.\nCustomer: Yes, that's right.\nStaff: How long ago did you get it?\nCustomer: About two months ago."
+    },
+    {
+      "prompt": "前回のパーマについて確認して、次の提案をする練習をしましょう。",
+      "syntax_hint": "How long did... / Would you like the same... / Something different / Tighter / Looser",
+      "sample_answer": "Staff: What kind of perm did you get last time?\nCustomer: A loose curl perm.\nStaff: How long did it last?\nCustomer: Only one month.\nStaff: I see. Would you like a tighter curl this time? It will last longer."
+    }
+  ],
+  "objectives": [
+    "パーマの種類を確認できる",
+    "パーマの持続期間を聞き取れる",
+    "カールの強さを表現できる",
+    "前回の施術を踏まえた提案ができる"
+  ],
+  "metadata": {
+    "icon": "〰️",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

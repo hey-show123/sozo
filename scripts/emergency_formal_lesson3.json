@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 3: もう少しゆっくり話してください。",
+  "description": "相手の話すスピードが速い時や、理解しにくい時に丁寧に調整をお願いする表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "ゆっくり話してもらう",
+      "voice": "nova",
+      "phrase": "Could you speak more slowly please?",
+      "emotion": "polite",
+      "meaning": "もう少しゆっくり話してください。",
+      "examples": [
+        "I'm sorry, could you speak more slowly please?",
+        "Could you speak more slowly please? I want to make sure I understand.",
+        "Could you speak more slowly please? I'm still learning English."
+      ],
+      "phonetic": "/kʊd juː spiːk mɔːr ˈsloʊli pliːz/"
+    },
+    {
+      "usage": "大きな声で話してもらう",
+      "voice": "nova",
+      "phrase": "Could you speak louder please?",
+      "emotion": "helpful",
+      "meaning": "もう少し大きな声で話してください。",
+      "examples": [
+        "Could you speak louder please? I can barely hear you.",
+        "I'm sorry, could you speak louder please?",
+        "Could you speak louder please? It's a bit noisy here."
+      ],
+      "phonetic": "/kʊd juː spiːk ˈlaʊdər pliːz/"
+    },
+    {
+      "usage": "違う言い方で説明してもらう",
+      "voice": "nova",
+      "phrase": "Could you say that in a different way?",
+      "emotion": "curious",
+      "meaning": "違う言い方で言ってください。",
+      "examples": [
+        "Could you say that in a different way? I didn't quite understand.",
+        "I'm sorry, could you say that in a different way?",
+        "Could you say that in a different way? Maybe with simpler words?"
+      ],
+      "phonetic": "/kʊd juː seɪ ðæt ɪn ə ˈdɪfərənt weɪ/"
+    },
+    {
+      "usage": "意味を尋ねる",
+      "voice": "nova",
+      "phrase": "What do you mean?",
+      "emotion": "curious",
+      "meaning": "どういうことですか？",
+      "examples": [
+        "What do you mean by that?",
+        "I'm sorry, what do you mean exactly?",
+        "What do you mean? Could you explain more?"
+      ],
+      "phonetic": "/wʌt duː juː miːn/"
+    },
+    {
+      "usage": "理解できなかったことを伝える",
+      "voice": "nova",
+      "phrase": "I don't understand.",
+      "emotion": "apologetic",
+      "meaning": "理解できませんでした。",
+      "examples": [
+        "I'm sorry, I don't understand.",
+        "I don't understand. Could you explain that again?",
+        "I don't understand. Could you show me what you mean?"
+      ],
+      "phonetic": "/aɪ doʊnt ˌʌndərˈstænd/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Do you have a charger?",
+      "voice": "fable",
+      "emotion": "curious",
+      "speaker": "Customer",
+      "japanese": "充電器はありますか？"
+    },
+    {
+      "text": "I can't hear you.",
+      "voice": "nova",
+      "emotion": "apologetic",
+      "speaker": "Staff",
+      "japanese": "聞こえません"
+    },
+    {
+      "text": "Do you have a charger?",
+      "voice": "fable",
+      "emotion": "curious",
+      "speaker": "Customer",
+      "japanese": "充電器はありますか？"
+    },
+    {
+      "text": "Could you speak more slowly please?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "もう少しゆっくり話してください。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Hear",
+      "options": ["聞く・聞こえる", "見る", "話す", "書く"],
+      "correct_answer": 0,
+      "explanation": "Hear は「聞く」「聞こえる」を意味します。I can't hear you.（聞こえません）のように使います。"
+    },
+    {
+      "question": "Speak",
+      "options": ["話す", "聞く", "見る", "書く"],
+      "correct_answer": 0,
+      "explanation": "Speak は「話す」を意味します。Could you speak...?（...話していただけますか？）のように使います。"
+    },
+    {
+      "question": "Slowly",
+      "options": ["ゆっくり", "速く", "大きく", "小さく"],
+      "correct_answer": 0,
+      "explanation": "Slowly は「ゆっくり」を意味します。Speak slowly（ゆっくり話す）のように使います。"
+    },
+    {
+      "question": "Louder",
+      "options": ["もっと大きく", "もっと小さく", "もっと速く", "もっと遅く"],
+      "correct_answer": 0,
+      "explanation": "Louder は loud（大きい）の比較級で「もっと大きく」を意味します。Speak louder（もっと大きな声で話す）のように使います。"
+    },
+    {
+      "question": "Different",
+      "options": ["違う", "同じ", "似ている", "正しい"],
+      "correct_answer": 0,
+      "explanation": "Different は「違う」「異なる」を意味します。A different way（違う方法）のように使います。"
+    },
+    {
+      "question": "Way",
+      "options": ["方法", "場所", "時間", "理由"],
+      "correct_answer": 0,
+      "explanation": "Way は「方法」「やり方」を意味します。In a different way（違う方法で）のように使います。"
+    },
+    {
+      "question": "Understand",
+      "options": ["理解する", "話す", "聞く", "書く"],
+      "correct_answer": 0,
+      "explanation": "Understand は「理解する」「わかる」を意味します。I don't understand.（わかりません）のように使います。"
+    },
+    {
+      "question": "Mean",
+      "options": ["意味する", "話す", "聞く", "見る"],
+      "correct_answer": 0,
+      "explanation": "Mean は「意味する」を意味します。What do you mean?（どういう意味ですか？）のように使います。"
+    },
+    {
+      "question": "Explain",
+      "options": ["説明する", "質問する", "答える", "聞く"],
+      "correct_answer": 0,
+      "explanation": "Explain は「説明する」を意味します。Could you explain?（説明していただけますか？）のように使います。"
+    },
+    {
+      "question": "Simpler",
+      "options": ["もっと簡単な", "もっと難しい", "もっと複雑な", "もっと長い"],
+      "correct_answer": 0,
+      "explanation": "Simpler は simple（簡単な）の比較級で「もっと簡単な」を意味します。Simpler words（もっと簡単な言葉）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "聞き返すフレーズを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: Do you have a ( )?\nStaff: ( ).\nCustomer: Do you have a ( )?\nStaff: ( )?",
+      "syntax_hint": "Hints: louder, different, way, understand",
+      "sample_answer": "Customer: Do you have a charger?\nStaff: I'm sorry, I can't hear you.\nCustomer: Do you have a charger?\nStaff: Could you speak more slowly please? I want to make sure I understand."
+    },
+    {
+      "prompt": "不慣れなトピックについて話してみよう。聞き返す練習をしよう。例）好きな映画",
+      "syntax_hint": "Could you speak more slowly? / What do you mean? / I don't understand / Could you say that in a different way?",
+      "sample_answer": "Customer: My favorite movie is an indie film about existentialism.\nStaff: I'm sorry, what do you mean by existentialism? Could you say that in a different way?\nCustomer: It's about the meaning of life.\nStaff: I understand now. Thank you for explaining."
+    },
+    {
+      "prompt": "理解を深めるための質問のバリエーションを練習しましょう。",
+      "syntax_hint": "Could you speak more slowly? / Could you speak louder? / What does that mean? / Could you explain?",
+      "sample_answer": "I'm sorry, could you speak more slowly please? I don't understand what that means. Could you explain it in a different way?"
+    }
+  ],
+  "objectives": [
+    "相手にゆっくり話してもらうことを丁寧に依頼できる",
+    "大きな声で話してもらうよう依頼できる",
+    "理解できない時に別の説明を求めることができる",
+    "コミュニケーションを円滑にするための質問ができる"
+  ],
+  "metadata": {
+    "icon": "🗣️",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

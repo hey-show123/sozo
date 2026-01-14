@@ -1,0 +1,69 @@
+{
+  "key_phrases": [
+    {
+      "usage": "朝の挨拶",
+      "voice": "nova",
+      "phrase": "Good morning",
+      "emotion": "friendly",
+      "meaning": "おはようございます",
+      "examples": [
+        "Good morning, thank you for coming in today.",
+        "Good morning, Ms. Johnson. It's wonderful to see you again.",
+        "Good morning! Did you have any trouble finding our salon?"
+      ],
+      "phonetic": "/ɡʊd ˈmɔːrnɪŋ/"
+    },
+    {
+      "usage": "昼の挨拶",
+      "voice": "nova",
+      "phrase": "Good afternoon",
+      "emotion": "friendly",
+      "meaning": "こんにちは",
+      "examples": [
+        "Good afternoon, thank you for making an appointment with us.",
+        "Good afternoon, Mr. Chen. Your stylist is waiting for you.",
+        "Good afternoon! Have you been to our salon before?"
+      ],
+      "phonetic": "/ɡʊd ˌæftərˈnuːn/"
+    },
+    {
+      "usage": "お客様に挨拶をする",
+      "voice": "nova",
+      "phrase": "Hello",
+      "emotion": "friendly",
+      "meaning": "どうも",
+      "examples": [
+        "Hello, please come in and have a seat.",
+        "Hello there! Are you here for your 2 o'clock appointment?",
+        "Hello, welcome back! How has your hair been since your last visit?"
+      ],
+      "phonetic": "/həˈloʊ/"
+    },
+    {
+      "usage": "自己紹介の仕方（フォーマル）",
+      "voice": "nova",
+      "phrase": "My name is Sarah.",
+      "emotion": "polite",
+      "meaning": "サラと申します。",
+      "examples": [
+        "My name is Sarah, and I'll be taking care of you today.",
+        "My name is Sarah. I've been working as a stylist for five years.",
+        "My name is Sarah. May I ask your name, please?"
+      ],
+      "phonetic": "/maɪ neɪm ɪz ˈsɛrə/"
+    },
+    {
+      "usage": "自己紹介の仕方（カジュアル）",
+      "voice": "nova",
+      "phrase": "I'm Sarah.",
+      "emotion": "friendly",
+      "meaning": "サラです。",
+      "examples": [
+        "Hi, I'm Sarah, and I'll be your stylist today.",
+        "I'm Sarah. Have you thought about what style you'd like?",
+        "I'm Sarah. Let me show you to your seat."
+      ],
+      "phonetic": "/aɪm ˈsɛrə/"
+    }
+  ]
+}

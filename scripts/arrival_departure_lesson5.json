@@ -1,0 +1,199 @@
+{
+  "title": "Lesson 5: 200円のお釣りです。",
+  "description": "現金でのお支払い時のお釣りの受け渡しと確認を行う表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "お釣りを渡す",
+      "voice": "nova",
+      "phrase": "Your change is 200 yen.",
+      "emotion": "friendly",
+      "meaning": "お釣りは200円です。",
+      "examples": [
+        "Thank you. Your change is 200 yen.",
+        "Here you are. Your change is 200 yen.",
+        "Your change is 200 yen. Please check it."
+      ],
+      "phonetic": "/jɔːr tʃeɪndʒ ɪz tuː ˈhʌndrəd jɛn/"
+    },
+    {
+      "usage": "受け取った金額を確認する",
+      "voice": "nova",
+      "phrase": "From 10,000 yen?",
+      "emotion": "confirming",
+      "meaning": "1万円からでよろしいですか？",
+      "examples": [
+        "Your total is 8,800 yen. From 10,000 yen?",
+        "From 10,000 yen? Thank you.",
+        "From 10,000 yen? Your change will be 1,200 yen."
+      ],
+      "phonetic": "/frʌm tɛn ˈθaʊzənd jɛn/"
+    },
+    {
+      "usage": "支払い方法を尋ねる",
+      "voice": "nova",
+      "phrase": "How would you like to pay?",
+      "emotion": "polite",
+      "meaning": "お支払い方法はどうなさいますか？",
+      "examples": [
+        "Your total is 8,800 yen. How would you like to pay?",
+        "How would you like to pay? We accept cash, credit card, and QR code.",
+        "How would you like to pay today?"
+      ],
+      "phonetic": "/haʊ wʊd juː laɪk tuː peɪ/"
+    },
+    {
+      "usage": "現金での支払いを確認する",
+      "voice": "nova",
+      "phrase": "You'll pay with cash?",
+      "emotion": "confirming",
+      "meaning": "現金でお支払いですか？",
+      "examples": [
+        "You'll pay with cash? Thank you.",
+        "You'll pay with cash? From 10,000 yen?",
+        "You'll pay with cash today? Perfect."
+      ],
+      "phonetic": "/juːl peɪ wɪð kæʃ/"
+    },
+    {
+      "usage": "お預かりする",
+      "voice": "nova",
+      "phrase": "I'll take 10,000 yen from you.",
+      "emotion": "professional",
+      "meaning": "1万円お預かりします。",
+      "examples": [
+        "Thank you. I'll take 10,000 yen from you.",
+        "I'll take 10,000 yen from you. Your change will be 1,200 yen.",
+        "I'll take 10,000 yen from you. One moment, please."
+      ],
+      "phonetic": "/aɪl teɪk tɛn ˈθaʊzənd jɛn frʌm juː/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "For haircut, your total is 8,800 yen.",
+      "voice": "nova",
+      "emotion": "clear",
+      "speaker": "Staff",
+      "japanese": "カットで合計が8,800円になります。"
+    },
+    {
+      "text": "Thank you.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "ありがとうございます。"
+    },
+    {
+      "text": "From 10,000 yen?",
+      "voice": "nova",
+      "emotion": "confirming",
+      "speaker": "Staff",
+      "japanese": "1万円からでよろしいですか？"
+    },
+    {
+      "text": "Yes.",
+      "voice": "fable",
+      "emotion": "friendly",
+      "speaker": "Customer",
+      "japanese": "はい。"
+    },
+    {
+      "text": "Thank you. Your change is 1,200 yen.",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "ありがとうございます。1,200円のお釣りです。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Total",
+      "options": ["合計", "税金", "割引", "釣り"],
+      "correct_answer": 0,
+      "explanation": "Total は「合計」「総額」を意味します。Your total is...（合計は...です）のように使います。"
+    },
+    {
+      "question": "Yen",
+      "options": ["円", "ドル", "ユーロ", "ポンド"],
+      "correct_answer": 0,
+      "explanation": "Yen は「円」を意味します。日本の通貨単位です。"
+    },
+    {
+      "question": "Change",
+      "options": ["お釣り", "合計", "税金", "割引"],
+      "correct_answer": 0,
+      "explanation": "Change は「お釣り」を意味します。Your change is...（お釣りは...です）のように使います。"
+    },
+    {
+      "question": "Cash",
+      "options": ["現金", "カード", "QRコード", "小切手"],
+      "correct_answer": 0,
+      "explanation": "Cash は「現金」を意味します。紙幣や硬貨での支払いのことです。"
+    },
+    {
+      "question": "Credit card",
+      "options": ["クレジットカード", "デビットカード", "現金", "QRコード"],
+      "correct_answer": 0,
+      "explanation": "Credit card は「クレジットカード」を意味します。後払いのカードのことです。"
+    },
+    {
+      "question": "Debit card",
+      "options": ["デビットカード", "クレジットカード", "現金", "小切手"],
+      "correct_answer": 0,
+      "explanation": "Debit card は「デビットカード」を意味します。口座から即時引き落としされるカードです。"
+    },
+    {
+      "question": "QR code",
+      "options": ["QRコード", "バーコード", "カード", "現金"],
+      "correct_answer": 0,
+      "explanation": "QR code は「QRコード」を意味します。スマートフォンでスキャンして支払う方法です。"
+    },
+    {
+      "question": "Payment",
+      "options": ["支払い", "領収書", "釣り", "割引"],
+      "correct_answer": 0,
+      "explanation": "Payment は「支払い」「決済」を意味します。How would you like to pay?（どのように支払いますか？）のように使います。"
+    },
+    {
+      "question": "PIN",
+      "options": ["暗証番号", "署名", "領収書", "カード"],
+      "correct_answer": 0,
+      "explanation": "PIN は「暗証番号」を意味します。Personal Identification Numberの略で、カード決済時に必要です。"
+    },
+    {
+      "question": "Sign",
+      "options": ["署名する", "支払う", "受け取る", "返す"],
+      "correct_answer": 0,
+      "explanation": "Sign は「署名する」「サインする」を意味します。Please sign here.（こちらにご署名ください）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "お釣りの説明を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Thank you, your total for ( ) is ( ).\nCustomer: Thank you.\nStaff: From ( )?\nCustomer: Yes.\nStaff: ( ).",
+      "syntax_hint": "Hints: payment, bill, pay, use, PIN, sign",
+      "sample_answer": "Staff: Thank you, your total for haircut is 8,800 yen.\nCustomer: Thank you.\nStaff: From 10,000 yen?\nCustomer: Yes.\nStaff: Your change is 1,200 yen."
+    },
+    {
+      "prompt": "異なる支払い方法を尋ねる練習をしましょう。",
+      "syntax_hint": "How would you like to pay? / Cash / Credit card / Debit card / QR code",
+      "sample_answer": "Staff: How would you like to pay?\nCustomer: I'll pay with credit card.\nStaff: Perfect. Please insert your card here."
+    },
+    {
+      "prompt": "現金でのお釣りの計算と受け渡しを練習しましょう。",
+      "syntax_hint": "From... / Your change is... / Please check it",
+      "sample_answer": "Staff: From 10,000 yen? Your change is 1,200 yen. Please check it.\nCustomer: Thank you."
+    }
+  ],
+  "objectives": [
+    "お釣りの金額を正確に伝えることができる",
+    "受け取った金額を確認できる（From... yen?）",
+    "様々な支払い方法を尋ね、対応できる",
+    "現金の受け渡しを丁寧に行うことができる"
+  ],
+  "metadata": {
+    "icon": "💵",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

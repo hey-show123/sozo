@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 2: トリートメントもされたいですか？",
+  "description": "お客様の髪の状態を確認し、追加のサービスを提案する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "追加サービスを提案する",
+      "voice": "nova",
+      "phrase": "Would you like to do a treatment as well?",
+      "emotion": "helpful",
+      "meaning": "トリートメントもされたいですか？",
+      "examples": [
+        "Your hair looks dry. Would you like to do a treatment as well?",
+        "Would you like to do a treatment as well? It will help with the damage.",
+        "We have a special treatment today. Would you like to do a treatment as well?"
+      ],
+      "phonetic": "/wʊd juː laɪk tuː duː ə ˈtriːtmənt æz wɛl/"
+    },
+    {
+      "usage": "髪の状態に基づいて提案する",
+      "voice": "nova",
+      "phrase": "If you feel like your hair is damaged, I recommend a treatment.",
+      "emotion": "professional",
+      "meaning": "もしダメージを感じている場合は、トリートメントをおすすめします。",
+      "examples": [
+        "If you feel like your hair is damaged, I recommend a treatment.",
+        "If you feel like your hair is dry, I recommend a deep conditioning treatment.",
+        "If you feel like your hair is frizzy, I recommend a straight perm."
+      ],
+      "phonetic": "/ɪf juː fiːl laɪk jɔːr hɛr ɪz ˈdæmɪdʒd, aɪ ˌrɛkəˈmɛnd ə ˈtriːtmənt/"
+    },
+    {
+      "usage": "広がる髪へのおすすめ",
+      "voice": "nova",
+      "phrase": "If you feel like your hair is frizzy, I recommend a straight perm.",
+      "emotion": "knowledgeable",
+      "meaning": "もし髪が広がると感じている場合は、ストレートパーマをおすすめします。",
+      "examples": [
+        "If you feel like your hair is frizzy, I recommend a straight perm.",
+        "Your hair looks a bit frizzy. I recommend a straight perm or treatment.",
+        "If you feel like your hair is frizzy in humidity, I recommend a straight perm."
+      ],
+      "phonetic": "/ɪf juː fiːl laɪk jɔːr hɛr ɪz ˈfrɪzi, aɪ ˌrɛkəˈmɛnd ə streɪt pɜːrm/"
+    },
+    {
+      "usage": "追加カットを提案する",
+      "voice": "nova",
+      "phrase": "Would you like to do a haircut as well?",
+      "emotion": "suggestive",
+      "meaning": "カットもされたいですか？",
+      "examples": [
+        "Would you like to do a haircut as well? We could trim the damaged ends.",
+        "After the color, would you like to do a haircut as well?",
+        "Would you like to do a haircut as well to shape your new style?"
+      ],
+      "phonetic": "/wʊd juː laɪk tuː duː ə ˈhɛrkʌt æz wɛl/"
+    },
+    {
+      "usage": "提案の理由を説明する",
+      "voice": "nova",
+      "phrase": "The treatment will make your hair less damaged.",
+      "emotion": "educational",
+      "meaning": "トリートメントはダメージを軽減します。",
+      "examples": [
+        "The treatment will make your hair less damaged and more shiny.",
+        "This treatment will make your hair less damaged. It's very effective.",
+        "The treatment will make your hair less damaged and easier to manage."
+      ],
+      "phonetic": "/ðə ˈtriːtmənt wɪl meɪk jɔːr hɛr lɛs ˈdæmɪdʒd/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "What would you like to do today?",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "今日のメニューはどうなさいますか？"
+    },
+    {
+      "text": "A haircut please, my hair feels damaged.",
+      "voice": "fable",
+      "emotion": "concerned",
+      "speaker": "Customer",
+      "japanese": "カットでお願いします。ダメージしているように感じます。"
+    },
+    {
+      "text": "OK, would you like to do a treatment as well?",
+      "voice": "nova",
+      "emotion": "helpful",
+      "speaker": "Staff",
+      "japanese": "わかりました。トリートメントもされますか？"
+    },
+    {
+      "text": "Sure.",
+      "voice": "fable",
+      "emotion": "agreeable",
+      "speaker": "Customer",
+      "japanese": "わかりました。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Haircut",
+      "options": ["カット", "カラー", "パーマ", "トリートメント"],
+      "correct_answer": 0,
+      "explanation": "Haircut は「ヘアカット」「散髪」を意味します。髪を切るサービスのことです。"
+    },
+    {
+      "question": "Feels",
+      "options": ["感じる", "見える", "聞こえる", "においがする"],
+      "correct_answer": 0,
+      "explanation": "Feels は feel の三人称単数形で「感じる」を意味します。My hair feels damaged.（髪がダメージしていると感じる）のように使います。"
+    },
+    {
+      "question": "Damage",
+      "options": ["ダメージ", "健康", "艶", "ボリューム"],
+      "correct_answer": 0,
+      "explanation": "Damage は「ダメージ」「損傷」を意味します。髪の傷みのことです。"
+    },
+    {
+      "question": "Treatment",
+      "options": ["トリートメント", "カット", "カラー", "パーマ"],
+      "correct_answer": 0,
+      "explanation": "Treatment は「トリートメント」を意味します。髪を補修・保湿する施術のことです。"
+    },
+    {
+      "question": "Frizzy",
+      "options": ["広がる・チリチリした", "まっすぐな", "艶のある", "柔らかい"],
+      "correct_answer": 0,
+      "explanation": "Frizzy は「広がる」「チリチリした」を意味します。髪が湿気で広がっている状態のことです。"
+    },
+    {
+      "question": "As well",
+      "options": ["～も", "～だけ", "～の代わりに", "～なしで"],
+      "correct_answer": 0,
+      "explanation": "As well は「～も」「同様に」を意味します。Would you like... as well?（～もされますか？）のように使います。"
+    },
+    {
+      "question": "Recommend",
+      "options": ["おすすめする", "拒否する", "避ける", "忘れる"],
+      "correct_answer": 0,
+      "explanation": "Recommend は「おすすめする」「推奨する」を意味します。I recommend...（...をおすすめします）のように使います。"
+    },
+    {
+      "question": "Dry",
+      "options": ["乾燥した", "湿った", "脂っぽい", "艶のある"],
+      "correct_answer": 0,
+      "explanation": "Dry は「乾燥した」を意味します。Your hair looks dry.（髪が乾燥しているように見えます）のように使います。"
+    },
+    {
+      "question": "Deep conditioning",
+      "options": ["ディープコンディショニング", "カット", "カラー", "パーマ"],
+      "correct_answer": 0,
+      "explanation": "Deep conditioning は「ディープコンディショニング」を意味します。深く髪を補修するトリートメントのことです。"
+    },
+    {
+      "question": "Effective",
+      "options": ["効果的な", "無効な", "危険な", "高価な"],
+      "correct_answer": 0,
+      "explanation": "Effective は「効果的な」を意味します。It's very effective.（とても効果的です）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "違うサービスのおススメを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: What would ( ).\nCustomer: I would like ( ),\nStaff: OK, if you ( ), I recommend ( ).",
+      "syntax_hint": "Hints: style, treatment, cold perm, digital perm, damage, straight perm",
+      "sample_answer": "Staff: What would you like to do today?\nCustomer: I would like a haircut, my hair feels damaged.\nStaff: OK, if you feel like your hair is damaged, I recommend a treatment as well. It will make your hair healthier."
+    },
+    {
+      "prompt": "なぜおススメかを説明する。例）このトリートメントはダメージを軽減します。",
+      "syntax_hint": "The treatment will... / This will help with... / It's very effective for...",
+      "sample_answer": "I recommend our deep conditioning treatment. The treatment will make your hair less damaged and more shiny. It's very effective for dry, damaged hair."
+    },
+    {
+      "prompt": "髪の状態に応じた提案を練習しましょう。",
+      "syntax_hint": "If you feel like your hair is... / I recommend... / Would you like to do... as well?",
+      "sample_answer": "Customer: My hair feels frizzy and dry.\nStaff: If you feel like your hair is frizzy, I recommend a straight perm. And if it's dry, would you like to do a treatment as well?"
+    }
+  ],
+  "objectives": [
+    "追加サービスを自然に提案できる",
+    "お客様の髪の状態を確認して適切な提案ができる",
+    "提案の理由を説明できる",
+    "様々な追加メニューを提案できる"
+  ],
+  "metadata": {
+    "icon": "✨",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

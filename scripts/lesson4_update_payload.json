@@ -1,0 +1,191 @@
+{
+  "title": "Lesson 4: いつになさいますか？",
+  "description": "お客様の希望日時を尋ね、予約を調整する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "希望日を尋ねる",
+      "voice": "nova",
+      "phrase": "When would you like?",
+      "emotion": "polite",
+      "meaning": "いつになさいますか？",
+      "examples": [
+        "When would you like to come in?",
+        "When would you like your appointment?",
+        "Thank you for calling. When would you like to schedule your appointment?"
+      ],
+      "phonetic": "/wɛn wʊd juː laɪk/"
+    },
+    {
+      "usage": "希望の曜日を尋ねる",
+      "voice": "nova",
+      "phrase": "What day would you like?",
+      "emotion": "polite",
+      "meaning": "どの日にちがよろしいですか？",
+      "examples": [
+        "What day would you like to come in?",
+        "What day would you like for your haircut?",
+        "We have availability next week. What day would you like?"
+      ],
+      "phonetic": "/wʌt deɪ wʊd juː laɪk/"
+    },
+    {
+      "usage": "希望の時間を尋ねる",
+      "voice": "nova",
+      "phrase": "What time would you like?",
+      "emotion": "polite",
+      "meaning": "何時がよろしいですか？",
+      "examples": [
+        "What time would you like to come in?",
+        "We have openings tomorrow. What time would you like?",
+        "What time would you like your appointment?"
+      ],
+      "phonetic": "/wʌt taɪm wʊd juː laɪk/"
+    },
+    {
+      "usage": "より早い時間を提案する",
+      "voice": "nova",
+      "phrase": "Can you do earlier?",
+      "emotion": "friendly",
+      "meaning": "それより早い時間は可能ですか？",
+      "examples": [
+        "That time is booked. Can you do earlier?",
+        "We're full at 3 PM. Can you do earlier, like 1 PM?",
+        "Can you do earlier? We have an opening at 10 AM."
+      ],
+      "phonetic": "/kæn juː duː ˈɜːrliər/"
+    },
+    {
+      "usage": "より遅い時間を提案する",
+      "voice": "nova",
+      "phrase": "Can you do later?",
+      "emotion": "friendly",
+      "meaning": "それより遅い時間は可能ですか？",
+      "examples": [
+        "That time is booked. Can you do later?",
+        "Can you do later? We have a 4 PM slot available.",
+        "Can you do later in the afternoon?"
+      ],
+      "phonetic": "/kæn juː duː ˈleɪtər/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hi, I would like an appointment.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "こんにちは、予約をお願いします。"
+    },
+    {
+      "text": "Thank you. When would you like?",
+      "voice": "nova",
+      "emotion": "polite",
+      "speaker": "Staff",
+      "japanese": "ありがとうございます。いつになさいますか？"
+    },
+    {
+      "text": "Tomorrow, please.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "明日でお願いします。"
+    },
+    {
+      "text": "Sure, thank you!",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "はい、ありがとうございます。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Appointment",
+      "options": ["予約", "時間", "場所", "料金"],
+      "correct_answer": 0,
+      "explanation": "Appointment は「予約」を意味します。I would like an appointment.（予約をお願いします）のように使います。"
+    },
+    {
+      "question": "When",
+      "options": ["いつ", "どこ", "何", "誰"],
+      "correct_answer": 0,
+      "explanation": "When は「いつ」を意味する疑問詞です。When would you like?（いつになさいますか？）のように使います。"
+    },
+    {
+      "question": "Today",
+      "options": ["今日", "昨日", "明日", "来週"],
+      "correct_answer": 0,
+      "explanation": "Today は「今日」を意味します。Can you come in today?（本日お越しいただけますか？）のように使います。"
+    },
+    {
+      "question": "Tomorrow",
+      "options": ["明日", "今日", "昨日", "来週"],
+      "correct_answer": 0,
+      "explanation": "Tomorrow は「明日」を意味します。I would like an appointment for tomorrow.（明日の予約をお願いします）のように使います。"
+    },
+    {
+      "question": "Week",
+      "options": ["週", "月", "日", "年"],
+      "correct_answer": 0,
+      "explanation": "Week は「週」を意味します。What week would you like?（どの週がよろしいですか？）のように使います。"
+    },
+    {
+      "question": "Month",
+      "options": ["月", "週", "日", "年"],
+      "correct_answer": 0,
+      "explanation": "Month は「月」を意味します。Next month（来月）、This month（今月）のように使います。"
+    },
+    {
+      "question": "Time",
+      "options": ["時間", "日付", "場所", "料金"],
+      "correct_answer": 0,
+      "explanation": "Time は「時間」を意味します。What time would you like?（何時がよろしいですか？）のように使います。"
+    },
+    {
+      "question": "AM or PM",
+      "options": ["午前または午後", "朝または夜", "早いまたは遅い", "今日または明日"],
+      "correct_answer": 0,
+      "explanation": "AM は午前、PM は午後を意味します。Would you prefer AM or PM?（午前と午後、どちらがよろしいですか？）のように使います。"
+    },
+    {
+      "question": "Earlier",
+      "options": ["より早い時間", "より遅い時間", "同じ時間", "違う日"],
+      "correct_answer": 0,
+      "explanation": "Earlier は「より早い時間」を意味します。Can you do earlier?（それより早い時間は可能ですか？）のように使います。"
+    },
+    {
+      "question": "Later",
+      "options": ["より遅い時間", "より早い時間", "同じ時間", "違う日"],
+      "correct_answer": 0,
+      "explanation": "Later は「より遅い時間」「後で」を意味します。Can you do later?（それより遅い時間は可能ですか？）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "ご予約をとる練習を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: I would like to book an appointment.\nStaff: Hi, ( )?\nCustomer: ( ).",
+      "syntax_hint": "Hints: appointment, time, today, tomorrow, week, month",
+      "sample_answer": "Customer: I would like to book an appointment.\nStaff: Hi, when would you like?\nCustomer: Tomorrow, please."
+    },
+    {
+      "prompt": "希望の時間が取れない場合、違う時間をおススメする練習をしましょう。",
+      "syntax_hint": "Can you do earlier? / Can you do later? / What time would you like?",
+      "sample_answer": "Staff: That time is booked. Can you do later?\nCustomer: Yes, what time do you have available?"
+    },
+    {
+      "prompt": "午前・午後の希望を尋ねる練習をしましょう。",
+      "syntax_hint": "AM or PM? / What day would you like? / What week would you like?",
+      "sample_answer": "Staff: We have availability next week. Would you prefer AM or PM?"
+    }
+  ],
+  "objectives": [
+    "would likeを使って丁寧に希望日時を尋ねることができる",
+    "代替の日時を提案できる（Can you do earlier/later?）",
+    "AM/PMなど具体的な時間帯を確認できる"
+  ],
+  "metadata": {
+    "icon": "🗓️",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "title": "Lesson 4: カタログをご覧になられますか？",
+  "description": "お客様がスタイルを決める手助けをし、カタログや写真を使って提案する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "カタログを提案する",
+      "voice": "nova",
+      "phrase": "Would you like to see a catalogue?",
+      "emotion": "helpful",
+      "meaning": "カタログをご覧になられますか？",
+      "examples": [
+        "You're not sure yet? Would you like to see a catalogue?",
+        "Would you like to see a catalogue? We have many styles to choose from.",
+        "Would you like to see a catalogue? It might help you decide."
+      ],
+      "phonetic": "/wʊd juː laɪk tuː siː ə ˈkætəlɒɡ/"
+    },
+    {
+      "usage": "雑誌を提案する",
+      "voice": "nova",
+      "phrase": "Would you like to see a magazine?",
+      "emotion": "suggestive",
+      "meaning": "雑誌をご覧になられますか？",
+      "examples": [
+        "Would you like to see a magazine? We have the latest styles.",
+        "I have some magazines. Would you like to see a magazine?",
+        "Would you like to see a magazine for inspiration?"
+      ],
+      "phonetic": "/wʊd juː laɪk tuː siː ə ˌmæɡəˈziːn/"
+    },
+    {
+      "usage": "アイデアがあるか尋ねる",
+      "voice": "nova",
+      "phrase": "Do you have any ideas?",
+      "emotion": "curious",
+      "meaning": "アイデアはありますか？",
+      "examples": [
+        "Do you have any ideas about what you'd like?",
+        "Do you have any ideas? Or would you like some suggestions?",
+        "Do you have any ideas for your new style?"
+      ],
+      "phonetic": "/duː juː hæv ˈɛni aɪˈdiːəz/"
+    },
+    {
+      "usage": "写真があるか尋ねる",
+      "voice": "nova",
+      "phrase": "Do you have any photos?",
+      "emotion": "interested",
+      "meaning": "写真はありますか？",
+      "examples": [
+        "Do you have any photos of styles you like?",
+        "Do you have any photos on your phone to show me?",
+        "Do you have any photos? That would help me understand what you want."
+      ],
+      "phonetic": "/duː juː hæv ˈɛni ˈfoʊtoʊz/"
+    },
+    {
+      "usage": "スタイルについて意見を聞く",
+      "voice": "nova",
+      "phrase": "What do you think about this style?",
+      "emotion": "collaborative",
+      "meaning": "このスタイルはどう思いますか？",
+      "examples": [
+        "What do you think about this style? Does it look good?",
+        "Here's an option. What do you think about this style?",
+        "What do you think about this style? We could customize it for you."
+      ],
+      "phonetic": "/wʌt duː juː θɪŋk əˈbaʊt ðɪs staɪl/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "I would like to do hair color please.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "カラーをしたいです。"
+    },
+    {
+      "text": "OK, what kind of color would you like?",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "了解しました、どういうカラーをされたいですか？"
+    },
+    {
+      "text": "I'm not sure.",
+      "voice": "fable",
+      "emotion": "uncertain",
+      "speaker": "Customer",
+      "japanese": "まだ決めてないです。"
+    },
+    {
+      "text": "Would you like to see a catalogue?",
+      "voice": "nova",
+      "emotion": "helpful",
+      "speaker": "Staff",
+      "japanese": "カタログをご覧になられますか？"
+    },
+    {
+      "text": "Yes, please.",
+      "voice": "fable",
+      "emotion": "grateful",
+      "speaker": "Customer",
+      "japanese": "はい、お願いします。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "See",
+      "options": ["見る", "聞く", "話す", "書く"],
+      "correct_answer": 0,
+      "explanation": "See は「見る」を意味します。Would you like to see...?（...をご覧になりますか？）のように使います。"
+    },
+    {
+      "question": "Catalogue",
+      "options": ["カタログ", "雑誌", "新聞", "本"],
+      "correct_answer": 0,
+      "explanation": "Catalogue は「カタログ」を意味します。スタイルやカラーの見本集のことです。"
+    },
+    {
+      "question": "Not sure",
+      "options": ["決めていない・わからない", "確信している", "知っている", "決めた"],
+      "correct_answer": 0,
+      "explanation": "Not sure は「決めていない」「わからない」を意味します。I'm not sure.（まだ決めていません）のように使います。"
+    },
+    {
+      "question": "Magazine",
+      "options": ["雑誌", "カタログ", "新聞", "写真"],
+      "correct_answer": 0,
+      "explanation": "Magazine は「雑誌」を意味します。ファッションやヘアスタイルの情報が載っています。"
+    },
+    {
+      "question": "Ideas",
+      "options": ["アイデア", "写真", "雑誌", "カタログ"],
+      "correct_answer": 0,
+      "explanation": "Ideas は idea の複数形で「アイデア」「考え」を意味します。Do you have any ideas?（何かアイデアはありますか？）のように使います。"
+    },
+    {
+      "question": "Photos",
+      "options": ["写真", "雑誌", "カタログ", "絵"],
+      "correct_answer": 0,
+      "explanation": "Photos は photo の複数形で「写真」を意味します。参考にしたいスタイルの写真のことです。"
+    },
+    {
+      "question": "Cool tones",
+      "options": ["寒色カラー", "暖色カラー", "ナチュラルカラー", "ビビッドカラー"],
+      "correct_answer": 0,
+      "explanation": "Cool tones は「寒色カラー」を意味します。青みやアッシュ系の色味のことです。"
+    },
+    {
+      "question": "Warm tones",
+      "options": ["暖色カラー", "寒色カラー", "ナチュラルカラー", "ダークカラー"],
+      "correct_answer": 0,
+      "explanation": "Warm tones は「暖色カラー」を意味します。赤みやオレンジ系の色味のことです。"
+    },
+    {
+      "question": "Inspiration",
+      "options": ["インスピレーション・ひらめき", "確信", "混乱", "不安"],
+      "correct_answer": 0,
+      "explanation": "Inspiration は「インスピレーション」「ひらめき」を意味します。新しいアイデアのきっかけになるものです。"
+    },
+    {
+      "question": "Customize",
+      "options": ["カスタマイズする・調整する", "コピーする", "削除する", "無視する"],
+      "correct_answer": 0,
+      "explanation": "Customize は「カスタマイズする」「調整する」を意味します。お客様に合わせてアレンジすることです。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "カラーの種類の希望を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: What kind ( )?\nCustomer: I'm not sure yet.\nStaff: Would you like ( )?\nCustomer: Sure.",
+      "syntax_hint": "Hints: cool tones, warm tones, highlights, magazine, photos, ideas",
+      "sample_answer": "Staff: What kind of color would you like?\nCustomer: I'm not sure yet.\nStaff: Would you like to see a catalogue? Or do you have any photos?\nCustomer: Sure. Let me show you some photos on my phone."
+    },
+    {
+      "prompt": "さらに詳しい質問を聞いてみよう。例）暖色系は好きですか？",
+      "syntax_hint": "Do you like...? / What do you think about...? / Would this style work for you?",
+      "sample_answer": "Staff: Here are some options. Do you like warm tones or cool tones better?\nCustomer: I think cool tones.\nStaff: Great! What do you think about this ash blonde color?"
+    },
+    {
+      "prompt": "カタログを見ながら質問する練習をしましょう。",
+      "syntax_hint": "What do you think about this...? / Do you like this one? / This style would look good on you.",
+      "sample_answer": "Staff: What do you think about this style here? It's very popular right now. Do you like this balayage? We could customize it with cool tones to match your preference."
+    }
+  ],
+  "objectives": [
+    "お客様がスタイルを決める手助けができる",
+    "カタログや雑誌を効果的に使うことができる",
+    "お客様の意見を聞きながら提案できる",
+    "写真を使ってコミュニケーションできる"
+  ],
+  "metadata": {
+    "icon": "📖",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

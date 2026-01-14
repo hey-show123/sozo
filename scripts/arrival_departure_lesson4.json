@@ -1,0 +1,185 @@
+{
+  "title": "Lesson 4: カットで合計が8,000円になります。",
+  "description": "お客様に料金を明確に伝え、会計処理を行う表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "合計金額を伝える",
+      "voice": "nova",
+      "phrase": "For haircut, your total is 8,000 yen.",
+      "emotion": "clear",
+      "meaning": "カットで合計が8,000円になります。",
+      "examples": [
+        "For haircut, your total is 8,000 yen. Will that be cash or card?",
+        "For haircut, your total is 8,000 yen today.",
+        "For haircut, your total is 8,000 yen before tax."
+      ],
+      "phonetic": "/fɔːr ˈhɛrkʌt, jɔːr ˈtoʊtəl ɪz eɪt ˈθaʊzənd jɛn/"
+    },
+    {
+      "usage": "複数メニューの料金を伝える",
+      "voice": "nova",
+      "phrase": "For haircut and color, your total is 15,000 yen.",
+      "emotion": "professional",
+      "meaning": "カットとカラーで合計が15,000円になります。",
+      "examples": [
+        "For haircut and color, your total is 15,000 yen.",
+        "For haircut and perm, your total is 18,000 yen.",
+        "For haircut, color, and treatment, your total is 20,000 yen."
+      ],
+      "phonetic": "/fɔːr ˈhɛrkʌt ænd ˈkʌlər, jɔːr ˈtoʊtəl ɪz fɪfˈtiːn ˈθaʊzənd jɛn/"
+    },
+    {
+      "usage": "税抜き価格を伝える",
+      "voice": "nova",
+      "phrase": "Your total is 8,000 yen before tax.",
+      "emotion": "clear",
+      "meaning": "税抜きで8,000円になります。",
+      "examples": [
+        "Your total is 8,000 yen before tax, and 8,800 yen after tax.",
+        "That's 8,000 yen before tax.",
+        "Your total is 8,000 yen before tax. With tax, it will be 8,800 yen."
+      ],
+      "phonetic": "/jɔːr ˈtoʊtəl ɪz eɪt ˈθaʊzənd jɛn bɪˈfɔːr tæks/"
+    },
+    {
+      "usage": "税込み価格を伝える",
+      "voice": "nova",
+      "phrase": "Your total is 8,800 yen after tax.",
+      "emotion": "clear",
+      "meaning": "税込みで8,800円になります。",
+      "examples": [
+        "Your total is 8,800 yen after tax.",
+        "Including tax, your total is 8,800 yen.",
+        "With tax included, your total is 8,800 yen."
+      ],
+      "phonetic": "/jɔːr ˈtoʊtəl ɪz eɪt ˈθaʊzənd eɪt ˈhʌndrəd jɛn ˈæftər tæks/"
+    },
+    {
+      "usage": "支払い方法を尋ねる",
+      "voice": "nova",
+      "phrase": "Will that be cash or card?",
+      "emotion": "friendly",
+      "meaning": "現金とカード、どちらになさいますか？",
+      "examples": [
+        "Will that be cash or card today?",
+        "Your total is 8,800 yen. Will that be cash or card?",
+        "Will that be cash or card? We also accept mobile payment."
+      ],
+      "phonetic": "/wɪl ðæt biː kæʃ ɔːr kɑːrd/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Here is your bag and jacket.",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "こちらがバッグと上着です。"
+    },
+    {
+      "text": "Thank you.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "ありがとうございます。"
+    },
+    {
+      "text": "For haircut, your total is 8,000 yen.",
+      "voice": "nova",
+      "emotion": "clear",
+      "speaker": "Staff",
+      "japanese": "カットで合計が8,000円になります。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Bag",
+      "options": ["バッグ", "財布", "服", "靴"],
+      "correct_answer": 0,
+      "explanation": "Bag は「バッグ」「かばん」を意味します。お客様の持ち物を指します。"
+    },
+    {
+      "question": "Yen",
+      "options": ["円", "ドル", "ユーロ", "ポンド"],
+      "correct_answer": 0,
+      "explanation": "Yen は「円」を意味します。日本の通貨単位です。"
+    },
+    {
+      "question": "Coat",
+      "options": ["コート", "シャツ", "靴", "バッグ"],
+      "correct_answer": 0,
+      "explanation": "Coat は「コート」を意味します。上着の一種で、jacketより重く暖かいものです。"
+    },
+    {
+      "question": "Total",
+      "options": ["合計", "税金", "割引", "釣り"],
+      "correct_answer": 0,
+      "explanation": "Total は「合計」「総額」を意味します。Your total is...（合計は...です）のように使います。"
+    },
+    {
+      "question": "Payment",
+      "options": ["支払い・決済", "領収書", "釣り", "割引"],
+      "correct_answer": 0,
+      "explanation": "Payment は「支払い」「決済」を意味します。支払いの方法や行為を指します。"
+    },
+    {
+      "question": "Bill",
+      "options": ["お会計・請求書", "領収書", "釣り", "割引"],
+      "correct_answer": 0,
+      "explanation": "Bill は「お会計」「請求書」を意味します。料金の明細のことです。"
+    },
+    {
+      "question": "Pay",
+      "options": ["支払う", "受け取る", "返す", "借りる"],
+      "correct_answer": 0,
+      "explanation": "Pay は「支払う」を意味します。I will pay with card.（カードで支払います）のように使います。"
+    },
+    {
+      "question": "PIN",
+      "options": ["暗証番号", "署名", "領収書", "カード"],
+      "correct_answer": 0,
+      "explanation": "PIN は「暗証番号」を意味します。Personal Identification Numberの略です。"
+    },
+    {
+      "question": "Sign",
+      "options": ["署名する", "支払う", "受け取る", "返す"],
+      "correct_answer": 0,
+      "explanation": "Sign は「署名する」「サインする」を意味します。Please sign here.（こちらにご署名ください）のように使います。"
+    },
+    {
+      "question": "Before tax",
+      "options": ["税抜き", "税込み", "割引後", "合計"],
+      "correct_answer": 0,
+      "explanation": "Before tax は「税抜き」を意味します。税金を含まない価格のことです。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "値段の説明を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: For ( ), your total is ( ).\nCustomer: Thank you. I will pay with ( ).\nStaff: Thank you.",
+      "syntax_hint": "Hints: payment, bill, pay, use, PIN, sign",
+      "sample_answer": "Staff: For haircut, your total is 8,000 yen.\nCustomer: Thank you. I will pay with card.\nStaff: Thank you. Please insert your card here."
+    },
+    {
+      "prompt": "違うメニューの値段の言い方も練習する。例）カットのみの値段は何ですか？",
+      "syntax_hint": "For (haircut / color / perm / haircut and color), your total is...",
+      "sample_answer": "For haircut only, your total is 8,000 yen. For haircut and color, your total is 15,000 yen."
+    },
+    {
+      "prompt": "税抜き・税込みの説明を練習しましょう。",
+      "syntax_hint": "Before tax... / After tax... / Including tax... / With tax included...",
+      "sample_answer": "Your total is 8,000 yen before tax. After tax, it will be 8,800 yen."
+    }
+  ],
+  "objectives": [
+    "料金を明確に伝えることができる（For..., your total is...）",
+    "複数のメニューを含む料金を説明できる",
+    "税抜き・税込みの価格を正確に伝えることができる",
+    "支払い方法を尋ねることができる"
+  ],
+  "metadata": {
+    "icon": "💰",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}

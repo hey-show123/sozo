@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 4: お会いできてうれしく思います。",
+  "description": "様々な「はじめまして」の表現を使い分け、良い第一印象を与える方法を学習します",
+  "key_phrases": [
+    {
+      "usage": "はじめましての基本表現",
+      "voice": "nova",
+      "phrase": "Nice to meet you.",
+      "emotion": "friendly",
+      "meaning": "お会いできてうれしいです。はじめまして。",
+      "examples": [
+        "Nice to meet you. I'm so happy you're here today.",
+        "Hello! Nice to meet you. Welcome to our salon.",
+        "Nice to meet you. Thank you for choosing us."
+      ],
+      "phonetic": "/naɪs tuː miːt juː/"
+    },
+    {
+      "usage": "より warm な表現",
+      "voice": "nova",
+      "phrase": "Glad to meet you.",
+      "emotion": "warm",
+      "meaning": "お会いできてうれしいです。",
+      "examples": [
+        "I'm so glad to meet you finally!",
+        "Glad to meet you. I've been looking forward to this.",
+        "Glad to meet you. Welcome!"
+      ],
+      "phonetic": "/ɡlæd tuː miːt juː/"
+    },
+    {
+      "usage": "よりフォーマルな表現",
+      "voice": "nova",
+      "phrase": "Pleasure to meet you.",
+      "emotion": "professional",
+      "meaning": "お会いできて光栄です。",
+      "examples": [
+        "It's a pleasure to meet you.",
+        "Pleasure to meet you. I'm John, your stylist today.",
+        "What a pleasure to meet you. Thank you for coming."
+      ],
+      "phonetic": "/ˈplɛʒər tuː miːt juː/"
+    },
+    {
+      "usage": "自己紹介と組み合わせる",
+      "voice": "nova",
+      "phrase": "Hello, my name is John. I'm your hairstylist today. Nice to meet you.",
+      "emotion": "professional",
+      "meaning": "こんにちは、私は今日のスタイリストのジョンです。はじめまして。",
+      "examples": [
+        "Hello, my name is Sarah. I'm your hairstylist today. Nice to meet you.",
+        "Good afternoon. My name is John. I'm your hairstylist today. Pleasure to meet you.",
+        "Hi there! My name is Alex. I'm your hairstylist today. Glad to meet you."
+      ],
+      "phonetic": "/həˈloʊ, maɪ neɪm ɪz dʒɒn. aɪm jɔːr ˈhɛrstaɪlɪst təˈdeɪ. naɪs tuː miːt juː/"
+    },
+    {
+      "usage": "お客様の名前を添えて",
+      "voice": "nova",
+      "phrase": "Nice to meet you, Sarah.",
+      "emotion": "warm",
+      "meaning": "サラさん、お会いできてうれしいです。",
+      "examples": [
+        "Nice to meet you, Sarah. I'm looking forward to working with you.",
+        "Pleasure to meet you, Sarah. Welcome to our salon.",
+        "Glad to meet you, Sarah. Thank you for coming today."
+      ],
+      "phonetic": "/naɪs tuː miːt juː, ˈsɛrə/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Hello.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "こんにちは。"
+    },
+    {
+      "text": "Hello, I'm John.",
+      "voice": "nova",
+      "emotion": "friendly",
+      "speaker": "Staff",
+      "japanese": "こんにちは、私はジョンです。"
+    },
+    {
+      "text": "I'm Sara.",
+      "voice": "fable",
+      "emotion": "polite",
+      "speaker": "Customer",
+      "japanese": "私はサラです。"
+    },
+    {
+      "text": "Hi Sara, nice to meet you.",
+      "voice": "nova",
+      "emotion": "warm",
+      "speaker": "Staff",
+      "japanese": "サラさん、お会いできてうれしく思います。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Nice",
+      "options": ["良い・素晴らしい", "悪い", "普通", "難しい"],
+      "correct_answer": 0,
+      "explanation": "Nice は「良い」「素晴らしい」「素敵な」を意味します。Nice to meet you.（お会いできてうれしいです）のように使います。"
+    },
+    {
+      "question": "Meet",
+      "options": ["出会う・会う", "話す", "聞く", "見る"],
+      "correct_answer": 0,
+      "explanation": "Meet は「出会う」「会う」を意味します。初対面の挨拶で使います。"
+    },
+    {
+      "question": "Glad",
+      "options": ["うれしい", "悲しい", "怒っている", "心配な"],
+      "correct_answer": 0,
+      "explanation": "Glad は「うれしい」「喜んで」を意味します。Glad to meet you.（お会いできてうれしいです）のように使います。"
+    },
+    {
+      "question": "Pleasure",
+      "options": ["喜び・光栄", "悲しみ", "怒り", "心配"],
+      "correct_answer": 0,
+      "explanation": "Pleasure は「喜び」「光栄」を意味します。フォーマルな表現で、Pleasure to meet you.（お会いできて光栄です）のように使います。"
+    },
+    {
+      "question": "Impression",
+      "options": ["印象", "表現", "経験", "感情"],
+      "correct_answer": 0,
+      "explanation": "Impression は「印象」を意味します。Leave a good impression（良い印象を残す）のように使います。"
+    },
+    {
+      "question": "Welcome",
+      "options": ["ようこそ・歓迎する", "さようなら", "ありがとう", "すみません"],
+      "correct_answer": 0,
+      "explanation": "Welcome は「ようこそ」「歓迎する」を意味します。お客様を迎える時に使います。"
+    },
+    {
+      "question": "Finally",
+      "options": ["ついに・やっと", "初めて", "また", "決して"],
+      "correct_answer": 0,
+      "explanation": "Finally は「ついに」「やっと」を意味します。I'm glad to meet you finally!（やっとお会いできてうれしいです！）のように使います。"
+    },
+    {
+      "question": "Looking forward to",
+      "options": ["楽しみにしている", "心配している", "後悔している", "忘れている"],
+      "correct_answer": 0,
+      "explanation": "Looking forward to は「楽しみにしている」を意味します。I'm looking forward to working with you.（一緒に仕事をするのを楽しみにしています）のように使います。"
+    },
+    {
+      "question": "Variation",
+      "options": ["バリエーション・変化形", "同じもの", "反対", "理由"],
+      "correct_answer": 0,
+      "explanation": "Variation は「バリエーション」「変化形」を意味します。同じ意味の異なる表現のことです。"
+    },
+    {
+      "question": "Combine",
+      "options": ["組み合わせる", "分ける", "消す", "変える"],
+      "correct_answer": 0,
+      "explanation": "Combine は「組み合わせる」を意味します。自己紹介と挨拶を組み合わせて使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "自己紹介を、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nCustomer: Hello.\nStaff: ( ).\nCustomer: Nice to meet you.",
+      "syntax_hint": "Hello, my name is... / I'm your hairstylist today. / Nice to meet you.",
+      "sample_answer": "Customer: Hello.\nStaff: Hello, my name is Sarah. I'm your hairstylist today. Nice to meet you.\nCustomer: Nice to meet you too."
+    },
+    {
+      "prompt": "自己紹介をされたら、相手の名前も復唱する。例）Nice to meet you, Heather.",
+      "syntax_hint": "Nice to meet you, [name]. / Glad to meet you, [name]. / Pleasure to meet you, [name].",
+      "sample_answer": "Customer: I'm Heather.\nStaff: Nice to meet you, Heather. I'm your hairstylist today. I'm looking forward to working with you."
+    },
+    {
+      "prompt": "様々な「はじめまして」のバリエーションを練習しましょう。",
+      "syntax_hint": "Nice to meet you / Glad to meet you / Pleasure to meet you / Great to meet you",
+      "sample_answer": "Casual: Nice to meet you! I'm so glad you're here.\nWarm: I'm glad to meet you. Welcome to our salon!\nFormal: It's a pleasure to meet you. Thank you for choosing us."
+    }
+  ],
+  "objectives": [
+    "様々な「はじめまして」の表現を使い分けることができる",
+    "自己紹介と挨拶を自然に組み合わせることができる",
+    "お客様の名前を添えて挨拶できる",
+    "良い第一印象を与えることができる"
+  ],
+  "metadata": {
+    "icon": "🤝",
+    "xp_reward": 25,
+    "estimated_minutes": 30,
+    "difficulty": "intermediate"
+  }
+}

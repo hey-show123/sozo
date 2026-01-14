@@ -1,0 +1,192 @@
+{
+  "title": "Lesson 6: ブリーチはされたことがありますか？",
+  "description": "ブリーチの経験を確認し、施術可能性を判断する表現を学習します",
+  "key_phrases": [
+    {
+      "usage": "ブリーチ経験を尋ねる",
+      "voice": "nova",
+      "phrase": "Have you ever bleached your hair?",
+      "emotion": "professional",
+      "meaning": "ブリーチはされたことがありますか？",
+      "examples": [
+        "Have you ever bleached your hair before?",
+        "Have you ever bleached your hair? It's important for me to know.",
+        "Have you ever bleached your hair in the past?"
+      ],
+      "phonetic": "/hæv juː ˈɛvər bliːtʃt jɔːr hɛr/"
+    },
+    {
+      "usage": "何回ブリーチしたか尋ねる",
+      "voice": "nova",
+      "phrase": "How many times did you bleach it?",
+      "emotion": "inquiring",
+      "meaning": "何回ブリーチをしましたか？",
+      "examples": [
+        "How many times did you bleach it? Once or twice?",
+        "How many times did you bleach it to get that light?",
+        "How many times did you bleach it? I need to know for the treatment."
+      ],
+      "phonetic": "/haʊ ˈmɛni taɪmz dɪd juː bliːtʃ ɪt/"
+    },
+    {
+      "usage": "全体にブリーチしたか尋ねる",
+      "voice": "nova",
+      "phrase": "Did you bleach all of your hair?",
+      "emotion": "clarifying",
+      "meaning": "髪全体にブリーチをしましたか？",
+      "examples": [
+        "Did you bleach all of your hair, or just highlights?",
+        "Did you bleach all of your hair at once?",
+        "Did you bleach all of your hair, or only the ends?"
+      ],
+      "phonetic": "/dɪd juː bliːtʃ ɔːl ʌv jɔːr hɛr/"
+    },
+    {
+      "usage": "ダメージの可能性を伝える",
+      "voice": "nova",
+      "phrase": "Bleaching may damage your hair.",
+      "emotion": "cautionary",
+      "meaning": "ブリーチは髪を傷めるかもしれません。",
+      "examples": [
+        "Bleaching may damage your hair. Are you okay with that?",
+        "I have to warn you, bleaching may damage your hair.",
+        "Bleaching may damage your hair, especially if it's already dry."
+      ],
+      "phonetic": "/ˈbliːtʃɪŋ meɪ ˈdæmɪdʒ jɔːr hɛr/"
+    },
+    {
+      "usage": "複数回のブリーチが必要と伝える",
+      "voice": "nova",
+      "phrase": "We need to bleach it twice.",
+      "emotion": "informative",
+      "meaning": "2回ブリーチする必要があります。",
+      "examples": [
+        "To get this light, we need to bleach it twice.",
+        "We need to bleach it twice. Is that okay?",
+        "We need to bleach it twice to achieve this color."
+      ],
+      "phonetic": "/wiː niːd tuː bliːtʃ ɪt twaɪs/"
+    }
+  ],
+  "dialogues": [
+    {
+      "text": "Have you ever bleached your hair?",
+      "voice": "nova",
+      "emotion": "professional",
+      "speaker": "Staff",
+      "japanese": "ブリーチはされたことがありますか？"
+    },
+    {
+      "text": "Yes, once.",
+      "voice": "fable",
+      "emotion": "confirming",
+      "speaker": "Customer",
+      "japanese": "はい、一回。"
+    },
+    {
+      "text": "Did you bleach all of your hair?",
+      "voice": "nova",
+      "emotion": "clarifying",
+      "speaker": "Staff",
+      "japanese": "髪全体にブリーチをしましたか？"
+    },
+    {
+      "text": "No, just highlights.",
+      "voice": "fable",
+      "emotion": "explaining",
+      "speaker": "Customer",
+      "japanese": "いいえ、ハイライトだけです。"
+    }
+  ],
+  "vocabulary_questions": [
+    {
+      "question": "Bleach",
+      "options": ["ブリーチする", "染める", "切る", "洗う"],
+      "correct_answer": 0,
+      "explanation": "Bleach は「ブリーチする」「脱色する」を意味します。髪の色を抜く施術です。"
+    },
+    {
+      "question": "How many times",
+      "options": ["何回", "いつ", "どこで", "なぜ"],
+      "correct_answer": 0,
+      "explanation": "How many times は「何回」を意味します。回数を尋ねる表現です。"
+    },
+    {
+      "question": "All of",
+      "options": ["～全体", "～の一部", "～の半分", "～の端"],
+      "correct_answer": 0,
+      "explanation": "All of は「～全体」を意味します。All of your hair（髪全体）のように使います。"
+    },
+    {
+      "question": "May",
+      "options": ["～かもしれない", "～しなければならない", "～できる", "～したい"],
+      "correct_answer": 0,
+      "explanation": "May は「～かもしれない」を意味します。可能性を表す助動詞です。"
+    },
+    {
+      "question": "Damage",
+      "options": ["傷める", "修復する", "強くする", "伸ばす"],
+      "correct_answer": 0,
+      "explanation": "Damage は「傷める」「ダメージを与える」を意味します。髪を傷つけることです。"
+    },
+    {
+      "question": "Twice",
+      "options": ["2回", "1回", "3回", "4回"],
+      "correct_answer": 0,
+      "explanation": "Twice は「2回」を意味します。Once（1回）、Twice（2回）、Three times（3回）のように数えます。"
+    },
+    {
+      "question": "Highlights",
+      "options": ["ハイライト", "全体カラー", "ブリーチ", "トーン"],
+      "correct_answer": 0,
+      "explanation": "Highlights は「ハイライト」を意味します。部分的に明るくするカラー技術です。"
+    },
+    {
+      "question": "Achieve",
+      "options": ["達成する", "失敗する", "始める", "やめる"],
+      "correct_answer": 0,
+      "explanation": "Achieve は「達成する」「実現する」を意味します。Achieve this color（この色を実現する）のように使います。"
+    },
+    {
+      "question": "Warn",
+      "options": ["警告する", "褒める", "許可する", "禁止する"],
+      "correct_answer": 0,
+      "explanation": "Warn は「警告する」「注意する」を意味します。リスクを伝える時に使います。"
+    },
+    {
+      "question": "At once",
+      "options": ["一度に", "後で", "前に", "時々"],
+      "correct_answer": 0,
+      "explanation": "At once は「一度に」「同時に」を意味します。All at once（全部一度に）のように使います。"
+    }
+  ],
+  "application_practice": [
+    {
+      "prompt": "ブリーチの経験を聞くを、これまでに習った表現を使って完成させて、先生と練習してみましょう。\nStaff: Have you ever ( )?\nCustomer: Yes/no.\nStaff: How many ( )?\nCustomer: ( ).",
+      "syntax_hint": "Hints: bleached, times, once, twice, three times",
+      "sample_answer": "Staff: Have you ever bleached your hair?\nCustomer: Yes, I have.\nStaff: How many times did you bleach it?\nCustomer: Twice to get it this light."
+    },
+    {
+      "prompt": "ブリーチの範囲を確認する練習をしましょう。",
+      "syntax_hint": "Did you bleach all of your hair? / Just highlights / Only the ends / The whole head",
+      "sample_answer": "Staff: Did you bleach all of your hair?\nCustomer: No, just the ends.\nStaff: I see. And how many times?\nCustomer: Once."
+    },
+    {
+      "prompt": "ブリーチのリスクを説明する練習をしましょう。",
+      "syntax_hint": "Bleaching may damage... / We need to bleach it... / Are you okay with that?",
+      "sample_answer": "Staff: To get this blonde color, we need to bleach it twice.\nCustomer: Is that okay?\nStaff: Bleaching may damage your hair, especially with two sessions. Are you okay with that?\nCustomer: Yes, that's fine."
+    }
+  ],
+  "objectives": [
+    "ブリーチの経験を確認できる",
+    "ブリーチの回数と範囲を聞き取れる",
+    "ブリーチのリスクを説明できる",
+    "必要なブリーチ回数を伝えられる"
+  ],
+  "metadata": {
+    "icon": "⚡",
+    "xp_reward": 30,
+    "estimated_minutes": 35,
+    "difficulty": "intermediate"
+  }
+}
